@@ -4,7 +4,7 @@
 <%@ include file="/views/common/header.jsp" %>
     <section>
         <div class="patient_details">
-            <form action="" method="POST">
+            <form action="<%=request.getContextPath()%>/enroll/profile/guardian" method="POST">
                     <div>
                         <h1>보호자용 프로필 등록</h1>
                     </div>

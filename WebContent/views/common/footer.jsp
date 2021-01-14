@@ -1,25 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<div id="footer">
-            <div id="footer_1">
-                <a href="">이용약관</a> | 
-                <a href="">개인정보취급방침</a> | 
-                <a href="">고객센터</a>
-            </div>
-    
-            <div id="footer_2">
-                <p id="p1">
-                    강남지원 본관 : 서울특별시 강남구 테헤란로14길 6 남도빌딩 옥상 어딘가... <br>
-                </p>
-                <p id="p2">
-                    Copyright © 2020-2021 CarePool.All Right Reserved
-                </p>
-            </div>
-        </div>
-    </div>
-    <!-- jQuery 추가 -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <!-- js 추가 -->
-    <script type="text/javascript" src="../../resource/js/bootstrap.js"></script>
+	pageEncoding="UTF-8"%>
+
+<footer>
+	<p>
+		Copyright 2021. <strong>carepool</strong> All rights reserved.
+	</p>
+	<address>주소 : 서울 영등포구 영등포로 5길 45. 070-1234-5678</address>
+
+	<p>*회사는 통신판매중계로서 거래에 필요한 시스템을 운명 및 제공합니다.</p>
+	<p>&nbsp;&nbsp;보호자와 간병인 사이에 발생한 분쟁에 대한 책임은 보호자와 간병인에게 있습니다</p>
+
+</footer>
+<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
+<!-- <script type="text/javascript" src="../../resource/js/bootstrap.js"></script> -->
 </body>
 </html>
+
