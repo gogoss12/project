@@ -5,8 +5,7 @@
   <div id="content">
             <div id="content_1">사이드바</div>
             <div id="content_2">body부분
-                <img src="http://kledi.or.kr/files/attach/images/1457/348/003/afbe633536e453446d2f57d46e99cc0d.JPG"
-                    style="block-size: 70%;">
+                
             </div>
             <div id="content_3">
 			
