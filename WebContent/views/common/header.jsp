@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/style.css" type="text/css">
+	href="<%=request.getContextPath()%>/css/carePro_style.css" type="text/css">
 <script src="<%=request.getContextPath()%>/js/jquery-3.5.1.js"></script>
 </head>
 <body>
