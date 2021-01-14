@@ -17,5 +17,9 @@
             </div>
         </div>
     </div>
+    <!-- jQuery 추가 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- js 추가 -->
+    <script type="text/javascript" src="../../resource/js/bootstrap.js"></script>
 </body>
 </html>

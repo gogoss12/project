@@ -4,22 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <!-- bootstrap 추가 -->
+    <link rel="stylesheet" href="../../resource/css/bootstrap.css">
     <style>
-        table {
-            border: 1px red solid;
+        * {
+            border: 1px solid red;
         }
     </style>
 </head>
 <body>
-    <header>
-        
-    </header>
-
+    
     <section id="content">
-        <h2 align="center">회원가입</h2>
-        <div id="enroll-container">	 	
-             <form name="memberEnrollFrm" action="" method="post"> <!-- action 경로지정 -->
-                 <table border="1">
+        <h2 align="center" style="line-height: 3.0;">회원가입</h2>
+
+        <div id="enroll-container" style="margin: 0 auto; width: 600px">	 	
+             <form name="memberEnrollFrm" action="" method="post" style="width: 600px;">
+                 <table class="table table-borderless" style="width: 600px;">
                     <tr>
                         <th>이름</th>
                         <td>
@@ -83,8 +84,8 @@
                             </select>
                         </td>
                     </tr>
-                 </table> 
-                 <input type="submit" id="enrollSubmit" value="회원가입">	
+                 </table>
+                 <input type="submit" id="enrollSubmit" value="회원가입" style="margin: 0 150px;">	
                  <input type="reset" value="새로고침">	
              </form>
              <form name="checkIdForm">
@@ -93,6 +94,8 @@
          </div>
     </section>
 
-    <footer></footer>
+    <!-- jQuery, js 추가 -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../../resource/js/bootstrap.js"></script>
 </body>
 </html>
