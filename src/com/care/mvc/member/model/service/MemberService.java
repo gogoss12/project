@@ -5,6 +5,10 @@ import java.sql.Connection;
 import com.care.mvc.member.model.dao.MemberDao;
 import com.care.mvc.member.model.vo.Member;
 
+import static com.care.mvc.common.jdbc.JDBCTemplate.getConnection;
+import static com.care.mvc.common.jdbc.JDBCTemplate.commit;
+import static com.care.mvc.common.jdbc.JDBCTemplate.rollback;
+
 public class MemberService {
 	private MemberDao dao = new MemberDao();	
 

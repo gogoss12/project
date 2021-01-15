@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.care.mvc.member.model.service.MemberService;
 import com.care.mvc.member.model.vo.Member;
-@WebServlet("/member/enroll")
+@WebServlet(name="enroll", urlPatterns="/member/enroll")
 public class MemberEnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -30,13 +30,15 @@ public class MemberEnrollServlet extends HttpServlet {
 		member.setMemName(request.getParameter("userName"));
 		member.setMemPwd(request.getParameter("userPwd"));
 		member.setMemEmail(request.getParameter("email"));
-		member.setMemPhone(request.getParameter("phone"));
-		member.setMemAddr(request.getParameter("addr1" + "addr2")); // 지역주소 + 상세주소
+		member.setMemPhone(Integer.parseInt(request.getParameter("phone")));
+		member.setMemAddr(request.getParameter("addr1")); // 지역주소 + 상세주소
 		member.setMemBirth(request.getParameter("birth"));
 		
 		System.out.println(member);
 				
 		int result = new MemberService().enrollMember(member);
+		
+		System.out.println(result);
 		
 		if (result > 0) {
 			msg = "회원가입 성공";

@@ -13,7 +13,7 @@ public class Member {
 	
 	private String memEmail;
 	
-	private String memPhone;
+	private int memPhone;
 	
 	private String memAddr;
 	
@@ -28,8 +28,9 @@ public class Member {
 	public Member() {
 	}
 
-	public Member(String memId, String memRole, String memName, String memPwd, String memEmail, String memPhone,
+	public Member(String memId, String memRole, String memName, String memPwd, String memEmail, int memPhone,
 			String memAddr, String memBirth, Date createDate, Date modifyDate, String status) {
+		super();
 		this.memId = memId;
 		this.memRole = memRole;
 		this.memName = memName;
@@ -42,7 +43,7 @@ public class Member {
 		this.modifyDate = modifyDate;
 		this.status = status;
 	}
-	
+
 	public String getMemId() {
 		return memId;
 	}
@@ -83,11 +84,11 @@ public class Member {
 		this.memEmail = memEmail;
 	}
 
-	public String getMemPhone() {
+	public int getMemPhone() {
 		return memPhone;
 	}
 
-	public void setMemPhone(String memPhone) {
+	public void setMemPhone(int memPhone) {
 		this.memPhone = memPhone;
 	}
 
@@ -137,5 +138,5 @@ public class Member {
 				+ ", memEmail=" + memEmail + ", memPhone=" + memPhone + ", memAddr=" + memAddr + ", memBirth="
 				+ memBirth + ", createDate=" + createDate + ", modifyDate=" + modifyDate + ", status=" + status + "]";
 	}
-		
+	
 }

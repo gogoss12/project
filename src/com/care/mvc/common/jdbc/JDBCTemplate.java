@@ -18,15 +18,14 @@ public class JDBCTemplate {
 
 		Properties prop = new Properties();
 
-		String fileName = JDBCTemplate.class.getResource("./driver.properties").getPath();
+		String fileName = JDBCTemplate.class.getResource("./db.properties").getPath();
 
 		try {
 			prop.load(new FileReader(fileName));
 
 			Class.forName(prop.getProperty("driver"));
 
-			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"),
-					prop.getProperty("password"));
+			conn = DriverManager.getConnection(prop.getProperty("url"), prop.getProperty("user"), prop.getProperty("password"));
 
 			conn.setAutoCommit(false);
 

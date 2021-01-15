@@ -1,4 +1,4 @@
-package com.care.mvc.patient.controller;
+package com.care.mvc.GuardAndPatient.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -13,6 +13,7 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
        
     public EnrollProfileGuardianAndPatientServlet() {
     }
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/views/patient/patProfile.jsp").forward(request, response);
 	}

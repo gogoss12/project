@@ -1,11 +1,12 @@
 package com.care.mvc.member.model.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import com.care.mvc.member.model.vo.Member;
+
+import static com.care.mvc.common.jdbc.JDBCTemplate.close;
 
 public class MemberDao {
 	public int insertMember(Connection conn, Member member) {
@@ -14,11 +15,6 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		
 		try {
-			// JDBCTemplate 생성 후 삭제
-			Class.forName("oracle.jdbc.driver.OracleDriver");
-			// JDBCTemplate 생성 후 삭제
-			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "CARE", "CARE");
-			
 			// ROLE_USER : 보호자 혹은 요양보호사
 			query = "INSERT INTO MEMBER VALUES (?,?,?,?,?,?,?,?,SYSDATE,SYSDATE,DEFAULT)";
 			
@@ -29,9 +25,9 @@ public class MemberDao {
 			pstmt.setString(3, member.getMemName());
 			pstmt.setString(4, member.getMemPwd());
 			pstmt.setString(5, member.getMemEmail());
-			pstmt.setString(6, member.getMemPhone());
+			pstmt.setInt(6, member.getMemPhone());
 			pstmt.setString(7, member.getMemAddr());
-			pstmt.setString(7, member.getMemBirth());
+			pstmt.setString(8, member.getMemBirth());
 
 			result = pstmt.executeUpdate();
 			

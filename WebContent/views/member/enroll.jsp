@@ -4,7 +4,7 @@
 	<section id="content">
 		<h2 align="center" style="line-height: 3.0;">회원가입</h2>
 		<div id="enroll-container" style="margin: 0 auto; width: 600px">
-			<form name="memberEnrollFrm" action="" method="post"
+			<form name="memberEnrollFrm" action="<%= request.getContextPath()%>/member/enroll" method="post"
 				style="width: 600px;">
 				<table class="table table-borderless" style="width: 600px;">
 					<tr>
