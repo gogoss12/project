@@ -14,7 +14,7 @@
 					</tr>
 					<tr>
 						<th>아이디</th>
-						<td><input type="text" name="userId" id="newId"
+						<td><input type="text" name="userId" id="userId"
 							placeholder="아이디(4글자이상)" required> <input type="button"
 							id="checkDuplicate" value="중복확인"></td>
 					</tr>
@@ -46,7 +46,7 @@
 					</tr>
 					<tr>
 						<th>생년월일</th>
-						<td><input type="date" name="dateIn" id="dateIn"
+						<td><input type="date" name="birth" id="birth"
 							min="1930-01-01" max="" value="mm/dd/yyyy"><br> <!-- max 값을 오늘 날짜로 지정 -->
 						</td>
 					</tr>
