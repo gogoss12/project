@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+
+
 header {
 	height : 20%;
 }
@@ -23,7 +25,8 @@ nav>.container-fluid {
 	width: 150px;
 }
 
-/* 섹션 asdf*/
+/* 섹션 */
+
 /* 푸터 */
 footer {
 	width: 100%;
