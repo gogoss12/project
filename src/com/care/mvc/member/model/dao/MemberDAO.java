@@ -20,7 +20,7 @@ public class MemberDAO {
 		
 		try {
 			
-			conn.prepareStatement("SELECT * FROM MEMBER WHERE MEM_ID = ? AND MEM_PWD = ? AND STATUS = 'Y'");
+			pstmt = conn.prepareStatement("SELECT * FROM MEMBER WHERE MEM_ID = ? AND MEM_PWD = ? AND STATUS = 'Y'");
 			
 			pstmt.setString(1, id);
 			pstmt.setString(2, pwd);
@@ -35,7 +35,7 @@ public class MemberDAO {
 					rset.getString("MEM_NAME"),
 					rset.getString("MEM_PWD"),
 					rset.getString("MEM_EMAIL"),
-					rset.getString("MEM_PHONE"), // sql은 number로 되어있는지 확인하고 Member.java도 확인하고 맞워야한다.
+					rset.getInt("MEM_PHONE"), // sql은 number로 되어있는지 확인하고 Member.java도 확인하고 맞워야한다.
 					rset.getString("MEM_ADDR"),
 					rset.getString("MEM_BIRTH"),
 					rset.getDate("CREATE_DATE"),

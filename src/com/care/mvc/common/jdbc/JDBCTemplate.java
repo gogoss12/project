@@ -18,7 +18,7 @@ public class JDBCTemplate {
 
 		Properties prop = new Properties();
 
-		String fileName = JDBCTemplate.class.getResource("./driver.properties").getPath();
+		String fileName = JDBCTemplate.class.getResource("./db.properties").getPath();
 
 		try {
 			prop.load(new FileReader(fileName));

@@ -1,6 +1,8 @@
 package com.care.mvc.member.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -50,6 +52,9 @@ public class MemberLoginServlet extends HttpServlet {
 			request.setAttribute("msg", "아이디 또는 비밀번호가 일치하지 않습니다.");
 			request.setAttribute("location", "/");
 			
+//			RequestDispatcher dispatcher = request.getRequestDispatcher("/views/common/msg.jsp");
+//			
+//			dispatcher.forward(request, response);
 			
 		}
 		
