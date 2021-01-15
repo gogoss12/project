@@ -6,7 +6,7 @@ CREATE TABLE MEMBER (
 	MEM_NAME VARCHAR2(10) NOT NULL,
 	MEM_PWD	VARCHAR2(20)	NOT NULL,
 	MEM_EMAIL VARCHAR2(50) NOT NULL,
-	MEM_PHONE NUMBER NOT NULL,
+	MEM_PHONE VARCHAR2(13) NOT NULL,
 	MEM_ADDR VARCHAR2(100) NOT NULL,
 	MEM_BIRTH VARCHAR2(20) NOT NULL,
 	CREATE_DATE	DATE DEFAULT SYSDATE,
@@ -66,7 +66,7 @@ CREATE TABLE GUARDIAN_PROFILE (
 	MEM_ID	VARCHAR2(20) NOT NULL
 );
 -- 시퀀스 생성
-CREATE SEQUENCE SEQ_BOARD_NO;
+CREATE SEQUENCE SEQ_GUARD_NO;
 -- 보호자 번호 PK등록
 ALTER TABLE GUARDIAN_PROFILE ADD CONSTRAINT PK_GUARDIAN_PROFILE PRIMARY KEY (
 	GUARD_NO
@@ -88,7 +88,7 @@ COMMENT ON COLUMN GUARDIAN_PROFILE.GUARD_PAT IS '(보호자/환자)';
 
 -- 보호자 프로필 생성
 INSERT INTO guardian_profile VALUES(
-    SEQ_BOARD_NO.NEXTVAL,
+    SEQ_GUARD_NO.NEXTVAL,
     '남',
     '환자',
     'asdf'
@@ -101,30 +101,32 @@ JOIN guardian_profile G ON(M.MEM_ID = G.MEM_ID);
 CREATE TABLE patient_details (
 	pat_no NUMBER NOT NULL,
 	guard_no NUMBER	NOT NULL,
-	pat_guard VARCHAR2(30) NULL,
-	pat_name VARCHAR2(20) NULL,
-	pat_age	NUMBER NULL,
-	pat_gen	CHAR(3) NULL CHECK(pat_gen IN('남','여')),
-	pat_kg	NUMBER NULL,
-	pat_place VARCHAR2(200) NULL,
-	pat_period DATE	NULL,
-    pat_hop_time DATE,
-	pat_grade NUMBER NULL,
-	pat_infect VARCHAR2(50)	NULL,
-	pat_sanit VARCHAR2(50) NULL,
-	pat_paral VARCHAR2(50) NULL,
-	pat_move VARCHAR2(50) NULL,
-	pat_bed	VARCHAR2(50) NULL,
-	pat_cogdis VARCHAR2(50)	NULL,
-	pat_bathroom VARCHAR2(50) NULL,
-	pat_bowel_mn VARCHAR2(50) NULL,
-	pat_ostomy	VARCHAR2(50) NULL,
-	pat_help_eat VARCHAR2(50) NULL,
-	pat_suction VARCHAR2(50) NULL,
-	pat_guard_gen CHAR(3) CHECK(pat_guard_gen IN('남','여')) NULL,
+    pat_place VARCHAR2(200) NOT NULL,
+    pat_period VARCHAR2(200) NOT NULL,
+    pat_hop_time VARCHAR2(200) NOT NULL,
+	pat_name VARCHAR2(20) NOT NULL,
+	pat_age	NUMBER NOT NULL,
+	pat_gen	CHAR(3) NOT NULL CHECK(pat_gen IN('남','여')),
+	pat_kg	NUMBER NOT NULL,
+    pat_infect VARCHAR2(50) NOT NULL,
+	pat_grade VARCHAR2(20) NOT NULL,
+	pat_sanit VARCHAR2(50) NOT NULL,
+	pat_paral VARCHAR2(50) NOT NULL,
+	pat_move VARCHAR2(50) NOT NULL,
+	pat_bed	VARCHAR2(50) NOT NULL,
+	pat_cogdis VARCHAR2(50) NOT NULL,
+	pat_bathroom VARCHAR2(50) NOT NULL,
+	pat_bowel_mn VARCHAR2(50) NOT NULL,
+	pat_ostomy	VARCHAR2(50) NOT NULL,
+	pat_help_eat VARCHAR2(50) NOT NULL,
+	pat_suction VARCHAR2(50) NOT NULL,
+	pat_guard_gen CHAR(3) CHECK(pat_guard_gen IN('남','여')) NOT NULL,
 	pat_etc	VARCHAR2(1000) NULL
 );
 --DROP TABLE patient_details;
+
+CREATE SEQUENCE SEQ_pat_no;
+
 
 ALTER TABLE patient_details ADD CONSTRAINT PK_PATIENT_DETAILS PRIMARY KEY (
 	pat_no
@@ -170,4 +172,284 @@ COMMENT ON COLUMN PATIENT_DETAILS.pat_suction IS '석션사용여부';
 COMMENT ON COLUMN PATIENT_DETAILS.pat_guard_gen IS '우대성별';
 COMMENT ON COLUMN PATIENT_DETAILS.pat_etc IS '기타사항';
 
+INSERT INTO PATIENT_DETAILS VALUES (
+     SEQ_PAT_NO.NEXTVAL,
+     1,
+     '자택-서울시 송파구 잠실동 xx빌라 307호',
+     '2021-01-10~2021-11-27',
+     '오전-11시-15분',
+     '아파요',
+     77,
+     '남',
+     45,
+     'VRE, 독감, 아무거나 적어주세요',
+     '등급신청중',
+     '침대에서 도움 필요',
+     '편마비',
+     '홀로 가능',
+     '아니요',
+     '섬망',
+     '스스로 이동가능',
+     '없음',
+     '아니요',
+     '도움 필요',
+     '사용안함',
+     '남',
+     '안녕하세요 잘부탁드립니다'
+);
+
+-- 보호사 프로필 등록 쿼리문
+
+--CREATE USER CARE identified by CARE;
+
+--grant RESOURCE, CONNECT To CARE;
+
+--rollback;
 --COMMIT;
+
+-- 요양보호사 프로필
+CREATE TABLE caregiver_profile (
+	care_no 	    NUMBER	        NOT NULL,
+    care_gen        CHAR(3) NOT NULL CHECK (CARE_GEN IN('남','여')),
+	care_license	VARCHAR(100)	NULL,
+	care_years	    VARCHAR(100)	NULL,
+	care_history	VARCHAR(100)	NULL,
+	care_plus	    VARCHAR(100)	NULL,
+	care_time	    VARCHAR(100)	NULL,
+	care_place	    VARCHAR2(100)	NULL,
+	care_sal	    NUMBER	        NULL,
+	care_intro	    VARCHAR2(200)	NULL,
+	mem_id	        VARCHAR2(20)	NOT NULL
+);
+
+ALTER TABLE caregiver_profile ADD CONSTRAINT PK_CAREGIVER_PROFILE PRIMARY KEY (
+	care_no
+);
+
+ALTER TABLE caregiver_profile ADD CONSTRAINT FK_member_TO_caregiver_profile FOREIGN KEY (
+	MEM_ID
+) 
+REFERENCES MEMBER (
+	MEM_ID
+);
+
+-- 시퀀스 생성
+CREATE SEQUENCE SEQ_care_no;
+
+
+COMMENT ON COLUMN CAREGIVER_PROFILE.CARE_NO IS '요양사번호';
+COMMENT ON COLUMN CAREGIVER_PROFILE.CARE_LICENSE IS '자격증';
+COMMENT ON COLUMN CAREGIVER_PROFILE.CARE_YEARS IS '경력';
+COMMENT ON COLUMN CAREGIVER_PROFILE.CARE_HISTORY IS '경력사항 상세입력';
+COMMENT ON COLUMN CAREGIVER_PROFILE.CARE_PLUS IS '장점';
+COMMENT ON COLUMN CAREGIVER_PROFILE.CARE_TIME IS '희망근무시간';
+COMMENT ON COLUMN CAREGIVER_PROFILE.CARE_PLACE IS '희망근무위치';
+COMMENT ON COLUMN CAREGIVER_PROFILE.CARE_SAL IS '희망급여';
+COMMENT ON COLUMN CAREGIVER_PROFILE.CARE_INTRO IS '자기소개';
+
+-- 케어희망환자
+CREATE TABLE patient_wanted (
+	wanted_grade	NUMBER	        NOT NULL,
+	care_no	        NUMBER	        NOT NULL,
+	wanted_gen	    CHAR(3) NULL CHECK (WANTED_GEN IN('남','여')),
+	wanted_age	    NUMBER	        NULL,
+	wanted_ill	    VARCHAR(100)	NULL
+);
+
+ALTER TABLE patient_wanted ADD CONSTRAINT PK_PATIENT_WANTED PRIMARY KEY (
+	wanted_grade,
+	care_no
+);
+
+--ALTER TABLE patient_wanted ADD CONSTRAINT FK_caregiver_profile_TO_patient_wanted FOREIGN KEY (
+--	care_no
+--)
+--REFERENCES caregiver_profile (
+--	care_no
+--);
+
+COMMENT ON COLUMN PATIENT_WANTED.WANTED_GRADE IS '등급';
+COMMENT ON COLUMN PATIENT_WANTED.WANTED_GEN IS '희망성별';
+COMMENT ON COLUMN PATIENT_WANTED.WANTED_AGE IS '희망나이';
+COMMENT ON COLUMN PATIENT_WANTED.WANTED_ILL IS '희망질환';
+
+-- 요양보호사 이미지
+CREATE TABLE care_image (
+	img_no	       NUMBER	    NOT NULL,
+	care_no    	   NUMBER	    NOT NULL,
+	img_date	   DATE     	DEFAULT SYSDATE,
+	img_path	   VARCHAR(100)	NULL,
+	img_name_org   VARCHAR(100)	NULL,
+	img_name_sav   VARCHAR(100)	NULL
+);
+
+ALTER TABLE care_image ADD CONSTRAINT PK_CARE_IMAGE PRIMARY KEY (
+	img_no,
+	care_no
+);
+
+--ALTER TABLE care_image ADD CONSTRAINT FK_caregiver_profile_TO_care_image FOREIGN KEY (
+--	care_no
+--)
+--REFERENCES caregiver_profile (
+--	care_no
+--);
+
+
+COMMENT ON COLUMN CARE_IMAGE.IMG_NO IS '파일번호';
+COMMENT ON COLUMN CARE_IMAGE.IMG_DATE IS '등록일';
+COMMENT ON COLUMN CARE_IMAGE.IMG_PATH IS '저장위치';
+COMMENT ON COLUMN CARE_IMAGE.IMG_NAME_ORG IS '원본파일이름';
+COMMENT ON COLUMN CARE_IMAGE.IMG_NAME_SAV IS '저장파일이름';
+
+
+-- 매치 쿼리문 --
+
+-- MATCH 테이블 생성
+CREATE TABLE MATCH (
+	mat_no number NOT NULL,
+	mat_place varchar2(100)	NOT NULL,
+    mat_date_sta date DEFAULT SYSDATE,
+	mat_date_end date DEFAULT SYSDATE,
+	mat_rq varchar2(100) NULL,
+	care_no number NOT NULL,
+	guard_no number	NOT NULL,    
+    CONSTRAINT PK_MATCH PRIMARY KEY(mat_no)
+);
+
+CREATE SEQUENCE SEQ_MAT_NO;
+
+COMMENT ON COLUMN MATCH.mat_no IS '매칭번호';
+COMMENT ON COLUMN MATCH.mat_place IS '돌봄위치';
+COMMENT ON COLUMN MATCH.mat_date_sta IS '시작날짜';
+COMMENT ON COLUMN MATCH.mat_date_end IS '종료날짜';
+COMMENT ON COLUMN MATCH.mat_rq IS '요구사항';
+COMMENT ON COLUMN MATCH.care_no IS '요양사번호';
+COMMENT ON COLUMN MATCH.guard_no IS '보호자번호';
+
+--------------------------------------------------------------------------------
+
+-- MATCH_DETAILS 테이블 생성
+CREATE TABLE MATCH_DETAILS (
+	det_no varchar2(100) NOT NULL,
+	det_date_fix date DEFAULT SYSDATE,
+	mat_no number NOT NULL,
+    CONSTRAINT PK_MATCH_DETAILS PRIMARY KEY(det_no)
+);
+
+COMMENT ON COLUMN MATCH_DETAILS.det_no IS '매칭내역번호';
+COMMENT ON COLUMN MATCH_DETAILS.det_date_fix IS '매칭확정날짜';
+COMMENT ON COLUMN MATCH_DETAILS.mat_no IS '매칭번호';
+
+CREATE SEQUENCE SEQ_DET_NO;
+
+--------------------------------------------------------------------------------
+
+-- CERTIFICATION 테이블 생성
+CREATE TABLE CERTIFICATION (
+	cert_no number NOT NULL,
+	cert_file varchar2(20) NULL,
+	cert_text varchar2(100) NULL,
+	cert_time date DEFAULT SYSDATE,
+	mat_no number NOT NULL,
+    CONSTRAINT PK_CERTIFICATION PRIMARY KEY(cert_no)
+);
+
+COMMENT ON COLUMN CERTIFICATION.cert_no IS '인증번호';
+COMMENT ON COLUMN CERTIFICATION.cert_file IS '첨부파일';
+COMMENT ON COLUMN CERTIFICATION.cert_text IS '텍스트';
+COMMENT ON COLUMN CERTIFICATION.cert_time IS '보낸시간';
+COMMENT ON COLUMN CERTIFICATION.mat_no IS '매칭번호';
+
+CREATE SEQUENCE SEQ_CERT_NO;
+
+--------------------------------------------------------------------------------
+
+--FOREIGN KEY 추가
+ALTER TABLE MATCH_DETAILS ADD FOREIGN KEY(mat_no) REFERENCES MATCH;
+
+ALTER TABLE CERTIFICATION ADD FOREIGN KEY(mat_no) REFERENCES MATCH;
+
+
+
+ALTER TABLE MATCH ADD FOREIGN KEY(care_no) REFERENCES GUARDIAN_PROFILE;
+
+-- 파일 병합 후 실행
+--ALTER TABLE MATCH ADD FOREIGN KEY(guard_no) REFERENCES CAREGIVER_PROFILE;
+
+--------------------------------------------------------------------------------
+
+-- 매칭 검색 쿼리문 -----
+
+--매칭정보검색
+--DROP TABLE IF EXISTS match_seek;
+
+CREATE TABLE MATCH_SEEK (
+	SEEK_NO	NUMBER	NOT NULL,
+    SEEK_TIME DATE,
+	SEEK_GEN CHAR(3) NULL  CHECK(SEEK_GEN IN('남','여')),
+	SEEK_LICENSE VARCHAR2(10) NULL,
+	SEEK_YEARS VARCHAR2(10) NULL,
+    SEEK_AREA VARCHAR2(10) NULL,
+	SEEK_SAL NUMBER NULL,
+	SEEK_GUARD_NO NUMBER NOT NULL
+);
+
+
+
+--DROP TABLE MATCH_SEEK;
+
+COMMENT ON COLUMN  MATCH_SEEK.SEEK_NO IS '검색번호';
+COMMENT ON COLUMN  MATCH_SEEK.SEEK_TIME IS '돌봄시간';
+COMMENT ON COLUMN  MATCH_SEEK.SEEK_GEN IS '요양보호사성별';
+COMMENT ON COLUMN  MATCH_SEEK.SEEK_LICENSE IS '자격증유무';
+COMMENT ON COLUMN  MATCH_SEEK.SEEK_YEARS IS '경력사항';
+COMMENT ON COLUMN  MATCH_SEEK.SEEK_AREA IS '희망근무지역';
+COMMENT ON COLUMN  MATCH_SEEK.SEEK_SAL IS '급여지급';
+COMMENT ON COLUMN  MATCH_SEEK.SEEK_GUARD_NO IS '검색보호자번호';
+
+
+--COMMENT ON TABLE MATCH_SEEK.SEEK_YEARS IS ''; 
+
+ALTER TABLE MATCH_SEEK ADD CONSTRAINT PK_MATCH_SEEK PRIMARY KEY (
+    SEEK_NO
+);
+
+ALTER TABLE match_seek ADD CONSTRAINT FK_GUARD_PRF_TO_MAT_SEEK FOREIGN KEY (
+     SEEK_GUARD_NO
+)
+REFERENCES GUARDIAN_PROFILE(
+   GUARD_NO
+);
+
+-- 문의프로필
+
+--DROP TABLE IF EXISTS profile_qs;
+
+CREATE TABLE PROFILE_QS(
+	QS_NO	NUMBER	NOT NULL,
+	CARE_NO	NUMBER	NOT NULL,
+    SEEK_NO	NUMBER	NOT NULL
+);
+
+COMMENT ON COLUMN PROFILE_QS.QS_NO IS '문의번호';
+COMMENT ON COLUMN PROFILE_QS.CARE_NO IS '요양사번호';
+COMMENT ON COLUMN PROFILE_QS.SEEK_NO IS '검색번호';
+
+ALTER TABLE PROFILE_QS ADD CONSTRAINT PK_PROFILE_QS PRIMARY KEY (
+	QS_NO
+);
+
+ALTER TABLE PROFILE_QS ADD CONSTRAINT FK_CAR_PRF_PROFILE_QS FOREIGN KEY (
+	CARE_NO
+)
+REFERENCES CAREGIVER_PROFILE (
+   CARE_NO
+);
+
+ALTER TABLE PROFILE_QS ADD CONSTRAINT FK_MATCH_SEEK_TO_PROFILE_QS_1 FOREIGN KEY (
+   SEEK_NO
+)
+REFERENCES MATCH_SEEK (
+   SEEK_NO
+);
