@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.care.mvc.member.model.service.MemberService;
 import com.care.mvc.member.model.vo.Member;
 
 
@@ -17,26 +18,25 @@ public class MemberLoginServlet extends HttpServlet {
        
    
     public MemberLoginServlet() {
-<<<<<<< HEAD
-=======
-        
->>>>>>> 1e248eaea737f5048d1d44ec7ef912e7eb86013b
+
     }
 
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	request.getRequestDispatcher("/views/member/login.jsp").forward(request, response);
+    }
 	
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		request.getRequestDispatcher("views/member/login.jsp");
-		String memId = request.getParameter("memId");
-		String memPwd = request.getParameter("memPwd");
+		String memId = request.getParameter("userId");
+		String memPwd = request.getParameter("userPwd");
 //		String savId = request.getParameter("savId"); 			// 아이디 저장 체크박스 부분
 		
 		Member member = null;
 		
 		System.out.println("memId : " + memId + ", memPwd : " + memPwd);     // 나중에 savId 추가해야함
+		
+		member = new MemberService().login(memId, memPwd);
 		
 		if(member != null) {
 			HttpSession session = request.getSession();
@@ -44,7 +44,11 @@ public class MemberLoginServlet extends HttpServlet {
 			session.setAttribute("loginMember", member);
 			
 			System.out.println("Session ID : " + session.getId());
+			
+			response.sendRedirect(request.getContextPath() + "/");
 		} else {
+			request.setAttribute("msg", "아이디 또는 비밀번호가 일치하지 않습니다.");
+			request.setAttribute("location", "/");
 			
 			
 		}

@@ -58,7 +58,7 @@
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><i class="fas fa-user"></i>로그인</a></li>
+            <li><a href="<%=request.getContextPath() %>/member/login"><i class="fas fa-user"></i>로그인</a></li>
 
             <div style="padding-left: 80px;"></div>
 

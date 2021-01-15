@@ -1,4 +1,4 @@
-package com.care.mvc.patient.controller;
+package com.care.mvc.GuardAndPatient.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

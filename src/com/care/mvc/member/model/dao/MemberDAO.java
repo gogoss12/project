@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static com.care.mvc.common.jdbc.JDBCTemplate.close;
 import com.care.mvc.member.model.vo.Member;
 
 public class MemberDAO {
@@ -34,7 +35,7 @@ public class MemberDAO {
 					rset.getString("MEM_NAME"),
 					rset.getString("MEM_PWD"),
 					rset.getString("MEM_EMAIL"),
-					rset.getInt("MEM_PHONE"),
+					rset.getString("MEM_PHONE"), // sql은 number로 되어있는지 확인하고 Member.java도 확인하고 맞워야한다.
 					rset.getString("MEM_ADDR"),
 					rset.getString("MEM_BIRTH"),
 					rset.getDate("CREATE_DATE"),
@@ -51,6 +52,25 @@ public class MemberDAO {
 		}
 		
 		return member;
-		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
+
+
+
+
+
+
+
+
