@@ -73,8 +73,7 @@
                             <label><input type="checkbox" name="patInfact" value="감기">감기</label>
                         </div>
                         <div>
-                            <label><input type="checkbox" name="patInfact" value="기타">기타</label>
-                            <textarea name="infactEtc" cols="20" placeholder="내용을 입력해주세요"></textarea>
+                            <textarea name="infactEtc" cols="40" rows="3" placeholder="내용을 입력해주세요"></textarea>
                         </div>
                     </div>
                     <div>
@@ -160,7 +159,7 @@
                     </div>
                     <div>
                         <h3>기타사항(선택)</h3>
-                        <textarea name="patEtc" id="paptEtc" cols="30" rows="10"></textarea>
+                        <textarea name="patEtc" id="paptEtc" cols="50" rows="4"></textarea>
                     </div>
                 <input type="reset" value="취소하기">
                 <input type="submit" value="등록하기">

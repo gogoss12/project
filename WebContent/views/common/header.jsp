@@ -62,7 +62,7 @@
 
             <div style="padding-left: 80px;"></div>
 
-            <li><a href="<%=request.getContextPath() %>/member/enroll"><i class="fas fa-sign-in-alt"></i>가입</a></li>
+            <li><a href="<%=request.getContextPath() %>/enroll/profile/guardian"><i class="fas fa-sign-in-alt"></i>가입</a></li>
           </ul>
         </div>
       </div>
