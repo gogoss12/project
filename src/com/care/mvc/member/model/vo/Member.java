@@ -139,4 +139,9 @@ public class Member {
 				+ memBirth + ", createDate=" + createDate + ", modifyDate=" + modifyDate + ", status=" + status + "]";
 	}
 	
+<<<<<<< HEAD
 }
+=======
+	
+}
+>>>>>>> 308b6e7e64a26f1a0eeb9faab24deb2267955a67
