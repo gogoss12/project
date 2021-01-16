@@ -20,15 +20,15 @@ public class MemberCheckIdServlet extends HttpServlet {
 //	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("memId");
+		String userId = request.getParameter("userId");
 		
-		System.out.println("memId" + userId);
+		System.out.println("userId" + userId);
 		
 		boolean valid = new MemberService().validate(userId);
 
 		request.setAttribute("valid", valid);
 		
-//		request.getParameter("/views/member/체크아이디.jsp").forward(request, response);
+		request.getRequestDispatcher("/views/member/checkId.jsp").forward(request, response);
 	}
 
 }

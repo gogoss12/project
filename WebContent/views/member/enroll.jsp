@@ -14,10 +14,9 @@
 					</tr>
 					<tr>
 						<th>아이디</th>
-						<td><input type="text" name="userId" id="userId"
-							placeholder="아이디(4글자이상)" required> <input type="button"
-							id="checkDuplicate" value="중복확인"></td>
-							<td><p>사용가능한 아이디입니다.</p></td>
+						<td><input type="text" name="userId" id="newId"
+							placeholder="아이디(4글자이상)" required> 
+							<input type="button" id="checkDuplicate" value="중복확인"></td>
 					</tr>
 					<tr>
 						<th>패스워드</th>
@@ -83,27 +82,34 @@
 	
 	<script>
 	//비밀번호, 비밀번호 확인 일치확인
+	
+	
 	$(document).ready(() => {   
-	      $("#pass2").blur((e) => {
-	         let pass1 = $("#pass1").val();
-	         let pass2 = $(e.target).val();
-	         if(pass1.trim() != pass2.trim()){
-	            alert("비밀번호가 일치하지 않습니다.");
-	            $("#pass1").val("");
-	            $(e.target).val("");
-	            $("#pass1").focus();
-	         }
-	      });
-	      
-	  $("#enrollSubmit").on("click", () => {
-	       })
+	
+	 $("#checkDuplicate").on("click", () => {
 	   let id = $("#newId").val().trim();
 	     
 	     if (id.length < 4) {
 	    	 alert("아이디는 최소 4글자 이상 입력해라")
 	    	 
 	    	 return;
-	     }
+	     	}
+	     
+	     const url = "<%=request.getContextPath()%>/member/checkId";
+         const title = "duplicate";
+         const status = "left=500px, top=100px, width=300px, height=200px";
+         
+         open("", title, status);
+         
+         checkIdForm.target = title; 
+         checkIdForm.action = url;		
+         checkIdForm.method = "post";
+         checkIdForm.userId.value = id;
+ 
+         checkIdForm.submit();
+         
+	 	});
+	});
 	
     function DaumPostcode() {
         new daum.Postcode({
@@ -152,6 +158,7 @@
             }
         }).open();
     }
+    
 </script>
 
 	<%@ include file="/views/common/footer.jsp" %>

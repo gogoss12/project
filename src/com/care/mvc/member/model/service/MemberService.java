@@ -36,7 +36,7 @@ public class MemberService {
 		
 		return member;
 	}
-	
+							
 	public boolean validate(String memId) {
 		Connection conn = getConnection();
 		
