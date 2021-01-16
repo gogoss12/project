@@ -1,55 +1,223 @@
 @charset "UTF-8";
 
-header{
-	height : 17%px;
+
+div {
+	box-sizing: border-box;
 }
 
-
-/* 헤더  */
-nav a {
-	font-size: 2.5rem;
-	font: black;
+body {
+	/* border: 1px solid wheat; */
+	width: 1390px;
+	height: 980px;
+	margin: auto;
 }
 
-nav>.container-fluid {
-	background-color: rgb(182, 151, 240);
+header {
+	height: 20%;
 }
-
-.navbar-toggler {
-	height: 150px;
-	width: 150px;
-}
-
-/* 섹션 asdf*/
 
 section {
-	height : 60%;
-	width : 70%;
+	height: 70%;
+}
+
+footer {
+	height: 20%;
+}
+/*헤더*/
+#wrapper {
+	width: 100%;
+	height: 70%;
+	background: cornsilk;
+}
+
+#logo {
+	width: 30%;
+	float: left;
+}
+
+#page {
+	width: 40%;
+	float: left;
+}
+
+#login {
+	width: 30%;
+	float: left;
+}
+
+#logo img {
+	padding-top: 5px;
+	padding-bottom: 20px;
+	width: 200px;
+	height: 130px;
+}
+
+#page h1 {
+	cursor: pointer;
+	text-align: center;
+	font-size: 80px;
+	line-height: 0px;
+	color: rgb(7, 7, 7);
+}
+
+#login {
+	text-align: center;
+	line-height: 150px;
+	padding-right: 15px;
+}
+
+#login input[type=button] {
+	width: 110px;
+	height: 40px;
+	border-radius: 20px;
+	border: white;
+	cursor: pointer;
+}
+
+#authbtn {
+	background: rgb(252, 130, 130);
+	border-radius: 10px;
+}
+/* 네비바 */
+nav {
+	border: 1px solid darkkhaki;
+	height: 30%;
+	width: 100%;
+	background: beige;
+}
+
+#main-menu {
+	list-style-type: none;
+}
+
+#main-menu>li {
+	float: left;
+	width: 13%;
+	height: 100%;
 	text-align: center;
 }
 
+#main-menu a {
+	/* border:1px solid blue; */
+	text-decoration: none;
+	color: rgb(111, 79, 40);
+	font-size: 18px;
+	font-weight: 900;
+	font-size: 40px;
+	height: 100%;
+	display: block;
+	line-height: 30px;
+}
 
+#main-menu a:hover {
+	color: black;
+}
 
-/* 푸터 */
-footer {
-	width: 100%;
-	height: 13%;
+#main-menu>li>ul {
 	position: absolute;
-	bottom: 0;
-	background: #d7a6d7;
+	width: 150px;
+	list-style-type: none;
+	padding: 0;
+	display: none;
+}
+
+#main-menu>li>a:hover+ul {
+	display: block;
+}
+
+#main-menu>li>ul:hover {
+	display: block;
+}
+
+#main-menu>li>ul a {
+	font-size: 25px;
+	line-height: 40px;
+	border: 1px solid;
+	border-radius: 10px;
+	background: beige;
+}
+
+#sec_container {
+	width: 100%;
+	height: 100%;
+}
+
+#sec_container>div {
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+
+#sec_container>div>div {
+	padding-top: 30px;
+	text-align: center;
+	line-height: 100px;
+}
+
+#btngroup span {
+	display: block;
+}
+
+#btngroup input[type=button] {
+	font-size: 15px;
+	width: 300px;
+	height: 90px;
+	border: white;
+	border-radius: 20%;
+	background: lightblue;
+}
+
+#btngroup input:hover {
+	border: 1px solid skyblue;
+	background: white;
+	cursor: pointer;
+}
+
+span {
+	font-size: 15px;
+}
+
+#btn_1 {
+	height: 50%;
+}
+
+#btn_2 {
+	height: 50%;
+}
+
+#foot {
+	width: 100%;
+	height: 100%;
+	font-size: 10px;
+	width: 100%;
+	/* background: beige; */
 	text-align: center;
 	color: black;
-	font-size: small;
 }
-
+/* 푸터 */
+footer {
+	font-size: 10px;
+	width: 100%;
+	height: 80px;
+	position: relative;
+	z-index: 20;
+	overflow: hidden;
+	padding: 20px;
+	bottom: 0;
+	text-align: center;
+	color: black;
+	margin: 50px 0 0 0;
+}
 /* 로그인 */
-#loginForm {
+
+section #loginForm {
+ 
 	position: absolute;
-	width: 400px;
+	width: 300px;
 	height: 400px;
 	padding: 30px, 20px;
 	background-color: #FFFFFF;
-	text-align: center;
+    text-align: center;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
@@ -62,7 +230,7 @@ footer {
 	font-size: 40px;
 }
 
-#idForm {
+ #idForm {
 	border-bottom: 2px solid #adadad;
 	margin: 30px;
 	padding: 10px 10px;
@@ -106,10 +274,7 @@ footer {
 	font-weight: bold;
 	border: none;
 }
-
-.btn:hover {
-	background-position: right;
-}
+ 
 
 /*요양보호사 프로필 */
 #mucenter {
