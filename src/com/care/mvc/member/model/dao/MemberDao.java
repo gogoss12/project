@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.ResultSet;
 
 import com.care.mvc.member.model.vo.Member;
 
@@ -90,6 +89,7 @@ public class MemberDao {
 	      return member;
 	   }
 	
+
 	// 로그인
 	public Member findMemberByIdAndPwd(Connection conn, String id, String pwd) {
 		Member member = null;
@@ -133,5 +133,4 @@ public class MemberDao {
 		}
 
 }
-
 
