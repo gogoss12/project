@@ -3,29 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<<<<<<< HEAD
-  <title>Document</title>
-   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-    	integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-  <link rel="stylesheet" href="<%=request.getContextPath()%>/css/style.css" type="text/css">
- <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
- <script src="<%=request.getContextPath() %>/js/jquery-3.5.1.js"></script>
-</head>
-<body>
-  <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-          <img src="./image/케어풀 임시 아이콘.png" alt="" width="150px" height="100%">
-        </a>
-=======
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css">
 <script src="<%=request.getContextPath() %>/js/jquery-3.5.1.js"></script>
 </head>
 <body>
->>>>>>> 335da996538bc75f40c94f97382e29b51ab9696f
 
  <header>
 		<div id="wrapper">

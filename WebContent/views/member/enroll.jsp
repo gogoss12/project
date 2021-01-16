@@ -75,16 +75,24 @@
 		</div>
 	</section>
 	
-<<<<<<< HEAD
-=======
 
->>>>>>> 335da996538bc75f40c94f97382e29b51ab9696f
 	<script>
 	//비밀번호, 비밀번호 확인 일치확인
 	
 	
 	$(document).ready(() => {   
 	
+	$("#pass2").blur((e) => {
+         let pass1 = $("#pass1").val();
+         let pass2 = $(e.target).val();
+         if(pass1.trim() != pass2.trim()){
+            alert("비밀번호가 일치하지 않습니다.");
+            $("#pass1").val("");
+            $(e.target).val("");
+            $("#pass1").focus();
+         }
+      });  
+		
 	 $("#checkDuplicate").on("click", () => {
 	   let id = $("#newId").val().trim();
 	     
@@ -157,14 +165,4 @@
 </script>
 
 	<%@ include file="/views/common/footer.jsp" %>
-<<<<<<< HEAD
-	
-	
-	
-	
-	
-	
-	
-	
-=======
->>>>>>> 335da996538bc75f40c94f97382e29b51ab9696f
+
