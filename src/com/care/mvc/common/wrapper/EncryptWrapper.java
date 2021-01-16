@@ -16,7 +16,7 @@ public class EncryptWrapper extends HttpServletRequestWrapper {
 
 		String value = "";
 
-		if (name.equals("memPwd")) {
+		if (name.equals("userPwd")) {
 
 			value = EncryptUtil.oneWays(super.getParameter(name), "SHA-256");
 		} else {

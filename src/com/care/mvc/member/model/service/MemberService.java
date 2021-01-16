@@ -5,8 +5,8 @@ import java.sql.Connection;
 
 import com.care.mvc.member.model.dao.MemberDao;
 import com.care.mvc.member.model.vo.Member;
-
 import static com.care.mvc.common.jdbc.JDBCTemplate.getConnection;
+import static com.care.mvc.common.jdbc.JDBCTemplate.close;
 import static com.care.mvc.common.jdbc.JDBCTemplate.commit;
 import static com.care.mvc.common.jdbc.JDBCTemplate.rollback;
 import static com.care.mvc.common.jdbc.JDBCTemplate.close;
@@ -28,6 +28,10 @@ public class MemberService {
 		return result;
 	}
 
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 8e29906d341de9f6149034f84224bf900495ba3e
 	public Member login(String id, String pwd) {
 		Connection conn = getConnection();
 		
@@ -36,9 +40,8 @@ public class MemberService {
 		close(conn);
 		
 		return member;
-		
-	}
 
+<<<<<<< HEAD
 	public boolean validate(String memId) {
 		Connection conn = getConnection();
 		
@@ -61,6 +64,9 @@ public class MemberService {
 	
 	
 	
+=======
+	}
+>>>>>>> 8e29906d341de9f6149034f84224bf900495ba3e
 }
 
 
