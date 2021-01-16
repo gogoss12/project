@@ -14,7 +14,7 @@ import com.care.mvc.member.model.service.MemberService;
 import com.care.mvc.member.model.vo.Member;
 
 
-@WebServlet("/member/login")
+@WebServlet(name="login", urlPatterns="/member/login")
 public class MemberLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -22,16 +22,12 @@ public class MemberLoginServlet extends HttpServlet {
 
     }
 
-<<<<<<< HEAD
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-	}
-=======
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	request.getRequestDispatcher("/views/member/login.jsp").forward(request, response);
     }
 	
->>>>>>> 308b6e7e64a26f1a0eeb9faab24deb2267955a67
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String memId = request.getParameter("userId");
@@ -61,10 +57,6 @@ public class MemberLoginServlet extends HttpServlet {
 //			dispatcher.forward(request, response);
 			
 		}
-		
-		
-		
-		
 	}
 
 }

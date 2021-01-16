@@ -9,16 +9,13 @@
                         <h1>보호자용 프로필 등록</h1>
                     </div>
                     <div>
-                        <label><input type="checkbox" name="sameperson" value="보호자이자 환자입니다.">보호자이자 환자입니다.</label>
-                    </div>
-                    <div>
-                        <img src="../../image/병아리당황.png" style="width: 200px; height: 200px;">
+                        <label><input type="checkbox" name="same" value="보호자이자 환자입니다.">보호자이자 환자입니다.</label>
                     </div>
                     <div>
                         <div><h3>보호자 성별</h3></div>
                         <div>
-                            <label><input type="checkbox" name="gender" value="남">남</label>
-                            <label><input type="checkbox" name="gender" value="여">여</label>
+                            <label><input type="radio" name="gender" value="남">남</label>
+                            <label><input type="radio" name="gender" value="여">여</label>
                         </div>
                     </div>
                     <div>
@@ -38,9 +35,9 @@
                     <div>
                         <h3>돌봄기간</h3>
                         <div>
-                        <input type="date">
+                        <input type="date" name="pat_period">
                         <span> - </span>
-                        <input type="date">
+                        <input type="date" name="pat_period">
                         </div>
                     </div>
                     <div>
@@ -54,8 +51,8 @@
                             <input type="text" name="patAge" placeholder="나이">
                         </div>
                         <div>
-                            <label><input type="checkbox" name="patGen" value="남자">남자</label>
-                            <label><input type="checkbox" name="patGen" value="여자">여자</label>
+                            <label><input type="radio" name="patGen" value="남자">남자</label>
+                            <label><input type="radio" name="patGen" value="여자">여자</label>
                             <label><input type="text" name="patKg" placeholder="몸무게"><b>kg</b></label>
                         </div>
                     </div>
@@ -93,12 +90,12 @@
                     <div>
                         <h3>개인위생관리</h3>
                         <div>
-                            <label><input type="checkbox" name="patSanit" value="스스로 가능">스스로 가능</label>
-                            <label><input type="checkbox" name="patSanit" value="화장실에서 도움 필요">화장실에서 도움 필요</label>
+                            <label><input type="radio" name="patSanit" value="스스로 가능">스스로 가능</label>
+                            <label><input type="radio" name="patSanit" value="화장실에서 도움 필요">화장실에서 도움 필요</label>
                         </div>
                         <div>
-                            <label><input type="checkbox" name="patSanit" value="전적인 도움필요">전적인 도움필요</label>
-                            <label><input type="checkbox" name="patSanit" value="침대에서 도움 필요">침대에서 도움 필요</label>
+                            <label><input type="radio" name="patSanit" value="전적인 도움필요">전적인 도움필요</label>
+                            <label><input type="radio" name="patSanit" value="침대에서 도움 필요">침대에서 도움 필요</label>
                         </div>
                     </div>
                     <div>
@@ -117,8 +114,8 @@
                     </div>
                     <div>
                         <h3>욕창 환자 여부</h3>
-                        <label><input type="checkbox" name="patBed" value="네">네</label>
-                        <label><input type="checkbox" name="patBed" value="아니요">아니요</label>
+                        <label><input type="radio" name="patBed" value="네">네</label>
+                        <label><input type="radio" name="patBed" value="아니요">아니요</label>
                     </div>
                     <div>
                         <h3>인지장애 여부</h3>
@@ -128,8 +125,8 @@
                     </div>
                     <div>
                         <h3>화장실 이동 시</h3>
-                        <label><input type="checkbox" name="patBathroom" value="부축 필요">부축 필요</label>
-                        <label><input type="checkbox" name="patBathroom" value="스스로 이동 가능">스스로 이동가능</label>
+                        <label><input type="radio" name="patBathroom" value="부축 필요">부축 필요</label>
+                        <label><input type="radio" name="patBathroom" value="스스로 이동 가능">스스로 이동가능</label>
                     </div>
                     <div>
                         <h3>배변도구</h3>
@@ -139,23 +136,23 @@
                     </div>
                     <div>
                         <h3>장루 설치 여부</h3>
-                        <label><input type="checkbox" name="patOstomy" value="네">네</label>
-                        <label><input type="checkbox" name="patOstomy" value="아니요">아니요</label>
+                        <label><input type="radio" name="patOstomy" value="네">네</label>
+                        <label><input type="radio" name="patOstomy" value="아니요">아니요</label>
                     </div>
                     <div>
                         <h3>식사 도움 여부</h3>
-                        <label><input type="checkbox" name="patHelpEat" value="도움필요">도움 필요</label>
-                        <label><input type="checkbox" name="patHelpEat" value="스스로 가능">스스로 가능</label>
+                        <label><input type="radio" name="patHelpEat" value="도움필요">도움 필요</label>
+                        <label><input type="radio" name="patHelpEat" value="스스로 가능">스스로 가능</label>
                     </div>
                     <div>
                         <h3>석션 사용 여부</h3>
-                        <label><input type="checkbox" name="patSuction" value="사용">사용</label>
-                        <label><input type="checkbox" name="patSuction" value="사용안함">사용안함</label>
+                        <label><input type="radio" name="patSuction" value="사용">사용</label>
+                        <label><input type="radio" name="patSuction" value="사용안함">사용안함</label>
                     </div>
                     <div>
                         <h3>요양보호사 우대 성별</h3>
-                        <label><input type="checkbox" name="patGuardGen" value="남자">남자</label>
-                        <label><input type="checkbox" name="patGuardGen" value="여자">여자</label>
+                        <label><input type="radio" name="patGuardGen" value="남자">남자</label>
+                        <label><input type="radio" name="patGuardGen" value="여자">여자</label>
                     </div>
                     <div>
                         <h3>기타사항(선택)</h3>

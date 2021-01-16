@@ -49,7 +49,7 @@ public class MemberEnrollServlet extends HttpServlet {
 		}
 		
 		request.setAttribute("msg", msg);
-		request.setAttribute("location", location); 
+		request.setAttribute("loc", location); 
 		
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
