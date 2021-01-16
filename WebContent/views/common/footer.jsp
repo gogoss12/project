@@ -11,8 +11,6 @@
 	<p>&nbsp;&nbsp;보호자와 간병인 사이에 발생한 분쟁에 대한 책임은 보호자와 간병인에게 있습니다</p>
 
 </footer>
-<!--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
-<!-- <script type="text/javascript" src="../../resource/js/bootstrap.js"></script> -->
 </body>
 </html>
 
