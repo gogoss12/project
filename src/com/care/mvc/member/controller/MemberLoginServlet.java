@@ -5,6 +5,7 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +15,7 @@ import com.care.mvc.member.model.service.MemberService;
 import com.care.mvc.member.model.vo.Member;
 
 
-@WebServlet("/member/login")
+@WebServlet("/member/login")  // 나중에 urlPatterns 넣어야함
 public class MemberLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -22,27 +23,33 @@ public class MemberLoginServlet extends HttpServlet {
 
     }
 
-<<<<<<< HEAD
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-	}
-=======
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	request.getRequestDispatcher("/views/member/login.jsp").forward(request, response);
     }
-	
->>>>>>> 308b6e7e64a26f1a0eeb9faab24deb2267955a67
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String memId = request.getParameter("userId");
 		String memPwd = request.getParameter("userPwd");
-//		String savId = request.getParameter("savId"); 			// 아이디 저장 체크박스 부분
+		String saveId = request.getParameter("saveId"); 			// 아이디 저장 체크박스 부분
 		
 		Member member = null;
 		
 		System.out.println("memId : " + memId + ", memPwd : " + memPwd);     // 나중에 savId 추가해야함
 		
 		member = new MemberService().login(memId, memPwd);
+		
+		System.out.println(member);
+		
+		if(saveId != null) {
+			Cookie cookie = new Cookie("saveId", memId);
+			cookie.setMaxAge(60 * 60 * 24);  // 쿠키 1일 유지
+			response.addCookie(cookie);
+		} else {
+			Cookie cookie = new Cookie("saveId", "");
+			
+			cookie.setMaxAge(0);
+			response.addCookie(cookie);
+		}
 		
 		if(member != null) {
 			HttpSession session = request.getSession();
@@ -56,14 +63,11 @@ public class MemberLoginServlet extends HttpServlet {
 			request.setAttribute("msg", "아이디 또는 비밀번호가 일치하지 않습니다.");
 			request.setAttribute("location", "/");
 			
-//			RequestDispatcher dispatcher = request.getRequestDispatcher("/views/common/msg.jsp");
-//			
-//			dispatcher.forward(request, response);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/views/common/msg.jsp");
+			
+			dispatcher.forward(request, response);
 			
 		}
-		
-		
-		
 		
 	}
 
