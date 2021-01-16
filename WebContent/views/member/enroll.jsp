@@ -39,11 +39,6 @@
 					<tr>
 						<th>주소</th>
 						<td>
-							<!--<input type="text" name="postalAddr" id="postalAddr">
-							<input type="button" id="findPostalAddr" value="우편번호 검색"><br>
-							<input type="text" name="addr1" id="addr1"><br> 
-							<input type="text" name="addr2" id="addr2" placeholder="상세주소 입력">
-							-->
 							<span style="padding-right:34px">
 								<input type="text" name="postalAddr" id="postalAddr" placeholder="우편번호" style="width:200px">
 							</span>
@@ -80,7 +75,7 @@
 		</div>
 	</section>
 	
-	
+
 	<script>
     function DaumPostcode() {
         new daum.Postcode({
