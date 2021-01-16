@@ -132,6 +132,7 @@ public class MemberDao {
 			return member;
 		}
 
+<<<<<<< HEAD
 }
 
 
@@ -145,3 +146,6 @@ public class MemberDao {
 
 
 
+=======
+}
+>>>>>>> 985c905a89e5d237a9d6f19f4df53d55badc44e6
