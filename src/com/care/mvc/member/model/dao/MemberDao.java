@@ -11,59 +11,11 @@ import com.care.mvc.member.model.vo.Member;
 import static com.care.mvc.common.jdbc.JDBCTemplate.close;
 
 public class MemberDao {
-<<<<<<< HEAD
-	
-	public MemberDao() {
-	}
-		public Member findMemberByIdAndPwd(Connection conn,String id, String pwd){
-		      Member member = null;
-		      ResultSet rset = null;
-		      PreparedStatement pstmt = null;
-		      
-		      try {
-		      
-		         pstmt = conn.prepareStatement("SELECT * FROM MEMBER WHERE MEM_ID = ? AND MEM_PWD = ? AND STATUS='Y'");
-		         
-		         pstmt.setString(1, id);
-		         pstmt.setString(2, pwd);
-	
-		         rset = pstmt.executeQuery();
-		         
-		         if(rset.next()) {
-		            System.out.println(rset.getString("USER_ID") + ", " + rset.getString("USER_PWD"));
-		            member = new Member(    
-			            rset.getString("MEM_ID"),
-			            rset.getString("MEM_ROLE"),
-			            rset.getString("MEM_NAME"),
-			            rset.getString("MEM_PWD"),
-			            rset.getString("MEM_EMAIL"),
-			            rset.getInt("MEM_PHONE"),
-			            rset.getString("MEM_ADDR"),
-			            rset.getString("MEM_BIRTH"),
-			            rset.getDate("CREATE_DATE"),
-			            rset.getDate("MODIFY_DATE"),
-			            rset.getString("STATUS")
-		            );
-		         }
-		      
-		         
-		      } catch (SQLException e) {
-		         e.printStackTrace();
-		      } finally {
-		    	  close(rset);
-		    	  close(pstmt);
-		      }
-		      
-		      return member;
-		   }
-		
-=======
 
 	public MemberDao() {
 	}
 	
 	// 회원가입 
->>>>>>> 8e29906d341de9f6149034f84224bf900495ba3e
 	public int insertMember(Connection conn, Member member) {
 		int result = 0;
 		String query = null;
@@ -97,7 +49,6 @@ public class MemberDao {
 		return result;
 	}
 	
-<<<<<<< HEAD
 	public Member findMemberById(Connection conn,String id){
 	      Member member = null;
 	      ResultSet rset = null;
@@ -139,9 +90,6 @@ public class MemberDao {
 	      return member;
 	   }
 	
-	
-	
-=======
 	// 로그인
 	public Member findMemberByIdAndPwd(Connection conn, String id, String pwd) {
 		Member member = null;
@@ -184,7 +132,6 @@ public class MemberDao {
 			return member;
 		}
 
->>>>>>> 8e29906d341de9f6149034f84224bf900495ba3e
 }
 
 

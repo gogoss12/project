@@ -15,11 +15,7 @@ import com.care.mvc.member.model.service.MemberService;
 import com.care.mvc.member.model.vo.Member;
 
 
-<<<<<<< HEAD
-@WebServlet("/member/login")  // 나중에 urlPatterns 넣어야함
-=======
 @WebServlet(name="login", urlPatterns="/member/login")
->>>>>>> 8e29906d341de9f6149034f84224bf900495ba3e
 public class MemberLoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -27,18 +23,9 @@ public class MemberLoginServlet extends HttpServlet {
 
     }
 
-<<<<<<< HEAD
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	request.getRequestDispatcher("/views/member/login.jsp").forward(request, response);
     }
-=======
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    	request.getRequestDispatcher("/views/member/login.jsp").forward(request, response);
-    }
-	
-
->>>>>>> 8e29906d341de9f6149034f84224bf900495ba3e
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String memId = request.getParameter("userId");
@@ -81,10 +68,6 @@ public class MemberLoginServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			
 		}
-<<<<<<< HEAD
-		
-=======
->>>>>>> 8e29906d341de9f6149034f84224bf900495ba3e
 	}
 
 }
