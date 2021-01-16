@@ -138,5 +138,7 @@ public class Member {
 				+ ", memEmail=" + memEmail + ", memPhone=" + memPhone + ", memAddr=" + memAddr + ", memBirth="
 				+ memBirth + ", createDate=" + createDate + ", modifyDate=" + modifyDate + ", status=" + status + "]";
 	}
-	
+
 }
+
+

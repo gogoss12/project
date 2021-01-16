@@ -47,7 +47,7 @@ public class MemberEnrollServlet extends HttpServlet {
 		member.setMemPwd(request.getParameter("userPwd"));
 		member.setMemEmail(request.getParameter("email"));
 		member.setMemPhone(Integer.parseInt(request.getParameter("phone")));
-		member.setMemAddr(request.getParameter("addr1")); // 지역주소 + 상세주소
+		member.setMemAddr(request.getParameter("addr1") + " " + request.getParameter("addr2") + request.getParameter("addr3")); // 지역주소 + 상세주소
 		member.setMemBirth(request.getParameter("birth"));
 
 		int result = new MemberService().enrollMember(member);
