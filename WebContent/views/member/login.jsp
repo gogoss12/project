@@ -1,12 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+
+<%@ include file="/views/common/header.jsp" %>
+<section id="content">
 <form id="loginForm" action="<%= request.getContextPath()%>/member/login" method="post">
     <h2>로그인</h2>
     <div id="idForm">
@@ -19,5 +15,6 @@
      로그인
     </button>
   </form>
-</body>
-</html>
+  </section>
+  	<%@ include file="/views/common/footer.jsp" %>
+  
