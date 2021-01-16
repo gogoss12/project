@@ -17,6 +17,7 @@
 						<td><input type="text" name="userId" id="userId"
 							placeholder="아이디(4글자이상)" required> <input type="button"
 							id="checkDuplicate" value="중복확인"></td>
+							<td><p>사용가능한 아이디입니다.</p></td>
 					</tr>
 					<tr>
 						<th>패스워드</th>
@@ -47,7 +48,7 @@
 							<span style="padding-right:34px">
 								<input type="text" name="postalAddr" id="postalAddr" placeholder="우편번호" style="width:200px">
 							</span>
-							<input type="button" id="findPostalAddr" onclick="DaumPostcode()" value="우편번호 검색"><br>
+							<input type="button" id="findPostalAddr" onclick="DaumPostcode()" value="우편번호 검색"> <br>
 							<div>
 								<input type="text" name="addr1" id="addr1" placeholder="주소" style="width:360px">
 							</div>
@@ -80,10 +81,8 @@
 		</div>
 	</section>
 	
-<<<<<<< HEAD
 	<script>
-	
-	// 비밀번호, 비밀번호 확인 일치확인
+	//비밀번호, 비밀번호 확인 일치확인
 	$(document).ready(() => {   
 	      $("#pass2").blur((e) => {
 	         let pass1 = $("#pass1").val();
@@ -96,21 +95,16 @@
 	         }
 	      });
 	      
-      $("#enrollSubmit").on("click", () => {
+	  $("#enrollSubmit").on("click", () => {
 	       })
-       let id = $("#newId").val().trim();
-         
-         if (id.length < 4) {
-        	 alert("아이디는 최소 4글자 이상 입력해라")
-        	 
-        	 return;
-         }
-	      
-	      
-	</script>
-=======
+	   let id = $("#newId").val().trim();
+	     
+	     if (id.length < 4) {
+	    	 alert("아이디는 최소 4글자 이상 입력해라")
+	    	 
+	    	 return;
+	     }
 	
-	<script>
     function DaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
@@ -159,7 +153,6 @@
         }).open();
     }
 </script>
->>>>>>> 985c905a89e5d237a9d6f19f4df53d55badc44e6
 
 	<%@ include file="/views/common/footer.jsp" %>
 	
