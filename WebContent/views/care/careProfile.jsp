@@ -145,7 +145,7 @@
         </textarea>
 
         <br><br>
-        
+       
         <div>
             <button type="button" class="btn btn-primary">등록하기</button>
             <button type="button" class="btn btn-secondary">취소하기</button>
