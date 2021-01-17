@@ -33,6 +33,5 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 		
 		gap.setGuard_pat(request.getParameter("name"));
 		
-		
 	}
 }

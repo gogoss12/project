@@ -170,6 +170,7 @@ nav {
 	border: 1px solid skyblue;
 	background: white;
 	cursor: pointer;
+
 }
 
 span {
@@ -195,6 +196,7 @@ span {
 }
 /* 푸터 */
 footer {
+
 	font-size: 10px;
 	width: 100%;
 	height: 80px;
