@@ -45,10 +45,7 @@
 					onclick="location.href = '<%=request.getContextPath()%>/member/login';">
 				<input type="button" id="enrollbtn" value="회원가입"
 					onclick="location.href = '<%=request.getContextPath()%>/member/enroll';">
-<<<<<<< HEAD
 					
-				<input type="button" id="authbtn" value="인증/확인">
-=======
 			<% } else { %>						
 				<input type="button" value="마이페이지"
 					onclick="location.href = '<%= request.getContextPath() %>/member/view?userId=<%= loginMember.getMemId()%>';">
@@ -67,7 +64,6 @@
 				<input type="button" id="logoutbtn" value="로그아웃" 
 					onclick="location.replace('<%= request.getContextPath() %>/logout');">
 			<% } %>
->>>>>>> syk
 			</div>
 		</div>
 		<nav>
