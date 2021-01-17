@@ -85,11 +85,8 @@
 		</div>
 	</section>
 	
-<<<<<<< HEAD
-=======
 	<!-- DAUM 주소 API 링크 -->
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
->>>>>>> 66a17693ef74174020239135c357749aab1ef5b2
 	
 	<script>
 	//비밀번호, 비밀번호 확인 일치확인
