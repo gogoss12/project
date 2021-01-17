@@ -18,11 +18,10 @@ public class Care {
 	private String careSal;
 	
 	private String careIntro;
-	
+		
 	
 	public Care() {
 	}
-
 	
 	public Care(int careNo, String careLicense, String careYears, String careHistory, String carePlus, String careTime,
 			String carePlace, String careSal, String careIntro) {

@@ -1,5 +1,12 @@
 @charset "UTF-8";
 
+<<<<<<< HEAD
+=======
+/* * {
+	border: 1px solid red;
+} */
+
+>>>>>>> syk
 div {
 	box-sizing: border-box;
 }
@@ -9,19 +16,23 @@ body {
 	width: 1390px;
 	height: 980px;
 	margin: auto;
+	display: relative;
 }
 
 header {
-	height: 20%;
+	/* height: 20%; */
+	height: 200px;
 }
 
 section {
-	height: 70%;
+	min-height: 100%;
 }
 
 footer {
-	height: 20%;
+	/* height: 20%; */
 }
+
+
 /*헤더*/
 #wrapper {
 	width: 100%;
@@ -61,8 +72,12 @@ footer {
 
 #login {
 	text-align: center;
-	line-height: 150px;
+	/* line-height: 150px; */
 	padding-right: 15px;
+	display: flex;
+	justify-content: space-around;
+	height: 100%;
+	padding-top: 40px;
 }
 
 #login input[type=button] {
@@ -87,13 +102,15 @@ nav {
 
 #main-menu {
 	list-style-type: none;
+	text-align: center;
 }
 
 #main-menu>li {
-	float: left;
+	/* float: left; */
 	width: 13%;
 	height: 100%;
 	text-align: center;
+	display: inline-block;
 }
 
 #main-menu a {
@@ -194,13 +211,13 @@ span {
 	text-align: center;
 	color: black;
 }
+
 /* 푸터 */
 footer {
-
 	font-size: 10px;
 	width: 100%;
 	height: 80px;
-	position: relative;
+	/* position: absolute; */
 	z-index: 20;
 	overflow: hidden;
 	padding: 20px;
@@ -209,19 +226,30 @@ footer {
 	color: black;
 	margin: 50px 0 0 0;
 }
-/* 로그인 */
 
+/* 로그인 */
+#content {
+	display: flex;
+	justify-content: center;
+	margin: 40px;
+}
+
+<<<<<<< HEAD
 #loginForm {
  
 	position: absolute;
+=======
+section #loginForm { 
+	/* position: absolute; */
+>>>>>>> syk
 	width: 300px;
 	height: 200px;
 	padding: 30px, 20px;
 	background-color: #FFFFFF;
     text-align: center;
-	top: 50%;
+	/* top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%); */
 	border-radius: 15px;
 }
 
@@ -377,7 +405,23 @@ input[type=reset]{
 
 }  
  
-
+ /* 요양보호사 버튼 입력*/
+.wrap, .wrap *{
+      border: 1px solid black;
+      display: block;
+      padding: 5px;
+      margin: 15px;
+      color: black;
+      margin-right: 40px;
+      border: 0;
+      border-radius: 10px;
+     }
+ .wrap{
+   height: 200px;
+   width: 300px;
+   background-color: rgb(204, 169, 221);
+          
+}
 
 /*요양보호사 프로필 */
 #mucenter {
