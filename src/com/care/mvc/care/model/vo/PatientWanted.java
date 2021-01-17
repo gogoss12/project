@@ -58,5 +58,4 @@ public class PatientWanted {
 				+ ", wantedIll=" + wantedIll + "]";
 	}
 	
-	
 }

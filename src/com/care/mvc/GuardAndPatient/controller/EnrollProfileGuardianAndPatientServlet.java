@@ -17,6 +17,7 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
        
     public EnrollProfileGuardianAndPatientServlet() {
     }
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/views/patient/patProfile.jsp").forward(request, response);
 	}
@@ -25,13 +26,12 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 		
 		GuardAndPatient gap = new GuardAndPatient();
 		
-		String same = request.getParameter("same");
-		String date = request.getParameter("pat_period");
-		
+		String same = request.getParameter("same"); // "보호자이자 환자입니다."
+		String date = request.getParameter("pat_period"); // 돌봄시작날짜, 돌봄종료날짜
 		
 		System.out.println("same : " + same + "date : " + date);
 		
-		gap.setGuard_pat(request.getParameter("name"));
+		gap.setGuard_pat(request.getParameter("name")); // ???
 		
 	}
 }

@@ -2,11 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
 	<section id="content">
-		<h2 align="center" style="line-height: 3.0;">회원가입</h2>
 		<div id="enroll-container" style="margin: 0 auto; width: 600px">
 			<form name="memberEnrollFrm" action="<%= request.getContextPath()%>/member/enroll" method="post"
 				style="width: 600px;">
 				<table class="table table-borderless" style="width: 600px;">
+					<tr>
+						<th colspan="2">
+							<h2 align="center" style="line-height: 3.0;">회원가입</h2>
+						</th>
+					</tr>
 					<tr>
 						<th>이름</th>
 						<td><input type="text" name="userName" id="userName" required>
@@ -79,10 +83,11 @@
 		</div>
 	</section>
 	
-
+	<!-- DAUM 주소 API 링크 -->
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	
 	<script>
 	//비밀번호, 비밀번호 확인 일치확인
-	
 	
 	$(document).ready(() => {   
 	
@@ -101,7 +106,7 @@
 	   let id = $("#newId").val().trim();
 	     
 	     if (id.length < 4) {
-	    	 alert("아이디는 최소 4글자 이상 입력해라")
+	    	 alert("아이디는 최소 4글자 이상 입력해주세요.")
 	    	 
 	    	 return;
 	     	}
