@@ -7,13 +7,13 @@
         	<h1 id="pointer">요양보호사 프로필 등록</h1>
 
 	<form name="careEnrollFrm" action="<%= request.getContextPath()%>/enroll/profile/care" method="post"
-				style="width: 600px;">
+				style="width: 600px;" enctype="multipart/form-data">
 
         <br><br><br>
 
         <div class="mb-3">
             <label for="formFile" class="form-label">프로필 사진 등록</label>
-            <input class="form-control" type="file" id="formFile" style="width: fit-content;">
+            <input class="form-control" type="file" id="formFile" name="upfile" style="width: fit-content;">
         </div>
         <br>
         <label id="firstTitle">이름: <input type="text" id="carename" placeholder="이름을 입력해주세요" required></label> <br><br>
