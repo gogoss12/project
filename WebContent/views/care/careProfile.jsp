@@ -1,11 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%
+	String userId = (String)request.getAttribute("userId");
+%>
 <%@ include file="/views/common/header.jsp" %>
 	<section>
 		<div id="mucenter">
         	<h1 id="pointer">요양보호사 프로필 등록</h1>
 
+	// 절대 절대 절대 여기에 enctype= 을 넣어놓지 말기 -> 문제는 여기에 넣으면 오류가 걸린다 -> 이거를 해결해서 찾아야한다. 검색하기 ex: jQuery 등 있다.
 	<form name="careEnrollFrm" action="<%= request.getContextPath()%>/enroll/profile/care" method="post"
 				style="width: 600px;">
 
@@ -13,13 +17,12 @@
 
         <div class="mb-3">
             <label for="formFile" class="form-label">프로필 사진 등록</label>
-            <input class="form-control" type="file" id="formFile" style="width: fit-content;">
+            <input class="form-control" type="file" id="formFile" name="upfile" style="width: fit-content;">
         </div>
         <br>
-        <label id="firstTitle">이름: <input type="text" id="carename" placeholder="이름을 입력해주세요" required></label> <br><br>
         <label id="firstTitle">성별 : </label>
-        <label><input type="radio" name="caregender" value="M">남자</label>
-        <label><input type="radio" name="caregender" value="F" checked>여자</label>
+        <label><input type="radio" name="caregender" value="남">남자</label>
+        <label><input type="radio" name="caregender" value="여" checked>여자</label>
         
         <br><br>
         
@@ -95,9 +98,9 @@
 
         <h2><span class="badge bg-secondary">희망급여</span></h2>
             <div>
-                <label><input type="checkbox" name="careSal">협의가능</label> &nbsp;
-                <label><input type="checkbox" name="careSal">월급</label> &nbsp;
-                <label><input type="checkbox" name="careSal">시급</label> &nbsp;
+                <input type="checkbox" name="careSal">협의가능 &nbsp;
+                <input type="checkbox" name="careSal">월급    &nbsp;
+                <input type="checkbox" name="careSal">시급    &nbsp;
             </div>
        
         <br><br>
@@ -118,7 +121,7 @@
 
         <h2><span class="badge bg-secondary">환자상태2</span></h2>
             <div>질병:   &nbsp;
-                <label><input type="checkbox" name="carePlus">없음</label> &nbsp;
+                <label><input type="checkbox">없음</label> &nbsp;
                 <label><input type="checkbox">치매</label> &nbsp;
                 <label><input type="checkbox">파킨스</label> &nbsp;
                 <label><input type="checkbox">뇌전증</label> <br>
@@ -152,12 +155,14 @@
         <div>
             <input type="submit" id="careenroll" value="등록하기">
             <input type="reset" value="취소하기">
+            <input type="hidden" name="memId" value=<%= userId %>>
         </div>
         </form>
-        <form name="checkIdForm">   
-		<input type="hidden" name="userId">
-	</form>
     </div>
 	</section>
 	
 <%@ include file="/views/common/footer.jsp" %>
+
+
+
+

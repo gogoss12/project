@@ -12,10 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 public class CareIntroServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-   
     public CareIntroServlet() {
-        super();
-       
     }
 
 	
