@@ -4,6 +4,8 @@ public class Patient {
 	
 	int pat_no;
 	
+	int guard_no;
+	
 	String pat_place;
 	
 	String pat_period;
@@ -50,11 +52,12 @@ public class Patient {
 		
 	}
 
-	public Patient(int pat_no, String pat_place, String pat_period, String pat_hop_time, String pat_name, int pat_age,
+	public Patient(int pat_no, int guard_no, String pat_place, String pat_period, String pat_hop_time, String pat_name, int pat_age,
 			String pat_gen, int pat_kg, String pat_infect, String pat_grade, String pat_sanit, String pat_paral,
 			String pat_move, String pat_bed, String pat_cogdis, String pat_bathroom, String pat_bowel_mn,
 			String pat_ostomy, String pat_help_eat, String pat_suction, String pat_guard_gen, String pat_etc) {
 		this.pat_no = pat_no;
+		this.guard_no = guard_no;
 		this.pat_place = pat_place;
 		this.pat_period = pat_period;
 		this.pat_hop_time = pat_hop_time;
@@ -84,6 +87,14 @@ public class Patient {
 
 	public void setPat_no(int pat_no) {
 		this.pat_no = pat_no;
+	}
+
+	public int getGuard_no() {
+		return guard_no;
+	}
+
+	public void setGuard_no(int guard_no) {
+		this.guard_no = guard_no;
 	}
 
 	public String getPat_place() {
@@ -256,14 +267,15 @@ public class Patient {
 
 	@Override
 	public String toString() {
-		return "Patient [pat_no=" + pat_no + ", pat_place=" + pat_place + ", pat_period=" + pat_period
-				+ ", pat_hop_time=" + pat_hop_time + ", pat_name=" + pat_name + ", pat_age=" + pat_age + ", pat_gen="
-				+ pat_gen + ", pat_kg=" + pat_kg + ", pat_infect=" + pat_infect + ", pat_grade=" + pat_grade
-				+ ", pat_sanit=" + pat_sanit + ", pat_paral=" + pat_paral + ", pat_move=" + pat_move + ", pat_bed="
-				+ pat_bed + ", pat_cogdis=" + pat_cogdis + ", pat_bathroom=" + pat_bathroom + ", pat_bowel_mn="
-				+ pat_bowel_mn + ", pat_ostomy=" + pat_ostomy + ", pat_help_eat=" + pat_help_eat + ", pat_suction="
-				+ pat_suction + ", pat_guard_gen=" + pat_guard_gen + ", pat_etc=" + pat_etc + "]";
+		return "Patient [pat_no=" + pat_no + ", guard_no=" + guard_no + ", pat_place=" + pat_place + ", pat_period="
+				+ pat_period + ", pat_hop_time=" + pat_hop_time + ", pat_name=" + pat_name + ", pat_age=" + pat_age
+				+ ", pat_gen=" + pat_gen + ", pat_kg=" + pat_kg + ", pat_infect=" + pat_infect + ", pat_grade="
+				+ pat_grade + ", pat_sanit=" + pat_sanit + ", pat_paral=" + pat_paral + ", pat_move=" + pat_move
+				+ ", pat_bed=" + pat_bed + ", pat_cogdis=" + pat_cogdis + ", pat_bathroom=" + pat_bathroom
+				+ ", pat_bowel_mn=" + pat_bowel_mn + ", pat_ostomy=" + pat_ostomy + ", pat_help_eat=" + pat_help_eat
+				+ ", pat_suction=" + pat_suction + ", pat_guard_gen=" + pat_guard_gen + ", pat_etc=" + pat_etc + "]";
 	}
+
 
 	
 }

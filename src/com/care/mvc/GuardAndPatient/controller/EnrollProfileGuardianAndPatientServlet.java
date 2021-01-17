@@ -25,8 +25,7 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		Cookie cookie = new Cookie("userId", request.getParameter("userId")); 
 		
-		System.out.println("cookie.getName : " + cookie.getName());
-		System.out.println(cookie.getValue());
+		cookie.setMaxAge(60 * 60 * 24);
 		response.addCookie(cookie);
 		
 		request.setAttribute("userId", userId);
@@ -42,6 +41,7 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 		int resultG = 0;
 		int resultP = 0;
 		
+		
 		guard.setGuard_gen(request.getParameter("gender"));
 		guard.setGuard_pat(request.getParameter("same"));
 		guard.setMemId(request.getParameter("userId"));
@@ -49,7 +49,7 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 
 		resultG = new GuardAndPatientService().insertGuard(guard);
 		
-		System.out.println(resultG);
+		System.out.println("resultG" + resultG);
 		
 		System.out.println(guard);
 
@@ -76,6 +76,8 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 		patient.setPat_etc(request.getParameter("patEtc"));
 				
 		resultP = new GuardAndPatientService().insertPatient(patient, guard);
+		
+		System.out.println("resultP" + resultP);
 		
 		System.out.println(patient);
 		

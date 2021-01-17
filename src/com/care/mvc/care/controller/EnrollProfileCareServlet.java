@@ -79,7 +79,7 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		care.setCarePlus(request.getParameter("carePlus"));
 		care.setCareTime(request.getParameter("careTime"));
 		care.setCarePlace(request.getParameter("carePlace"));
-		care.setCareSal(request.getParameter("careSal"));
+		care.setCareSal(Integer.parseInt(request.getParameter("careSal")));
 		care.setCareIntro(request.getParameter("careIntro"));
 		care.setMemId(request.getParameter("memId"));
 		

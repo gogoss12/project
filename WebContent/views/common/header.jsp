@@ -1,8 +1,9 @@
 <%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
 <%@page import="com.care.mvc.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+  pageEncoding="UTF-8"%>
 
-	pageEncoding="UTF-8"%>
+
 
 <%
 	String saveId = null;
@@ -35,6 +36,8 @@
 <body>
 	<header>
 
+
+
 		<div id="wrapper">
             <div id="logo">
                	 <a href="<%=request.getContextPath()%>" >
@@ -42,8 +45,6 @@
                 </a>
             </div>
 			<div id="page">
-
-
 
 				<h1>Carepool</h1>
 			</div>
@@ -53,8 +54,6 @@
 					onclick="location.href = '<%=request.getContextPath()%>/member/login';">
 				<input type="button" id="enrollbtn" value="회원가입"
 					onclick="location.href = '<%=request.getContextPath()%>/member/enroll';">
-
-
 
 			<% } else { %>						
 				<input type="button" value="마이페이지"
@@ -80,7 +79,7 @@
 		<nav>
 
 			<ul id="main-menu">
-				<li><a href="<%=request.getContextPath()%>/intro" >소개</a></li>
+				<li><a href="<%=request.getContextPath()%>/intro">소개</a></li>
 				<li><a href="#">매칭</a>
 					<ul id="sub-menu">
 						<li><a href="#">매칭검색</a></li>
@@ -94,5 +93,4 @@
 				</li>
 			</ul>
 		</nav>
-
 	</header>

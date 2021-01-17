@@ -9,6 +9,7 @@ import java.sql.Connection;
 import com.care.mvc.GuardAndPatient.model.dao.GuardAndPatientDao;
 import com.care.mvc.GuardAndPatient.model.vo.Guard;
 import com.care.mvc.GuardAndPatient.model.vo.Patient;
+import com.care.mvc.common.jdbc.JDBCTemplate;
 import com.care.mvc.member.model.vo.Member;
 
 public class GuardAndPatientService {
@@ -40,7 +41,5 @@ public class GuardAndPatientService {
 		
 		return resultP;
 	}
-	
-	
 
 }
