@@ -20,6 +20,7 @@ public class Care {
 	private String careIntro;
 	
 	
+	
 	public Care() {
 	}
 

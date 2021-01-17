@@ -89,7 +89,6 @@ public class MemberDao {
 	      return member;
 	   }
 	
-
 	// 로그인
 	public Member findMemberByIdAndPwd(Connection conn, String id, String pwd) {
 		Member member = null;
