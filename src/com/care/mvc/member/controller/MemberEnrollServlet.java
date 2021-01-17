@@ -56,9 +56,8 @@ public class MemberEnrollServlet extends HttpServlet {
 
 		if (result > 0) {
 			confirm = "회원가입 성공!! 프로필 등록을 하시겠습니까?";
-//			request.setAttribute("userId", userId);
+			request.setAttribute("userId", userId);
 			request.setAttribute("role", role); // guardian 혹은 caregiver
-			
 			request.setAttribute("confirm", confirm);
 			request.getRequestDispatcher("/views/common/confirm.jsp").forward(request, response);
 			

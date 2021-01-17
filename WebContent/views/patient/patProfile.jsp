@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%
 	String userId = (String)request.getAttribute("userId");
-
 %>
     
 <%@ include file="/views/common/header.jsp" %>
@@ -166,7 +165,7 @@
                     </div>
                 <input type="reset" value="취소하기">
                 <input type="submit" value="등록하기">
-            	<input type="hidden" name="userId" value="<%= userId %>">
+                <input type="hidden" name="userId" value=<%= userId %>>
             </form>
         </div>
     </section>
