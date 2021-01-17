@@ -29,7 +29,6 @@ public class GuardAndPatientDao {
 				guardNo = Integer.parseInt(rs.getString(1)); 
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -64,6 +63,7 @@ public class GuardAndPatientDao {
 	public int insertPatient(Connection conn, Patient patient, Guard guard) {
 		int resultP = 0;
 		PreparedStatement PPstmt = null;
+		int guardNo = findGuardNo(conn, guard);
 		int guardNo = findGuardNo(conn, guard);
 		
 		String PatientQuery = "INSERT INTO PATIENT_DETAILS VALUES(SEQ_PAT_NO.NEXTVAL,"

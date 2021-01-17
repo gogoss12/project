@@ -40,5 +40,7 @@ public class GuardAndPatientService {
 		
 		return resultP;
 	}
+	
+	
 
 }
