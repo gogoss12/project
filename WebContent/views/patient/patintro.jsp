@@ -3,7 +3,7 @@
 <%@ include file="/views/common/header.jsp" %>
 
 <section id="content">
-<form id="patintroForm" action="<%= request.getContextPath()%>/patIntro" method="GET">
+<form id="patintroForm" action="<%= request.getContextPath()%>/guardianAndPatientIntro" method="GET">
 
 <h1>보호자&환자</h1>
     <hr>

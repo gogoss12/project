@@ -5,6 +5,10 @@
 	Member userId = (Member)request.getAttribute("userId");
 %>
 <%@ include file="/views/common/header.jsp" %>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/style.css">
+<script src="<%=request.getContextPath()%>/js/jquery-3.5.1.js"></script>
+
 	<section id="content">
 		<div id="enroll-container" style="margin: 0 auto; width: 600px">
 			<form name="memberEnrollFrm" action="<%= request.getContextPath()%>/member/enroll" method="post"

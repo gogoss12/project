@@ -27,7 +27,7 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/style.css">
 <script src="<%=request.getContextPath()%>/js/jquery-3.5.1.js"></script>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 </head>
 <body>
 	<header>
@@ -64,11 +64,12 @@
 				<input type="button" id="logoutbtn" value="로그아웃" 
 					onclick="location.replace('<%= request.getContextPath() %>/logout');">
 			<% } %>
+
 			</div>
 		</div>
 		<nav>
 			<ul id="main-menu">
-				<li><a href="<%=request.getContextPath()%>/intro" >소개</a></li>
+				<li><a href="<%=request.getContextPath()%>/intro">소개</a></li>
 				<li><a href="#">매칭</a>
 					<ul id="sub-menu">
 						<li><a href="#">매칭검색</a></li>

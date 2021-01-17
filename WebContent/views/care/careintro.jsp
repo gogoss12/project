@@ -5,7 +5,7 @@
 <%@ include file="/views/common/header.jsp" %>
 
 <section id="content">
-<form id="patintroForm" action="<%= request.getContextPath()%>/patIntro" method="GET">
+<form id="patintroForm" action="<%= request.getContextPath()%>/careIntro" method="GET">
 
 <h1>요양보호사</h1>
     <hr>

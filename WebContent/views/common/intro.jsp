@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
 
 <section id="content">
@@ -13,13 +13,13 @@
             케어풀은 돌봄을 최우선으로 하여 다가갑니다.
         </pre>
 
-    </ul>
     <hr>
     <img src="./image/cristian-newman-CeZypKDceQc-unsplash.jpg"  width="400px" height="870px" style="float: right;" alt="이미지">
     <ul>
     
        
         <p>돌봄이 필요한 분들에게 제일 먼저 찾고 싶은 업체.</p>
+
 
         <li >
         상세한 문항의 프로필 등록으로 돌봄이 필요한 분들의 현황을 정확히 파악하여 
