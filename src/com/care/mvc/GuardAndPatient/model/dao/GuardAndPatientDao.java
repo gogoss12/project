@@ -26,7 +26,7 @@ public class GuardAndPatientDao {
 			rs = stmt.executeQuery(query);
 			
 			if(rs.next()) {
-				guardNo = Integer.parseInt(rs.getString(1)); // 멤버변수
+				guardNo = Integer.parseInt(rs.getString(1)); 
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -50,7 +50,7 @@ public class GuardAndPatientDao {
 			GPstmt.setInt(1, guardNo);
 			GPstmt.setString(2, guard.getGuard_gen());
 			GPstmt.setString(3, guard.getGuard_pat());
-			GPstmt.setString(4, guard.getMemId()); // memId 가 null...
+			GPstmt.setString(4, guard.getMemId());
 
 			resultG = GPstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -64,9 +64,7 @@ public class GuardAndPatientDao {
 	public int insertPatient(Connection conn, Patient patient, Guard guard) {
 		int resultP = 0;
 		PreparedStatement PPstmt = null;
-
-//		String PatientQuery = "INSERT INTO PATIENT_DETAILS VALUES(SEQ_PAT_NO.NEXTVAL,SEQ_GUARD_NO.NEXTVAL,"
-//				+ "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		int guardNo = findGuardNo(conn, guard);
 		
 		String PatientQuery = "INSERT INTO PATIENT_DETAILS VALUES(SEQ_PAT_NO.NEXTVAL,"
 				+ "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -74,7 +72,7 @@ public class GuardAndPatientDao {
 		try {
 			PPstmt = conn.prepareStatement(PatientQuery);
 
-			PPstmt.setInt(1, guard.getGuard_no());
+			PPstmt.setInt(1, guardNo - 1);
 			PPstmt.setString(2, patient.getPat_place());
 			PPstmt.setString(3, patient.getPat_period());
 			PPstmt.setString(4, patient.getPat_hop_time());

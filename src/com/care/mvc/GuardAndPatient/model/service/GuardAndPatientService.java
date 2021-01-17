@@ -13,8 +13,6 @@ import com.care.mvc.member.model.vo.Member;
 
 public class GuardAndPatientService {
 
-	
-
 	public int insertGuard(Guard guard) {
 		Connection conn = getConnection();
 		

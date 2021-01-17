@@ -49,7 +49,7 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 
 		resultG = new GuardAndPatientService().insertGuard(guard);
 		
-		System.out.println(resultG);
+		System.out.println("resultG" + resultG);
 		
 		System.out.println(guard);
 
@@ -76,6 +76,8 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 		patient.setPat_etc(request.getParameter("patEtc"));
 				
 		resultP = new GuardAndPatientService().insertPatient(patient, guard);
+		
+		System.out.println("resultP" + resultP);
 		
 		System.out.println(patient);
 		
