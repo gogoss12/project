@@ -1,5 +1,10 @@
+<%@page import="com.care.mvc.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	Member userId = (Member)request.getAttribute("userId");
+
+%>
 <%@ include file="/views/common/header.jsp" %>
 	<section id="content">
 		<h2 align="center" style="line-height: 3.0;">회원가입</h2>

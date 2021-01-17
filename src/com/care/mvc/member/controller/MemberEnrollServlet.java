@@ -1,8 +1,10 @@
 package com.care.mvc.member.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,8 +19,7 @@ public class MemberEnrollServlet extends HttpServlet {
 	public MemberEnrollServlet() {
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		request.getRequestDispatcher("/views/member/enroll.jsp").forward(request, response);
 	}
 
@@ -29,6 +30,7 @@ public class MemberEnrollServlet extends HttpServlet {
 		String confirm = "";
 		Member member = new Member();
 		String role = request.getParameter("role");
+		String userId = request.getParameter("userId");
 		System.out.println(role);
 
 		if (role == null) {
@@ -38,8 +40,7 @@ public class MemberEnrollServlet extends HttpServlet {
 			request.setAttribute("loc", location);
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 			return;
-		}
-		;
+		};
 
 		member.setMemId(request.getParameter("userId"));
 		member.setMemRole(request.getParameter("role"));
@@ -53,8 +54,8 @@ public class MemberEnrollServlet extends HttpServlet {
 		int result = new MemberService().enrollMember(member);
 
 		if (result > 0) {
-			msg = "회원가입 성공!";
 			confirm = "회원가입 성공!! 프로필 등록을 하시겠습니까?";
+			request.setAttribute("userId", userId);
 			request.setAttribute("role", role);
 			request.setAttribute("confirm", confirm);
 			request.getRequestDispatcher("/views/common/confirm.jsp").forward(request, response);
@@ -63,7 +64,7 @@ public class MemberEnrollServlet extends HttpServlet {
 			msg = "회원가입 실패";
 			location = "/member/enroll";
 		}
-
+		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", location);
 

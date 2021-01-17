@@ -3,9 +3,13 @@
 <%
 	String confirm = (String)request.getAttribute("confirm");
 	String role = (String)request.getAttribute("role");
+	String userId = (String)request.getAttribute("userId");
 	boolean is = role.contains("guardian");
 	System.out.println(role);
 	System.out.println(is);
+	
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -22,7 +26,7 @@
     		 location.replace("<%=request.getContextPath()%>");
     		 
     	 }else if(<%= role.contains("guardian")%>){
-    		 location.replace("<%=request.getContextPath()%>/enroll/profile/guardian");
+    		 location.replace("<%=request.getContextPath()%>/enroll/profile/guardian?userId=<%= userId %>");
     	 }
      }else {
     	 location.replace("<%=request.getContextPath()%>");
