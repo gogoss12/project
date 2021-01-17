@@ -26,6 +26,8 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 		
 		System.out.println("cookie.getName : " + cookie.getName());
 		System.out.println(cookie.getValue());
+		
+		cookie.setMaxAge(60 * 60 * 24);
 		response.addCookie(cookie);
 		
 		request.setAttribute("userId", userId);
