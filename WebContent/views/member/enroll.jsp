@@ -87,10 +87,6 @@
 			</form>
 		</div>
 	</section>
-	
-	<!-- DAUM 주소 API 링크 -->
-	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-	
 	<script>
 	//비밀번호, 비밀번호 확인 일치확인
 	
