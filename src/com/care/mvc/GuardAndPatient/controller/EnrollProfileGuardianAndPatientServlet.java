@@ -35,20 +35,24 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		String msg = "";
 		String loc = "";
 		Guard guard = new Guard();
 		Patient patient = new Patient();
+		int resultG = 0;
+		int resultP = 0;
 		
 		guard.setGuard_gen(request.getParameter("gender"));
 		guard.setGuard_pat(request.getParameter("same"));
 		guard.setMemId(request.getParameter("userId"));
 		System.out.println(request.getParameter("userId"));
+
+		resultG = new GuardAndPatientService().insertGuard(guard);
+		
+		System.out.println(resultG);
+		
 		System.out.println(guard);
-		int resultG = new GuardAndPatientService().insertGuard(guard);
-		
-		
+
 		patient.setPat_place(request.getParameter("place"));
 		patient.setPat_period(request.getParameter("period"));
 		patient.setPat_hop_time(request.getParameter("hopetime"));
@@ -70,13 +74,10 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 		patient.setPat_suction(request.getParameter("patSuction"));
 		patient.setPat_guard_gen(request.getParameter("patGuardGen"));
 		patient.setPat_etc(request.getParameter("patEtc"));
-		
+				
+		resultP = new GuardAndPatientService().insertPatient(patient, guard);
 		
 		System.out.println(patient);
-		
-		
-<<<<<<< HEAD
-		int resultP = new GuardAndPatientService().insertPatient(patient, guard);
 		
 		if(resultG > 0 && resultP > 0) {
 			msg = "보호자 프로필 등록이 완료되었습니다!";
@@ -85,19 +86,11 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 			msg = "프로필 등록이 실패하였습니다!";
 			loc = "/enroll/profile/guardian";
 		}
-=======
-		String same = request.getParameter("same"); // "보호자이자 환자입니다."
-		String date = request.getParameter("pat_period"); // 돌봄시작날짜, 돌봄종료날짜
->>>>>>> syk
 		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		
-<<<<<<< HEAD
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-=======
-		gap.setGuard_pat(request.getParameter("name")); // ???
->>>>>>> syk
 		
 	}
 }

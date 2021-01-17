@@ -3,7 +3,6 @@
 	pageEncoding="UTF-8"%>
 <%
 	Member userId = (Member)request.getAttribute("userId");
-
 %>
 <%@ include file="/views/common/header.jsp" %>
 <link rel="stylesheet"
