@@ -377,7 +377,23 @@ input[type=reset]{
 
 }  
  
-
+ /* 요양보호사 버튼 입력*/
+.wrap, .wrap *{
+      border: 1px solid black;
+      display: block;
+      padding: 5px;
+      margin: 15px;
+      color: black;
+      margin-right: 40px;
+      border: 0;
+      border-radius: 10px;
+     }
+ .wrap{
+   height: 200px;
+   width: 300px;
+   background-color: rgb(204, 169, 221);
+          
+}
 
 /*요양보호사 프로필 */
 #mucenter {
