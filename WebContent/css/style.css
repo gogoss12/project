@@ -1,6 +1,5 @@
 @charset "UTF-8";
 
-
 div {
 	box-sizing: border-box;
 }
@@ -210,11 +209,11 @@ footer {
 }
 /* 로그인 */
 
-section #loginForm {
+#loginForm {
  
 	position: absolute;
 	width: 300px;
-	height: 400px;
+	height: 200px;
 	padding: 30px, 20px;
 	background-color: #FFFFFF;
     text-align: center;
@@ -274,7 +273,109 @@ section #loginForm {
 	font-weight: bold;
 	border: none;
 }
+
+/* 회원가입  */
+
+section h2{
+        font-size: 30px;
+
+    }
+      
+
+        tr{
+           height: 25x;
+       }
+
+      table{
+          border-collapse: collapse;
+          font-size: 9pt;
+          margin-left: 0;
+      } 
+      
+    input[type=text], input[type=password], input[type=email],
+    input[type=tel], input[type=date]  {
+    padding: 5px 10px; 
+    margin: 3px 0; 
+    border: 1px solid #ccc;
+    font-size:12pt;
+    box-sizing: border-box;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+#selrole{
+    padding: 7px 10px; 
+    margin: 3px 0; 
+    border: 1px solid #ccc; 
+    font-size:12pt;
+    box-sizing: border-box;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+} 
+th {
+text-align: center;
+  font-size: 16px;
+}
+
+input[type=button] {
+    height: 30px;
+    width: 120px;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 2px;
+    border-radius:3px;
+    border: white;
+    background-color: rgb(220, 220, 220);
+    
+      }
+input[type=submit] {
+    height: 30px;
+    width: 120px;
+    color: black;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 5% 150px;
+    border-radius:3px; 
+    border: white;
+    background-color: rgb(10, 89, 235);
+}
+input[type=reset]{
+    height: 30px;
+    width: 120px;
+    color: black;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 5% -130px; 
+    border-radius:3px;
+    border: white;
+    background-color: rgb(220, 220, 220);
+}
+#findPostalAddr {
+    margin-left: -30px;
+    margin-top: 19px;
+    height: 30px;
+    width: 120px;
+}
+#checkDuplicate{
+    margin-left: 10px;
+
+}  
  
+
 
 /*요양보호사 프로필 */
 #mucenter {

@@ -6,7 +6,7 @@
 		<div id="enroll-container" style="margin: 0 auto; width: 600px">
 			<form name="memberEnrollFrm" action="<%= request.getContextPath()%>/member/enroll" method="post"
 				style="width: 600px;">
-				<table class="table table-borderless" style="width: 600px;">
+				<table class="table table-borderless" style="width: 600px;" >
 					<tr>
 						<th>이름</th>
 						<td><input type="text" name="userName" id="userName" required>
@@ -14,9 +14,10 @@
 					</tr>
 					<tr>
 						<th>아이디</th>
-						<td><input type="text" name="userId" id="userId"
-							placeholder="아이디(4글자이상)" required> <input type="button"
-							id="checkDuplicate" value="중복확인"></td>
+						<td>
+						   <input type="text" name="userId" id="user_Id" placeholder="아이디(4글자이상)" required> 
+						   <input type="button" id="checkDuplicate" value="중복확인">
+						</td>
 					</tr>
 					<tr>
 						<th>패스워드</th>
@@ -59,7 +60,7 @@
 					</tr>
 					<tr>
 						<th>보호자/요양보호사</th>
-						<td><select name="role">
+						<td><select name="role" id="selrole">
 								<option disabled selected>선택</option>
 								<option value="guardian">보호자</option>
 								<option value="caregiver">요양보호사</option>
