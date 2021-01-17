@@ -63,6 +63,7 @@ public class GuardAndPatientDao {
 	public int insertPatient(Connection conn, Patient patient, Guard guard) {
 		int resultP = 0;
 		PreparedStatement PPstmt = null;
+		int guardNo = findGuardNo(conn, guard);
 
 //		String PatientQuery = "INSERT INTO PATIENT_DETAILS VALUES(SEQ_PAT_NO.NEXTVAL,SEQ_GUARD_NO.NEXTVAL,"
 //				+ "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -70,10 +71,11 @@ public class GuardAndPatientDao {
 		String PatientQuery = "INSERT INTO PATIENT_DETAILS VALUES(SEQ_PAT_NO.NEXTVAL,"
 				+ "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
+		System.out.println("혹시 시퀀스? " + guardNo);
 		try {
 			PPstmt = conn.prepareStatement(PatientQuery);
 
-			PPstmt.setInt(1, guard.getGuard_no());
+			PPstmt.setInt(1, guardNo-1);
 			PPstmt.setString(2, patient.getPat_place());
 			PPstmt.setString(3, patient.getPat_period());
 			PPstmt.setString(4, patient.getPat_hop_time());
@@ -105,7 +107,5 @@ public class GuardAndPatientDao {
 
 		return resultP;
 	}
-
-	
 
 }

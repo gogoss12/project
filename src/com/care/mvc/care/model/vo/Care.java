@@ -5,6 +5,8 @@ public class Care {
 	
 	private String careLicense;
 	
+	private String caregen;
+	
 	private String careYears;
 	
 	private String careHistory;
@@ -15,17 +17,18 @@ public class Care {
 	
 	private String carePlace;
 	
-	private String careSal;
+	private int careSal;
 	
 	private String careIntro;
-		
 	
+	private String MemId;
 	public Care() {
 	}
 	
-	public Care(int careNo, String careLicense, String careYears, String careHistory, String carePlus, String careTime,
-			String carePlace, String careSal, String careIntro) {
+	public Care(int careNo,  String caregen, String careLicense, String careYears, String careHistory, String carePlus, String careTime,
+			String carePlace, int careSal, String careIntro, String MemId) {
 		this.careNo = careNo;
+		this.caregen = caregen;
 		this.careLicense = careLicense;
 		this.careYears = careYears;
 		this.careHistory = careHistory;
@@ -34,6 +37,7 @@ public class Care {
 		this.carePlace = carePlace;
 		this.careSal = careSal;
 		this.careIntro = careIntro;
+		this.MemId = MemId;
 	}
 
 	public int getCareNo() {
@@ -42,6 +46,16 @@ public class Care {
 
 	public void setCareNo(int careNo) {
 		this.careNo = careNo;
+	}
+	
+	
+
+	public String getCaregen() {
+		return caregen;
+	}
+
+	public void setCaregen(String caregen) {
+		this.caregen = caregen;
 	}
 
 	public String getCareLicense() {
@@ -92,11 +106,11 @@ public class Care {
 		this.carePlace = carePlace;
 	}
 
-	public String getCareSal() {
+	public int getCareSal() {
 		return careSal;
 	}
 
-	public void setCareSal(String careSal) {
+	public void setCareSal(int careSal) {
 		this.careSal = careSal;
 	}
 
@@ -107,12 +121,23 @@ public class Care {
 	public void setCareIntro(String careIntro) {
 		this.careIntro = careIntro;
 	}
+	
+
+	public String getMemId() {
+		return MemId;
+	}
+
+	public void setMemId(String memId) {
+		MemId = memId;
+	}
 
 	@Override
 	public String toString() {
-		return "Care [careNo=" + careNo + ", careLicense=" + careLicense + ", careYears=" + careYears + ", careHistory="
-				+ careHistory + ", carePlus=" + carePlus + ", careTime=" + careTime + ", carePlace=" + carePlace
-				+ ", careSal=" + careSal + ", careIntro=" + careIntro + "]";
+		return "Care [careNo=" + careNo + ", careLicense=" + careLicense + ", caregen=" + caregen + ", careYears="
+				+ careYears + ", careHistory=" + careHistory + ", carePlus=" + carePlus + ", careTime=" + careTime
+				+ ", carePlace=" + carePlace + ", careSal=" + careSal + ", careIntro=" + careIntro + ", MemId=" + MemId
+				+ "]";
 	}
+
 	
 }

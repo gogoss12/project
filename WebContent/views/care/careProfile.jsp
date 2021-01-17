@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+
+	String userId = (String)request.getAttribute("userId");
+
+%>
 
 <%@ include file="/views/common/header.jsp" %>
 	<section>
@@ -16,10 +21,9 @@
             <input class="form-control" type="file" id="formFile" style="width: fit-content;">
         </div>
         <br>
-        <label id="firstTitle">이름: <input type="text" id="carename" placeholder="이름을 입력해주세요" required></label> <br><br>
         <label id="firstTitle">성별 : </label>
-        <label><input type="radio" name="caregender" value="M">남자</label>
-        <label><input type="radio" name="caregender" value="F" checked>여자</label>
+        <label><input type="radio" name="caregender" value="남">남자</label>
+        <label><input type="radio" name="caregender" value="여" checked>여자</label>
         
         <br><br>
         
@@ -95,9 +99,12 @@
 
         <h2><span class="badge bg-secondary">희망급여</span></h2>
             <div>
-                <label><input type="checkbox" name="careSal">협의가능</label> &nbsp;
+                <!--  <label><input type="checkbox" name="careSal">협의가능</label> &nbsp;
                 <label><input type="checkbox" name="careSal">월급</label> &nbsp;
                 <label><input type="checkbox" name="careSal">시급</label> &nbsp;
+                -->
+                <!--  바꿔야함  -->
+                <input type="text" name="careSal">
             </div>
        
         <br><br>
@@ -152,6 +159,7 @@
         <div>
             <input type="submit" id="careenroll" value="등록하기">
             <input type="reset" value="취소하기">
+            <input type="text" name = "userId" value = <%= userId %> >
         </div>
         </form>
         <form name="checkIdForm">   

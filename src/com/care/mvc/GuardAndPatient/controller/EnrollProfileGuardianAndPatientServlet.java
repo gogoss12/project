@@ -25,9 +25,6 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		Cookie cookie = new Cookie("userId", request.getParameter("userId")); 
 		
-		System.out.println("cookie.getName : " + cookie.getName());
-		System.out.println(cookie.getValue());
-		
 		cookie.setMaxAge(60 * 60 * 24);
 		response.addCookie(cookie);
 		
@@ -43,6 +40,7 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 		Patient patient = new Patient();
 		int resultG = 0;
 		int resultP = 0;
+		
 		
 		guard.setGuard_gen(request.getParameter("gender"));
 		guard.setGuard_pat(request.getParameter("same"));
