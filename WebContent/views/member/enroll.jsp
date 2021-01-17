@@ -6,6 +6,10 @@
 
 %>
 <%@ include file="/views/common/header.jsp" %>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/css/style.css">
+<script src="<%=request.getContextPath()%>/js/jquery-3.5.1.js"></script>
+
 	<section id="content">
 		<div id="enroll-container" style="margin: 0 auto; width: 600px">
 			<form name="memberEnrollFrm" action="<%= request.getContextPath()%>/member/enroll" method="post"
@@ -85,12 +89,7 @@
 		</div>
 	</section>
 	
-<<<<<<< HEAD
-=======
-	<!-- DAUM 주소 API 링크 -->
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
->>>>>>> 66a17693ef74174020239135c357749aab1ef5b2
-	
 	<script>
 	//비밀번호, 비밀번호 확인 일치확인
 	

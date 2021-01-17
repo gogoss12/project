@@ -1,12 +1,10 @@
 @charset "UTF-8";
 
-<<<<<<< HEAD
-=======
 /* * {
 	border: 1px solid red;
 } */
 
->>>>>>> syk
+
 div {
 	box-sizing: border-box;
 }
@@ -181,6 +179,8 @@ nav {
 	border: white;
 	border-radius: 20%;
 	background: lightblue;
+
+
 }
 
 #btngroup input:hover {
@@ -234,14 +234,9 @@ footer {
 	margin: 40px;
 }
 
-<<<<<<< HEAD
-#loginForm {
- 
-	position: absolute;
-=======
+
 section #loginForm { 
 	/* position: absolute; */
->>>>>>> syk
 	width: 300px;
 	height: 200px;
 	padding: 30px, 20px;
@@ -307,23 +302,22 @@ section #loginForm {
 /* 회원가입  */
 
 section h2{
-        font-size: 30px;
+  font-size: 30px;
 
-    }
+}
       
-
-        tr{
-           height: 25x;
+tr{
+   height: 25x;
        }
 
-      table{
-          border-collapse: collapse;
-          font-size: 9pt;
-          margin-left: 0;
+table{
+   border-collapse: collapse;
+   font-size: 9pt;
+   margin-left: 0;
       } 
       
-    input[type=text], input[type=password], input[type=email],
-    input[type=tel], input[type=date]  {
+input[type=text], input[type=password], input[type=email],
+input[type=tel], input[type=date]  {
     padding: 5px 10px; 
     margin: 3px 0; 
     border: 1px solid #ccc;
@@ -433,7 +427,6 @@ input[type=reset]{
 	width: fit-content;
 	text-align: center;
 }
-
 /* 꾸며야하는 앞에 항목 */
 #firstTitle {
 	/* border: 1px solid green; */

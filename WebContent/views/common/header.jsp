@@ -1,10 +1,7 @@
 <%@page import="org.apache.jasper.tagplugins.jstl.core.If"%>
 <%@page import="com.care.mvc.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-<<<<<<< HEAD
-    pageEncoding="UTF-8"%>
-=======
-	pageEncoding="UTF-8"%>
+      pageEncoding="UTF-8"%>
 <%
 	String saveId = null;
 	Member loginMember = (Member)session.getAttribute("loginMember");
@@ -22,28 +19,20 @@
 	}
 %>
 	
->>>>>>> 66a17693ef74174020239135c357749aab1ef5b2
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<<<<<<< HEAD
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/style.css">
-<script src="<%=request.getContextPath() %>/js/jquery-3.5.1.js"></script>
-</head>
-<body>
 
- <header>
-=======
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/style.css">
 <script src="<%=request.getContextPath()%>/js/jquery-3.5.1.js"></script>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 </head>
 <body>
 	<header>
->>>>>>> 66a17693ef74174020239135c357749aab1ef5b2
+
 		<div id="wrapper">
             <div id="logo">
                	 <a href="<%=request.getContextPath()%>" >
@@ -51,18 +40,7 @@
                 </a>
             </div>
 			<div id="page">
-<<<<<<< HEAD
-		
-				<h1>Care pool</h1>
-			</div>
-			<div id="login">
-			    <input type="button" id="loginbtn" value="로그인" onclick="location.href = '<%=request.getContextPath()%>/member/login';">
-                <input type="button" id="enrollbtn" value="회원가입" onclick="location.href = '<%=request.getContextPath()%>/member/enroll';">
-                <input type="button" id="authbtn" value="인증/확인">
-            </div>
-        </div>
-        <nav>
-=======
+
 				<h1>Carepool</h1>
 			</div>
 			<div id="login">
@@ -71,10 +49,7 @@
 					onclick="location.href = '<%=request.getContextPath()%>/member/login';">
 				<input type="button" id="enrollbtn" value="회원가입"
 					onclick="location.href = '<%=request.getContextPath()%>/member/enroll';">
-<<<<<<< HEAD
-					
-				<input type="button" id="authbtn" value="인증/확인">
-=======
+
 			<% } else { %>						
 				<input type="button" value="마이페이지"
 					onclick="location.href = '<%= request.getContextPath() %>/member/view?userId=<%= loginMember.getMemId()%>';">
@@ -93,11 +68,11 @@
 				<input type="button" id="logoutbtn" value="로그아웃" 
 					onclick="location.replace('<%= request.getContextPath() %>/logout');">
 			<% } %>
->>>>>>> syk
+
 			</div>
 		</div>
 		<nav>
->>>>>>> 66a17693ef74174020239135c357749aab1ef5b2
+
 			<ul id="main-menu">
 				<li><a href="<%=request.getContextPath()%>/intro" >소개</a></li>
 				<li><a href="#">매칭</a>
@@ -113,10 +88,5 @@
 				</li>
 			</ul>
 		</nav>
-<<<<<<< HEAD
-    </header>
-    
-    
-=======
+
 	</header>
->>>>>>> 66a17693ef74174020239135c357749aab1ef5b2
