@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.care.mvc.care.model.service.CareService;
+import com.care.mvc.care.model.vo.Care;
+
+
 @WebServlet("/enroll/profile/care")
 public class EnrollProfileCareServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -19,6 +23,35 @@ public class EnrollProfileCareServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String msg = "";
+		String location = "";
+		Care care = new Care();
+		
+		care.setCareLicense(request.getParameter("careLicense"));
+		care.setCareYears(request.getParameter("careYears"));
+		care.setCareHistory(request.getParameter("careHistory"));
+		care.setCarePlus(request.getParameter("carePlus"));
+		care.setCareTime(request.getParameter("careTime"));
+		care.setCarePlace(request.getParameter("carePlace"));
+		care.setCareSal(request.getParameter("careSal"));
+		care.setCareIntro(request.getParameter("careIntro"));
+		
+		System.out.println(care);
+		
+		int result = new CareService().enrollcare(care);
+		
+		if(result > 0) {
+			msg = "프로필 등록 성공";
+			location = "/";
+		} else {
+			msg = "프로필 등록 실패";
+			location = "/enroll/profile/care";
+		}
+		
+		request.setAttribute("msg", msg);
+		request.setAttribute("loc", location);
+		
+		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
 	}
 
