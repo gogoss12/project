@@ -1,6 +1,12 @@
 @charset "UTF-8";
 
+<<<<<<< HEAD
+=======
+/* * {
+	border: 1px solid red;
+} */
 
+>>>>>>> syk
 div {
 	box-sizing: border-box;
 }
@@ -10,18 +16,20 @@ body {
 	width: 1390px;
 	height: 980px;
 	margin: auto;
+	display: relative;
 }
 
 header {
-	height: 20%;
+	/* height: 20%; */
+	height: 200px;
 }
 
 section {
-	height: 70%;
+	min-height: 100%;
 }
 
 footer {
-	height: 20%;
+	/* height: 20%; */
 }
 
 
@@ -64,8 +72,12 @@ footer {
 
 #login {
 	text-align: center;
-	line-height: 150px;
+	/* line-height: 150px; */
 	padding-right: 15px;
+	display: flex;
+	justify-content: space-around;
+	height: 100%;
+	padding-top: 40px;
 }
 
 #login input[type=button] {
@@ -90,13 +102,15 @@ nav {
 
 #main-menu {
 	list-style-type: none;
+	text-align: center;
 }
 
 #main-menu>li {
-	float: left;
+	/* float: left; */
 	width: 13%;
 	height: 100%;
 	text-align: center;
+	display: inline-block;
 }
 
 #main-menu a {
@@ -197,13 +211,13 @@ span {
 	text-align: center;
 	color: black;
 }
+
 /* 푸터 */
 footer {
-
 	font-size: 10px;
 	width: 100%;
 	height: 80px;
-	position: relative;
+	/* position: absolute; */
 	z-index: 20;
 	overflow: hidden;
 	padding: 20px;
@@ -212,19 +226,30 @@ footer {
 	color: black;
 	margin: 50px 0 0 0;
 }
-/* 로그인 */
 
-section #loginForm {
+/* 로그인 */
+#content {
+	display: flex;
+	justify-content: center;
+	margin: 40px;
+}
+
+<<<<<<< HEAD
+#loginForm {
  
 	position: absolute;
+=======
+section #loginForm { 
+	/* position: absolute; */
+>>>>>>> syk
 	width: 300px;
-	height: 400px;
+	height: 200px;
 	padding: 30px, 20px;
 	background-color: #FFFFFF;
     text-align: center;
-	top: 50%;
+	/* top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%); */
 	border-radius: 15px;
 }
 
@@ -278,7 +303,125 @@ section #loginForm {
 	font-weight: bold;
 	border: none;
 }
+
+/* 회원가입  */
+
+section h2{
+        font-size: 30px;
+
+    }
+      
+
+        tr{
+           height: 25x;
+       }
+
+      table{
+          border-collapse: collapse;
+          font-size: 9pt;
+          margin-left: 0;
+      } 
+      
+    input[type=text], input[type=password], input[type=email],
+    input[type=tel], input[type=date]  {
+    padding: 5px 10px; 
+    margin: 3px 0; 
+    border: 1px solid #ccc;
+    font-size:12pt;
+    box-sizing: border-box;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+#selrole{
+    padding: 7px 10px; 
+    margin: 3px 0; 
+    border: 1px solid #ccc; 
+    font-size:12pt;
+    box-sizing: border-box;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+} 
+th {
+text-align: center;
+  font-size: 16px;
+}
+
+input[type=button] {
+    height: 30px;
+    width: 120px;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 2px;
+    border-radius:3px;
+    border: white;
+    background-color: rgb(220, 220, 220);
+    
+      }
+input[type=submit] {
+    height: 30px;
+    width: 120px;
+    color: black;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 5% 150px;
+    border-radius:3px; 
+    border: white;
+    background-color: rgb(10, 89, 235);
+}
+input[type=reset]{
+    height: 30px;
+    width: 120px;
+    color: black;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 5% -130px; 
+    border-radius:3px;
+    border: white;
+    background-color: rgb(220, 220, 220);
+}
+#findPostalAddr {
+    margin-left: -30px;
+    margin-top: 19px;
+    height: 30px;
+    width: 120px;
+}
+#checkDuplicate{
+    margin-left: 10px;
+
+}  
  
+ /* 요양보호사 버튼 입력*/
+.wrap, .wrap *{
+      border: 1px solid black;
+      display: block;
+      padding: 5px;
+      margin: 15px;
+      color: black;
+      margin-right: 40px;
+      border: 0;
+      border-radius: 10px;
+     }
+ .wrap{
+   height: 200px;
+   width: 300px;
+   background-color: rgb(204, 169, 221);
+          
+}
 
 /*요양보호사 프로필 */
 #mucenter {

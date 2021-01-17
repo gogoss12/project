@@ -55,7 +55,7 @@ public class MemberDao {
 	      
 	      try {
 	      
-	         pstmt = conn.prepareStatement("SELECT * FROM MEMBER WHERE MEM_ID = ? AND MEM_PWD = ? AND STATUS='Y'");
+	         pstmt = conn.prepareStatement("SELECT * FROM MEMBER WHERE MEM_ID = ? AND STATUS='Y'");
 	         
 	         pstmt.setString(1, id);
 

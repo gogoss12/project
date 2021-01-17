@@ -148,7 +148,7 @@
         </textarea>
 
         <br><br>
-        
+       
         <div>
             <input type="submit" id="careenroll" value="등록하기">
             <input type="reset" value="취소하기">

@@ -11,7 +11,7 @@ import com.care.mvc.member.model.vo.Member;
 
 public class CareDao {
 
-	public int insertcare(Connection conn, Care care, Member member) {
+	public int insertcare(Connection conn, Care care) {
 		int result = 0;
 		String query = null;
 		PreparedStatement pstmt = null;
@@ -29,7 +29,7 @@ public class CareDao {
 			pstmt.setString(6, care.getCarePlace());
 			pstmt.setString(7, care.getCareSal());
 			pstmt.setString(8, care.getCareIntro());
-			pstmt.setString(9, member.getMemId());
+//			pstmt.setString(9, member.getMemId());
 			
 			result = pstmt.executeUpdate();
 			

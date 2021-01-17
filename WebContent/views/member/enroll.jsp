@@ -1,12 +1,21 @@
+<%@page import="com.care.mvc.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	Member userId = (Member)request.getAttribute("userId");
+
+%>
 <%@ include file="/views/common/header.jsp" %>
 	<section id="content">
-		<h2 align="center" style="line-height: 3.0;">회원가입</h2>
 		<div id="enroll-container" style="margin: 0 auto; width: 600px">
 			<form name="memberEnrollFrm" action="<%= request.getContextPath()%>/member/enroll" method="post"
 				style="width: 600px;">
-				<table class="table table-borderless" style="width: 600px;">
+				<table class="table table-borderless" style="width: 600px;" >
+					<tr>
+						<th colspan="2">
+							<h2 align="center" style="line-height: 3.0;">회원가입</h2>
+						</th>
+					</tr>
 					<tr>
 						<th>이름</th>
 						<td><input type="text" name="userName" id="userName" required>
@@ -14,11 +23,10 @@
 					</tr>
 					<tr>
 						<th>아이디</th>
-
-						<td><input type="text" name="userId" id="newId"
-							placeholder="아이디(4글자이상)" required> 
-							<input type="button" id="checkDuplicate" value="중복확인"></td>
-
+						<td>
+						   <input type="text" name="userId" id="newId" placeholder="아이디(4글자이상)" required> 
+						   <input type="button" id="checkDuplicate" value="중복확인">
+						</td>
 					</tr>
 					<tr>
 						<th>패스워드</th>
@@ -44,7 +52,7 @@
 							<span style="padding-right:34px">
 								<input type="text" name="postalAddr" id="postalAddr" placeholder="우편번호" style="width:200px">
 							</span>
-							<input type="button" id="findPostalAddr" onclick="DaumPostcode()" value="우편번호 검색"> <br>
+							<input type="button" id="findPostalAddr" onclick="DaumPostcode()" value="우편번호 검색"><br>
 							<div>
 								<input type="text" name="addr1" id="addr1" placeholder="주소" style="width:360px">
 							</div>
@@ -56,21 +64,19 @@
 					<tr>
 						<th>생년월일</th>
 						<td><input type="date" name="birth" id="birth"
-							min="1930-01-01" max="" value="yyyy-MM-dd"><br> <!-- max 값을 오늘 날짜로 지정 -->
+							min="1930-01-01" max="" value="mm/dd/yyyy"><br> <!-- max 값을 오늘 날짜로 지정 -->
 						</td>
 					</tr>
 					<tr>
 						<th>보호자/요양보호사</th>
-						<td>
-							<select name="role" required>
+						<td><select name="role" id="selrole">
 								<option disabled selected>선택</option>
 								<option value="guardian">보호자</option>
 								<option value="caregiver">요양보호사</option>
-							</select>
-						</td>
+						</select></td>
 					</tr>
 				</table>
-				<input type="submit" id="enrollSubmit" onclick="" value="회원가입"
+				<input type="submit" id="enrollSubmit" value="회원가입"
 					style="margin: 0 150px;"> <input type="reset" value="새로고침">
 			</form>
 			<form name="checkIdForm">
@@ -79,10 +85,14 @@
 		</div>
 	</section>
 	
-
+<<<<<<< HEAD
+=======
+	<!-- DAUM 주소 API 링크 -->
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+>>>>>>> 66a17693ef74174020239135c357749aab1ef5b2
+	
 	<script>
 	//비밀번호, 비밀번호 확인 일치확인
-	
 	
 	$(document).ready(() => {   
 	
@@ -101,7 +111,7 @@
 	   let id = $("#newId").val().trim();
 	     
 	     if (id.length < 4) {
-	    	 alert("아이디는 최소 4글자 이상 입력해라")
+	    	 alert("아이디는 최소 4글자 이상 입력해주세요.")
 	    	 
 	    	 return;
 	     	}
@@ -165,7 +175,6 @@
             }
         }).open();
     }
-    
 </script>
-	<%@ include file="/views/common/footer.jsp" %>
 
+	<%@ include file="/views/common/footer.jsp" %>
