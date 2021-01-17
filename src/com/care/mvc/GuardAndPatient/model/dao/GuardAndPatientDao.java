@@ -29,7 +29,6 @@ public class GuardAndPatientDao {
 				guardNo = Integer.parseInt(rs.getString(1)); // 멤버변수
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
