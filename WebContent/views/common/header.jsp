@@ -27,7 +27,7 @@
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/style.css">
 <script src="<%=request.getContextPath()%>/js/jquery-3.5.1.js"></script>
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
 </head>
 <body>
 	<header>
@@ -46,7 +46,6 @@
 					onclick="location.href = '<%=request.getContextPath()%>/member/login';">
 				<input type="button" id="enrollbtn" value="회원가입"
 					onclick="location.href = '<%=request.getContextPath()%>/member/enroll';">
-					
 			<% } else { %>						
 				<input type="button" value="마이페이지"
 					onclick="location.href = '<%= request.getContextPath() %>/member/view?userId=<%= loginMember.getMemId()%>';">
@@ -65,6 +64,7 @@
 				<input type="button" id="logoutbtn" value="로그아웃" 
 					onclick="location.replace('<%= request.getContextPath() %>/logout');">
 			<% } %>
+
 			</div>
 		</div>
 		<nav>

@@ -7,13 +7,12 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import com.care.mvc.care.model.vo.Care;
-import com.care.mvc.member.model.vo.Member;
 
 public class CareDao {
 
 	public int insertcare(Connection conn, Care care) {
 		int result = 0;
-		String query = null;
+		String query = "";
 		PreparedStatement pstmt = null;
 		
 		try {
@@ -21,14 +20,22 @@ public class CareDao {
 			
 			pstmt = conn.prepareStatement(query);
 			
+<<<<<<< HEAD
 			pstmt.setString(1, care.getCaregen());
+=======
+			pstmt.setString(1, care.getCareGen());
+>>>>>>> 2d5309cf15c38655bc194fb3712f589aec55f5f6
 			pstmt.setString(2, care.getCareLicense());
 			pstmt.setString(3, care.getCareYears());
 			pstmt.setString(4, care.getCareHistory());
 			pstmt.setString(5, care.getCarePlus());
 			pstmt.setString(6, care.getCareTime());
 			pstmt.setString(7, care.getCarePlace());
+<<<<<<< HEAD
 			pstmt.setInt(8, care.getCareSal());
+=======
+			pstmt.setString(8, care.getCareSal());
+>>>>>>> 2d5309cf15c38655bc194fb3712f589aec55f5f6
 			pstmt.setString(9, care.getCareIntro());
 			pstmt.setString(10, care.getMemId());
 			

@@ -62,7 +62,7 @@ public class MemberDao {
 	         rset = pstmt.executeQuery();
 	         
 	         if(rset.next()) {
-	            System.out.println(rset.getString("USER_ID") + ", " + rset.getString("USER_PWD"));
+//	            System.out.println(rset.getString("USER_ID") + ", " + rset.getString("USER_PWD"));
 	            member = new Member(    
 		            rset.getString("MEM_ID"),
 		            rset.getString("MEM_ROLE"),
