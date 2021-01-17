@@ -49,7 +49,7 @@ public class GuardAndPatientDao {
 			GPstmt.setInt(1, guardNo);
 			GPstmt.setString(2, guard.getGuard_gen());
 			GPstmt.setString(3, guard.getGuard_pat());
-			GPstmt.setString(4, guard.getMemId()); // memId 가 null...
+			GPstmt.setString(4, guard.getMemId()); 
 
 			resultG = GPstmt.executeUpdate();
 		} catch (SQLException e) {
