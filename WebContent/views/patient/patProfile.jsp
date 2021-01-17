@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String userId = (String)request.getAttribute("userId");
+
+%>
     
 <%@ include file="/views/common/header.jsp" %>
     <section>
@@ -19,15 +23,16 @@
                         </div>
                     </div>
                     <div>
+                    	<div><h3>돌봄 장소</h3></div>
                         <div>
-                            <label><input type="checkbox" name="home" value="자택">자택</label>
+                            <label><input type="checkbox" name="place" value="자택">자택</label>
                             <input type="text" placeholder="주소를 입력해주세요">
                             <input type="button" value="찾기">
                         </div>
                     </div>
                     <div>
                         <div>
-                            <label><input type="checkbox" name="hospital" value="병원">병원</label>
+                            <label><input type="checkbox" name="place" value="병원">병원</label>
                             <input type="text" placeholder="병원명을 입력해주세요">
                             <input type="button" value="찾기">
                         </div>
@@ -35,14 +40,14 @@
                     <div>
                         <h3>돌봄기간</h3>
                         <div>
-                        <input type="date" name="pat_period">
+                        <input type="date" name="period">
                         <span> - </span>
-                        <input type="date" name="pat_period">
+                        <input type="date" name="period">
                         </div>
                     </div>
                     <div>
                         <h4>희망시간대 :</h4>
-                        <input type="time">
+                        <input type="time" name ="hopetime">
                     </div>
                     <div>
                         <h3>환자 정보</h3>
@@ -51,14 +56,15 @@
                             <input type="text" name="patAge" placeholder="나이">
                         </div>
                         <div>
-                            <label><input type="radio" name="patGen" value="남자">남자</label>
-                            <label><input type="radio" name="patGen" value="여자">여자</label>
+                            <label><input type="radio" name="patGen" value="남">남</label>
+                            <label><input type="radio" name="patGen" value="여">여</label>
                             <label><input type="text" name="patKg" placeholder="몸무게"><b>kg</b></label>
                         </div>
                     </div>
                     <div>
                         <h3>감염성 질환 체크</h3>
-                        <label><input type="checkbox" name="infectnone" value="없음"></label>없음
+                        <!-- 없음 체크했을때 나머지 disabled 되게끔 만들기 -->
+                        <label><input type="checkbox" name="patInfact" value="없음"></label>없음
                         <div>
                             <label><input type="checkbox" name="patInfact" value="VRE">VRE</label>
                             <label><input type="checkbox" name="patInfact" value="CRE">CRE</label>
@@ -70,7 +76,7 @@
                             <label><input type="checkbox" name="patInfact" value="감기">감기</label>
                         </div>
                         <div>
-                            <textarea name="infactEtc" cols="40" rows="3" placeholder="내용을 입력해주세요"></textarea>
+                            <textarea name="patInfact" cols="40" rows="3" placeholder="내용을 입력해주세요"></textarea>
                         </div>
                     </div>
                     <div>
@@ -90,12 +96,12 @@
                     <div>
                         <h3>개인위생관리</h3>
                         <div>
-                            <label><input type="radio" name="patSanit" value="스스로 가능">스스로 가능</label>
-                            <label><input type="radio" name="patSanit" value="화장실에서 도움 필요">화장실에서 도움 필요</label>
+                            <label><input type="checkbox" name="patSanit" value="스스로 가능">스스로 가능</label>
+                            <label><input type="checkbox" name="patSanit" value="화장실에서 도움 필요">화장실에서 도움 필요</label>
                         </div>
                         <div>
-                            <label><input type="radio" name="patSanit" value="전적인 도움필요">전적인 도움필요</label>
-                            <label><input type="radio" name="patSanit" value="침대에서 도움 필요">침대에서 도움 필요</label>
+                            <label><input type="checkbox" name="patSanit" value="전적인 도움필요">전적인 도움필요</label>
+                            <label><input type="checkbox" name="patSanit" value="침대에서 도움 필요">침대에서 도움 필요</label>
                         </div>
                     </div>
                     <div>
@@ -151,8 +157,8 @@
                     </div>
                     <div>
                         <h3>요양보호사 우대 성별</h3>
-                        <label><input type="radio" name="patGuardGen" value="남자">남자</label>
-                        <label><input type="radio" name="patGuardGen" value="여자">여자</label>
+                        <label><input type="radio" name="patGuardGen" value="남">남</label>
+                        <label><input type="radio" name="patGuardGen" value="여">여</label>
                     </div>
                     <div>
                         <h3>기타사항(선택)</h3>
@@ -160,6 +166,7 @@
                     </div>
                 <input type="reset" value="취소하기">
                 <input type="submit" value="등록하기">
+            	<input type="hidden" name="userId" value="<%= userId %>">
             </form>
         </div>
     </section>

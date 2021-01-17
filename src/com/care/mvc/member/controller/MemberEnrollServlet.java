@@ -1,8 +1,10 @@
 package com.care.mvc.member.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,8 +19,7 @@ public class MemberEnrollServlet extends HttpServlet {
 	public MemberEnrollServlet() {
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
 		request.getRequestDispatcher("/views/member/enroll.jsp").forward(request, response);
 	}
 
@@ -29,6 +30,7 @@ public class MemberEnrollServlet extends HttpServlet {
 		String confirm = "";
 		Member member = new Member();
 		String role = request.getParameter("role");
+		String userId = request.getParameter("userId");
 		System.out.println(role);
 
 		// 회원가입 맨 밑에 선택하는 부분 (선택 안하고 눌러도 작동하는 것을 이걸 통해서 방지, 메세지 띄우고, 다시 창으로 돌아가게 만듬)
@@ -53,8 +55,8 @@ public class MemberEnrollServlet extends HttpServlet {
 		int result = new MemberService().enrollMember(member);
 
 		if (result > 0) {
-			msg = "회원가입 성공!";
 			confirm = "회원가입 성공!! 프로필 등록을 하시겠습니까?";
+			request.setAttribute("userId", userId);
 			request.setAttribute("role", role);
 			request.setAttribute("confirm", confirm);
 			request.getRequestDispatcher("/views/common/confirm.jsp").forward(request, response);
@@ -63,7 +65,7 @@ public class MemberEnrollServlet extends HttpServlet {
 			msg = "회원가입 실패";
 			location = "/member/enroll";
 		}
-
+		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", location);
 

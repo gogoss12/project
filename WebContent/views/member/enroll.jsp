@@ -1,12 +1,17 @@
+<%@page import="com.care.mvc.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	Member userId = (Member)request.getAttribute("userId");
+
+%>
 <%@ include file="/views/common/header.jsp" %>
 	<section id="content">
 		<h2 align="center" style="line-height: 3.0;">회원가입</h2>
 		<div id="enroll-container" style="margin: 0 auto; width: 600px">
 			<form name="memberEnrollFrm" action="<%= request.getContextPath()%>/member/enroll" method="post"
 				style="width: 600px;">
-				<table class="table table-borderless" style="width: 600px;">
+				<table class="table table-borderless" style="width: 600px;" >
 					<tr>
 						<th>이름</th>
 						<td><input type="text" name="userName" id="userName" required>
@@ -14,11 +19,18 @@
 					</tr>
 					<tr>
 						<th>아이디</th>
+<<<<<<< HEAD
+						<td>
+						   <input type="text" name="userId" id="user_Id" placeholder="아이디(4글자이상)" required> 
+						   <input type="button" id="checkDuplicate" value="중복확인">
+						</td>
+=======
 
 						<td><input type="text" name="userId" id="newId"
 							placeholder="아이디(4글자이상)" required> 
 							<input type="button" id="checkDuplicate" value="중복확인"></td>
 
+>>>>>>> b6c0f64d5b2a77605905666795aacc2c72163bd6
 					</tr>
 					<tr>
 						<th>패스워드</th>
@@ -61,8 +73,12 @@
 					</tr>
 					<tr>
 						<th>보호자/요양보호사</th>
+<<<<<<< HEAD
+						<td><select name="role" id="selrole">
+=======
 						<td>
 							<select name="role" required>
+>>>>>>> b6c0f64d5b2a77605905666795aacc2c72163bd6
 								<option disabled selected>선택</option>
 								<option value="guardian">보호자</option>
 								<option value="caregiver">요양보호사</option>
