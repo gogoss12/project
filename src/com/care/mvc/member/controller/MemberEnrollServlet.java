@@ -9,22 +9,38 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.care.mvc.member.model.service.MemberService;
 import com.care.mvc.member.model.vo.Member;
-@WebServlet(name="enroll", urlPatterns="/member/enroll")
+
+@WebServlet(name = "enroll", urlPatterns = "/member/enroll")
 public class MemberEnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-    public MemberEnrollServlet() {
-    }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public MemberEnrollServlet() {
+	}
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		request.getRequestDispatcher("/views/member/enroll.jsp").forward(request, response);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String msg = "";
 		String location = "";
+		String confirm = "";
 		Member member = new Member();
-		
+		String role = request.getParameter("role");
+		System.out.println(role);
+
+		// 회원가입 맨 밑에 선택하는 부분 (선택 안하고 눌러도 작동하는 것을 이걸 통해서 방지, 메세지 띄우고, 다시 창으로 돌아가게 만듬)
+		if (role == null) {
+			msg = "보호자/보호사를 선택해주세요";
+			location = "/member/enroll";
+			request.setAttribute("msg", msg);
+			request.setAttribute("loc", location);
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+			return;
+		};
+
 		member.setMemId(request.getParameter("userId"));
 		member.setMemRole(request.getParameter("role"));
 		member.setMemName(request.getParameter("userName"));
@@ -33,24 +49,24 @@ public class MemberEnrollServlet extends HttpServlet {
 		member.setMemPhone(Integer.parseInt(request.getParameter("phone")));
 		member.setMemAddr(request.getParameter("addr1") + " " + request.getParameter("addr2") + request.getParameter("addr3")); // 지역주소 + 상세주소
 		member.setMemBirth(request.getParameter("birth"));
-		
-		System.out.println(member);
-				
+
 		int result = new MemberService().enrollMember(member);
-		
-		System.out.println(result);
-		
+
 		if (result > 0) {
-			msg = "회원가입 성공";
-			location = "/";
+			msg = "회원가입 성공!";
+			confirm = "회원가입 성공!! 프로필 등록을 하시겠습니까?";
+			request.setAttribute("role", role);
+			request.setAttribute("confirm", confirm);
+			request.getRequestDispatcher("/views/common/confirm.jsp").forward(request, response);
+			return;
 		} else {
 			msg = "회원가입 실패";
 			location = "/member/enroll";
 		}
-		
+
 		request.setAttribute("msg", msg);
-		request.setAttribute("loc", location); 
-		
+		request.setAttribute("loc", location);
+
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
 

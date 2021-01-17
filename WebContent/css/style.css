@@ -1,0 +1,376 @@
+@charset "UTF-8";
+
+
+div {
+	box-sizing: border-box;
+}
+
+body {
+	/* border: 1px solid wheat; */
+	width: 1390px;
+	height: 980px;
+	margin: auto;
+}
+
+header {
+	height: 20%;
+}
+
+section {
+	height: 70%;
+}
+
+footer {
+	height: 20%;
+}
+/*헤더*/
+#wrapper {
+	width: 100%;
+	height: 70%;
+	background: cornsilk;
+}
+
+#logo {
+	width: 30%;
+	float: left;
+}
+
+#page {
+	width: 40%;
+	float: left;
+}
+
+#login {
+	width: 30%;
+	float: left;
+}
+
+#logo img {
+	padding-top: 5px;
+	padding-bottom: 20px;
+	width: 200px;
+	height: 130px;
+}
+
+#page h1 {
+	cursor: pointer;
+	text-align: center;
+	font-size: 80px;
+	line-height: 0px;
+	color: rgb(7, 7, 7);
+}
+
+#login {
+	text-align: center;
+	line-height: 150px;
+	padding-right: 15px;
+}
+
+#login input[type=button] {
+	width: 110px;
+	height: 40px;
+	border-radius: 20px;
+	border: white;
+	cursor: pointer;
+}
+
+#authbtn {
+	background: rgb(252, 130, 130);
+	border-radius: 10px;
+}
+/* 네비바 */
+nav {
+	border: 1px solid darkkhaki;
+	height: 30%;
+	width: 100%;
+	background: beige;
+}
+
+#main-menu {
+	list-style-type: none;
+}
+
+#main-menu>li {
+	float: left;
+	width: 13%;
+	height: 100%;
+	text-align: center;
+}
+
+#main-menu a {
+	/* border:1px solid blue; */
+	text-decoration: none;
+	color: rgb(111, 79, 40);
+	font-size: 18px;
+	font-weight: 900;
+	font-size: 40px;
+	height: 100%;
+	display: block;
+	line-height: 30px;
+}
+
+#main-menu a:hover {
+	color: black;
+}
+
+#main-menu>li>ul {
+	position: absolute;
+	width: 150px;
+	list-style-type: none;
+	padding: 0;
+	display: none;
+}
+
+#main-menu>li>a:hover+ul {
+	display: block;
+}
+
+#main-menu>li>ul:hover {
+	display: block;
+}
+
+#main-menu>li>ul a {
+	font-size: 25px;
+	line-height: 40px;
+	border: 1px solid;
+	border-radius: 10px;
+	background: beige;
+}
+
+#sec_container {
+	width: 100%;
+	height: 100%;
+}
+
+#sec_container>div {
+	float: left;
+	width: 50%;
+	height: 100%;
+}
+
+#sec_container>div>div {
+	padding-top: 30px;
+	text-align: center;
+	line-height: 100px;
+}
+
+#btngroup span {
+	display: block;
+}
+
+#btngroup input[type=button] {
+	font-size: 15px;
+	width: 300px;
+	height: 90px;
+	border: white;
+	border-radius: 20%;
+	background: lightblue;
+}
+
+#btngroup input:hover {
+	border: 1px solid skyblue;
+	background: white;
+	cursor: pointer;
+
+}
+
+span {
+	font-size: 15px;
+}
+
+#btn_1 {
+	height: 50%;
+}
+
+#btn_2 {
+	height: 50%;
+}
+
+#foot {
+	width: 100%;
+	height: 100%;
+	font-size: 10px;
+	width: 100%;
+	/* background: beige; */
+	text-align: center;
+	color: black;
+}
+/* 푸터 */
+footer {
+
+	font-size: 10px;
+	width: 100%;
+	height: 80px;
+	position: relative;
+	z-index: 20;
+	overflow: hidden;
+	padding: 20px;
+	bottom: 0;
+	text-align: center;
+	color: black;
+	margin: 50px 0 0 0;
+}
+/* 로그인 */
+
+section #loginForm {
+ 
+	position: absolute;
+	width: 300px;
+	height: 400px;
+	padding: 30px, 20px;
+	background-color: #FFFFFF;
+    text-align: center;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 15px;
+}
+
+#loginForm h2 {
+	text-align: center;
+	margin: 30px;
+	font-size: 40px;
+}
+
+ #idForm {
+	border-bottom: 2px solid #adadad;
+	margin: 30px;
+	padding: 10px 10px;
+}
+
+#passForm {
+	border-bottom: 2px solid #adadad;
+	margin: 30px;
+	padding: 10px 10px;
+}
+
+#userId {
+	width: 100%;
+	border: none;
+	outline: none;
+	color: #636e72;
+	font-size: 16px;
+	height: 25px;
+}
+
+#userPwd {
+	width: 100%;
+	border: none;
+	outline: none;
+	color: #636e72;
+	font-size: 16px;
+	height: 25px;
+}
+
+#btn {
+	position: relative;
+	left: 40%;
+	transform: translateX(-50%);
+	margin-bottom: 40px;
+	width: 80%;
+	height: 40px;
+	background: #6c5ce7;
+	background-position: left;
+	background-size: 200%;
+	color: white;
+	font-weight: bold;
+	border: none;
+}
+ 
+
+/*요양보호사 프로필 */
+#mucenter {
+	text-align: center;
+}
+
+/* 폼이 화면 끝까지 가서 줄이기 위해 필요한 부분 */
+/*form {
+	width: fit-content;
+	text-align: center;
+}
+
+/* 꾸며야하는 앞에 항목 */
+#firstTitle {
+	/* border: 1px solid green; */
+	width: fit-content;
+}
+
+/* 환자를 보여주기에 따른 표시필요 부분 */
+#bigTitle {
+	border: 1px solid blue;
+	width: fit-content;
+}
+
+#pointer {
+	background-color: rgb(109, 109, 109);
+	color: honeydew;
+	height: 45px;
+}
+
+/* 보호자 프로필 */
+
+.patient_details {
+	text-align: center;
+}
+
+.patient_details h1, h3 {
+	padding-bottom: 20px;
+	padding-top: 20px;
+	border-radius: 10px;
+	background: beige;
+}
+
+.patient_details label {
+	padding-right: 10px;
+	padding-bottom: 20px;
+	margin-left: 10px;
+}
+
+.patient_details input, [type=button], select {
+	border-radius: 5px;
+}
+
+.patient_details textarea {
+	resize: none;
+	overflow: scroll;
+	border-radius: 5px;
+}
+
+.patient_details b {
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.filebox label {
+	display: inline-block;
+	padding: .1em .3em;
+	color: #fff;
+	font-size: inherit;
+	line-height: normal;
+	vertical-align: middle;
+	background-color: #999999;
+	cursor: pointer;
+	border: 1px solid #797979;
+	border-radius: .25em;
+	-webkit-transition: background-color 0.2s;
+	transition: background-color 0.2s;
+}
+
+.filebox label:hover {
+	background-color: #dfdfdf;
+}
+
+.filebox label:active {
+	background-color: #9e9e9e;
+}
+
+.filebox input[type="file"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}

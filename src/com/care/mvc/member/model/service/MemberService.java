@@ -27,7 +27,6 @@ public class MemberService {
 		return result;
 	}
 
-	
 	public Member login(String id, String pwd) {
 		Connection conn = getConnection();
 		
@@ -36,6 +35,36 @@ public class MemberService {
 		close(conn);
 		
 		return member;
-
 	}
+							
+	public boolean validate(String memId) {
+		Connection conn = getConnection();
+		
+		Member member = dao.findMemberById(conn, memId);
+		
+		close(conn);
+
+		return member != null;     // 멤버가 있으면 true, 없으면 false
+	}
+	
+	public Member findMemberById(String userId) {
+		Connection conn = getConnection();
+
+		Member member = dao.findMemberById(conn, userId);
+
+		close(conn);
+
+		return member;
+	}
+	
+	
+	
 }
+
+
+
+
+
+
+
+

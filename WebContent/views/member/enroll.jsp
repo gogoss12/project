@@ -14,9 +14,11 @@
 					</tr>
 					<tr>
 						<th>아이디</th>
-						<td><input type="text" name="userId" id="userId"
-							placeholder="아이디(4글자이상)" required> <input type="button"
-							id="checkDuplicate" value="중복확인"></td>
+
+						<td><input type="text" name="userId" id="newId"
+							placeholder="아이디(4글자이상)" required> 
+							<input type="button" id="checkDuplicate" value="중복확인"></td>
+
 					</tr>
 					<tr>
 						<th>패스워드</th>
@@ -42,7 +44,7 @@
 							<span style="padding-right:34px">
 								<input type="text" name="postalAddr" id="postalAddr" placeholder="우편번호" style="width:200px">
 							</span>
-							<input type="button" id="findPostalAddr" onclick="DaumPostcode()" value="우편번호 검색"><br>
+							<input type="button" id="findPostalAddr" onclick="DaumPostcode()" value="우편번호 검색"> <br>
 							<div>
 								<input type="text" name="addr1" id="addr1" placeholder="주소" style="width:360px">
 							</div>
@@ -54,19 +56,21 @@
 					<tr>
 						<th>생년월일</th>
 						<td><input type="date" name="birth" id="birth"
-							min="1930-01-01" max="" value="mm/dd/yyyy"><br> <!-- max 값을 오늘 날짜로 지정 -->
+							min="1930-01-01" max="" value="yyyy-MM-dd"><br> <!-- max 값을 오늘 날짜로 지정 -->
 						</td>
 					</tr>
 					<tr>
 						<th>보호자/요양보호사</th>
-						<td><select name="role">
+						<td>
+							<select name="role" required>
 								<option disabled selected>선택</option>
 								<option value="guardian">보호자</option>
 								<option value="caregiver">요양보호사</option>
-						</select></td>
+							</select>
+						</td>
 					</tr>
 				</table>
-				<input type="submit" id="enrollSubmit" value="회원가입"
+				<input type="submit" id="enrollSubmit" onclick="" value="회원가입"
 					style="margin: 0 150px;"> <input type="reset" value="새로고침">
 			</form>
 			<form name="checkIdForm">
@@ -77,23 +81,61 @@
 	
 
 	<script>
+	//비밀번호, 비밀번호 확인 일치확인
+	
+	
+	$(document).ready(() => {   
+	
+	$("#pass2").blur((e) => {
+         let pass1 = $("#pass1").val();
+         let pass2 = $(e.target).val();
+         if(pass1.trim() != pass2.trim()){
+            alert("비밀번호가 일치하지 않습니다.");
+            $("#pass1").val("");
+            $(e.target).val("");
+            $("#pass1").focus();
+         }
+      });  
+		
+	 $("#checkDuplicate").on("click", () => {
+	   let id = $("#newId").val().trim();
+	     
+	     if (id.length < 4) {
+	    	 alert("아이디는 최소 4글자 이상 입력해라")
+	    	 
+	    	 return;
+	     	}
+	     
+	     const url = "<%=request.getContextPath()%>/member/checkId";
+         const title = "duplicate";
+         const status = "left=500px, top=100px, width=300px, height=200px";
+         
+         open("", title, status);
+         
+         checkIdForm.target = title; 
+         checkIdForm.action = url;		
+         checkIdForm.method = "post";
+         checkIdForm.userId.value = id;
+ 
+         checkIdForm.submit();
+         
+	 	});
+	});
+	
     function DaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
-
                 // 각 주소의 노출 규칙에 따라 주소를 조합한다.
                 // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
                 var addr = ''; // 주소 변수
                 var extraAddr = ''; // 참고항목 변수
-
                 //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
                 if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
                     addr = data.roadAddress;
                 } else { // 사용자가 지번 주소를 선택했을 경우(J)
                     addr = data.jibunAddress;
                 }
-
                 // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
                 if(data.userSelectedType === 'R'){
                     // 법정동명이 있을 경우 추가한다. (법정리는 제외)
@@ -115,7 +157,6 @@
                 } else {
                     document.getElementById("addr3").value = '';
                 }
-
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('postalAddr').value = data.zonecode;
                 document.getElementById("addr1").value = addr;
@@ -124,6 +165,7 @@
             }
         }).open();
     }
+    
 </script>
-
 	<%@ include file="/views/common/footer.jsp" %>
+
