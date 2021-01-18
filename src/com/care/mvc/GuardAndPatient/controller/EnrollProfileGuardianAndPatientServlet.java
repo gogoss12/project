@@ -61,7 +61,6 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 		patient.setPat_period(request.getParameter("period1") + " ~ " + request.getParameter("period2"));
 		patient.setPat_hop_time(request.getParameter("hopetime"));
 		patient.setPat_name(request.getParameter("patName"));
-		patient.setPat_age(Integer.parseInt(request.getParameter("patAge")));
 		patient.setPat_gen(request.getParameter("patGen"));
 		patient.setPat_kg(Integer.parseInt(request.getParameter("patKg"))); 
 		patient.setPat_infect(String.join(" , " , request.getParameterValues("patInfact")));

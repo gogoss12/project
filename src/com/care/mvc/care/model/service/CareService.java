@@ -1,18 +1,19 @@
 package com.care.mvc.care.model.service;
 
+import static com.care.mvc.common.jdbc.JDBCTemplate.commit;
+import static com.care.mvc.common.jdbc.JDBCTemplate.getConnection;
+import static com.care.mvc.common.jdbc.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 
 import com.care.mvc.care.model.dao.CareDao;
 import com.care.mvc.care.model.vo.Care;
 import com.care.mvc.care.model.vo.CareImage;
-
-import static com.care.mvc.common.jdbc.JDBCTemplate.getConnection;
-import static com.care.mvc.common.jdbc.JDBCTemplate.commit;
-import static com.care.mvc.common.jdbc.JDBCTemplate.rollback;
+import com.care.mvc.care.model.vo.PatientWanted;
 
 public class CareService {
 
-	public int enrollcare(Care care, CareImage careImage) {  
+	public int enrollcare(Care care) {  
 		Connection conn = getConnection();
 		
 		int resultC = 0;
@@ -44,9 +45,22 @@ public class CareService {
 		}
 		
 		return resultI;
+		
 	}
-	
-	
-	
-	
+
+	public int enrollPatientWanted(PatientWanted patientwanted) {
+        Connection conn = getConnection();
+		
+		int resultPW = new CareDao().insertcarepatientwanted(conn, patientwanted);
+		
+		if(resultPW > 0) {
+			commit(conn);        
+		} else {
+			rollback(conn);
+		}
+		
+		return resultPW;
+
+	}
+
 }

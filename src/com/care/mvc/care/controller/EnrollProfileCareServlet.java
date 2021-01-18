@@ -1,6 +1,6 @@
 package com.care.mvc.care.controller;
 
-import java.io.File;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,13 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.care.mvc.care.model.service.CareService;
 import com.care.mvc.care.model.vo.Care;
 import com.care.mvc.care.model.vo.CareImage;
+//import com.care.mvc.care.model.vo.CareImage;
+import com.care.mvc.care.model.vo.PatientWanted;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 
 
 @WebServlet("/enroll/profile/care")
@@ -39,14 +41,16 @@ public class EnrollProfileCareServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		if(!ServletFileUpload.isMultipartContent(request)) {
-			request.setAttribute("msg", "관리자에게 문의하세요.");
-			request.setAttribute("location", "/enroll/profile/care");
-			
-			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-			
-			return;
-		}
+
+//		if(!ServletFileUpload.isMultipartContent(request)) {
+//			request.setAttribute("msg", "관리자에게 문의하세요.");
+//			request.setAttribute("location", "/enroll/profile/care");
+//			
+//			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+//			
+//			return;
+//		}
+
 		
 		// 나중에 업로드 위치 경로를 바꿔야한다.
 		String path = getServletContext().getRealPath("upload/carephoto");
@@ -80,9 +84,14 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		//-------------------------------------------------------------------------------------------
 		
 		String msg = "";
-		String location = "";
+		String loc = "";
+		int resultC = 0;
+		int resultPW = 0;
 		Care care = new Care();
-		
+		PatientWanted patientwanted = new PatientWanted();
+//		CareImage careImage = new CareImage();
+//		
+
 		care.setCareGen(mr.getParameter("caregender"));
 		care.setCareLicense(mr.getParameter("careLicense"));
 		care.setCareYears(mr.getParameter("careYears"));
@@ -94,22 +103,28 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		care.setCareIntro(mr.getParameter("careIntro"));
 		care.setMemId(mr.getParameter("memId"));
 		
+		int result = new CareService().enrollcare(care);
+
+		//----------------------------------------------------------------------------------
+		patientwanted.setWantedGen(mr.getParameter("wantedgen"));
+		patientwanted.setWantedAge(Integer.parseInt(mr.getParameter("age")));
+		patientwanted.setWantedIll(mr.getParameter("wantedill"));
+		patientwanted.setWantedGrade(mr.getParameter("wantedgra"));
 		
-		System.out.println(care);
 		
-		int resultC = new CareService().enrollcare(care, careImage);
+	    resultPW = new CareService().enrollPatientWanted(patientwanted);
 		
 		
-		if(resultC > 0) {
+		if(resultC > 0 && resultPW > 0 && resultI > 0) {
 			msg = "프로필 등록 성공";
-			location = "/";
+			loc = "/";
 		} else {
 			msg = "프로필 등록 실패";
-			location = "/enroll/profile/care";
+			loc = "/enroll/profile/care";
 		}
 		
 		request.setAttribute("msg", msg);
-		request.setAttribute("loc", location);
+		request.setAttribute("loc", loc);
 		
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
