@@ -4,11 +4,38 @@ import static com.care.mvc.common.jdbc.JDBCTemplate.close;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.care.mvc.care.model.vo.Care;
+import com.care.mvc.care.model.vo.CareImage;
+import com.care.mvc.member.model.vo.Member;
 
 public class CareDao {
+//	private int findCareNo(Connection conn, Care care) {
+//		ResultSet rs = null;
+//		Statement stmt = null;
+//		String query = "";
+//		int careNo = 0;
+//		
+//		query = "SELECT SEQ_CARE_NO.NEXTVAL FROM DUAL";
+//		
+//		try {
+//			stmt = conn.createStatement();
+//			rs = stmt.executeQuery(query);
+//			
+//			if(rs.next()) {
+//				careNo = Integer.parseInt(rs.getString(1)); 
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
+//		
+//		return careNo;
+//	}
 
 	public int insertcare(Connection conn, Care care) {
 		int result = 0;
@@ -37,10 +64,41 @@ public class CareDao {
 		
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
+		} 
 
 		return result;
 	}
+												
+	public int insertCareImage(Connection conn, CareImage careImage) {
+		int resultI = 0;
+		PreparedStatement Ipstmt = null;
+		
+		
+		try {
+			String CareImageQuery = "INSERT INTO CARE_IMAGE VALUES (SEQ_IMG_NO.NEXTVAL,SEQ_CARE_NO.NEXTVAL,SYSDATE,?,?,?)";
+			
+			Ipstmt = conn.prepareStatement(CareImageQuery);
+			
+			Ipstmt.setString(1, careImage.getImgPath());
+			Ipstmt.setString(2, careImage.getImgNameOrg());
+			Ipstmt.setString(3, careImage.getImgNameSav());
+			
+			resultI = Ipstmt.executeUpdate();
+			
+			System.out.println(resultI);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(Ipstmt);
+		}
+		
+		return resultI;
+	}
+	
+	
 }
+
+
+
+
+

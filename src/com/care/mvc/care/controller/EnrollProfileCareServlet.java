@@ -13,6 +13,7 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
 import com.care.mvc.care.model.service.CareService;
 import com.care.mvc.care.model.vo.Care;
+import com.care.mvc.care.model.vo.CareImage;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -38,55 +39,61 @@ public class EnrollProfileCareServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 파일 업로드 부분 (/upload/carephoto 쪽에 파일이 담기에 하는거 해야함)
-//		if(!ServletFileUpload.isMultipartContent(request)) {
-//			request.setAttribute("msg", "관리자에게 문의하세요.");
-//			request.setAttribute("location", "/enroll/profile/care");
-//			
-//			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-//			
-//			return;
-//		}
+		if(!ServletFileUpload.isMultipartContent(request)) {
+			request.setAttribute("msg", "관리자에게 문의하세요.");
+			request.setAttribute("location", "/enroll/profile/care");
+			
+			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+			
+			return;
+		}
 		
 		// 나중에 업로드 위치 경로를 바꿔야한다.
-//		String path = getServletContext().getRealPath("upload/carephoto");
-//		
-//		int maxSize = 1024 * 1024 * 10;  // 10mb
-//		
-//		String encoding = "UTF-8";
-//		
-//		// 이 아래가 문제 발생
-//		MultipartRequest mr = new MultipartRequest(request, path, maxSize, encoding, new DefaultFileRenamePolicy());
-//		
-//		String fileName = mr.getFilesystemName("upfile");
-//		String upfileName = mr.getOriginalFileName("upfile");
-//		String contentType = mr.getContentType("upfile");
-//		
-//		// file 찾아보기
-//		File file = mr.getFile("upfile");
-//		
-//		System.out.println("fileName : " + fileName + ", upfileName : " + upfileName + ", contentType : " + contentType);
+		String path = getServletContext().getRealPath("upload/carephoto");
+		
+		int maxSize = 1024 * 1024 * 10;  // 10mb
+		
+		String encoding = "UTF-8";
+		
+		// 이 아래가 문제 발생 (파일을 불러올때는 이미 멀티파트 안에 request 등이 이미 들어있기 때문에 불러올때 request나 다른 값이 아닌 멀티파트인 mr로 불러오는것이 맞다)
+		MultipartRequest mr = new MultipartRequest(request, path, maxSize, encoding, new DefaultFileRenamePolicy());
+		
+		String fileName = mr.getFilesystemName("upfile");       // 실제 이름
+		String upfileName = mr.getOriginalFileName("upfile");
+		String contentType = mr.getContentType("upfile");
+		
+		System.out.println("fileName : " + fileName + ", upfileName : " + upfileName + ", contentType : " + contentType);
 		
 		// 사진 등록 외 나머지 부분
 		String msg = "";
 		String location = "";
 		Care care = new Care();
+		CareImage careImage = new CareImage();
 		
-		care.setCareGen(request.getParameter("caregender"));
-		care.setCareLicense(request.getParameter("careLicense"));
-		care.setCareYears(request.getParameter("careYears"));
-		care.setCareHistory(request.getParameter("careHistory"));
-		care.setCarePlus(request.getParameter("carePlus"));
-		care.setCareTime(request.getParameter("careTime"));
-		care.setCarePlace(request.getParameter("carePlace"));
-		care.setCareSal(Integer.parseInt(request.getParameter("careSal")));
-		care.setCareIntro(request.getParameter("careIntro"));
-		care.setMemId(request.getParameter("memId"));
+		care.setCareGen(mr.getParameter("caregender"));
+		care.setCareLicense(mr.getParameter("careLicense"));
+		care.setCareYears(mr.getParameter("careYears"));
+		care.setCareHistory(mr.getParameter("careHistory"));
+		care.setCarePlus(mr.getParameter("carePlus"));
+		care.setCareTime(mr.getParameter("careTime"));
+		care.setCarePlace(mr.getParameter("carePlace"));
+		care.setCareSal(mr.getParameter("careSal"));
+		care.setCareIntro(mr.getParameter("careIntro"));
+		care.setMemId(mr.getParameter("memId"));
+		
 		
 		System.out.println(request.getParameter("caregender"));
 		System.out.println(care);
 		
-		int result = new CareService().enrollcare(care);
+		int result = new CareService().enrollcare(care, careImage);
+		
+//		careImage.setCareNo(Integer.parseInt(mr.getParameter("careNo")));
+		careImage.setImgPath(mr.getParameter("imgPath"));
+		careImage.setImgNameOrg(fileName.toString());
+		careImage.setImgNameSav(upfileName.toString());
+		
+//		String fileName = mr.getFilesystemName("upfile");       // 실제 이름
+//		String upfileName = mr.getOriginalFileName("upfile");
 		
 		if(result > 0) {
 			msg = "프로필 등록 성공";

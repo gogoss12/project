@@ -10,9 +10,8 @@
 		<div id="mucenter">
         	<h1 id="pointer">요양보호사 프로필 등록</h1>
 
-	// 절대 절대 절대 여기에 enctype= 을 넣어놓지 말기 -> 문제는 여기에 넣으면 오류가 걸린다 -> 이거를 해결해서 찾아야한다. 검색하기 ex: jQuery 등 있다.
 	<form name="careEnrollFrm" action="<%= request.getContextPath()%>/enroll/profile/care" method="post"
-				style="width: 600px;">
+				style="width: 600px;" enctype="multipart/form-data">
 
         <br><br><br>
 
@@ -34,13 +33,13 @@
 
         <label id="firstTitle">자격증(중복 선택 가능):</label> <br>
             <div>
-                <label><input type="checkbox" name="careLicense">없음</label> &nbsp; 
-                <label><input type="checkbox" name="careLicense">요양보호사</label> &nbsp; 
-                <label><input type="checkbox" name="careLicense">사회복지사</label> <br>
-                <label><input type="checkbox" name="careLicense">간호조무사</label> &nbsp; 
-                <label><input type="checkbox" name="careLicense">간호사</label> &nbsp; 
-                <label><input type="checkbox" name="careLicense">물리치료사</label> &nbsp; 
-                <label><input type="checkbox" name="careLicense">직업치료사</label> &nbsp; 
+                <label><input type="checkbox" name="careLicense" value="없음">없음</label> &nbsp; 
+                <label><input type="checkbox" name="careLicense" value="요양보호사">요양보호사</label> &nbsp; 
+                <label><input type="checkbox" name="careLicense" value="사회복지사">사회복지사</label> <br>
+                <label><input type="checkbox" name="careLicense" value="간호조무사">간호조무사</label> &nbsp; 
+                <label><input type="checkbox" name="careLicense" value="간호사">간호사</label> &nbsp; 
+                <label><input type="checkbox" name="careLicense" value="물리치료사">물리치료사</label> &nbsp; 
+                <label><input type="checkbox" name="careLicense" value="직업치료사">직업치료사</label> &nbsp; 
             </div>
             
         &nbsp; <br><br>
@@ -50,11 +49,11 @@
         <label>경력 : 
             <select name="careYears">
                 <option selected>전체</option>
-                <option>신규</option>
-                <option>1 ~ 2년</option>
-                <option>3 ~ 5년</option>
-                <option>5 ~ 10년</option>
-                <option>10년 이상</option>
+                <option value="신규">신규</option>
+                <option value="1 ~ 2년">1 ~ 2년</option>
+                <option value="3 ~ 5년">3 ~ 5년</option>
+                <option value="5 ~ 10년">5 ~ 10년</option>
+                <option value="10년 이상">10년 이상</option>
             </select>
         </label>
 
@@ -71,23 +70,23 @@
         <h2><span class="badge bg-secondary">케어하는데 도움되는 장점</span></h2>
         
         <div>
-            <label><input type="checkbox" name="carePlus"> &nbsp;없음</label>
-            <label><input type="checkbox" name="carePlus"> &nbsp;산책</label>
-            <label><input type="checkbox" name="carePlus"> &nbsp;말벗</label>
-            <label><input type="checkbox" name="carePlus"> &nbsp;병원동행</label>
-            <label><input type="checkbox" name="carePlus"> &nbsp;외국어</label>
-            <label><input type="checkbox" name="carePlus"> &nbsp;병원근무이력</label>
+            <label><input type="checkbox" name="carePlus" value="없음"> &nbsp;없음</label>
+            <label><input type="checkbox" name="carePlus" value="산책"> &nbsp;산책</label>
+            <label><input type="checkbox" name="carePlus" value="말벗"> &nbsp;말벗</label>
+            <label><input type="checkbox" name="carePlus" value="병원동행"> &nbsp;병원동행</label>
+            <label><input type="checkbox" name="carePlus" value="외국어"> &nbsp;외국어</label>
+            <label><input type="checkbox" name="carePlus" value="병원근무이력"> &nbsp;병원근무이력</label>
         </div> 
 
         <br>
 
         <h2><span class="badge bg-secondary">희망근무시간(중복선택 가능)</span></h2>
             <div>
-                <label><input type="checkbox" name="careTime">주중</label> &nbsp;
-                <label><input type="checkbox" name="careTime">주말</label> &nbsp;
-                <label><input type="checkbox" name="careTime">주간</label> &nbsp;
-                <label><input type="checkbox" name="careTime">야간</label> &nbsp;
-                <label><input type="checkbox" name="careTime">입주</label> &nbsp;
+                <label><input type="checkbox" name="careTime" value="주중">주중</label> &nbsp;
+                <label><input type="checkbox" name="careTime" value="주말">주말</label> &nbsp;
+                <label><input type="checkbox" name="careTime" value="주간">주간</label> &nbsp;
+                <label><input type="checkbox" name="careTime" value="야간">야간</label> &nbsp;
+                <label><input type="checkbox" name="careTime" value="입주">입주</label> &nbsp;
             </div>
 
         <br>
@@ -99,9 +98,9 @@
 
         <h2><span class="badge bg-secondary">희망급여</span></h2>
             <div>
-                <input type="checkbox" name="careSal">협의가능 &nbsp;
-                <input type="checkbox" name="careSal">월급    &nbsp;
-                <input type="checkbox" name="careSal">시급    &nbsp;
+                <input type="checkbox" name="careSal" value="협의가능">협의가능 &nbsp;
+                <input type="checkbox" name="careSal" value="월급">월급    &nbsp;
+                <input type="checkbox" name="careSal" value="시급">시급    &nbsp;
             </div>
        
         <br><br>
@@ -110,8 +109,8 @@
 
         <h2><span class="badge bg-secondary">환자상태1</span></h2>
         <label>성별: </label> &nbsp;
-            <label><input type="checkbox">남</label> &nbsp;
-            <label><input type="checkbox">여</label>
+            <label><input type="checkbox" name="wantedgen" value="남">남</label> &nbsp;
+            <label><input type="checkbox" name="wantedgen" value="여">여</label>
 
         <br><br>
         
@@ -122,27 +121,27 @@
 
         <h2><span class="badge bg-secondary">환자상태2</span></h2>
             <div>질병:   &nbsp;
-                <label><input type="checkbox">없음</label> &nbsp;
-                <label><input type="checkbox">치매</label> &nbsp;
-                <label><input type="checkbox">파킨스</label> &nbsp;
-                <label><input type="checkbox">뇌전증</label> <br>
-                <label><input type="checkbox">뇌졸중/뇌출혈</label> &nbsp;
-                <label><input type="checkbox">당뇨</label> &nbsp;
-                <label><input type="checkbox">고혈압</label> &nbsp;
-                <label><input type="checkbox">기타</label>
+                <label><input type="checkbox" value="없음">없음</label> &nbsp;
+                <label><input type="checkbox" value="치매">치매</label> &nbsp;
+                <label><input type="checkbox" value="파킨스">파킨스</label> &nbsp;
+                <label><input type="checkbox" value="뇌전증">뇌전증</label> <br>
+                <label><input type="checkbox" value="뇌졸중/뇌출혈">뇌졸중/뇌출혈</label> &nbsp;
+                <label><input type="checkbox" value="당뇨">당뇨</label> &nbsp;
+                <label><input type="checkbox" value="고혈압">고혈압</label> &nbsp;
+                <label><input type="checkbox" value="기타">기타</label>
             </div>       
 
             <br>    
 
         <h2><span class="badge bg-secondary">환자상태3</span></h2>
             <div>장기요양 등급:  &nbsp;
-                <label><input type="checkbox">없음</label> &nbsp;
-                <label><input type="checkbox">1등급</label> &nbsp;
-                <label><input type="checkbox">2등급</label> <br>
-                <label><input type="checkbox">3등급</label> &nbsp;
-                <label><input type="checkbox">4등급</label> &nbsp;
-                <label><input type="checkbox">5등급</label> &nbsp;
-                <label><input type="checkbox">인지지원등급</label>
+                <label><input type="checkbox" value="없음">없음</label> &nbsp;
+                <label><input type="checkbox" value="1등급">1등급</label> &nbsp;
+                <label><input type="checkbox" value="2등급">2등급</label> <br>
+                <label><input type="checkbox" value="3등급">3등급</label> &nbsp;
+                <label><input type="checkbox" value="4등급">4등급</label> &nbsp;
+                <label><input type="checkbox" value="5등급">5등급</label> &nbsp;
+                <label><input type="checkbox" value="인지지원등급">인지지원등급</label>
             </div>
         
         <br>
