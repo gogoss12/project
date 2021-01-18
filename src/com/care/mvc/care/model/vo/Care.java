@@ -19,16 +19,22 @@ public class Care {
 	
 	private String carePlace;
 	
-	private int careSal;
+	private String careSal;
 	
 	private String careIntro;
 	
+<<<<<<< HEAD
 
+=======
+>>>>>>> e74aa11ddcc40357ed35481c54fb4c32f4e58b23
 	private String memId;
 		
 	public Care() {
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> e74aa11ddcc40357ed35481c54fb4c32f4e58b23
 
 	public int getCareNo() {
 		return careNo;
@@ -104,11 +110,11 @@ public class Care {
 		this.carePlace = carePlace;
 	}
 
-	public int getCareSal() {
+	public String getCareSal() {
 		return careSal;
 	}
 
-	public void setCareSal(int careSal) {
+	public void setCareSal(String careSal) {
 		this.careSal = careSal;
 	}
 
@@ -121,12 +127,12 @@ public class Care {
 	}
 	
 
-	public String getMemId() {
-		return MemId;
+	public String getmemId() {
+		return memId;
 	}
 
-	public void setMemId(String memId) {
-		MemId = memId;
+	public void setemId(String memId) {
+		this.memId = memId;
 	}
 
 	public String getMemId() {
@@ -155,12 +161,18 @@ public class Care {
 
 	@Override
 	public String toString() {
+<<<<<<< HEAD
 
+=======
+>>>>>>> e74aa11ddcc40357ed35481c54fb4c32f4e58b23
 		return "Care [careNo=" + careNo + ", careGen=" + careGen + ", careLicense=" + careLicense + ", careYears="
 				+ careYears + ", careHistory=" + careHistory + ", carePlus=" + carePlus + ", careTime=" + careTime
 				+ ", carePlace=" + carePlace + ", careSal=" + careSal + ", careIntro=" + careIntro + ", memId=" + memId
 				+ "]";
 	}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> e74aa11ddcc40357ed35481c54fb4c32f4e58b23
 }
