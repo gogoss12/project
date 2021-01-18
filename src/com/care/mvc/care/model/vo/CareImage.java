@@ -5,6 +5,8 @@ import java.sql.Date;
 public class CareImage {
 	private int imgNo;
 	
+	private int careNo;
+	
 	private Date imgDate;
 	
 	private String imgPath;
@@ -15,15 +17,6 @@ public class CareImage {
 
 	public CareImage() {
 	}
-	
-	public CareImage(int imgNo, Date imgDate, String imgPath, String imgNameOrg, String imgNameSav) {
-		super();
-		this.imgNo = imgNo;
-		this.imgDate = imgDate;
-		this.imgPath = imgPath;
-		this.imgNameOrg = imgNameOrg;
-		this.imgNameSav = imgNameSav;
-	}
 
 	public int getImgNo() {
 		return imgNo;
@@ -31,6 +24,14 @@ public class CareImage {
 
 	public void setImgNo(int imgNo) {
 		this.imgNo = imgNo;
+	}
+
+	public int getCareNo() {
+		return careNo;
+	}
+
+	public void setCareNo(int careNo) {
+		this.careNo = careNo;
 	}
 
 	public Date getImgDate() {
@@ -65,10 +66,20 @@ public class CareImage {
 		this.imgNameSav = imgNameSav;
 	}
 
+	public CareImage(int imgNo, int careNo, Date imgDate, String imgPath, String imgNameOrg, String imgNameSav) {
+		super();
+		this.imgNo = imgNo;
+		this.careNo = careNo;
+		this.imgDate = imgDate;
+		this.imgPath = imgPath;
+		this.imgNameOrg = imgNameOrg;
+		this.imgNameSav = imgNameSav;
+	}
+
 	@Override
 	public String toString() {
-		return "CareImage [imgNo=" + imgNo + ", imgDate=" + imgDate + ", imgPath=" + imgPath + ", imgNameOrg="
-				+ imgNameOrg + ", imgNameSav=" + imgNameSav + "]";
+		return "CareImage [imgNo=" + imgNo + ", careNo=" + careNo + ", imgDate=" + imgDate + ", imgPath=" + imgPath
+				+ ", imgNameOrg=" + imgNameOrg + ", imgNameSav=" + imgNameSav + "]";
 	}
 
 }
