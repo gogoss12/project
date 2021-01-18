@@ -10,7 +10,6 @@
 		<div id="mucenter">
         	<h1 id="pointer">요양보호사 프로필 등록</h1>
 
-	// 절대 절대 절대 여기에 enctype= 을 넣어놓지 말기 -> 문제는 여기에 넣으면 오류가 걸린다 -> 이거를 해결해서 찾아야한다. 검색하기 ex: jQuery 등 있다.
 	<form name="careEnrollFrm" action="<%= request.getContextPath()%>/enroll/profile/care" method="post"
 				style="width: 600px;" enctype="multipart/form-data">
 

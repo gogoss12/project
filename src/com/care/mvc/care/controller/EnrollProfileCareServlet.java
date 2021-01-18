@@ -39,7 +39,6 @@ public class EnrollProfileCareServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 파일 업로드 부분 (/upload/carephoto 쪽에 파일이 담기에 하는거 해야함)
 		if(!ServletFileUpload.isMultipartContent(request)) {
 			request.setAttribute("msg", "관리자에게 문의하세요.");
 			request.setAttribute("location", "/enroll/profile/care");
@@ -48,8 +47,6 @@ public class EnrollProfileCareServlet extends HttpServlet {
 			
 			return;
 		}
-		
-//		String msg = null;
 		
 		// 나중에 업로드 위치 경로를 바꿔야한다.
 		String path = getServletContext().getRealPath("upload/carephoto");
@@ -71,8 +68,7 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		String msg = "";
 		String location = "";
 		Care care = new Care();
-//		CareImage careImage = new CareImage();
-		 
+		CareImage careImage = new CareImage();
 		
 		care.setCareGen(mr.getParameter("caregender"));
 		care.setCareLicense(mr.getParameter("careLicense"));
@@ -85,10 +81,19 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		care.setCareIntro(mr.getParameter("careIntro"));
 		care.setMemId(mr.getParameter("memId"));
 		
+		
 		System.out.println(request.getParameter("caregender"));
 		System.out.println(care);
 		
-		int result = new CareService().enrollcare(care);
+		int result = new CareService().enrollcare(care, careImage);
+		
+//		careImage.setCareNo(Integer.parseInt(mr.getParameter("careNo")));
+		careImage.setImgPath(mr.getParameter("imgPath"));
+		careImage.setImgNameOrg(fileName.toString());
+		careImage.setImgNameSav(upfileName.toString());
+		
+//		String fileName = mr.getFilesystemName("upfile");       // 실제 이름
+//		String upfileName = mr.getOriginalFileName("upfile");
 		
 		if(result > 0) {
 			msg = "프로필 등록 성공";
