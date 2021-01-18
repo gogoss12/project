@@ -64,20 +64,15 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		
 		String fileName = mr.getFilesystemName("upfile");       // 실제 이름
 		String upfileName = mr.getOriginalFileName("upfile");
-		String contentType = mr.getContentType("upfile");
+		String url = mr.getParameter(path);
+		System.out.println(url);
 		
-		
-		System.out.println("fileName : " + fileName + ", upfileName : " + upfileName + ", contentType : " + contentType);
 		CareImage careImage = new CareImage();
 		
 		// 사진 등록 외 나머지 부분
-		careImage.setImgPath(mr.getParameter("imgPath"));
-		careImage.setImgNameOrg(mr.getFilesystemName("upfile"));
-		careImage.setImgNameSav(upfileName.toString());
-		
-		System.out.println(careImage);
-		System.out.println("mr.getFilesystemName(\"upfile\") :"  + mr.getFilesystemName("upfile"));
-		System.out.println("fileName.trim() : " + fileName.trim());
+		careImage.setImgPath(path);
+		careImage.setImgNameOrg(fileName);
+		careImage.setImgNameSav(upfileName);
 		
 		int resultI = new CareService().insertimage(careImage);
 		
@@ -94,13 +89,15 @@ public class EnrollProfileCareServlet extends HttpServlet {
 //		
 
 		care.setCareGen(mr.getParameter("caregender"));
-		care.setCareLicense(mr.getParameter("careLicense"));
+		care.setCareLicense(String.join(",",mr.getParameterValues("careLicense")));
 		care.setCareYears(mr.getParameter("careYears"));
-		care.setCareHistory(mr.getParameter("careHistory"));
-		care.setCarePlus(mr.getParameter("carePlus"));
-		care.setCareTime(mr.getParameter("careTime"));
+		care.setCareHistory("회사명 : " + mr.getParameter("careHistory1") +" / "
+		+ "업무 : " +  mr.getParameter("careHistory2") + " / "
+		+ "기간 : " +  mr.getParameter("careHistoryDate1") + " ~ " + mr.getParameter("careHistoryDate2") );
+		care.setCarePlus(String.join(",",mr.getParameterValues("carePlus")));
+		care.setCareTime(String.join(",",mr.getParameterValues("careTime")));
 		care.setCarePlace(mr.getParameter("carePlace"));
-		care.setCareSal(mr.getParameter("careSal"));
+		care.setCareSal(String.join(",", mr.getParameter("careSal")));
 		care.setCareIntro(mr.getParameter("careIntro"));
 		care.setMemId(mr.getParameter("memId"));
 		
@@ -111,12 +108,12 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		
 		patientwanted.setWantedGen(mr.getParameter("wantedgen"));
 		patientwanted.setWantedAge(Integer.parseInt(mr.getParameter("age")));
-		patientwanted.setWantedIll(mr.getParameter("wantedill"));
-		patientwanted.setWantedGrade(mr.getParameter("wantedgra"));
+		patientwanted.setWantedIll(String.join(",", mr.getParameter("wantedill")));
+		patientwanted.setWantedGrade(String.join(",", mr.getParameter("wantedgra")));
 		
 		
 	    resultPW = new CareService().enrollPatientWanted(patientwanted);
-		
+		//----------------------------------------------------------------------------------
 		
 		if(resultC > 0 && resultPW > 0 && resultI > 0) {
 			msg = "프로필 등록 성공";
