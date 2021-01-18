@@ -4,6 +4,93 @@
 	border: 1px solid red;
 } */
 
+/* 매칭검색 sta */
+
+#searchMatch h2 {
+	margin-top: 70px;
+	margin-bottom: 40px;
+}
+
+#searchMatch {
+	width: 100%;
+	height: auto;
+	text-align: center;
+}
+
+#searchMatchForm {
+	width: 800px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+#searchMatchForm .checkbox {
+	display: inline-block;
+	padding: 10px;
+}
+
+#searchMatchForm .radio {
+	display: inline-block;
+	padding: 10px;
+}
+
+#searchMatchForm .dropdown {
+	display: inline-block;
+	padding: 10px;
+}
+
+#searchBtn {
+	display: block;
+	padding: 5px;
+	margin: 50px auto;
+	width: 200px;
+	height: 80px;
+	font-size: 2rem;
+	background-color: lightblue;
+}
+
+#searchResult {
+	background-color: lightgray;
+	width: 900px;
+	height: 1000px;
+	margin: 0 auto;
+	padding: 20px;
+	display: flex;
+	align-content: space-around;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	/* box-sizing: border-box; */
+}
+
+#searchResult .profile {
+	height:300px;
+	width: 250px;
+	background-color: white;
+	padding: 15px;
+}
+
+.profile img {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+}
+
+#searchResult button {
+	border: 2px solid black;
+	border-color: aquamarine;
+	color: aquamarine;
+	background-color: white;
+	width: 200px;
+	height: 50px;
+	font-size: 1.5rem;
+	font-weight: 700;
+}
+
+#searchResult button:hover {
+	background-color: aquamarine;
+	color: white;
+  }
+
+/* 매칭검색 end */
 
 div {
 	box-sizing: border-box;
@@ -18,18 +105,12 @@ body {
 }
 
 header {
-	/* height: 20%; */
 	height: 200px;
 }
 
 section {
 	min-height: 100%;
 }
-
-footer {
-	/* height: 20%; */
-}
-
 
 /*헤더*/
 #wrapper {
@@ -200,6 +281,92 @@ span {
 #btn_2 {
 	height: 50%;
 }
+
+/*------ 받은 쪽지 css ----------*/
+#msg_container>*{
+    height: 100%;
+}
+
+#msg_1 {
+    width: 100%;
+    height: 35%;
+}
+
+#msg_1 h1{
+    font-size: 40px;
+    font-weight: 900;
+    background: rgb(146, 220, 238);    
+    margin: auto;
+}
+
+#msg_2{
+    width: 100%;
+    float: left;
+}
+
+#msg_2-1{
+    width: 15%;
+    float: left; 
+    background-color: rgb(146, 220, 238); 
+    height: 926px; 
+    text-align: center;
+    
+    }
+#msg_2-1{line-height: 130px;}
+#msg_2-1 input[type=button]{
+    width: 150px;
+    height: 50px;
+}
+#msg_2-1 a{
+    font-size: 30px;
+    text-decoration: none;
+}
+
+#msg_2-2{
+    float: left;
+    width: 85%;
+    height: 926px;
+}
+
+
+#msg_2-2>#msg_2-2-header{
+    padding-top: 5%;
+    padding-left: 2rem;
+    padding-bottom: 3rem;
+}
+#msg_2-2 input[type=text]{
+    margin-left: 40px;
+}
+
+#msg_2-2-section{
+    width: 100%;
+}
+
+#msg_2-2-section td input{
+    border: none;
+    
+}
+
+#msg_table{
+    width: 100%;
+    text-align: center;
+}
+
+#msg_table input{
+    margin: auto;
+    background: none;
+    text-align: left;
+}
+#msg_table td{
+    border: 1px solid;
+}
+
+#msg_2-2-footer div{
+    text-align: center;
+}
+
+/*------------------------------- */
+
 
 #foot {
 	width: 100%;
@@ -481,4 +648,3 @@ input[type=reset]{
 	padding-left: 5px;
 	padding-right: 5px;
 }
-

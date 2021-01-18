@@ -42,11 +42,16 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 		int resultP = 0;
 		
 		
+		// 보호자 프로필 등록
+		
 		guard.setGuard_gen(request.getParameter("gender"));
 		guard.setGuard_pat(request.getParameter("same"));
 		guard.setMemId(request.getParameter("userId"));
 
 		resultG = new GuardAndPatientService().insertGuard(guard);
+		
+		
+		// 환자 프로필 등록
 		
 		if(request.getParameter("place").equals("자택")) {
 			patient.setPat_place(request.getParameter("place") + "주소 : " + request.getParameter("place_home"));

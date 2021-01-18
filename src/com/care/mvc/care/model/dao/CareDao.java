@@ -7,11 +7,9 @@ import java.sql.PreparedStatement;
 
 import java.sql.SQLException;
 
-
-
 import com.care.mvc.care.model.vo.Care;
+import com.care.mvc.care.model.vo.CareImage;
 
-import com.care.mvc.care.model.vo.PatientWanted;
 
 public class CareDao {
 
