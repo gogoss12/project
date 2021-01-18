@@ -11,21 +11,31 @@ import static com.care.mvc.common.jdbc.JDBCTemplate.commit;
 import static com.care.mvc.common.jdbc.JDBCTemplate.rollback;
 
 public class CareService {
-	private CareDao dao = new CareDao();
 
 	public int enrollcare(Care care, CareImage careImage) {  
 		Connection conn = getConnection();
 		
-		int result = dao.insertcare(conn, care);  
-//		int result = 0;  
+		int resultC = 0;
 		
-		if(careImage.getImgNo() != 0) {
-			result = new CareDao().insertCareImage(conn, careImage);
+		resultC = new CareDao().insertcare(conn, care);
+		
+		
+		if(resultC > 0) {
+			commit(conn);
 		} else {
-			result = new CareDao().insertcare(conn, care);
+			rollback(conn);
 		}
 		
-		int resultI = dao.insertCareImage(conn, careImage);
+		return resultC;
+	}
+
+	public int insertimage(CareImage careImage) {
+		
+		Connection conn = getConnection();
+		
+		int resultI = 0;
+		
+		resultI = new CareDao().insertCareImage(conn, careImage);
 		
 		if(resultI > 0) {
 			commit(conn);
@@ -35,5 +45,8 @@ public class CareService {
 		
 		return resultI;
 	}
+	
+	
+	
 	
 }

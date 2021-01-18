@@ -64,12 +64,24 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		
 		
 		System.out.println("fileName : " + fileName + ", upfileName : " + upfileName + ", contentType : " + contentType);
+		CareImage careImage = new CareImage();
 		
 		// 사진 등록 외 나머지 부분
+		careImage.setImgPath(mr.getParameter("imgPath"));
+		careImage.setImgNameOrg(mr.getFilesystemName("upfile"));
+		careImage.setImgNameSav(upfileName.toString());
+		
+		System.out.println(careImage);
+		System.out.println("mr.getFilesystemName(\"upfile\") :"  + mr.getFilesystemName("upfile"));
+		System.out.println("fileName.trim() : " + fileName.trim());
+		
+		int resultI = new CareService().insertimage(careImage);
+		
+		//-------------------------------------------------------------------------------------------
+		
 		String msg = "";
 		String location = "";
 		Care care = new Care();
-		CareImage careImage = new CareImage();
 		
 		care.setCareGen(mr.getParameter("caregender"));
 		care.setCareLicense(mr.getParameter("careLicense"));
@@ -83,21 +95,12 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		care.setMemId(mr.getParameter("memId"));
 		
 		
-		System.out.println(request.getParameter("caregender"));
 		System.out.println(care);
 		
-		int result = new CareService().enrollcare(care, careImage);
+		int resultC = new CareService().enrollcare(care, careImage);
 		
-		careImage.setImgPath(mr.getParameter("imgPath"));
-		careImage.setImgNameOrg(mr.getFilesystemName("upfile"));
-		System.out.println("mr.getFilesystemName(\"upfile\") :"  + mr.getFilesystemName("upfile"));
-		System.out.println("fileName.trim() : " + fileName.trim());
-		careImage.setImgNameSav(upfileName.toString());
 		
-//		String fileName = mr.getFilesystemName("upfile");       // 실제 이름
-//		String upfileName = mr.getOriginalFileName("upfile");
-		
-		if(result > 0) {
+		if(resultC > 0) {
 			msg = "프로필 등록 성공";
 			location = "/";
 		} else {
