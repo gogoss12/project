@@ -4,6 +4,7 @@ import java.sql.Connection;
 
 import com.care.mvc.care.model.dao.CareDao;
 import com.care.mvc.care.model.vo.Care;
+import com.care.mvc.care.model.vo.CareImage;
 import com.care.mvc.care.model.vo.PatientWanted;
 
 import static com.care.mvc.common.jdbc.JDBCTemplate.getConnection;
@@ -13,50 +14,36 @@ import static com.care.mvc.common.jdbc.JDBCTemplate.rollback;
 public class CareService {
 	private CareDao dao = new CareDao();
 
-<<<<<<< HEAD
 	public int enrollcare(Care care, CareImage careImage) {  
 		Connection conn = getConnection();
 		
-//		int result = 0;  
+
 		int result = dao.insertcare(conn, care);  
+//		int result = 0;  
 		
 		if(careImage.getImgNo() != 0) {
 			result = new CareDao().insertCareImage(conn, careImage);
+
 		} else {
 			result = new CareDao().insertcare(conn, care);
 		}
-=======
-//	public int enrollcare(Care care, CareImage careImage) {  
-//		Connection conn = getConnection();
-//		
-//
-//		int result = dao.insertcare(conn, care);  
-////		int result = 0;  
-//		
-//		if(careImage.getImgNo() != 0) {
-//			result = new CareDao().insertCareImage(conn, careImage);
-//
-//		} else {
-//			result = new CareDao().insertcare(conn, care);
-//		}
-//		
-//
-//		int resultI = dao.insertCareImage(conn, careImage);
-//
-//		
-//		if(result > 0) {
-//			commit(conn);        
-//		} else {
-//			rollback(conn);
-//		}
-//		
-//		return result;
-//
-//	}
+		
+
+		int resultI = dao.insertCareImage(conn, careImage);
+
+		
+		if(result > 0) {
+			commit(conn);        
+		} else {
+			rollback(conn);
+		}
+		
+		return result;
+
+	}
 
 	public int enrollPatientWanted(Care care, PatientWanted patientwanted) {
         Connection conn = getConnection();
->>>>>>> b2868e607bcf1eda7859179d513499827bde5426
 		
 		int resultPW = dao.insertcarepatientwanted(conn, care, patientwanted);
 		
