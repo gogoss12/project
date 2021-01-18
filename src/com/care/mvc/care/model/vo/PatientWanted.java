@@ -8,6 +8,8 @@ public class PatientWanted {
 	private int wantedAge;
 	
 	private String wantedIll;
+	
+	private int wntedcareNo;
 
 	public PatientWanted() {
 	}
@@ -50,12 +52,24 @@ public class PatientWanted {
 	public void setWantedIll(String wantedIll) {
 		this.wantedIll = wantedIll;
 	}
+	public int getWntedcareNo() {
+		return wntedcareNo;
+	}
 
+	public void setWntedcareNo(int wntedcareNo) {
+		this.wntedcareNo = wntedcareNo;
+	}
 
 	@Override
 	public String toString() {
 		return "PatientWanted [wantedGrade=" + wantedGrade + ", wantedGen=" + wantedGen + ", wantedAge=" + wantedAge
-				+ ", wantedIll=" + wantedIll + "]";
+				+ ", wantedIll=" + wantedIll + ", wntedcareNo=" + wntedcareNo + "]";
 	}
+
+	
+
+
+	
+
 	
 }

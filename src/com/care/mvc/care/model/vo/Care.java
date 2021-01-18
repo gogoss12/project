@@ -23,31 +23,12 @@ public class Care {
 	
 	private String careIntro;
 	
-<<<<<<< HEAD
-	private String MemId;
-	public Care() {
-	}
-	
-	public Care(int careNo,  String caregen, String careLicense, String careYears, String careHistory, String carePlus, String careTime,
-			String carePlace, int careSal, String careIntro, String MemId) {
-		this.careNo = careNo;
-		this.caregen = caregen;
-		this.careLicense = careLicense;
-		this.careYears = careYears;
-		this.careHistory = careHistory;
-		this.carePlus = carePlus;
-		this.careTime = careTime;
-		this.carePlace = carePlace;
-		this.careSal = careSal;
-		this.careIntro = careIntro;
-		this.MemId = MemId;
-	}
-=======
+
 	private String memId;
 		
 	public Care() {
 	}
->>>>>>> 2d5309cf15c38655bc194fb3712f589aec55f5f6
+
 
 	public int getCareNo() {
 		return careNo;
@@ -174,20 +155,12 @@ public class Care {
 
 	@Override
 	public String toString() {
-<<<<<<< HEAD
-		return "Care [careNo=" + careNo + ", careLicense=" + careLicense + ", caregen=" + caregen + ", careYears="
-				+ careYears + ", careHistory=" + careHistory + ", carePlus=" + carePlus + ", careTime=" + careTime
-				+ ", carePlace=" + carePlace + ", careSal=" + careSal + ", careIntro=" + careIntro + ", MemId=" + MemId
-				+ "]";
-	}
 
-	
-=======
 		return "Care [careNo=" + careNo + ", careGen=" + careGen + ", careLicense=" + careLicense + ", careYears="
 				+ careYears + ", careHistory=" + careHistory + ", carePlus=" + carePlus + ", careTime=" + careTime
 				+ ", carePlace=" + carePlace + ", careSal=" + careSal + ", careIntro=" + careIntro + ", memId=" + memId
 				+ "]";
 	}
 
->>>>>>> 2d5309cf15c38655bc194fb3712f589aec55f5f6
+
 }

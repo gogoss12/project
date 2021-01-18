@@ -110,39 +110,39 @@
 
         <h2><span class="badge bg-secondary">환자상태1</span></h2>
         <label>성별: </label> &nbsp;
-            <label><input type="checkbox">남</label> &nbsp;
-            <label><input type="checkbox">여</label>
+            <label><input type="checkbox" name="gender">남</label> &nbsp;
+            <label><input type="checkbox" name="gender">여</label>
 
         <br><br>
         
         <label>나이: </label>
-            <input type="number" style="width: 60px;" min="1" required>세
+            <input type="number" name="age" style="width: 60px;" min="1" required>세
         
         <br><br>
 
         <h2><span class="badge bg-secondary">환자상태2</span></h2>
             <div>질병:   &nbsp;
-                <label><input type="checkbox">없음</label> &nbsp;
-                <label><input type="checkbox">치매</label> &nbsp;
-                <label><input type="checkbox">파킨스</label> &nbsp;
-                <label><input type="checkbox">뇌전증</label> <br>
-                <label><input type="checkbox">뇌졸중/뇌출혈</label> &nbsp;
-                <label><input type="checkbox">당뇨</label> &nbsp;
-                <label><input type="checkbox">고혈압</label> &nbsp;
-                <label><input type="checkbox">기타</label>
+                <label><input type="checkbox" name="patstatus">없음</label> &nbsp;
+                <label><input type="checkbox" name="patstatus">치매</label> &nbsp;
+                <label><input type="checkbox" name="patstatus">파킨스</label> &nbsp;
+                <label><input type="checkbox" name="patstatus">뇌전증</label> <br>
+                <label><input type="checkbox" name="patstatus">뇌졸중/뇌출혈</label> &nbsp;
+                <label><input type="checkbox" name="patstatus">당뇨</label> &nbsp;
+                <label><input type="checkbox" name="patstatus">고혈압</label> &nbsp;
+                <label><input type="checkbox" name="patstatus">기타</label>
             </div>       
 
             <br>    
 
         <h2><span class="badge bg-secondary">환자상태3</span></h2>
             <div>장기요양 등급:  &nbsp;
-                <label><input type="checkbox">없음</label> &nbsp;
-                <label><input type="checkbox">1등급</label> &nbsp;
-                <label><input type="checkbox">2등급</label> <br>
-                <label><input type="checkbox">3등급</label> &nbsp;
-                <label><input type="checkbox">4등급</label> &nbsp;
-                <label><input type="checkbox">5등급</label> &nbsp;
-                <label><input type="checkbox">인지지원등급</label>
+                <label><input type="checkbox" name="gra">없음</label> &nbsp;
+                <label><input type="checkbox" name="gra">1등급</label> &nbsp;
+                <label><input type="checkbox" name="gra">2등급</label> <br>
+                <label><input type="checkbox" name="gra">3등급</label> &nbsp;
+                <label><input type="checkbox" name="gra">4등급</label> &nbsp;
+                <label><input type="checkbox" name="gra">5등급</label> &nbsp;
+                <label><input type="checkbox" name="gra">인지지원등급</label>
             </div>
         
         <br>

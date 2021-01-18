@@ -1,6 +1,6 @@
 package com.care.mvc.care.controller;
 
-import java.io.File;
+
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,12 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
+
+
+
 
 import com.care.mvc.care.model.service.CareService;
 import com.care.mvc.care.model.vo.Care;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+import com.care.mvc.care.model.vo.PatientWanted;
+
+
 
 
 @WebServlet("/enroll/profile/care")
@@ -69,8 +72,12 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		
 		// 사진 등록 외 나머지 부분
 		String msg = "";
-		String location = "";
+		String loc = "";
 		Care care = new Care();
+		PatientWanted patientwanted = new PatientWanted();
+		int resultC = 0;
+		int resultPW = 0;
+	
 		
 		care.setCareGen(request.getParameter("caregender"));
 		care.setCareLicense(request.getParameter("careLicense"));
@@ -83,21 +90,31 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		care.setCareIntro(request.getParameter("careIntro"));
 		care.setMemId(request.getParameter("memId"));
 		
+		 resultC = new CareService().enrollcare(care);
 		System.out.println(request.getParameter("caregender"));
 		System.out.println(care);
 		
-		int result = new CareService().enrollcare(care);
 		
-		if(result > 0) {
+		
+		patientwanted.setWantedGrade(Integer.parseInt(request.getParameter("gender")));
+		patientwanted.setWantedAge(Integer.parseInt(request.getParameter("age")));
+		patientwanted.setWantedGen(request.getParameter("patstatus"));
+		patientwanted.setWantedIll(request.getParameter("gra"));
+		
+	    resultPW = new CareService().enrollPatientWanted(care, patientwanted);
+		
+	
+		
+		if(resultC > 0 && resultPW > 0) {
 			msg = "프로필 등록 성공";
-			location = "/";
+			loc = "/";
 		} else {
 			msg = "프로필 등록 실패";
-			location = "/enroll/profile/care";
+			loc = "/enroll/profile/care";
 		}
 		
 		request.setAttribute("msg", msg);
-		request.setAttribute("loc", location);
+		request.setAttribute("loc", loc);
 		
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 		
