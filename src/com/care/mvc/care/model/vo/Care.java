@@ -23,18 +23,12 @@ public class Care {
 	
 	private String careIntro;
 	
-<<<<<<< HEAD
 
-=======
->>>>>>> e74aa11ddcc40357ed35481c54fb4c32f4e58b23
 	private String memId;
 		
 	public Care() {
 	}
-<<<<<<< HEAD
 
-=======
->>>>>>> e74aa11ddcc40357ed35481c54fb4c32f4e58b23
 
 	public int getCareNo() {
 		return careNo;
@@ -161,18 +155,12 @@ public class Care {
 
 	@Override
 	public String toString() {
-<<<<<<< HEAD
 
-=======
->>>>>>> e74aa11ddcc40357ed35481c54fb4c32f4e58b23
 		return "Care [careNo=" + careNo + ", careGen=" + careGen + ", careLicense=" + careLicense + ", careYears="
 				+ careYears + ", careHistory=" + careHistory + ", carePlus=" + carePlus + ", careTime=" + careTime
 				+ ", carePlace=" + carePlace + ", careSal=" + careSal + ", careIntro=" + careIntro + ", memId=" + memId
 				+ "]";
 	}
 
-<<<<<<< HEAD
 
-=======
->>>>>>> e74aa11ddcc40357ed35481c54fb4c32f4e58b23
 }

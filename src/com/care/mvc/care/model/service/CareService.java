@@ -1,15 +1,10 @@
 package com.care.mvc.care.model.service;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 
 import com.care.mvc.care.model.dao.CareDao;
 import com.care.mvc.care.model.vo.Care;
-<<<<<<< HEAD
 import com.care.mvc.care.model.vo.PatientWanted;
-=======
-import com.care.mvc.care.model.vo.CareImage;
->>>>>>> e74aa11ddcc40357ed35481c54fb4c32f4e58b23
 
 import static com.care.mvc.common.jdbc.JDBCTemplate.getConnection;
 import static com.care.mvc.common.jdbc.JDBCTemplate.commit;
@@ -36,7 +31,7 @@ public class CareService {
 	public int enrollPatientWanted(Care care, PatientWanted patientwanted) {
         Connection conn = getConnection();
 		
-		int resultPW = dao.insertcarepatientwanted(conn, care, patientwanted);
+		int resultPW = dao.insertpatientwanted(conn, care, patientwanted);
 		
 		if(resultPW > 0) {
 			commit(conn);        
@@ -46,20 +41,6 @@ public class CareService {
 		
 		return resultPW;
 
-	}
-	
-	public int insertCareImage(Care care, CareImage careImage) {
-		Connection conn = getConnection();
-		
-		int resultI = new CareDao().insertCareImage(conn, care, careImage);
-		
-		if(resultI > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		};
-		
-		return resultI;
 	}
 
 }

@@ -10,20 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-
-
-
 import com.care.mvc.care.model.service.CareService;
 import com.care.mvc.care.model.vo.Care;
-<<<<<<< HEAD
+
+//import com.care.mvc.care.model.vo.CareImage;
 import com.care.mvc.care.model.vo.PatientWanted;
-
-
-=======
-import com.care.mvc.care.model.vo.CareImage;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
->>>>>>> e74aa11ddcc40357ed35481c54fb4c32f4e58b23
+
 
 
 @WebServlet("/enroll/profile/care")
@@ -47,15 +41,15 @@ public class EnrollProfileCareServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 파일 업로드 부분 (/upload/carephoto 쪽에 파일이 담기에 하는거 해야함)
-		if(!ServletFileUpload.isMultipartContent(request)) {
-			request.setAttribute("msg", "관리자에게 문의하세요.");
-			request.setAttribute("location", "/enroll/profile/care");
-			
-			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-			
-			return;
-		}
+//		// 파일 업로드 부분 (/upload/carephoto 쪽에 파일이 담기에 하는거 해야함)
+//		if(!ServletFileUpload.isMultipartContent(request)) {
+//			request.setAttribute("msg", "관리자에게 문의하세요.");
+//			request.setAttribute("location", "/enroll/profile/care");
+//			
+//			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
+//			
+//			return;
+//		}
 		
 //		String msg = null;
 		
@@ -78,17 +72,15 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		// 사진 등록 외 나머지 부분
 		String msg = "";
 		String loc = "";
-		Care care = new Care();
-<<<<<<< HEAD
-		PatientWanted patientwanted = new PatientWanted();
 		int resultC = 0;
 		int resultPW = 0;
-	
-=======
+		Care care = new Care();
+		PatientWanted patientwanted = new PatientWanted();
+		
+
 //		CareImage careImage = new CareImage();
 		 
->>>>>>> e74aa11ddcc40357ed35481c54fb4c32f4e58b23
-		
+
 		care.setCareGen(mr.getParameter("caregender"));
 		care.setCareLicense(mr.getParameter("careLicense"));
 		care.setCareYears(mr.getParameter("careYears"));
@@ -101,19 +93,19 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		care.setMemId(mr.getParameter("memId"));
 		
 		 resultC = new CareService().enrollcare(care);
-		System.out.println(request.getParameter("caregender"));
-		System.out.println(care);
+	
+		 
+		patientwanted.setWantedGen(mr.getParameter("wantedgen"));
+		patientwanted.setWantedAge(Integer.parseInt(mr.getParameter("age")));
+		patientwanted.setWantedIll(mr.getParameter("wantedill"));
+		patientwanted.setWantedGrade(mr.getParameter("wantedgra"));
 		
-		
-		
-		patientwanted.setWantedGrade(Integer.parseInt(request.getParameter("gender")));
-		patientwanted.setWantedAge(Integer.parseInt(request.getParameter("age")));
-		patientwanted.setWantedGen(request.getParameter("patstatus"));
-		patientwanted.setWantedIll(request.getParameter("gra"));
+
+		   System.out.println(patientwanted);
 		
 	    resultPW = new CareService().enrollPatientWanted(care, patientwanted);
 		
-	
+	   System.out.println(patientwanted);
 		
 		if(resultC > 0 && resultPW > 0) {
 			msg = "프로필 등록 성공";
