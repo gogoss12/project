@@ -10,10 +10,9 @@
 <script src="<%=request.getContextPath()%>/js/jquery-3.5.1.js"></script>
 
 	<section id="content">
-		<div id="enroll-container" style="margin: 0 auto; width: 600px">
-			<form name="memberEnrollFrm" action="<%= request.getContextPath()%>/member/enroll" method="post"
-				style="width: 600px;">
-				<table class="table table-borderless" style="width: 600px;" >
+		<div id="enroll-container" style="margin: 0 auto; text-align:center">
+			<form name="memberEnrollFrm" action="<%= request.getContextPath()%>/member/enroll" method="post">
+				<table class="table table-borderless" style="text-align:left" >
 					<tr>
 						<th colspan="2">
 							<h2 align="center" style="line-height: 3.0;">회원가입</h2>
@@ -79,8 +78,14 @@
 						</select></td>
 					</tr>
 				</table>
-				<input type="submit" id="enrollSubmit" value="회원가입"
-					style="margin: 0 150px;"> <input type="reset" value="새로고침">
+				<div style="text-align : center; padding-top : 1rem;">
+				<span style="padding-right : 3rem;">
+					<input type="submit" id="enrollSubmit" value="회원가입"> 
+				</span>
+				<span>
+					<input type="reset" value="새로고침">
+				</span>
+				</div>
 			</form>
 			<form name="checkIdForm">
 				<input type="hidden" name="userId">

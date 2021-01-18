@@ -536,7 +536,6 @@ input[type=submit] {
     display: inline-block;
     font-size: 15px;
     cursor: pointer;
-    margin: 5% 150px;
     border-radius:3px; 
     border: white;
     background-color: rgb(10, 89, 235);
@@ -549,7 +548,6 @@ input[type=reset]{
     display: inline-block;
     font-size: 15px;
     cursor: pointer;
-    margin: 5% -130px; 
     border-radius:3px;
     border: white;
     background-color: rgb(220, 220, 220);
@@ -588,6 +586,8 @@ input[type=reset]{
 }
 
 /*요양보호사 프로필 */
+
+
 #mucenter {
 	text-align: center;
 }

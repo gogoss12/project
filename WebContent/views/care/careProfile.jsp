@@ -11,7 +11,7 @@
         	<h1 id="pointer">요양보호사 프로필 등록</h1>
 
 	<form name="careEnrollFrm" action="<%= request.getContextPath()%>/enroll/profile/care" method="post"
-				style="width: 600px;" enctype="multipart/form-data">
+				 enctype="multipart/form-data">
 
         <br><br><br>
 

@@ -85,8 +85,6 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		int resultPW = 0;
 		Care care = new Care();
 		PatientWanted patientwanted = new PatientWanted();
-//		CareImage careImage = new CareImage();
-//		
 
 		care.setCareGen(mr.getParameter("caregender"));
 		care.setCareLicense(String.join(",",mr.getParameterValues("careLicense")));
