@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.care.mvc.care.model.service.CareService;
 import com.care.mvc.care.model.vo.Care;
-
+import com.care.mvc.care.model.vo.CareImage;
 //import com.care.mvc.care.model.vo.CareImage;
 import com.care.mvc.care.model.vo.PatientWanted;
 import com.oreilly.servlet.MultipartRequest;
@@ -68,8 +68,22 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		
 		
 		System.out.println("fileName : " + fileName + ", upfileName : " + upfileName + ", contentType : " + contentType);
+		CareImage careImage = new CareImage();
 		
 		// 사진 등록 외 나머지 부분
+		careImage.setImgPath(mr.getParameter("imgPath"));
+		careImage.setImgNameOrg(mr.getFilesystemName("upfile"));
+		careImage.setImgNameSav(upfileName.toString());
+		
+		System.out.println(careImage);
+		System.out.println("mr.getFilesystemName(\"upfile\") :"  + mr.getFilesystemName("upfile"));
+		System.out.println("fileName.trim() : " + fileName.trim());
+		
+		int resultI = new CareService().insertimage(careImage);
+		
+		//-------------------------------------------------------------------------------------------
+		// 보호사 등록 서블릿
+		
 		String msg = "";
 		String loc = "";
 		int resultC = 0;
@@ -90,46 +104,21 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		care.setCareIntro(mr.getParameter("careIntro"));
 		care.setMemId(mr.getParameter("memId"));
 		
+		resultC = new CareService().enrollcare(care);
 
-//		 resultC = new CareService().enrollcare(care);
-	
-		 
+		//----------------------------------------------------------------------------------
+		// 희망환자 등록 서블릿
+		
 		patientwanted.setWantedGen(mr.getParameter("wantedgen"));
 		patientwanted.setWantedAge(Integer.parseInt(mr.getParameter("age")));
 		patientwanted.setWantedIll(mr.getParameter("wantedill"));
 		patientwanted.setWantedGrade(mr.getParameter("wantedgra"));
 		
-
-		   System.out.println(patientwanted);
 		
-	    resultPW = new CareService().enrollPatientWanted(care, patientwanted);
+	    resultPW = new CareService().enrollPatientWanted(patientwanted);
 		
-	   System.out.println(patientwanted);
-
 		
-		System.out.println(request.getParameter("caregender"));
-		System.out.println(care);
-		
-
-		int result = new CareService().enrollcare(care, careImage);
-		
-		careImage.setImgPath(mr.getParameter("imgPath"));
-		careImage.setImgNameOrg(mr.getFilesystemName("upfile"));
-		System.out.println("mr.getFilesystemName(\"upfile\") :"  + mr.getFilesystemName("upfile"));
-		System.out.println("fileName.trim() : " + fileName.trim());
-		careImage.setImgNameSav(upfileName.toString());
-
-		
-////		careImage.setCareNo(Integer.parseInt(mr.getParameter("careNo")));
-//		careImage.setImgPath(mr.getParameter("imgPath"));
-//		careImage.setImgNameOrg(fileName.toString());
-//		careImage.setImgNameSav(upfileName.toString());
-//		
-//		String fileName = mr.getFilesystemName("upfile");       // 실제 이름
-//		String upfileName = mr.getOriginalFileName("upfile");
-
-		
-		if(resultC > 0 && resultPW > 0) {
+		if(resultC > 0 && resultPW > 0 && resultI > 0) {
 			msg = "프로필 등록 성공";
 			loc = "/";
 		} else {
