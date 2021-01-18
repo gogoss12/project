@@ -69,7 +69,7 @@ public class CareDao {
 		return result;
 	}
 	
-	public int insertCareImage(Connection conn, Care care, CareImage careImage, Member member) {
+	public int insertCareImage(Connection conn, Care care, CareImage careImage) {
 		int resultI = 0;
 		PreparedStatement Ipstmt = null;
 		int careNo = findCareNo(conn, care);
