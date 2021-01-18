@@ -52,8 +52,9 @@
                 </a>
             </div>
 			<div id="page">
-
-				<h1>Carepool</h1>
+				 <a href="<%=request.getContextPath()%>" style="text-decoration: none;">
+					<h1>Carepool</h1>
+				</a>
 			</div>
 			<div id="login">
 			<% if (loginMember == null) { %>	

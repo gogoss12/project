@@ -11,7 +11,7 @@
         	<h1 id="pointer">요양보호사 프로필 등록</h1>
 
 	<form name="careEnrollFrm" action="<%= request.getContextPath()%>/enroll/profile/care" method="post"
-				style="width: 600px;" enctype="multipart/form-data">
+				 enctype="multipart/form-data">
 
         <br><br><br>
 
@@ -60,9 +60,9 @@
         <br><br>
         
         <div>
-            <h6>회사명 : <input type="text"></h6>
-            <h6>&nbsp;&nbsp; 업무 :  <input type="text" name="careHistory"></h6>
-            <h6>기간 : <input type="date"> ~ <input type="date"></h6>
+            <h6>회사명 : <input type="text" name="careHistory1"></h6>
+            <h6>&nbsp;&nbsp; 업무 :  <input type="text" name="careHistory2"></h6>
+            <h6>기간 : <input type="date" name="careHistoryDate1"> ~ <input type="date" name="careHistoryDate2"></h6>
         </div>
        
         <h3>+</h3>
@@ -110,8 +110,8 @@
         <h2><span class="badge bg-secondary">환자상태1</span></h2>
         <label>성별: </label> &nbsp;
 
-            <label><input type="checkbox" name="wantedgen" value="남">남</label> &nbsp;
-            <label><input type="checkbox" name="wantedgen" value="여">여</label>
+            <label><input type="radio" name="wantedgen" value="남">남</label> &nbsp;
+            <label><input type="radio" name="wantedgen" value="여">여</label>
 
 
         <br><br>
