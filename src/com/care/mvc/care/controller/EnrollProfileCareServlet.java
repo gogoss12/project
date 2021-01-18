@@ -82,6 +82,7 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		int resultI = new CareService().insertimage(careImage);
 		
 		//-------------------------------------------------------------------------------------------
+		// 보호사 등록 서블릿
 		
 		String msg = "";
 		String loc = "";
@@ -103,9 +104,11 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		care.setCareIntro(mr.getParameter("careIntro"));
 		care.setMemId(mr.getParameter("memId"));
 		
-		int result = new CareService().enrollcare(care);
+		resultC = new CareService().enrollcare(care);
 
 		//----------------------------------------------------------------------------------
+		// 희망환자 등록 서블릿
+		
 		patientwanted.setWantedGen(mr.getParameter("wantedgen"));
 		patientwanted.setWantedAge(Integer.parseInt(mr.getParameter("age")));
 		patientwanted.setWantedIll(mr.getParameter("wantedill"));

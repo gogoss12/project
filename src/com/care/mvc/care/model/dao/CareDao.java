@@ -49,7 +49,7 @@ public class CareDao {
 			PreparedStatement ppstmt = null;
 
 			try {                   
-				query = "INSERT INTO PATIENT_WANTED_PROFILE VALUES (SEQ_CARE_NO.NEXTVAL,?,?,?,?)";
+				query = "INSERT INTO PATIENT_WANTED VALUES (?,SEQ_CARE_NO.NEXTVAL,?,?,?)";
 				
 				ppstmt = conn.prepareStatement(query);
 
