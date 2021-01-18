@@ -16,8 +16,8 @@ public class CareService {
 	public int enrollcare(Care care, CareImage careImage) {  
 		Connection conn = getConnection();
 		
-		int result = dao.insertcare(conn, care);  
 //		int result = 0;  
+		int result = dao.insertcare(conn, care);  
 		
 		if(careImage.getImgNo() != 0) {
 			result = new CareDao().insertCareImage(conn, careImage);

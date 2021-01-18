@@ -89,10 +89,10 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		
 //		careImage.setCareNo(Integer.parseInt(mr.getParameter("careNo")));
 		careImage.setImgPath(mr.getParameter("imgPath"));
-		careImage.setImgNameOrg(fileName.toString());
-		careImage.setImgNameSav(upfileName.toString());
+		careImage.setImgNameOrg(mr.getParameter(fileName));
+		careImage.setImgNameSav(mr.getParameter(upfileName));
 		
-//		String fileName = mr.getFilesystemName("upfile");       // 실제 이름
+//		String fileName = mr.getFilesystemName("upfile");    
 //		String upfileName = mr.getOriginalFileName("upfile");
 		
 		if(result > 0) {
