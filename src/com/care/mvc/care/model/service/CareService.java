@@ -13,25 +13,38 @@ import static com.care.mvc.common.jdbc.JDBCTemplate.rollback;
 public class CareService {
 	private CareDao dao = new CareDao();
 
-	public int enrollcare(Care care) {
-		Connection conn = getConnection();
-		
-		int resultC = dao.insertcare(conn, care);
-		
-		if(resultC > 0) {
-			commit(conn);
-		} else {
-			rollback(conn);
-		}
-		
-		return resultC;
-	}
-
+//	public int enrollcare(Care care, CareImage careImage) {  
+//		Connection conn = getConnection();
+//		
+//
+//		int result = dao.insertcare(conn, care);  
+////		int result = 0;  
+//		
+//		if(careImage.getImgNo() != 0) {
+//			result = new CareDao().insertCareImage(conn, careImage);
+//
+//		} else {
+//			result = new CareDao().insertcare(conn, care);
+//		}
+//		
+//
+//		int resultI = dao.insertCareImage(conn, careImage);
+//
+//		
+//		if(result > 0) {
+//			commit(conn);        
+//		} else {
+//			rollback(conn);
+//		}
+//		
+//		return result;
+//
+//	}
 
 	public int enrollPatientWanted(Care care, PatientWanted patientwanted) {
         Connection conn = getConnection();
 		
-		int resultPW = dao.insertpatientwanted(conn, care, patientwanted);
+		int resultPW = dao.insertcarepatientwanted(conn, care, patientwanted);
 		
 		if(resultPW > 0) {
 			commit(conn);        
