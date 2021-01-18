@@ -120,16 +120,12 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		careImage.setImgNameSav(upfileName.toString());
 
 		
-<<<<<<< HEAD
-//		String fileName = mr.getFilesystemName("upfile");    
-=======
 ////		careImage.setCareNo(Integer.parseInt(mr.getParameter("careNo")));
 //		careImage.setImgPath(mr.getParameter("imgPath"));
 //		careImage.setImgNameOrg(fileName.toString());
 //		careImage.setImgNameSav(upfileName.toString());
 //		
 //		String fileName = mr.getFilesystemName("upfile");       // 실제 이름
->>>>>>> b2868e607bcf1eda7859179d513499827bde5426
 //		String upfileName = mr.getOriginalFileName("upfile");
 
 		
