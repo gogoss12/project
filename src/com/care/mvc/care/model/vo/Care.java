@@ -23,10 +23,12 @@ public class Care {
 	
 	private String careIntro;
 	
+
 	private String memId;
 		
 	public Care() {
 	}
+
 
 	public int getCareNo() {
 		return careNo;
@@ -153,10 +155,12 @@ public class Care {
 
 	@Override
 	public String toString() {
+
 		return "Care [careNo=" + careNo + ", careGen=" + careGen + ", careLicense=" + careLicense + ", careYears="
 				+ careYears + ", careHistory=" + careHistory + ", carePlus=" + carePlus + ", careTime=" + careTime
 				+ ", carePlace=" + carePlace + ", careSal=" + careSal + ", careIntro=" + careIntro + ", memId=" + memId
 				+ "]";
 	}
+
 
 }

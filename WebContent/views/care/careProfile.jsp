@@ -109,39 +109,45 @@
 
         <h2><span class="badge bg-secondary">환자상태1</span></h2>
         <label>성별: </label> &nbsp;
+
             <label><input type="checkbox" name="wantedgen" value="남">남</label> &nbsp;
             <label><input type="checkbox" name="wantedgen" value="여">여</label>
+
 
         <br><br>
         
         <label>나이: </label>
-            <input type="number" style="width: 60px;" min="1" required>세
+            <input type="number" name="age" style="width: 60px;" min="1" required>세
         
         <br><br>
 
         <h2><span class="badge bg-secondary">환자상태2</span></h2>
             <div>질병:   &nbsp;
-                <label><input type="checkbox" value="없음">없음</label> &nbsp;
-                <label><input type="checkbox" value="치매">치매</label> &nbsp;
-                <label><input type="checkbox" value="파킨스">파킨스</label> &nbsp;
-                <label><input type="checkbox" value="뇌전증">뇌전증</label> <br>
-                <label><input type="checkbox" value="뇌졸중/뇌출혈">뇌졸중/뇌출혈</label> &nbsp;
-                <label><input type="checkbox" value="당뇨">당뇨</label> &nbsp;
-                <label><input type="checkbox" value="고혈압">고혈압</label> &nbsp;
-                <label><input type="checkbox" value="기타">기타</label>
+
+                <label><input type="checkbox" name="wantedill" value="없음">없음</label> &nbsp;
+                <label><input type="checkbox" name="wantedill" value="치매">치매</label> &nbsp;
+                <label><input type="checkbox" name="wantedill" value="파킨스">파킨스</label> &nbsp;
+                <label><input type="checkbox" name="wantedill" value="뇌전증">뇌전증</label> <br>
+                <label><input type="checkbox" name="wantedill" value="뇌졸중/뇌출혈">뇌졸중/뇌출혈</label> &nbsp;
+                <label><input type="checkbox" name="wantedill" value="당뇨">당뇨</label> &nbsp;
+                <label><input type="checkbox" name="wantedill" value="고혈압">고혈압</label> &nbsp;
+                <label><input type="checkbox" name="wantedill" value="기타">기타</label>
+
             </div>       
 
             <br>    
 
         <h2><span class="badge bg-secondary">환자상태3</span></h2>
             <div>장기요양 등급:  &nbsp;
-                <label><input type="checkbox" value="없음">없음</label> &nbsp;
-                <label><input type="checkbox" value="1등급">1등급</label> &nbsp;
-                <label><input type="checkbox" value="2등급">2등급</label> <br>
-                <label><input type="checkbox" value="3등급">3등급</label> &nbsp;
-                <label><input type="checkbox" value="4등급">4등급</label> &nbsp;
-                <label><input type="checkbox" value="5등급">5등급</label> &nbsp;
-                <label><input type="checkbox" value="인지지원등급">인지지원등급</label>
+
+                <label><input type="checkbox" name="wantedgra" value="없음">없음</label> &nbsp;
+                <label><input type="checkbox" name="wantedgra" value="1등급">1등급</label> &nbsp;
+                <label><input type="checkbox" name="wantedgra" value="2등급">2등급</label> <br>
+                <label><input type="checkbox" name="wantedgra" value="3등급">3등급</label> &nbsp;
+                <label><input type="checkbox" name="wantedgra" value="4등급">4등급</label> &nbsp;
+                <label><input type="checkbox" name="wantedgra" value="5등급">5등급</label> &nbsp;
+                <label><input type="checkbox" name="wantedgra" value="인지지원등급">인지지원등급</label>
+
             </div>
         
         <br>
