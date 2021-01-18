@@ -45,30 +45,29 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 		guard.setGuard_gen(request.getParameter("gender"));
 		guard.setGuard_pat(request.getParameter("same"));
 		guard.setMemId(request.getParameter("userId"));
-		System.out.println(request.getParameter("userId"));
 
 		resultG = new GuardAndPatientService().insertGuard(guard);
 		
-		System.out.println("resultG" + resultG);
-		
-		System.out.println(guard);
-
-		patient.setPat_place(request.getParameter("place"));
-		patient.setPat_period(request.getParameter("period"));
+		if(request.getParameter("place").equals("자택")) {
+			patient.setPat_place(request.getParameter("place") + "주소 : " + request.getParameter("place_home"));
+		}else {
+			patient.setPat_place(request.getParameter("place") + "주소 : " + request.getParameter("place_hospital"));
+		}
+		patient.setPat_period(request.getParameter("period1") + " ~ " + request.getParameter("period2"));
 		patient.setPat_hop_time(request.getParameter("hopetime"));
 		patient.setPat_name(request.getParameter("patName"));
 		patient.setPat_age(Integer.parseInt(request.getParameter("patAge")));
 		patient.setPat_gen(request.getParameter("patGen"));
 		patient.setPat_kg(Integer.parseInt(request.getParameter("patKg"))); 
-		patient.setPat_infect(request.getParameter("patInfact"));// 없음 체크했을때 나머지 disabled 되게끔 만들기
+		patient.setPat_infect(String.join(" , " , request.getParameterValues("patInfact")));
 		patient.setPat_grade(request.getParameter("patGrade"));
-		patient.setPat_sanit(request.getParameter("patSanit"));
+		patient.setPat_sanit(String.join(" , " , request.getParameterValues("patSanit")));
 		patient.setPat_paral(request.getParameter("patParal"));
 		patient.setPat_move(request.getParameter("patMove"));
 		patient.setPat_bed(request.getParameter("patBed"));
-		patient.setPat_cogdis(request.getParameter("patCogdis"));
+		patient.setPat_cogdis(String.join("," , request.getParameterValues("patCogdis")));
 		patient.setPat_bathroom(request.getParameter("patBathroom"));
-		patient.setPat_bowel_mn(request.getParameter("patBowelMn"));
+		patient.setPat_bowel_mn(String.join("," , request.getParameter("patBowelMn")));
 		patient.setPat_ostomy(request.getParameter("patOstomy"));
 		patient.setPat_help_eat(request.getParameter("patHelpEat"));
 		patient.setPat_suction(request.getParameter("patSuction"));
@@ -77,9 +76,6 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 				
 		resultP = new GuardAndPatientService().insertPatient(patient, guard);
 		
-		System.out.println("resultP" + resultP);
-		
-		System.out.println(patient);
 		
 		if(resultG > 0 && resultP > 0) {
 			msg = "보호자 프로필 등록이 완료되었습니다!";

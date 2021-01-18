@@ -25,23 +25,23 @@
                     	<div><h3>돌봄 장소</h3></div>
                         <div>
                             <label><input type="checkbox" name="place" value="자택">자택</label>
-                            <input type="text" placeholder="주소를 입력해주세요">
-                            <input type="button" value="찾기">
+                            <input type="text" name="place_home" id="place_home" placeholder="주소를 입력해주세요">
+                            <input type="button" id="findPostalAddr" onclick="DaumPostcode()" value="찾기" style="margin:10px">
                         </div>
                     </div>
                     <div>
                         <div>
                             <label><input type="checkbox" name="place" value="병원">병원</label>
-                            <input type="text" placeholder="병원명을 입력해주세요">
-                            <input type="button" value="찾기">
+                            <input type="text" name="place_hospital" id="place_hospital" placeholder="병원명을 입력해주세요">
+                            <input type="button" id="findPostalAddr" onclick="DaumPostcode()" value="찾기" style="margin:10px">
                         </div>
                     </div>
                     <div>
                         <h3>돌봄기간</h3>
                         <div>
-                        <input type="date" name="period">
+                        <input type="date" name="period1">
                         <span> - </span>
-                        <input type="date" name="period">
+                        <input type="date" name="period2">
                         </div>
                     </div>
                     <div>
@@ -50,14 +50,14 @@
                     </div>
                     <div>
                         <h3>환자 정보</h3>
-                        <div>
-                            <input type="text" name="patName" placeholder="이름을 입력하세요">
-                            <input type="text" name="patAge" placeholder="나이">
-                        </div>
+                       	<div>
+                           	<input type="text" name="patName" placeholder="이름:" style="width:100px">
+                           	<input type="text" name="patAge" placeholder="나이" style="width:80px">
+                            <label><input type="text" name="patKg" placeholder="몸무게" style="width:100px"><b>kg</b></label>
+                       	</div>
                         <div>
                             <label><input type="radio" name="patGen" value="남">남</label>
                             <label><input type="radio" name="patGen" value="여">여</label>
-                            <label><input type="text" name="patKg" placeholder="몸무게"><b>kg</b></label>
                         </div>
                     </div>
                     <div>
@@ -106,16 +106,16 @@
                     <div>
                         <h3>마비상태</h3>
                         <div>
-                            <label><input type="checkbox" name="patParal" value="전신마비">전신마비</label>
-                            <td><label><input type="checkbox" name="patParal" value="편마비">편마비</label></td>
-                            <td><label><input type="checkbox" name="patParal" value="없음">없음</label></td>
+                            <label><input type="radio" name="patParal" value="전신마비">전신마비</label>
+                            <td><label><input type="radio" name="patParal" value="편마비">편마비</label></td>
+                            <td><label><input type="radio" name="patParal" value="없음">없음</label></td>
                         </div>
                     </div>
                     <div>
                     <h3>거동상태</h3>
-                        <label><input type="checkbox" name="patMove" value="불가능">불가능</label>
-                        <label><input type="checkbox" name="patMove" value="부축 필요">부축 필요</label>
-                        <label><input type="checkbox" name="patMove" value="홀로 가능">홀로 가능</label>
+                        <label><input type="radio" name="patMove" value="불가능">불가능</label>
+                        <label><input type="radio" name="patMove" value="부축 필요">부축 필요</label>
+                        <label><input type="radio" name="patMove" value="홀로 가능">홀로 가능</label>
                     </div>
                     <div>
                         <h3>욕창 환자 여부</h3>
@@ -169,6 +169,29 @@
             </form>
         </div>
     </section>
-<!-- </div> -->
+    <script>
+    
+    function DaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+                // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                var addr = ''; // 주소 변수
+                //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+                
+                document.getElementById("place_home").value = addr;
+            }
+        }).open();
+    }
+    
+    
+    </script>
+
 
 <%@ include file="/views/common/footer.jsp" %>
