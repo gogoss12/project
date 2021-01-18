@@ -62,6 +62,7 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		String upfileName = mr.getOriginalFileName("upfile");
 		String contentType = mr.getContentType("upfile");
 		
+		
 		System.out.println("fileName : " + fileName + ", upfileName : " + upfileName + ", contentType : " + contentType);
 		
 		// 사진 등록 외 나머지 부분
@@ -87,10 +88,11 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		
 		int result = new CareService().enrollcare(care, careImage);
 		
-//		careImage.setCareNo(Integer.parseInt(mr.getParameter("careNo")));
 		careImage.setImgPath(mr.getParameter("imgPath"));
-		careImage.setImgNameOrg(mr.getParameter(fileName));
-		careImage.setImgNameSav(mr.getParameter(upfileName));
+		careImage.setImgNameOrg(mr.getFilesystemName("upfile"));
+		System.out.println("mr.getFilesystemName(\"upfile\") :"  + mr.getFilesystemName("upfile"));
+		System.out.println("fileName.trim() : " + fileName.trim());
+		careImage.setImgNameSav(upfileName.toString());
 		
 //		String fileName = mr.getFilesystemName("upfile");    
 //		String upfileName = mr.getOriginalFileName("upfile");

@@ -4,15 +4,10 @@ import static com.care.mvc.common.jdbc.JDBCTemplate.close;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 import com.care.mvc.care.model.vo.Care;
 import com.care.mvc.care.model.vo.CareImage;
-import com.care.mvc.member.model.vo.Member;
 
 public class CareDao {
 //	private int findCareNo(Connection conn, Care care) {
