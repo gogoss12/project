@@ -1,6 +1,5 @@
 package com.care.mvc.care.controller;
 
-
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,8 +16,6 @@ import com.care.mvc.care.model.vo.CareImage;
 import com.care.mvc.care.model.vo.PatientWanted;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
-
-
 
 @WebServlet("/enroll/profile/care")
 public class EnrollProfileCareServlet extends HttpServlet {
@@ -51,9 +48,12 @@ public class EnrollProfileCareServlet extends HttpServlet {
 //			return;
 //		}
 
+		System.out.println("여기까진 온거니?");
 		
 		// 나중에 업로드 위치 경로를 바꿔야한다.
 		String path = getServletContext().getRealPath("upload/carephoto");
+		
+		System.out.println("path는 받았니?");
 		
 		int maxSize = 1024 * 1024 * 10;  // 10mb
 		

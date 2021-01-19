@@ -14,7 +14,7 @@
 				style="width: 600px;" enctype="multipart/form-data">
 
         <br><br><br>
-
+                        
         <div class="mb-3">
             <label for="formFile" class="form-label">프로필 사진 등록</label>
             <input class="form-control" type="file" id="formFile" name="upfile" style="width: fit-content;">
@@ -168,7 +168,3 @@
 	</section>
 	
 <%@ include file="/views/common/footer.jsp" %>
-
-
-
-

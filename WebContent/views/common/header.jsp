@@ -27,13 +27,8 @@
 <head>
 <meta charset="UTF-8">
 <!-- font awesome (지우지 마세요!) -->
-<script src="https://use.fontawesome.com/773f60a924.js"></script>
-<!-- bootstrap  -->
-<!-- <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1"> -->
+<link rel="stylesheet" href="../../image/icon/font-awesome-4.7.0/css/font-awesome.min.css">
 <title>Insert title here</title>
-<!-- bootstrap  -->
-<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous"> -->
 <link rel="stylesheet"
 	href="<%=request.getContextPath()%>/css/style.css">
 <script src="<%=request.getContextPath()%>/js/jquery-3.5.1.js"></script>
@@ -89,7 +84,7 @@
 				<li><a href="<%=request.getContextPath()%>/intro">소개</a></li>
 				<li><a href="#">매칭</a>
 					<ul id="sub-menu">
-						<li><a href="#">매칭검색</a></li>
+						<li><a href="<%=request.getContextPath()%>/match/search"">매칭검색</a></li>
 					</ul>
 				</li>
 				<li><a href="#">서비스</a>
