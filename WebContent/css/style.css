@@ -23,20 +23,15 @@
 	text-align: center;
 }
 
-#searchMatchForm .checkbox {
+#searchMatchForm label {
 	display: inline-block;
 	padding: 10px;
 }
 
-#searchMatchForm .radio {
+/* #searchMatchForm .dropdown {
 	display: inline-block;
 	padding: 10px;
-}
-
-#searchMatchForm .dropdown {
-	display: inline-block;
-	padding: 10px;
-}
+} */
 
 #searchBtn {
 	display: block;
@@ -89,6 +84,17 @@
 	background-color: aquamarine;
 	color: white;
   }
+
+#searchOptions {
+	display: flex;
+	align-content: space-around;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	width: 900px;
+	height: 100px;
+	background-color: aquamarine;
+	margin: 0 auto;
+}
 
 /* 매칭검색 end */
 
@@ -603,7 +609,7 @@ input[type=reset]{
 	margin: center;
 }
  
- /* 요양보호사 보호자 소개*/
+ /* 요양보호사&보호자 소개페이지*/
 .wrap, .wrap *{
       border: 1px solid black;
       display: block;
@@ -619,13 +625,6 @@ input[type=reset]{
    width: 300px;
    background-color: #fff0f5;
           
-}
-
-/*요양보호사 프로필 */
-
-
-#mucenter {
-	text-align: center;
 }
 
 /* 폼이 화면 끝까지 가서 줄이기 위해 필요한 부분 */
@@ -683,4 +682,69 @@ input[type=reset]{
 .patient_details b {
 	padding-left: 5px;
 	padding-right: 5px;
+}
+
+/* 요양보호사 프로필*/
+
+#mucenter {
+	text-align: center;
+}
+
+#mucenter h1, h3 {
+	padding-bottom: 20px;
+	padding-top: 20px;
+	border-radius: 10px;
+	background: beige;
+}
+
+#mucenter h6 {
+	font-size: 13px;
+	padding-bottom: -10px;
+}
+
+#mucenter  label {
+	padding-right: 10px;
+	padding-bottom: 20px;
+	margin-left: 10px;
+}
+
+#mucenter input, [type=button] {
+	border-radius: 5px;
+}
+
+#mucenter textarea {
+	resize: none;
+	overflow: scroll;
+	border-radius: 5px;
+}
+
+#mucenter.pointer {
+	background-color: black;
+}
+
+#mucenter input[type=text] {
+	padding: 3px 5px;
+	margin: 2px 0;
+	border: 1px solid #ccc;
+	font-size: 10pt;
+	box-sizing: border-box;
+	border-radius: 3px
+}
+
+#mucenter input[type=number] {
+	padding: 3px 5px;
+	margin: 2px 0;
+	border: 1px solid #ccc;
+	font-size: 10pt;
+	box-sizing: border-box;
+	border-radius: 3px
+}
+
+#mucenter select {
+	width: 90px;
+	padding: .3em .3em;
+	border: 1px solid #999;
+	font-family: inherit;
+	background: url('arrow.jpg') no-repeat 95% 50%;
+	border-radius: 0px;
 }

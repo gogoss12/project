@@ -21,7 +21,6 @@ public class PatientWanted {
 		this.wantedIll = wantedIll;
 	}
 
-
 	public String getWantedGrade() {
 		return wantedGrade;
 	}
@@ -46,7 +45,6 @@ public class PatientWanted {
 		return wantedAge;
 	}
 
-
 	public void setWantedAge(String wantedAge) {
 		this.wantedAge = wantedAge;
 	}
@@ -62,13 +60,10 @@ public class PatientWanted {
 	}
 
 
-
 	@Override
 	public String toString() {
 		return "PatientWanted [wantedGrade=" + wantedGrade + ", wantedGen=" + wantedGen + ", wantedAge=" + wantedAge
 				+ ", wantedIll=" + wantedIll + "]";
 	}
-
 	
 }
-	

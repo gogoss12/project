@@ -39,6 +39,7 @@
                     </div>
                     <div id="msg_2-2-section">
 
+<<<<<<< HEAD
                         <table id="msg_table">
                             <tr>
                                 <td id="td-1"><input type="checkbox" name="delete_check" value="delete_check"></td>
@@ -99,8 +100,19 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
-    </div>
-</section>
+            </form>
+        </div>
+    </section>
+    <script>
+    $(document).ready(function() {
+		 $('#checkAll').change(function () {
+            if ($(this).prop('checked')) {
+                $('input:checkbox').prop('checked', true);
+            } else {
+                $('input:checkbox').prop('checked', false);
+            }
+        })
+	});
+    
+    </script>
     <%@ include file="/views/common/footer.jsp" %>

@@ -99,7 +99,15 @@
 	</div>
 </section>
 <script>
-	
+	$(document).ready(function() {
+		 $('#checkAll').change(function () {
+             if ($(this).prop('checked')) {
+                 $('input:checkbox').prop('checked', true);
+             } else {
+                 $('input:checkbox').prop('checked', false);
+             }
+         });
+	});
 	
 
 </script>
