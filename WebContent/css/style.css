@@ -357,8 +357,18 @@ span {
     background: none;
     text-align: left;
 }
+
+#msg_table input[type=checkbox]{
+	width: 100%
+}
+
 #msg_table td{
     border: 1px solid;
+}
+
+#msg_table td>a{
+	text-decoration: none;
+	color: black;
 }
 
 #msg_2-2-footer div{
