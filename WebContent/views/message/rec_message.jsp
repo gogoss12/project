@@ -3,7 +3,7 @@
 <%@page import="com.care.mvc.message.model.vo.ReceiveMessage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+	<link rel="stylesheet" href="../../css/style.css">
 <%
 	ArrayList<ReceiveMessage> list = (ArrayList)request.getAttribute("list");
 	
@@ -29,22 +29,22 @@
 				</div>
 				<div id="msg_2-2">
 					<div id="msg_2-2-header">
-						<input type="button" name="delete_msg" onclick="delete_msg()" value="X삭제"> 
+						<input type="button" name="delete_msg" onclick="delete_msg()" value="X삭제" style="color: red;"> 
 						<input type="text" name="find_id" placeholder="아이디 검색 : "> 
 						<input type="button" name="search_id" value="검색">
 					</div>
 					<div id="msg_2-2-section">
 					<table id="msg_table">
 								<tr>
-									<td><input type="checkbox" id="checkAll" name="delete_check" value="delete_check"></td>
-									<td id="td-2" style="width: 80px;"><b>보낸사람</b></td>
-									<td id="td-3"><b>내용</b>	</td>
-									<td id="td-4" style="width: 120px;"><b>받은날짜</b></td>
+									<td id="td-1"><input type="checkbox" name="delete_check" value="delete_check"></td>
+									<td id="td-1" style="width: 150px;"><b>보낸사람</b></td>
+									<td id="td-1"><b>내용</b>	</td>
+									<td id="td-1" style="width: 200px;"><b>받은날짜</b></td>
 								</tr>
 								
 								<% if(list.isEmpty()) { %>
 								<tr>
-									<td colspan="6">
+									<td id="td-2" colspan="6">
 										받은 메세지가 존재하지 않습니다.
 									</td>
 								</tr>
@@ -53,7 +53,7 @@
 											if(loginMember.getMemId().equals(revM.getMem_id())){									
 								%>								
 								<tr>
-									<td id="td-1">
+									<td id="td-2" >
 										<input type="checkbox" name="delete_check" value="delete_check">
 									</td>
 									<td id="td-2" style="width: 80px;">
@@ -61,12 +61,12 @@
 											<b><%=revM.getSend_id()%></b>
 										</a>
 									</td>
-									<td id="td-3">
+									<td id="td-2">
 										<a href="#">
 											<b><%=revM.getRec_body()%></b>
 										</a>
 									</td>
-									<td id="td-4" style="width: 120px;">
+									<td id="td-2" style="width: 120px;">
 										<b><%=revM.getRec_date()%></b>
 									</td>
 								</tr>

@@ -1,12 +1,20 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<<<<<<< HEAD
     <%@ include file="/views/common/header.jsp" %>
 <%
+=======
+    <%
+>>>>>>> f0162b02464bb7cae7f9fbb6f17af8ad9cce56aa
 
-	String userId = (String)request.getAttribute("userId");
+   String userId = (String)request.getAttribute("userId");
 
 %>
+<<<<<<< HEAD
 
+=======
+<%@ include file="/views/common/header.jsp" %>
+>>>>>>> f0162b02464bb7cae7f9fbb6f17af8ad9cce56aa
         <script>
             function career_detail() {
                 var career1;
@@ -45,7 +53,7 @@
              enctype="multipart/form-data">
 
         <br><br><br>
-
+                        
         <div class="mb-3">
             <label for="formFile" class="form-label">프로필 사진 등록</label>
             <input class="form-control" type="file" id="formFile" name="upfile" style="width: fit-content;">
@@ -130,33 +138,32 @@
 
         <br>
 
-        <h3><span class="badge bg-secondary">희망근무위치</span></h3>
-        <label >위치: <input type="text" name="carePlace" id="hopeplace"></label>
-      
+    <h3><span class="badge bg-secondary">희망근무위치</span></h3>
+    <label >위치: <input type="text" name="carePlace" id="hopeplace"></label>
+  
+    <br><br>
+
+    <h3><span class="badge bg-secondary">희망급여</span></h3>
+        <div>
+            <input type="checkbox" name="careSal" value="협의가능">협의가능 &nbsp;
+            <input type="checkbox" name="careSal" value="월급">월급    &nbsp;
+            <input type="checkbox" name="careSal" value="시급">시급    &nbsp;
+        </div>
+       
         <br><br>
 
-        <h3><span class="badge bg-secondary">희망급여</span></h3>
-            <div>
-                <input type="checkbox" name="careSal" value="협의가능">협의가능 &nbsp;
-                <input type="checkbox" name="careSal" value="월급">월급    &nbsp;
-                <input type="checkbox" name="careSal" value="시급">시급    &nbsp;
-            </div>
-           
-            <br><br>
+        <hr>
+    <h2 id="pointer">케어가능 환자</h2> <br><br>
+    
 
-            <hr>
-        <h2 id="pointer">케어가능 환자</h2> <br><br>
-        
- 
-        <h3><span class="badge bg-secondary">환자상태1</span></h3>
-        <label>성별: </label> &nbsp;
+    <h3><span class="badge bg-secondary">환자상태1</span></h3>
+    <label>성별: </label> &nbsp;
 
-            <label><input type="radio" name="wantedgen" value="남">남</label> &nbsp;
-            <label><input type="radio" name="wantedgen" value="여">여</label>
+        <label><input type="radio" name="wantedgen" value="남">남</label> &nbsp;
+        <label><input type="radio" name="wantedgen" value="여">여</label>
 
+    <br><br>
 
-        <br><br>
-        
         <label>나이: </label>
             <select>
                 <option> 50대 이하</option>
@@ -210,13 +217,8 @@
             <input type="reset" value="취소하기">
             <input type="hidden" name="memId" value=<%= userId %>>
         </div>
-        </form>
-    </div>
-    </section>
- 
-	
+    
+    </form>
+</div>
+</section>
 <%@ include file="/views/common/footer.jsp" %>
-
-
-
-

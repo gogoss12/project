@@ -10,11 +10,9 @@ public class PatientWanted {
 	private String wantedIll;
 	
 
-
 	public PatientWanted() {
 	}
-
-
+	
 	public PatientWanted(String wantedGrade, String wantedGen, String wantedAge, String wantedIll) {
 		super();
 		this.wantedGrade = wantedGrade;
@@ -28,11 +26,9 @@ public class PatientWanted {
 	}
 
 
-
 	public void setWantedGrade(String wantedGrade) {
 		this.wantedGrade = wantedGrade;
 	}
-
 
 
 	public String getWantedGen() {
@@ -40,23 +36,18 @@ public class PatientWanted {
 	}
 
 
-
 	public void setWantedGen(String wantedGen) {
 		this.wantedGen = wantedGen;
 	}
-
 
 
 	public String getWantedAge() {
 		return wantedAge;
 	}
 
-
-
 	public void setWantedAge(String wantedAge) {
 		this.wantedAge = wantedAge;
 	}
-
 
 
 	public String getWantedIll() {
@@ -64,11 +55,9 @@ public class PatientWanted {
 	}
 
 
-
 	public void setWantedIll(String wantedIll) {
 		this.wantedIll = wantedIll;
 	}
-
 
 
 	@Override
@@ -76,10 +65,5 @@ public class PatientWanted {
 		return "PatientWanted [wantedGrade=" + wantedGrade + ", wantedGen=" + wantedGen + ", wantedAge=" + wantedAge
 				+ ", wantedIll=" + wantedIll + "]";
 	}
-
-
-
-
-    
-
+	
 }
