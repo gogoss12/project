@@ -40,7 +40,7 @@
 
                             <table id="msg_table">
                                 <tr>
-									<td><input type="checkbox" name="delete_check" value="delete_check"></td>
+									<td><input type="checkbox" id="checkAll" name="delete_check" value="delete_check"></td>
 									<td id="td-2" style="width: 80px;"><b>받은사람</b></td>
 									<td id="td-3"><b>내용</b>	</td>
 									<td id="td-4" style="width: 120px;"><b>보낸날짜</b></td>
@@ -102,4 +102,16 @@
             </form>
         </div>
     </section>
+    <script>
+    $(document).ready(function() {
+		 $('#checkAll').change(function () {
+            if ($(this).prop('checked')) {
+                $('input:checkbox').prop('checked', true);
+            } else {
+                $('input:checkbox').prop('checked', false);
+            }
+        })
+	});
+    
+    </script>
     <%@ include file="/views/common/footer.jsp" %>
