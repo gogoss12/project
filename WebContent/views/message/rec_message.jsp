@@ -1,3 +1,4 @@
+<%@page import="com.care.mvc.message.model.vo.SendMessage"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.care.mvc.message.model.vo.ReceiveMessage"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -5,9 +6,7 @@
 
 <%
 	ArrayList<ReceiveMessage> list = (ArrayList)request.getAttribute("list");
-	ReceiveMessage r = new ReceiveMessage();
-	System.out.println(r.getMem_id());
-	System.out.println(session.getAttribute("loginMember"));
+	
 %>
 <%@ include file="/views/common/header.jsp"%>
 <section>
@@ -19,18 +18,18 @@
 			<div id="msg_2">
 				<div id="msg_2-1">
 					<div id="write_msg">
-						<input type="button" name="write" value="쪽지쓰기">
+                        <a href="<%= request.getContextPath()%>/msg/write">쪽지쓰기</a>
+                    </div>
+					<div>
+						<a href="<%= request.getContextPath()%>/msg/get"> 받은쪽지함 </a>
 					</div>
 					<div>
-						<a href="#"> 받은쪽지함 </a>
-					</div>
-					<div>
-						<a href=""> 보낸쪽지함 </a>
+						<a href="<%= request.getContextPath()%>/msg/send"> 보낸쪽지함 </a>
 					</div>
 				</div>
 				<div id="msg_2-2">
 					<div id="msg_2-2-header">
-						<input type="button" name="delete_msg" value="X삭제"> 
+						<input type="button" name="delete_msg" onclick="delete_msg()" value="X삭제"> 
 						<input type="text" name="find_id" placeholder="아이디 검색 : "> 
 						<input type="button" name="search_id" value="검색">
 					</div>
@@ -40,7 +39,7 @@
 									<td><input type="checkbox" name="delete_check" value="delete_check"></td>
 									<td id="td-2" style="width: 80px;"><b>보낸사람</b></td>
 									<td id="td-3"><b>내용</b>	</td>
-									<td id="td-4" style="width: 120px;"><b>날짜</b></td>
+									<td id="td-4" style="width: 120px;"><b>받은날짜</b></td>
 								</tr>
 								
 								<% if(list.isEmpty()) { %>
@@ -50,8 +49,8 @@
 									</td>
 								</tr>
 								<% }else { 
-									for(ReceiveMessage recM : list){
-										if(recM.getMem_id().equals(loginMember.getMemId())){
+										for(ReceiveMessage revM : list){
+											if(loginMember.getMemId().equals(revM.getMem_id())){									
 								%>								
 								<tr>
 									<td id="td-1">
@@ -59,16 +58,16 @@
 									</td>
 									<td id="td-2" style="width: 80px;">
 										<a href="#">
-											<b><%=recM.getSend_id()%></b>
+											<b><%=revM.getSend_id()%></b>
 										</a>
 									</td>
 									<td id="td-3">
 										<a href="#">
-											<b><%=recM.getRec_body()%></b>
+											<b><%=revM.getRec_body()%></b>
 										</a>
 									</td>
 									<td id="td-4" style="width: 120px;">
-										<b><%=recM.getRec_date()%></b>
+										<b><%=revM.getRec_date()%></b>
 									</td>
 								</tr>
 									<%}
@@ -99,4 +98,9 @@
 		</form>
 	</div>
 </section>
+<script>
+	
+	
+
+</script>
 <%@ include file="/views/common/footer.jsp"%></>

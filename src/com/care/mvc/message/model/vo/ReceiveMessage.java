@@ -6,7 +6,7 @@ public class ReceiveMessage {
 
 	private int rec_no;
 	
-	private String send_id;
+	private String send_id; //보낸사람
 	
 	private String rec_body;
 	

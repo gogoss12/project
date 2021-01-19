@@ -13,12 +13,13 @@ import javax.servlet.http.HttpSession;
 import com.care.mvc.member.model.vo.Member;
 import com.care.mvc.message.model.service.MessageService;
 import com.care.mvc.message.model.vo.ReceiveMessage;
+import com.care.mvc.message.model.vo.SendMessage;
 
-@WebServlet("/msg/get")
-public class ReceiveMessageServlet extends HttpServlet {
+@WebServlet("/msg/send")
+public class SendMessageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public ReceiveMessageServlet() {
+    public SendMessageServlet() {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,11 +29,10 @@ public class ReceiveMessageServlet extends HttpServlet {
 		Member loginMember = session != null ? (Member)session.getAttribute("loginMember") : null; 
 		// 비로그인시 로그인 페이지로 이동
 		if(loginMember != null) {
-			ArrayList<ReceiveMessage> list = new MessageService().RevListmsg();
-			System.out.println(loginMember.getMemId());
+			ArrayList<SendMessage> list = new MessageService().SendListmsg();
 			
 			request.setAttribute("list", list);
-			request.getRequestDispatcher("/views/message/rec_message.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/message/send_message.jsp").forward(request, response);
 		}else {
 			msg = "로그인이 필요한 페이지입니다.";
 			loc = "/member/login";
@@ -45,10 +45,6 @@ public class ReceiveMessageServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
-		
 	}
 
 }
