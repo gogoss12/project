@@ -3,18 +3,13 @@
 <<<<<<< HEAD
     <%@ include file="/views/common/header.jsp" %>
 <%
-=======
-    <%
->>>>>>> f0162b02464bb7cae7f9fbb6f17af8ad9cce56aa
+
 
    String userId = (String)request.getAttribute("userId");
 
 %>
-<<<<<<< HEAD
 
-=======
-<%@ include file="/views/common/header.jsp" %>
->>>>>>> f0162b02464bb7cae7f9fbb6f17af8ad9cce56aa
+
         <script>
             function career_detail() {
                 var career1;
