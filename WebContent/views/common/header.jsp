@@ -40,7 +40,6 @@
 </head>
 <body>
 	<header>
-
 		<div id="wrapper">
             <div id="logo">
                	 <a href="<%=request.getContextPath()%>" >
@@ -86,15 +85,20 @@
 				<li><a href="<%=request.getContextPath()%>/intro">소개</a></li>
 				<li><a href="#">매칭</a>
 					<ul id="sub-menu">
-						<li><a href="#">매칭검색</a></li>
+						<li>
+							<a href="#">매칭검색</a>
+						</li>
 					</ul>
 				</li>
 				<li><a href="#">서비스</a>
 					<ul id="sub-menu">
-						<li><a href="#">쪽지</a></li>
+						<li><a id="msg" href="<%=request.getContextPath()%>/msg/get">쪽지</a></li>
 						<li><a href="#">지도</a></li>
 					</ul>
 				</li>
 			</ul>
 		</nav>
 	</header>
+	
+	<script>
+	</script>

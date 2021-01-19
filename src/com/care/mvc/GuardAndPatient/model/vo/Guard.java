@@ -2,13 +2,13 @@ package com.care.mvc.GuardAndPatient.model.vo;
 
 public class Guard {
 
-	int guard_no;
+	private int guard_no;
 	
-	String guard_gen;
+	private String guard_gen;
 	
-	String guard_pat;
+	private String guard_pat;
 	
-	String memId;
+	private String memId;
 
 	public Guard() {
 		

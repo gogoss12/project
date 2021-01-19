@@ -31,8 +31,6 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		Cookie cookie = new Cookie("userId", request.getParameter("userId")); 
 		
-		System.out.println("cookie.getName : " + cookie.getName());
-		System.out.println(cookie.getValue());
 		response.addCookie(cookie);
 		
 		request.setAttribute("userId", userId);
