@@ -31,8 +31,6 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		Cookie cookie = new Cookie("userId", request.getParameter("userId")); 
 		
-		System.out.println("cookie.getName : " + cookie.getName());
-		System.out.println(cookie.getValue());
 		response.addCookie(cookie);
 		
 		request.setAttribute("userId", userId);
@@ -109,9 +107,7 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		patientwanted.setWantedIll(String.join(",", mr.getParameter("wantedill")));
 		patientwanted.setWantedGrade(String.join(",", mr.getParameter("wantedgra")));
 		
-		
 	    resultPW = new CareService().enrollPatientWanted(patientwanted);
-		//----------------------------------------------------------------------------------
 		
 		if(resultC > 0 && resultPW > 0 && resultI > 0) {
 			msg = "프로필 등록 성공";
