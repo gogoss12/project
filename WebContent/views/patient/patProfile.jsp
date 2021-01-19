@@ -163,8 +163,8 @@
                         <h3>기타사항(선택)</h3>
                         <textarea name="patEtc" id="paptEtc" cols="50" rows="4"></textarea>
                     </div>
-                <input type="reset" value="취소하기">
                 <input type="submit" value="등록하기">
+                <input type="reset" value="취소하기">
                 <input type="hidden" name="userId" value=<%= userId %>>
             </form>
         </div>

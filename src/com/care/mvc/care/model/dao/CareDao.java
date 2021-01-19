@@ -55,7 +55,7 @@ public class CareDao {
 
 				ppstmt.setString(1, patientwanted.getWantedGrade());
 				ppstmt.setString(2, patientwanted.getWantedGen());
-				ppstmt.setInt(3, patientwanted.getWantedAge());
+				ppstmt.setString(3, patientwanted.getWantedAge());
 				ppstmt.setString(4, patientwanted.getWantedIll());
 		
 				resultPW = ppstmt.executeUpdate();

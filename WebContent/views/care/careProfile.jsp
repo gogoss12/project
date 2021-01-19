@@ -5,13 +5,42 @@
 	String userId = (String)request.getAttribute("userId");
 
 %>
-<%@ include file="/views/common/header.jsp" %>
-	<section>
-		<div id="mucenter">
-        	<h1 id="pointer">요양보호사 프로필 등록</h1>
+        <script>
+            function career_detail() {
+                var career1;
+                career1 = document.all["carshow"].insertRow();
+    
+                // 경력사항 상세입력 부분 value 값은 여기에 넣어야 DB로 넣을 수 있으니 확인바람
 
-	<form name="careEnrollFrm" action="<%= request.getContextPath()%>/enroll/profile/care" method="post"
-				style="width: 600px;" enctype="multipart/form-data">
+                // 근무병원
+                var hos_place = career1.insertCell();
+                hos_place.innerHTML = "<input type='text' id='hosp' name='careHistory1'>";
+    
+                // 업무
+                var your_job = career1.insertCell();
+                your_job.innerHTML = "<input type='text' id='hosp' name='careHistory2'>";
+    
+                // 기간1
+                var period1 = career1.insertCell();
+                period1.innerHTML = "<input type='date' id='hosp' name='careHistoryDate1'>";
+                
+                // 중간에 ~ 표시
+                var period2 = career1.insertCell();
+                period2.innerHTML = "<p> &nbsp ~ &nbsp</p>";
+                
+                // 기간2
+                var period2 = career1.insertCell();
+                period2.innerHTML = "<input type='date' id='hosp' name='careHistoryDate2'>";
+            }
+        </script>
+
+<section>
+      <div id="mucenter">
+            <div id="profile1">
+           <h1 id="pointer">요양보호사 프로필 등록</h1>
+
+   <form name="careEnrollFrm" action="<%= request.getContextPath()%>/enroll/profile/care" method="post"
+             enctype="multipart/form-data">
 
         <br><br><br>
                         
@@ -32,6 +61,7 @@
         <br><br>
 
         <label id="firstTitle">자격증(중복 선택 가능):</label> <br>
+        <hr>
             <div>
                 <label><input type="checkbox" name="careLicense" value="없음">없음</label> &nbsp; 
                 <label><input type="checkbox" name="careLicense" value="요양보호사">요양보호사</label> &nbsp; 
@@ -41,12 +71,12 @@
                 <label><input type="checkbox" name="careLicense" value="물리치료사">물리치료사</label> &nbsp; 
                 <label><input type="checkbox" name="careLicense" value="직업치료사">직업치료사</label> &nbsp; 
             </div>
-            
+        </div>   
         &nbsp; <br><br>
 
-        <h2><span class="badge bg-secondary">경력사항 상세 입력</span></h2>
+        <h3><span class="badge bg-secondary">경력사항 상세 입력</span></h3>
         
-        <label>경력 : 
+        <label >경력 :   
             <select name="careYears">
                 <option selected>전체</option>
                 <option value="신규">신규</option>
@@ -55,19 +85,26 @@
                 <option value="5 ~ 10년">5 ~ 10년</option>
                 <option value="10년 이상">10년 이상</option>
             </select>
-        </label>
-
-        <br><br>
+        </label> 
         
-        <div>
-            <h6>회사명 : <input type="text" name="careHistory1"></h6>
-            <h6>&nbsp;&nbsp; 업무 :  <input type="text" name="careHistory2"></h6>
-            <h6>기간 : <input type="date" name="careHistoryDate1"> ~ <input type="date" name="careHistoryDate2"></h6>
-        </div>
-       
-        <h3>+</h3>
+        <br><br>
 
-        <h2><span class="badge bg-secondary">케어하는데 도움되는 장점</span></h2>
+        <input type="button" id="addBtn" name="addBtn" value="추가" 
+                onclick="career_detail()" style="margin-left: 600px;">
+        
+            <br>
+        <div style="text-align: center;">
+            <table style="margin:0 auto;">
+                <tr>
+                    <td style="width: 170px; border-bottom: 1px solid;">근무병원</td>
+                    <td style="width: 170px; border-bottom: 1px solid;">업무</td>
+                    <td style="width: 300px; border-bottom: 1px solid;" colspan="3">기간</td>
+                </tr>
+                <tbody id="carshow"></tbody>
+            </table>
+        </div>
+
+        <h3><span class="badge bg-secondary">케어하는데 도움되는 장점</span></h3>
         
         <div>
             <label><input type="checkbox" name="carePlus" value="없음"> &nbsp;없음</label>
@@ -80,7 +117,7 @@
 
         <br>
 
-        <h2><span class="badge bg-secondary">희망근무시간(중복선택 가능)</span></h2>
+        <h3><span class="badge bg-secondary">희망근무시간(중복선택 가능)</span></h3>
             <div>
                 <label><input type="checkbox" name="careTime" value="주중">주중</label> &nbsp;
                 <label><input type="checkbox" name="careTime" value="주말">주말</label> &nbsp;
@@ -91,23 +128,25 @@
 
         <br>
 
-        <h2><span class="badge bg-secondary">희망근무위치</span></h2>
+        <h3><span class="badge bg-secondary">희망근무위치</span></h3>
         <label >위치: <input type="text" name="carePlace" id="hopeplace"></label>
       
         <br><br>
 
-        <h2><span class="badge bg-secondary">희망급여</span></h2>
+        <h3><span class="badge bg-secondary">희망급여</span></h3>
             <div>
                 <input type="checkbox" name="careSal" value="협의가능">협의가능 &nbsp;
                 <input type="checkbox" name="careSal" value="월급">월급    &nbsp;
                 <input type="checkbox" name="careSal" value="시급">시급    &nbsp;
             </div>
-       
-        <br><br>
+           
+            <br><br>
 
-        <h1 id="pointer">케어가능 환자</h1> <br><br>
-
-        <h2><span class="badge bg-secondary">환자상태1</span></h2>
+            <hr>
+        <h2 id="pointer">케어가능 환자</h2> <br><br>
+        
+ 
+        <h3><span class="badge bg-secondary">환자상태1</span></h3>
         <label>성별: </label> &nbsp;
 
             <label><input type="radio" name="wantedgen" value="남">남</label> &nbsp;
@@ -117,11 +156,18 @@
         <br><br>
         
         <label>나이: </label>
-            <input type="number" name="age" style="width: 60px;" min="1" required>세
+            <select>
+                <option> 50대 이하</option>
+                <option> 50대 </option>
+                <option> 60대 </option>
+                <option> 70대 </option>
+                <option> 80대 이상 </option>
+            </select>
+       
         
         <br><br>
 
-        <h2><span class="badge bg-secondary">환자상태2</span></h2>
+        <h3><span class="badge bg-secondary">환자상태2</span></h3>
             <div>질병:   &nbsp;
 
                 <label><input type="checkbox" name="wantedill" value="없음">없음</label> &nbsp;
@@ -137,9 +183,9 @@
 
             <br>    
 
-        <h2><span class="badge bg-secondary">환자상태3</span></h2>
+        <h3><span class="badge bg-secondary">환자상태3</span></h3>
             <div>장기요양 등급:  &nbsp;
-
+          
                 <label><input type="checkbox" name="wantedgra" value="없음">없음</label> &nbsp;
                 <label><input type="checkbox" name="wantedgra" value="1등급">1등급</label> &nbsp;
                 <label><input type="checkbox" name="wantedgra" value="2등급">2등급</label> <br>
@@ -153,18 +199,18 @@
         <br>
 
         <h2><span class="badge bg-secondary">소개</span></h2>
-        <textarea cols="60" rows="10" name="careIntro" placeholder="내용을 입력해주세요." style="resize: none; text-align: left;">
-        </textarea>
+        <textarea cols="60" rows="10" name="careIntro" placeholder="내용을 입력해주세요." style="resize: none; text-align: left;"></textarea>
 
         <br><br>
        
-        <div>
+        <div class="btn">
             <input type="submit" id="careenroll" value="등록하기">
             <input type="reset" value="취소하기">
             <input type="hidden" name="memId" value=<%= userId %>>
         </div>
         </form>
     </div>
-	</section>
+    </section>
+ 
 	
 <%@ include file="/views/common/footer.jsp" %>

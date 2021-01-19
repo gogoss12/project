@@ -2,51 +2,51 @@ package com.care.mvc.GuardAndPatient.model.vo;
 
 public class Patient {
 	
-	int pat_no;
+	private int pat_no;
 	
-	int guard_no;
+	private int guard_no;
 	
-	String pat_place;
+	private String pat_place;
 	
-	String pat_period;
+	private String pat_period;
 	
-	String pat_hop_time;
+	private String pat_hop_time;
 	
-	String pat_name;
+	private String pat_name;
 	
-	int pat_age;
+	private int pat_age;
 	
-	String pat_gen;
+	private String pat_gen;
 	
-	int pat_kg;
+	private int pat_kg;
 	
-	String pat_infect;
+	private String pat_infect;
 	
-	String pat_grade;
+	private String pat_grade;
 	
-	String pat_sanit;
+	private String pat_sanit;
 	
-	String pat_paral;
+	private String pat_paral;
 	
-	String pat_move;
+	private String pat_move;
 	
-	String pat_bed;
+	private String pat_bed;
 
-	String pat_cogdis;
+	private String pat_cogdis;
 	
-	String pat_bathroom;
+	private String pat_bathroom;
 	
-	String pat_bowel_mn;
+	private String pat_bowel_mn;
 	
-	String pat_ostomy;
+	private String pat_ostomy;
 	
-	String pat_help_eat;
+	private String pat_help_eat;
 	
-	String pat_suction;
+	private String pat_suction;
 	
-	String pat_guard_gen;
+	private String pat_guard_gen;
 
-	String pat_etc;
+	private String pat_etc;
 	
 	public Patient() {
 		

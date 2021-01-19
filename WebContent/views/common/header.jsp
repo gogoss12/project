@@ -3,8 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
 
-
-
 <%
 	String saveId = null;
 	Member loginMember = (Member)session.getAttribute("loginMember");
@@ -37,9 +35,6 @@
 </head>
 <body>
 	<header>
-
-
-
 		<div id="wrapper">
             <div id="logo">
                	 <a href="<%=request.getContextPath()%>" >
@@ -47,8 +42,9 @@
                 </a>
             </div>
 			<div id="page">
-
-				<h1>Carepool</h1>
+				 <a href="<%=request.getContextPath()%>" style="text-decoration: none;">
+					<h1>Carepool</h1>
+				</a>
 			</div>
 			<div id="login">
 			<% if (loginMember == null) { %>	
@@ -89,10 +85,13 @@
 				</li>
 				<li><a href="#">서비스</a>
 					<ul id="sub-menu">
-						<li><a href="#">쪽지</a></li>
+						<li><a id="msg" href="<%=request.getContextPath()%>/msg/get">쪽지</a></li>
 						<li><a href="#">지도</a></li>
 					</ul>
 				</li>
 			</ul>
 		</nav>
 	</header>
+	
+	<script>
+	</script>
