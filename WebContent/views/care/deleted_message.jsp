@@ -7,9 +7,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Message</title>
+    <title>Document</title>
 </head>
+<style>
+/* -------------------------------------------------------------------------------- */
 
+    /* ========================================================================= */
+
+                        /*  삭제된 메세지함은  */
+
+                        /*  관리자 페이지 작업할 때 해야함  */
+
+    /* ========================================================================= */
+</style>
 <body>
    <header>
       <div id="wrapper">
@@ -125,24 +135,24 @@
                                 <% if(list.isEmpty()) { %>
                                     <tr>
                                         <td id="td-2" colspan="4">  
-                                            보낸 쪽지가 없습니다.
+                                            삭제한 쪽지가 없습니다.
                                         </td>
                                     </tr>			
                                 <% } else { 
-                                    for(Message message) : list <!-- list도 바꿔야함 -->) {
+                                    for(Message message) : list <!-- 이부분도 바꿔야함 -->) {
                                 %>
                                 <tr>
                                     <td id="td-2">
                                         <input type="checkbox" name="delete_check" value="delete_check">
                                     </td>
-                                    <td id="td-2" name="rec_id" value="보낸사람"><%= member.getUserId() %></td>
+                                    <td id="td-2" name="rec_id" value="작성자"><%= <!-- 연결지어야하는 부분 --> %></td>
                                             <!-- <td id="td-3" name="msg_contents" value="내용">			
                                                 <a href="#">                            <!-- 내용클릭이 가능하게 만드는부분 -->
                                                     <%= <!-- 연결지어야하는 부분 --> %>   
                                                 <!-- </a>
                                             </td> --> 
-                                    <td id="td-2" name="send_body" value="내용"><%= <!-- 채워야하는 부분 --> %></td>  		
-                                    <td id="td-2" name="send_date" value="날짜" style="width: 120px;"><%=  <!-- 채워야하는 부분 --> %></td>
+                                    <td id="td-2" name="send_body" value="내용"><%= <!-- 연결지어야하는 부분 --> %></td>  		
+                                    <td id="td-2" name="send_date" value="날짜" style="width: 120px;"><%= <!-- 연결지어야하는 부분 --> %></td>
                                     </tr>
 				
                                     <% 		}
@@ -156,7 +166,7 @@
                                         <input type="text" name="send_id" value="예시" style="width: 100%; margin: auto; text-align: center;">
                                     </td>
                                     <td id="td-2">
-                                        <input type="text" name="msg_contents" value=" 예시 아무개님이 메세지를 보냈습니다." style="width: 100%; margin: auto; text-align: center;">
+                                        <input type="text" name="msg_contents" value=" 예시 아무개님에게 메세지가 왔습니다." style="width: 100%; margin: auto; text-align: center;">
                                     </td>
                                     <td id="td-2"  style="width: 120px;">
                                         <input type="text" name="msg_get_date" value="2020.11.27" style="width: 100%; margin: auto; text-align: center;">
@@ -189,3 +199,4 @@
         </div>
     </section>
     <%@ include file="/views/common/footer.jsp" %>
+
