@@ -289,7 +289,8 @@ span {
 
 #msg_1 {
     width: 100%;
-    height: 35%;
+	/* height: 35%; */
+	border-top: 3px solid darkkhaki;
 }
 
 #msg_1 h1{
@@ -379,14 +380,15 @@ span {
 }
 
 #msg_table #td-1{
-    height: 22px;
-    border: none; 
+    height: 40px;
+	border-bottom: 1px solid;
+	font-size: medium;
     background-color: rgb(201, 193, 162);
 }
 
 #msg_table #td-2{
-    height: 22px;
-    border: none; 
+    height: 30px;
+    border-bottom: 1px dashed; 
     background-color: rgb(248, 238, 200);
 }
 
@@ -396,7 +398,8 @@ span {
 }
 
 #msg_2-2-footer div{
-    text-align: center;
+	text-align: center;
+	margin-top: 20px;
 }
 
 /*------------------------------- */
@@ -571,7 +574,7 @@ input[type=submit] {
     cursor: pointer;
     border-radius:3px; 
     border: white;
-    background-color: rgb(10, 89, 235);
+    background-color: rgb(220, 220, 220);
 }
 input[type=reset]{
     height: 30px;

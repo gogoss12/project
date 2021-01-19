@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
-
+<link rel="stylesheet" href="../../css/style.css">
 <section id="searchMatch">
 
     <h2>원하시는 요양보호사님을 찾아보세요</h2>
