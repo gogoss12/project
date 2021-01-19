@@ -108,8 +108,8 @@ header {
 	height: 200px;
 }
 
-section {
-	min-height: 100%;
+section{
+    min-height: 100%;
 }
 
 /*헤더*/
@@ -172,7 +172,7 @@ section {
 }
 /* 네비바 */
 nav {
-	border: 1px solid darkkhaki;
+	border: 3px solid darkkhaki;
 	height: 30%;
 	width: 100%;
 	background: beige;
@@ -326,7 +326,9 @@ span {
 
 #msg_2-1 a{
     width: 100%;
-   height: 60px;
+   /* height: 60px; */
+   /* margin-top: 30px; */
+   display: block;
    /* border-radius: 20px; */
    border: white;
    cursor: pointer;

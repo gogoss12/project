@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Post Message</title>
+    <link rel="stylesheet" href="../../css/style.css">
 </head>
 
 <body>
@@ -90,15 +91,10 @@
                                 보낸쪽지함
                             </a>
                         </div>
-                        <div>
-                            <a href="#">
-                                삭제된 메세지
-                            </a>
-                        </div>
                     </div>
                     <div id="msg_2-2">
                         <div id="msg_2-2-header">
-                            <input type="button" name="delete_msg" value="X삭제">
+                            <input type="button" name="delete_msg" value="X삭제" style="color: red;">
                             <input type="text" name="find_id" placeholder="아이디 검색 : ">
                             <input type="button" name="search_id" value="검색">
                         </div>
