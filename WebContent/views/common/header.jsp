@@ -40,6 +40,10 @@
 </head>
 <body>
 	<header>
+<<<<<<< HEAD
+=======
+
+>>>>>>> d93c9c804841d89f98a04fb3d6b2c35e9dafbf97
 		<div id="wrapper">
             <div id="logo">
                	 <a href="<%=request.getContextPath()%>" >

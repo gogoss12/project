@@ -107,9 +107,7 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		patientwanted.setWantedIll(String.join(",", mr.getParameter("wantedill")));
 		patientwanted.setWantedGrade(String.join(",", mr.getParameter("wantedgra")));
 		
-		
 	    resultPW = new CareService().enrollPatientWanted(patientwanted);
-		//----------------------------------------------------------------------------------
 		
 		if(resultC > 0 && resultPW > 0 && resultI > 0) {
 			msg = "프로필 등록 성공";
