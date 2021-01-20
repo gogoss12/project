@@ -1,3 +1,4 @@
+<%@page import="com.care.mvc.common.util.PageInfo"%>
 <%@page import="com.care.mvc.message.model.vo.SendMessage"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,6 +7,7 @@
 <%
 
 	ArrayList<SendMessage> list = (ArrayList)request.getAttribute("list");
+	PageInfo info = (PageInfo)request.getAttribute("pageInfo");
 
 %>
 <%@ include file="/views/common/header.jsp" %>
@@ -38,14 +40,13 @@
                         <input type="button" name="search_id" value="검색">
                     </div>
                     <div id="msg_2-2-section">
-
-<<<<<<< HEAD
                         <table id="msg_table">
                             <tr>
-                                <td id="td-1"><input type="checkbox" name="delete_check" value="delete_check"></td>
+                                <td id="td-1" style="width: 150px;"><b>번호</b></td>
                                 <td id="td-1" style="width: 150px;"><b>받은사람</b></td>
                                 <td id="td-1"><b>내용</b>	</td>
                                 <td id="td-1" style="width: 200px;"><b>보낸날짜</b></td>
+                                <td id="td-1" style="width: 30px;"><b>-</b></td>
                             </tr>
                              <% if(list.isEmpty()) { %>
                             <tr>
@@ -58,9 +59,9 @@
                                     if(loginMember.getMemId().equals(sendM.getMem_id())){
                             %>								
                             <tr>
-                                <td id="td-2">
-                                    <input type="checkbox" name="delete_check" value="delete_check">
-                                </td>
+                                <td id="td-2" >
+										<b><%=sendM.getRowNum()%></b>
+									</td>
                                 <td id="td-2" style="width: 80px;">
                                     <a href="#">
                                         <b><%=sendM.getRec_id()%></b>
@@ -74,33 +75,47 @@
                                 <td id="td-2" style="width: 120px;">
                                     <b><%=sendM.getSend_date()%></b>
                                 </td>
+                                <td id="td-2" style="width: 30px;">
+										<input type="button" value="삭제" onclick="delete_row()" name="delete" style="color:red;">
+										<script>
+										function delete_row(){
+											if(confirm("쪽지를 삭제하시겠습니까 ?")){
+												location.href="<%=request.getContextPath()%>/delete/send?SendNum=<%=sendM.getSend_no()%>"
+											}; 
+									    };
+										</script>
+									</td>
                             </tr>
                                 <%}
                              } 
                         } %>
                         </table>
-
-                        <div id="msg_2-2-footer">
-                            <div id="pageBar">
-                                <!-- 맨 처음으로 -->
-                                <button onclick="location.href='<%= request.getContextPath() %>/message/list?page=1 /* 임시로 만들어 놓은거 바꿔야함 */'">&lt;&lt;</button>
-                                <!-- 이전 페이지로 -->
-                                <button>&lt;</button>
-                                <!--  10개 페이지 목록 -->
-                                <button>1</button>
-                                <button onclick="location.href='<%= request.getContextPath() %>/message/list?page=2'">2</button>
-                                <button onclick="location.href='<%= request.getContextPath() %>/message/list?page=3'">3</button>
-                                <button>4</button>
-                                <button>5</button>
-                                <!-- 다음 페이지로 -->
-                                <button >&gt;</button>
-                                <!-- 맨 끝으로 -->
-                                <button>&gt;&gt;</button>
-                            </div>
-                        </div>
+						</div>
                     </div>
                 </div>
             </form>
+           <div id="msg_2-2-footer">
+			<div id="pageBar">
+				<!-- 맨 처음으로 -->
+				<button onclick="location.href='<%= request.getContextPath() %>/msg/send?send_page=1'">&lt;&lt;</button>
+				<!-- 이전 페이지로 -->
+				<button onclick="location.href='<%= request.getContextPath() %>/msg/send?send_page=<%= info.getPrvePage()%>'">&lt;</button>
+				
+				<!--  10개 페이지 목록 -->
+				
+				<% for(int p = info.getStartPage(); p <= info.getEndPage(); p++) { %>
+					<% if(p == info.getCurrentPage()) { %>
+						<button disabled><%= p %></button>
+					<% }else { %>
+						<button onclick="location.href='<%= request.getContextPath()%>/msg/send?send_page=<%= p %>'"><%= p %></button>
+					<% } %>
+				<% } %>
+				<!-- 다음 페이지로 -->
+				<button onclick="location.href='<%= request.getContextPath()%>/msg/send?send_page=<%= info.getNextPage() %>'">&gt;</button>
+				<!-- 맨 끝으로 -->
+				<button onclick="location.href='<%= request.getContextPath()%>/msg/send?send_page=<%= info.getMaxPage() %>'">&gt;&gt;</button>
+			</div>
+		</div>
         </div>
     </section>
     <script>

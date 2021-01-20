@@ -6,6 +6,8 @@ public class SendMessage {
 
 	private int send_no;
 	
+	private int rowNum;
+	
 	private String rec_id;
 	
 	private String send_body;
@@ -18,8 +20,9 @@ public class SendMessage {
 	public SendMessage() {
 	}
 
-	public SendMessage(int send_no, String rec_id, String send_body, Date send_date, String mem_id) {
+	public SendMessage(int send_no, int rowNum, String rec_id, String send_body, Date send_date, String mem_id) {
 		this.send_no = send_no;
+		this.rowNum = rowNum;
 		this.rec_id = rec_id;
 		this.send_body = send_body;
 		this.send_date = send_date;
@@ -32,6 +35,14 @@ public class SendMessage {
 
 	public void setSend_no(int send_no) {
 		this.send_no = send_no;
+	}
+
+	public int getRowNum() {
+		return rowNum;
+	}
+
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
 	}
 
 	public String getRec_id() {
@@ -68,8 +79,8 @@ public class SendMessage {
 
 	@Override
 	public String toString() {
-		return "SendMessage [send_no=" + send_no + ", rec_id=" + rec_id + ", send_body=" + send_body + ", send_date="
-				+ send_date + ", Mem_id=" + Mem_id + "]";
+		return "SendMessage [send_no=" + send_no + ", rowNum=" + rowNum + ", rec_id=" + rec_id + ", send_body="
+				+ send_body + ", send_date=" + send_date + ", Mem_id=" + Mem_id + "]";
 	}
 	
 }

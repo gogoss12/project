@@ -13,7 +13,7 @@ public class Member {
 	
 	private String memEmail;
 	
-	private int memPhone;
+	private String memPhone;
 	
 	private String memAddr;
 	
@@ -28,7 +28,7 @@ public class Member {
 	public Member() {
 	}
 
-	public Member(String memId, String memRole, String memName, String memPwd, String memEmail, int memPhone,
+	public Member(String memId, String memRole, String memName, String memPwd, String memEmail, String memPhone,
 			String memAddr, String memBirth, Date createDate, Date modifyDate, String status) {
 		super();
 		this.memId = memId;
@@ -84,11 +84,11 @@ public class Member {
 		this.memEmail = memEmail;
 	}
 
-	public int getMemPhone() {
+	public String getMemPhone() {
 		return memPhone;
 	}
 
-	public void setMemPhone(int memPhone) {
+	public void setMemPhone(String memPhone) {
 		this.memPhone = memPhone;
 	}
 

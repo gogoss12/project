@@ -31,6 +31,10 @@
                         <label style="font-size: large;">받는 사람</label>
                         <input type="text" name="rev_id" placeholder="아이디를 입력해주세요">
                     </div>
+                    <div class="mb-3" id="msg_2-3-header">
+                        <label for="formFile" class="form-label">파일 첨부 &nbsp;&nbsp;</label>
+                        <input class="wirte_file" type="file" id="" name="" style="width: fit-content;">
+                    </div>
                     <div id="msg_2-2-section">
 
                         <div style="margin-left: 35px;">

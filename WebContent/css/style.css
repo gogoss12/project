@@ -362,6 +362,12 @@ span {
     padding-left: 2rem;
     padding-bottom: 3rem;
 }
+
+#msg_2-2>#msg_2-3-header{
+   padding-left: 2rem;
+   padding-bottom: 3rem;
+}
+
 #msg_2-2 input[type=text]{
     margin-left: 40px;
 }
@@ -382,7 +388,7 @@ span {
 #msg_table input{
     margin: auto;
     background: none;
-    text-align: left;
+    
 }
 
 #msg_table #td-1{
