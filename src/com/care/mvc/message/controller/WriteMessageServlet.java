@@ -12,7 +12,11 @@ import javax.servlet.http.HttpSession;
 import com.care.mvc.member.model.vo.Member;
 import com.care.mvc.message.model.service.MessageService;
 import com.care.mvc.message.model.vo.ReceiveMessage;
+import com.care.mvc.message.model.vo.ReceiveMessageImg;
 import com.care.mvc.message.model.vo.SendMessage;
+import com.care.mvc.message.model.vo.SendMessageImg;
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 @WebServlet("/msg/write")
 public class WriteMessageServlet extends HttpServlet {
@@ -41,6 +45,39 @@ public class WriteMessageServlet extends HttpServlet {
 		}
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 파일 관련 ---------------------------------------------------
+			String path = getServletContext().getRealPath("upload/msgimg");
+			
+			int maxSize = 1024 * 1024 * 20;  // 20mb
+			
+			String encoding = "UTF-8";
+			MultipartRequest mr = new MultipartRequest(request, path, maxSize, encoding, new DefaultFileRenamePolicy());
+			
+			System.out.println("path는 받았니?");
+			String fileName = mr.getFilesystemName("messageimg");       // 실제 이름(확인할려면 write_message.jsp 가야함)
+			String upfileName = mr.getOriginalFileName("messageimg");
+			String url = mr.getParameter(path);
+			System.out.println(url);
+			
+			// 쪽지 사진 보내기
+			SendMessageImg smi = new SendMessageImg();
+			
+			smi.setSend_img_path(path);
+			smi.setSend_img_name_org(fileName);
+			smi.setSend_img_name_sav(upfileName);
+			
+			int resultSI = new MessageService().sendImage(smi);
+			
+			// 쪽지 사진 받기
+			ReceiveMessageImg rmi = new ReceiveMessageImg();
+			
+			rmi.setRec_img_path(path);
+			rmi.setRec_img_name_org(fileName);
+			rmi.setRec_img_name_sav(upfileName);
+			
+			int resultRI = new MessageService().receiveImage(rmi);
+		
+			// 아래는 쪽지 관련
 			String msg = "";
 			String loc = "";
 			SendMessage sendM = new SendMessage();
@@ -49,8 +86,8 @@ public class WriteMessageServlet extends HttpServlet {
 		
 			int resultS = 0;
 			// 메세지 보내기
-			sendM.setRec_id(request.getParameter("rev_id"));
-			sendM.setSend_body(request.getParameter("msg_contents"));
+			sendM.setRec_id(mr.getParameter("rev_id"));
+			sendM.setSend_body(mr.getParameter("msg_contents"));
 			sendM.setMem_id(loginMember.getMemId());
 			System.out.println(sendM);
 			System.out.println(loginMember.getMemId());
@@ -62,13 +99,13 @@ public class WriteMessageServlet extends HttpServlet {
 			int resultR = 0;
 			ReceiveMessage recM = new ReceiveMessage();
 			
-			recM.setSend_id(request.getParameter("rev_id"));
-			recM.setRec_body(request.getParameter("msg_contents"));
+			recM.setSend_id(mr.getParameter("rev_id"));
+			recM.setRec_body(mr.getParameter("msg_contents"));
 			recM.setMem_id(loginMember.getMemId());
 			
 			resultR = new MessageService().recMsg(recM);
 			
-			if(resultS > 0 && resultR > 0) {
+			if(resultS > 0 && resultR > 0 && resultSI > 0 || resultRI > 0) {
 				msg = "메세지를 성공적으로 보냈습니다.";
 				loc = "/msg/write";
 			}else {

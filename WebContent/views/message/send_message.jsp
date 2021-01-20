@@ -39,13 +39,13 @@
                     </div>
                     <div id="msg_2-2-section">
 
-<<<<<<< HEAD
                         <table id="msg_table">
                             <tr>
-                                <td id="td-1"><input type="checkbox" name="delete_check" value="delete_check"></td>
+                                <td id="td-1" style="width: 50px;"><input type="checkbox" name="delete_check" value="delete_check"></td>
                                 <td id="td-1" style="width: 150px;"><b>받은사람</b></td>
                                 <td id="td-1"><b>내용</b>	</td>
-                                <td id="td-1" style="width: 200px;"><b>보낸날짜</b></td>
+                                <td id="td-1" style="width: 220px;"><b>보낸 파일</b></td>
+                                <td id="td-1" style="width: 170px;"><b>보낸날짜</b></td>
                             </tr>
                              <% if(list.isEmpty()) { %>
                             <tr>
@@ -61,7 +61,7 @@
                                 <td id="td-2">
                                     <input type="checkbox" name="delete_check" value="delete_check">
                                 </td>
-                                <td id="td-2" style="width: 80px;">
+                                <td id="td-2">
                                     <a href="#">
                                         <b><%=sendM.getRec_id()%></b>
                                     </a>
@@ -71,7 +71,12 @@
                                         <b><%=sendM.getSend_body()%></b>
                                     </a>
                                 </td>
-                                <td id="td-2" style="width: 120px;">
+                                <td id="td-2">
+                                    <a href="">
+                                        <b> 채워야하는 부분 </b>
+                                    </a>
+                                </td>
+                                <td id="td-2">
                                     <b><%=sendM.getSend_date()%></b>
                                 </td>
                             </tr>

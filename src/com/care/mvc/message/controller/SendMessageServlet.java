@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import com.care.mvc.member.model.vo.Member;
 import com.care.mvc.message.model.service.MessageService;
-import com.care.mvc.message.model.vo.ReceiveMessage;
 import com.care.mvc.message.model.vo.SendMessage;
 
 @WebServlet("/msg/send")
@@ -42,6 +41,9 @@ public class SendMessageServlet extends HttpServlet {
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 			return;
 		}
+		
+		// 보낸 쪽지 띄워야한다. (SELECT문으로 가져온다)
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
