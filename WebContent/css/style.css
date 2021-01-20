@@ -356,16 +356,15 @@ span {
     height: 926px;
 }
 
-
 #msg_2-2>#msg_2-2-header{
     padding-top: 5%;
     padding-left: 2rem;
-    padding-bottom: 3rem;
+    padding-bottom: 2rem;
 }
 
 #msg_2-2>#msg_2-3-header{
-   padding-left: 2rem;
-   padding-bottom: 3rem;
+	padding-left: 2rem;
+	padding-bottom: 3rem;
 }
 
 #msg_2-2 input[type=text]{
@@ -373,7 +372,7 @@ span {
 }
 
 #msg_2-2-section{
-    width: 100%;
+	width: 100%;
 }
 
 #msg_2-2-section td input{
@@ -394,19 +393,36 @@ span {
 #msg_table #td-1{
     height: 40px;
 	border-bottom: 1px solid;
-	font-size: medium;
+	font-size: large;
     background-color: rgb(201, 193, 162);
 }
 
 #msg_table #td-2{
-    height: 30px;
-    border-bottom: 1px dashed; 
-    background-color: rgb(248, 238, 200);
+    height: 35px;
+	border-bottom: 1px dashed; 
+	font-size: medium;
+	background-color: rgb(248, 238, 200);
 }
 
 #msg_table td>a{
 	text-decoration: none;
 	color: black;
+}
+
+#msg_2-2-body{
+	border-top: 2px solid beige;
+}
+
+#msg_contents1{
+	margin: 10px;
+	margin-left: 30px;
+	font-size: medium;
+}
+
+#msg_contents2{
+	padding: 2rem;
+	border-bottom: 2px solid beige;
+	border-top: 2px solid beige;
 }
 
 #msg_2-2-footer div{
@@ -642,6 +658,7 @@ input[type=reset]{
 #firstTitle {
 	/* border: 1px solid green; */
 	width: fit-content;
+	border-bottom: darkkhaki;
 }
 
 /* 환자를 보여주기에 따른 표시필요 부분 */
@@ -651,8 +668,7 @@ input[type=reset]{
 }
 
 #pointer {
-	background-color: rgb(109, 109, 109);
-	color: honeydew;
+	background-color: darkkhaki;
 	height: 45px;
 }
 
@@ -700,7 +716,7 @@ input[type=reset]{
 	padding-bottom: 20px;
 	padding-top: 20px;
 	border-radius: 10px;
-	background: beige;
+	/* background: beige; */
 }
 
 #mucenter h6 {

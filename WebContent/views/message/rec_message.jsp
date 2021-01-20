@@ -43,6 +43,7 @@
 									<td id="td-1" style="width: 150px;"><b>번호</b></td>
 									<td id="td-1" style="width: 150px;"><b>보낸사람</b></td>
 									<td id="td-1"><b>내용</b>	</td>
+									<td id="td-1" style="width: 150px;"><b>파일</b></td>
 									<td id="td-1" style="width: 200px;"><b>받은날짜</b></td>
 									<td id="td-1" style="width: 30px;"><b> - </b></td>
 								</tr>
@@ -61,7 +62,7 @@
 									<td id="td-2" >
 										<b><%=revM.getRowNum()%></b>
 									</td>
-									<td id="td-2" style="width: 80px;">
+									<td id="td-2">
 										<a href="#">
 											<b><%=revM.getSend_id()%></b>
 										</a>
@@ -71,7 +72,12 @@
 											<b><%=revM.getRec_body()%></b>
 										</a>
 									</td>
-									<td id="td-2" style="width: 120px;">
+									<td id="td-2">
+										<a href="#">
+											<b> 채워야하는 부분 </b>
+										</a>
+									</td>
+									<td id="td-2">
 										<b><%=revM.getRec_date()%></b>
 									</td>
 									<td id="td-2" style="width: 30px;">

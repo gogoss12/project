@@ -20,7 +20,7 @@
             <div id="msg_2">
                 <div id="msg_2-1">
                     <div id="write_msg">
-                        <a href="<%= request.getContextPath()%>/msg/write">쪽지쓰기</a>
+                        <a href="<%= request.getContextPath()%>">쪽지쓰기</a>
                     </div>
                     <div>
                         <a href="<%= request.getContextPath()%>/msg/get">
@@ -60,7 +60,8 @@
                             %>								
                             <tr>
                                 <td id="td-2" >
-										<b><%=sendM.getRowNum()%></b>
+										<!--  <b><1%=sendM.getRowNum()%></b>-->
+										<b><%=sendM.getSend_no()%></b>
 									</td>
                                 <td id="td-2" style="width: 80px;">
                                     <a href="#">
@@ -72,7 +73,12 @@
                                         <b><%=sendM.getSend_body()%></b>
                                     </a>
                                 </td>
-                                <td id="td-2" style="width: 120px;">
+                                <td id="td-2">
+                                    <a href="">
+                                        <b> 채워야하는 부분 </b>
+                                    </a>
+                                </td>
+                                <td id="td-2">
                                     <b><%=sendM.getSend_date()%></b>
                                 </td>
                                 <td id="td-2" style="width: 30px;">

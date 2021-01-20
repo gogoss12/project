@@ -59,12 +59,12 @@ public class ReceiveMessageServlet extends HttpServlet {
 			request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 			return;
 		}
+		
+		// 받은 쪽지 띄워야한다. (SELECT문으로 가져온다)
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		
 		
 	}
 
