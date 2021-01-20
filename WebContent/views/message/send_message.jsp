@@ -18,7 +18,7 @@
             <div id="msg_2">
                 <div id="msg_2-1">
                     <div id="write_msg">
-                        <a href="<%= request.getContextPath()%>/msg/write">쪽지쓰기</a>
+                        <a href="<%= request.getContextPath()%>/msg/write?sendNum=<%= %>">쪽지쓰기</a>
                     </div>
                     <div>
                         <a href="<%= request.getContextPath()%>/msg/get">
@@ -59,7 +59,9 @@
                             %>								
                             <tr>
                                 <td id="td-2">
-                                    <input type="checkbox" name="delete_check" value="delete_check">
+                                    <a href="#">
+                                    	<b><%=sendM.getSend_no()%></b>
+                                    </a>
                                 </td>
                                 <td id="td-2">
                                     <a href="#">

@@ -61,12 +61,19 @@ public class MessageDao {
 			while (rset.next()) {
 				ReceiveMessageImg recMsgImg = new ReceiveMessageImg();
 				
-//				recMsgImg.set
+				recMsgImg.setRec_img_path(rset.getString("REC_IMG_PATH"));
+				recMsgImg.setRec_img_name_org(rset.getString("REC_IMG_PATH"));
+				recMsgImg.setRec_img_name_sav(rset.getString("REC_IMG_PATH"));
+				recMsgImg.setRec_no(rset.getInt("REC_NO"));
 				
+				list.add(recMsgImg);
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
 		}
 		
 		return list;
@@ -77,7 +84,7 @@ public class MessageDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "SELECT REC_ID, SEND_BODY, SEND_DATE, MEM_ID FROM SEND_MSG ORDER BY SEND_NO DESC";
+		String query = "SELECT SEND_NO, REC_ID, SEND_BODY, SEND_DATE, MEM_ID FROM SEND_MSG ORDER BY SEND_NO DESC";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -86,6 +93,7 @@ public class MessageDao {
 			while(rset.next()) {
 				SendMessage sendMsg = new SendMessage();
 				
+				sendMsg.setSend_no(rset.getInt("SEND_NO"));
 				sendMsg.setRec_id(rset.getString("REC_ID"));
 				sendMsg.setSend_body(rset.getString("SEND_BODY"));
 				sendMsg.setSend_date(rset.getDate("SEND_DATE"));
@@ -127,18 +135,19 @@ public class MessageDao {
 		return resultS;
 	}
 	
-	public int sendMsgImage(Connection conn, SendMessageImg smi) {
+	public int sendMsgImage(Connection conn, SendMessageImg smi, SendMessage sm) {
 	      int resultI = 0;
 	      PreparedStatement Ipstmt = null;
 	      
 	      try {
-	         String sendMsgImg = "INSERT INTO SEND_IMAGE VALUES (SEQ_SEND_IMAGE_NO.NEXTVAL,?,?,?,SEQ_SEND_NO.NEXTVAL)";
+	         String sendMsgImg = "INSERT INTO SEND_IMAGE VALUES (SEQ_SEND_IMAGE_NO.NEXTVAL,?,?,?,?)";
 	         
 	         Ipstmt = conn.prepareStatement(sendMsgImg);
 	         
 	         Ipstmt.setString(1, smi.getSend_img_path());
 	         Ipstmt.setString(2, smi.getSend_img_name_org());
 	         Ipstmt.setString(3, smi.getSend_img_name_sav());
+	         Ipstmt.setInt(4, sm.getSend_no());  // 현재 0번으로 뜸, 숫자뜨면 지워줘!
 	         
 	         resultI = Ipstmt.executeUpdate();
 	         
@@ -179,7 +188,7 @@ public class MessageDao {
 		int resultRI = 0;
 		PreparedStatement Ipstmt = null;
 		
-		String query = "INSERT INTO REC_IMAGE VALUES (SEQ_REC_IMAGE_NO.NEXTVAL,?,?,?,SEQ_REC_NO.NEXTVAL)";
+		String query = "INSERT INTO REC_IMAGE VALUES (SEQ_REC_IMAGE_NO.NEXTVAL,?,?,?,SEQ_REC_NO.NEXTVAL-1)";
 		
 		try {
 			Ipstmt = conn.prepareStatement(query);
@@ -188,6 +197,8 @@ public class MessageDao {
 	         Ipstmt.setString(2, rmi.getRec_img_name_org());
 	         Ipstmt.setString(3, rmi.getRec_img_name_sav());
 			
+	         resultRI = Ipstmt.executeUpdate();
+	         
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

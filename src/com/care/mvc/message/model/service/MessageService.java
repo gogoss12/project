@@ -71,13 +71,13 @@ public class MessageService {
 	}
 
 	// 메세지 이미지 보내기
-	public int sendImage(SendMessageImg smi) {
+	public int sendImage(SendMessageImg smi, SendMessage sm) {
 		
 		Connection conn = getConnection();
 		
 		int resultSI = 0;
 		
-		resultSI = new MessageDao().sendMsgImage(conn, smi);
+		resultSI = new MessageDao().sendMsgImage(conn, smi, sm);
 		
 		if(resultSI > 0) {
 			commit(conn);

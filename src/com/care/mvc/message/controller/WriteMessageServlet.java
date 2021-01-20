@@ -53,20 +53,22 @@ public class WriteMessageServlet extends HttpServlet {
 			String encoding = "UTF-8";
 			MultipartRequest mr = new MultipartRequest(request, path, maxSize, encoding, new DefaultFileRenamePolicy());
 			
-			System.out.println("path는 받았니?");
 			String fileName = mr.getFilesystemName("messageimg");       // 실제 이름(확인할려면 write_message.jsp 가야함)
 			String upfileName = mr.getOriginalFileName("messageimg");
+//			int sendNo = mr.getParameter("")
 			String url = mr.getParameter(path);
 			System.out.println(url);
 			
 			// 쪽지 사진 보내기
 			SendMessageImg smi = new SendMessageImg();
+			SendMessage sm = new SendMessage();
 			
 			smi.setSend_img_path(path);
 			smi.setSend_img_name_org(fileName);
 			smi.setSend_img_name_sav(upfileName);
-			
-			int resultSI = new MessageService().sendImage(smi);
+			smi.setSend_no(sm.getSend_no());
+			System.out.println(smi);
+			int resultSI = new MessageService().sendImage(smi, sm);
 			
 			// 쪽지 사진 받기
 			ReceiveMessageImg rmi = new ReceiveMessageImg();
@@ -74,7 +76,7 @@ public class WriteMessageServlet extends HttpServlet {
 			rmi.setRec_img_path(path);
 			rmi.setRec_img_name_org(fileName);
 			rmi.setRec_img_name_sav(upfileName);
-			
+			System.out.println(rmi);
 			int resultRI = new MessageService().receiveImage(rmi);
 		
 			// 아래는 쪽지 관련
@@ -105,7 +107,7 @@ public class WriteMessageServlet extends HttpServlet {
 			
 			resultR = new MessageService().recMsg(recM);
 			
-			if(resultS > 0 && resultR > 0 && resultSI > 0 || resultRI > 0) {
+			if(resultS > 0 && resultR > 0 && resultSI > 0 && resultRI > 0) {
 				msg = "메세지를 성공적으로 보냈습니다.";
 				loc = "/msg/write";
 			}else {
