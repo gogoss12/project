@@ -32,11 +32,7 @@ public class WriteMessageServlet extends HttpServlet {
 		String loc = "";
 		HttpSession session = request.getSession(false);
 		Member loginMember = (Member) session.getAttribute("loginMember");
-		ArrayList<SendMessage> send = new ArrayList<SendMessage>();
-
 		if (loginMember != null) {
-			
-			request.setAttribute("list", send);
 			request.getRequestDispatcher("/views/message/write_message.jsp").forward(request, response);
 		} else {
 			msg = "로그인이 필요한 페이지입니다.";
@@ -75,6 +71,7 @@ public class WriteMessageServlet extends HttpServlet {
 			smi.setSend_no(sm.getSend_no());
 			System.out.println(smi.getSend_img_no());
 			System.out.println(sm.getSend_no());
+			
 			int resultSI = new MessageService().sendImage(smi, sm);
 			
 			// 쪽지 사진 받기

@@ -5,8 +5,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.care.mvc.GuardAndPatient.model.vo.Guard;
 import com.care.mvc.common.jdbc.JDBCTemplate;
 import com.care.mvc.common.util.PageInfo;
 import com.care.mvc.message.model.vo.ReceiveMessage;
@@ -15,6 +17,29 @@ import com.care.mvc.message.model.vo.SendMessage;
 import com.care.mvc.message.model.vo.SendMessageImg;
 
 public class MessageDao {
+	
+	private int findSendNo(Connection conn, SendMessage sendMessage) {
+		ResultSet rs = null;
+		Statement stmt = null;
+		String query = "";
+		int sendNo = 0;
+		
+		query = "SELECT SEQ_SEND_NO.NEXTVAL FROM DUAL";
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			if(rs.next()) {
+				sendNo = Integer.parseInt(rs.getString(1)); 
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return sendNo;		
+	}
+	
 
 	public ArrayList<ReceiveMessage> listRevMsg(Connection conn, PageInfo info) {
 		ArrayList<ReceiveMessage> list = new ArrayList<ReceiveMessage>();
@@ -167,6 +192,7 @@ public class MessageDao {
 	public int sendMsgImage(Connection conn, SendMessageImg smi, SendMessage sm) {
 	      int resultI = 0;
 	      PreparedStatement Ipstmt = null;
+	      int sendNo = findSendNo(conn, sm);
 	      
 	      try {
 	         String sendMsgImg = "INSERT INTO SEND_IMAGE VALUES (SEQ_SEND_IMAGE_NO.NEXTVAL,?,?,?,?)";
@@ -176,7 +202,8 @@ public class MessageDao {
 	         Ipstmt.setString(1, smi.getSend_img_path());
 	         Ipstmt.setString(2, smi.getSend_img_name_org());
 	         Ipstmt.setString(3, smi.getSend_img_name_sav());
-	         Ipstmt.setInt(4, sm.getSend_no());  // 현재 0번으로 뜸, 숫자뜨면 지워줘!
+	         Ipstmt.setInt(4, sendNo+1);
+	         
 	         
 	         resultI = Ipstmt.executeUpdate();
 	         
@@ -217,7 +244,7 @@ public class MessageDao {
 		int resultRI = 0;
 		PreparedStatement Ipstmt = null;
 		
-		String query = "INSERT INTO REC_IMAGE VALUES (SEQ_REC_IMAGE_NO.NEXTVAL,?,?,?,SEQ_REC_NO.NEXTVAL-1)";
+		String query = "INSERT INTO REC_IMAGE VALUES (SEQ_REC_IMAGE_NO.NEXTVAL,?,?,?,SEQ_REC_NO.NEXTVAL)";
 		
 		try {
 			Ipstmt = conn.prepareStatement(query);

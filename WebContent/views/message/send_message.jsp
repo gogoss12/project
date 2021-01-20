@@ -20,7 +20,7 @@
             <div id="msg_2">
                 <div id="msg_2-1">
                     <div id="write_msg">
-                        <a href="<%= request.getContextPath()%>">쪽지쓰기</a>
+                        <a href="<%= request.getContextPath()%>/msg/write">쪽지쓰기</a>
                     </div>
                     <div>
                         <a href="<%= request.getContextPath()%>/msg/get">
