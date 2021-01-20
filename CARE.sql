@@ -460,3 +460,19 @@ COMMENT ON COLUMN CARE_IMAGE.IMG_NAME_SAV IS '저장파일이름';
 ----------------------------------------------------------------------------------
 --
 ---- ALTER TABLE GUARDIAN_PROFILE DROP CONSTRAINT <CONSTRAINT_NAME>;
+
+----------------------------------------------------------------------------------
+
+SELECT M.MEM_NAME, M.MEM_ID 
+FROM MEMBER M
+JOIN CAREGIVER_PROFILE C ON (M.MEM_ID = C.MEM_ID)
+WHERE M.STATUS = 'Y' AND
+    M.MEM_ROLE = 'caregiver' AND 
+    C.CARE_TIME IN ('주간') AND 
+    C.CARE_GEN IN ('남') AND 
+    C.CARE_LICENSE IN ('요양보호사,간호사') AND 
+    C.CARE_YEARS IN ('10년 이상') AND
+    C.CARE_PLACE IN ('서울특별시 용산구') AND
+    C.CARE_SAL IN ('협의가능');
+
+
