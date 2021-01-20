@@ -19,23 +19,27 @@ public class MatchDao {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
-		StringBuffer query = new StringBuffer(
-				 "SELECT M.MEM_NAME, M.MEM_ID "
-				+ "FROM MEMBER M "
-				+ "JOIN CAREGIVER_PROFILE C ON (M.MEM_ID = C.MEM_ID)"
-				+ "WHERE M.STATUS = 'Y' AND "
-				+ 		"M.MEM_ROLE = 'caregiver' AND "
-				+ 		"C.CARE_TIME IN (?time) AND "
-				+ 		"C.CARE_GEN IN (?gender) AND "
-				+ 		"C.CARE_LICENSE IN (?qual) AND "
-				+ 		"C.CARE_YEARS IN (?years) AND "
-				+ 		"C.CARE_PLACE IN (?addr) AND "
-				+ 		"C.CARE_SAL IN (?pay)");
-		
-		// ?,?
+		StringBuffer query = new StringBuffer();
+				 query.append("'SELECT M.MEM_NAME, M.MEM_ID ");
+				 query.append("FROM MEMBER M ");
+				 query.append("JOIN CAREGIVER_PROFILE C ON (M.MEM_ID = C.MEM_ID) ");
+				 query.append("WHERE M.STATUS = 'Y' AND ");
+				 query.append("M.MEM_ROLE = 'caregiver' AND ");
+				 query.append("C.CARE_TIME IN (?time?) AND ");
+				 query.append("C.CARE_GEN IN (?gender) AND ");
+				 query.append("C.CARE_LICENSE IN (?qual) AND ");
+				 query.append("C.CARE_YEARS IN (?years) AND ");
+				 query.append("C.CARE_PLACE IN (?addr) AND ");
+				 query.append("C.CARE_SAL IN (?pay)'");
 		
 		// 쿼리문에 ? 개수를 맞춘다
         for (Map.Entry<String,String[]> entry : options.entrySet()) {
+        	//System.out.println(entry.getKey());
+        	
+        	System.out.println(query.indexOf("?" + entry.getKey()));
+        	query.insert(191, 'c');
+        	System.out.println(query.indexOf("c" + entry.getKey()));
+        	//System.out.println(query.lastIndexOf("?" + entry.getKey()));
 			// ?000을 ?,?,?... 으로 replace...우선 String[]의 length를 찍는다.
 			int length = entry.getValue().length; // ?000을 replace할 ? 개수
 			int indexSta = query.indexOf("?" + entry.getKey()); // ?000의 시작인덱스
