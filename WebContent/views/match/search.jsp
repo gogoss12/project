@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/views/common/header.jsp" %>
 
+<%
+	// String[] time = request.getParameterValues("time");
+%>
+
 <section id="searchMatch">
 
     <h2>원하시는 요양보호사님을 찾아보세요</h2>
@@ -36,7 +40,14 @@
 
         <div class="dropdown" id="careYears">
             <h3>경력사항</h3>
-            <label>
+            <label><input type="checkbox" name="years" value="전체">전체</label>
+            <label><input type="checkbox" name="years" value="신규">신규</label>
+            <label><input type="checkbox" name="years" value="1 ~ 2년">1 ~ 2년</label>
+            <label><input type="checkbox" name="years" value="3 ~ 5년">3 ~ 5년</label>
+            <label><input type="checkbox" name="years" value="5 ~ 10년">5 ~ 10년</label>
+            <label><input type="checkbox" name="years" value="10년 이상">10년 이상</label>
+            
+            <!-- <label>
                 <select name="years">
                     <option value="선택" disabled selected>선택</option>
                     <option value="신입">신입</option>
@@ -46,7 +57,7 @@
                     <option value="4년">4년</option>
                     <option value="5년이상">5년이상</option>
                 </select>
-            </label>
+            </label> -->
         </div>
 
         <div class="dropdown" id="carePlace">
@@ -54,20 +65,10 @@
             <label>
                 <select name="sido1" id="sido1"></select>
                 <select name="gugun1" id="gugun1"></select>
-                <!-- <select name="place">
-                    <option value="선택" disabled selected>선택</option>
-                    <option value="서울">서울</option>
-                    <option value="부산">부산</option>
-                    <option value="등등...">등등...</option>
-                </select>
             </label>
-            <label>
-                <select name="place">
-                    <option value="선택" disabled selected>선택</option>
-                    <option value="용산구">용산구</option>
-                    <option value="중구">중구</option>
-                    <option value="등등...">등등...</option>
-                </select> -->
+
+            <label id="addr">
+                <!-- <input type="hidden" name="addr"> -->
             </label>
         </div>
 
@@ -114,20 +115,35 @@
             }
         });
 
+        // && select[name="gugun1"]
+
         // dropdown
-        $('select').click(function () { // change() 대신 click()
+        $('select[name="gugun1"]').click(function () { // change() 대신 click()
             let clicked = $(this).val(); // option selected
 
-            console.log(clicked);
+            let addr = $('select[name="sido1"]').val() + " " + clicked;
 
-            let index = arr.indexOf(clicked);
+            console.log(addr);
+
+            let index = arr.indexOf(addr);
+
+            // 만일 선택한게 "시/도 선택" 혹은 "구/군 선택"이면 #searchOptions에 추가안함
+            if (clicked.indexOf("선택") >= 0) {
+                return;
+            }
 
             if (index < 0) { // 없다            
-                arr.push(clicked);
+                // hidden input 생성
+                $('#addr').append('<input type="hidden" name="addr" value="' + addr + '">');
+
+                arr.push(addr);
                 $('#searchOptions').html(arr.join(" "));
 
                 console.log("show me");
             } else { // 있다
+                // hidden input 삭제
+                $('#addr').find('input[value="' + addr + '"]').remove();
+
                 arr.splice(index, 1);
                 $('#searchOptions').html(arr.join(" "));
 
