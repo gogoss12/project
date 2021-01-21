@@ -16,17 +16,20 @@ public class ReceiveMessage {
 	
 	private String Mem_id;
 	
+	private String status;
+	
 	
 	public ReceiveMessage() {
 	}
 
-	public ReceiveMessage(int rec_no, int rowNum, String send_id, String rec_body, Date rec_date, String Mem_id) {
+	public ReceiveMessage(int rec_no, int rowNum, String send_id, String rec_body, Date rec_date, String Mem_id, String status) {
 		this.rec_no = rec_no;
 		this.rowNum = rowNum;
 		this.send_id = send_id;
 		this.rec_body = rec_body;
 		this.rec_date = rec_date;
 		this.Mem_id = Mem_id;
+		this.status = status;
 	}
 
 	public int getRec_no() {
@@ -81,11 +84,19 @@ public class ReceiveMessage {
 	public void setMem_id(String mem_id) {
 		Mem_id = mem_id;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
 	@Override
 	public String toString() {
 		return "ReceiveMessage [rec_no=" + rec_no + ", rowNum=" + rowNum + ", send_id=" + send_id + ", rec_body="
-				+ rec_body + ", rec_date=" + rec_date + ", Mem_id=" + Mem_id + "]";
+				+ rec_body + ", rec_date=" + rec_date + ", Mem_id=" + Mem_id + ", status=" + status + "]";
 	}
 	
 }

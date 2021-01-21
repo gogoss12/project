@@ -68,7 +68,7 @@
 										</a>
 									</td>
 									<td id="td-2">
-										<a href="#">
+										<a href="<%=request.getContextPath()%>/recMsg/details?rec_no=<%=revM.getRec_no()%>">
 											<b><%=revM.getRec_body()%></b>
 										</a>
 									</td>

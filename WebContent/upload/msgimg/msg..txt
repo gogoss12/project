@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        div{box-sizing: border-box;}
+
+        body{
+            border: 1px solid wheat;
+            width: 1390px;
+            height: 980px;
+            margin: auto;
+        }
+
+        header {height: 20%;}
+        section{height: 70%;}
+        footer{height: 20%;}
+        #wrapper {width: 100%; height: 70%; background: cornsilk;}
+        
+        #logo {width: 30%; float: left;}
+        #page {width: 40%; float: left;}
+        #login {width: 30%;float: left;}
+
+        #logo img {
+            padding-top: 5px;
+            padding-bottom: 20px;
+            width: 200px;
+            height: 130px;
+        }
+        #page h1 {
+            cursor: pointer;
+            text-align: center;
+            font-size: 80px;
+            line-height: 0px;
+            color: rgb(7, 7, 7);
+        }
+        #login {
+            text-align: center;
+            line-height: 150px;
+            padding-right: 15px;
+        }
+
+        #login input[type=button]{
+            width: 110px;
+            height: 40px;
+            border-radius: 20px;
+            border: white;
+            cursor: pointer;
+            
+        }
+
+        #authbtn {
+            background: rgb(252, 130, 130);
+            border-radius: 10px;
+        }
+
+        nav{
+            border:1px solid darkkhaki;
+            height: 30%; width: 100%;
+            background: beige;
+        }
+
+        #main-menu{
+            list-style-type: none;
+            
+        }
+        #main-menu>li{
+            float: left;
+            width: 13%;
+            height: 100%;
+            text-align: center;
+        }
+        #main-menu a {
+            /* border:1px solid blue; */
+            text-decoration: none;
+            color: rgb(248, 144, 7);
+            font-size: 18px;
+            font-weight: 900;
+            font-size: 40px;
+            height: 100%;
+            display: block;
+            line-height: 30px;
+        }
+
+        #main-menu a:hover {
+            color: orangered;
+        }
+
+        #main-menu>li>ul {
+            position: absolute;
+            width: 150px;
+            list-style-type: none;
+            padding: 0;
+            display: none;
+        }
+
+        #main-menu>li>a:hover+ul {
+            display: block;
+        }
+
+        #main-menu>li>ul:hover {
+            display: block;
+        }
+
+        #main-menu>li>ul a {
+            font-size: 25px;
+            line-height: 40px;
+            border: 1px solid;
+            border-radius: 10px;
+            background: beige;
+        }
+        
+        #sec_container{
+            width: 100%;
+            height: 100%;
+            
+        }
+        #sec_container>div{
+            float: left;
+            width: 50%;
+            height: 100%;            
+        }
+
+        #sec_container>div>div{
+            padding-top:30px ;
+            text-align: center;
+            line-height: 100px;
+        }
+        #btngroup span{
+            display: block;
+        }
+        
+        #btngroup input[type=button]{
+            width: 300px;
+            height: 90px;
+            border: white;
+            border-radius: 20%;
+            background: rgb(243, 251, 139);
+        }
+
+        #btngroup input:hover{
+            background: coral;
+            cursor: pointer;
+        }
+
+        #btn_1 {
+            height: 50%;
+        }
+
+        #btn_2{
+            height: 50%;
+        }
+        #foot{
+            width: 100%;
+            height: 100%;
+            font-size: 20px;
+            width: 100%;
+            background: beige;
+            text-align: center;
+            color: black;
+            }
+
+    </style>
+</head>
+<body>
+    <header>
+		<div id="wrapper">
+            <div id="logo">
+                <a href="">
+                    <img src="../project/WebContent/image/케어풀 임시 아이콘.png" alt="" >
+                </a>
+            </div>
+			<div id="page">
+				<h1>Care pool</h1>
+			</div>
+			<div id="login">
+			    <input type="button" id="loginbtn" value="로그인" onclick="location.href = '<%=request.getContextPath()%>/member/login';">
+                <input type="button" id="enrollbtn" value="회원가입" onclick="location.href = '<%=request.getContextPath()%>/member/enroll';">
+                <input type="button" id="authbtn" value="인증/확인">
+            </div>
+        </div>
+        <nav>
+			<ul id="main-menu">
+				<li><a href="#">소개</a></li>
+				<li><a href="#">매칭</a>
+					<ul id="sub-menu">
+						<li><a href="#">매칭검색</a></li>
+					</ul>
+				</li>
+				<li><a href="#">서비스</a>
+					<ul id="sub-menu">
+						<li><a href="#">쪽지</a></li>
+						<li><a href="#">지도</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
+    </header>
+    
+    <section>
+        <div id="sec_container">
+            <div id="btngroup">
+                <div id="btn_1">
+                    <span><b>[요양보호사] 하단 버튼을 클릭하세요!</b></span>
+                    <input type="button" id="carbtn" value="요양보호사" >
+                </div>
+                <div id="btn_2">
+                    <span><b>[보호자/환자] 하단 버튼을 클릭하세요!</b></span>
+                    <input type="button" id="guabtn" value="보호자/환자" >
+                </div>
+            </div>
+            <div id="sec_img">
+                <img src="../project/WebContent/image/old-age-957492_1920.jpg" alt="" width="100%" height="705px">
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div id="foot">
+            <div id="foot_1">
+                <p>Copyright 2021. <strong>carepool</strong> All rights reserved.</p>
+                <address>주소 : 서울 영등포구 영등포로 5길 45. 070-1234-5678</address>
+                <p>*회사는 통신판매중계로서 거래에 필요한 시스템을 운명 및 제공합니다.</p>
+                <p>&nbsp;&nbsp;보호자와 간병인 사이에 발생한 분쟁에 대한 책임은 보호자와 간병인에게 있습니다</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
