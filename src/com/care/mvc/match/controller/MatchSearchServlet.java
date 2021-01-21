@@ -1,7 +1,6 @@
 package com.care.mvc.match.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.tools.DocumentationTool.Location;
 
 import com.care.mvc.match.model.service.MatchService;
 import com.care.mvc.member.model.vo.Member;
@@ -48,7 +46,7 @@ public class MatchSearchServlet extends HttpServlet {
 		if (null != qual && qual.length > 0) {
 			options.put("qual", qual);
 		} 
-		
+
 		if (null != years && years.length > 0) {
 			options.put("years", years);
 		} 

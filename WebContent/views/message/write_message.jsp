@@ -1,10 +1,16 @@
+<%@page import="com.care.mvc.message.model.vo.SendMessage"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+%>   
+ 
 <%@ include file="/views/common/header.jsp" %>
 <link rel="stylesheet" href="../../css/style.css">
 <section>
     <div id="msg_container">
-        <form action="<%=request.getContextPath()%>/msg/write" method="post">
+        <form action="<%=request.getContextPath()%>/msg/write" method="post"
+                enctype="multipart/form-data">
             <div id="msg_1">
                 <h1>CAREPOOL 쪽지</h1>
             </div>
@@ -30,6 +36,10 @@
                     <div id="msg_2-2-header">
                         <label style="font-size: large;">받는 사람</label>
                         <input type="text" name="rev_id" placeholder="아이디를 입력해주세요">
+                    </div>
+                    <div class="mb-3" id="msg_2-3-header">
+                        <label for="formFile" class="form-label">파일 첨부 &nbsp;&nbsp;</label>
+                        <input class="wirte_file" type="file" id="writeimg" name="messageimg" style="width: fit-content;">
                     </div>
                     <div id="msg_2-2-section">
 

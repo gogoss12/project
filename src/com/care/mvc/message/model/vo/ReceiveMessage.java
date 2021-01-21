@@ -1,10 +1,13 @@
 package com.care.mvc.message.model.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 public class ReceiveMessage {
 
 	private int rec_no;
+	
+	private int rowNum;
 	
 	private String send_id; //보낸사람
 	
@@ -14,16 +17,21 @@ public class ReceiveMessage {
 	
 	private String Mem_id;
 	
+	private String status;
+	
+	private List<ReceiveMessageImg> imgs;
 	
 	public ReceiveMessage() {
 	}
 
-	public ReceiveMessage(int rec_no, String send_id, String rec_body, Date rec_date, String Mem_id) {
+	public ReceiveMessage(int rec_no, int rowNum, String send_id, String rec_body, Date rec_date, String Mem_id, String status) {
 		this.rec_no = rec_no;
+		this.rowNum = rowNum;
 		this.send_id = send_id;
 		this.rec_body = rec_body;
 		this.rec_date = rec_date;
 		this.Mem_id = Mem_id;
+		this.status = status;
 	}
 
 	public int getRec_no() {
@@ -35,11 +43,17 @@ public class ReceiveMessage {
 		this.rec_no = rec_no;
 	}
 
+	public int getRowNum() {
+		return rowNum;
+	}
+
+	public void setRowNum(int rowNum) {
+		this.rowNum = rowNum;
+	}
 
 	public String getSend_id() {
 		return send_id;
 	}
-
 
 	public void setSend_id(String send_id) {
 		this.send_id = send_id;
@@ -72,12 +86,27 @@ public class ReceiveMessage {
 	public void setMem_id(String mem_id) {
 		Mem_id = mem_id;
 	}
+	
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public List<ReceiveMessageImg> getImgs() {
+		return imgs;
+	}
+
+	public void setImgs(List<ReceiveMessageImg> imgs) {
+		this.imgs = imgs;
+	}
 
 	@Override
 	public String toString() {
-		return "ReceiveMessage [rec_no=" + rec_no + ", send_id=" + send_id + ", rec_body=" + rec_body + ", rec_date="
-				+ rec_date + ", Mem_id=" + Mem_id + "]";
+		return "ReceiveMessage [rec_no=" + rec_no + ", rowNum=" + rowNum + ", send_id=" + send_id + ", rec_body="
+				+ rec_body + ", rec_date=" + rec_date + ", Mem_id=" + Mem_id + ", status=" + status + "]";
 	}
-
 	
 }

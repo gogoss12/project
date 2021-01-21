@@ -34,7 +34,6 @@
                 period2.innerHTML = "<input type='date' id='hosp' name='careHistoryDate2'>";
             }
         </script>
-
 <section>
       <div id="mucenter">
             <div id="profile1">
@@ -61,19 +60,18 @@
 
         <br><br>
 
-        <label id="firstTitle">자격증(중복 선택 가능):</label> <br>
-        <hr>
+        <h3><span class="badge bg-secondary">자격증(중복 선택 가능):</span></h3> 
             <div>
                 <label><input type="checkbox" name="careLicense" value="없음">없음</label> &nbsp; 
                 <label><input type="checkbox" name="careLicense" value="요양보호사">요양보호사</label> &nbsp; 
-                <label><input type="checkbox" name="careLicense" value="사회복지사">사회복지사</label> <br>
+                <label><input type="checkbox" name="careLicense" value="사회복지사">사회복지사</label> <br><br>
                 <label><input type="checkbox" name="careLicense" value="간호조무사">간호조무사</label> &nbsp; 
                 <label><input type="checkbox" name="careLicense" value="간호사">간호사</label> &nbsp; 
                 <label><input type="checkbox" name="careLicense" value="물리치료사">물리치료사</label> &nbsp; 
                 <label><input type="checkbox" name="careLicense" value="직업치료사">직업치료사</label> &nbsp; 
             </div>
-        </div>   
-        &nbsp; <br><br>
+
+        <br>
 
         <h3><span class="badge bg-secondary">경력사항 상세 입력</span></h3>
         
@@ -144,7 +142,7 @@
         <br><br>
 
         <hr>
-    <h2 id="pointer">케어가능 환자</h2> <br><br>
+    <h1 id="pointer"> 케어가능 환자</h1> <br><br>
     
 
     <h3><span class="badge bg-secondary">환자상태1</span></h3>

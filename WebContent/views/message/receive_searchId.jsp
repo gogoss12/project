@@ -81,7 +81,7 @@
 									</td>
 									<td id="td-2">
 										<a href="#">
-											<b><%=revM.getImgs()%></b>
+											<b> 채워야하는 부분 </b>
 										</a>
 									</td>
 									<td id="td-2">

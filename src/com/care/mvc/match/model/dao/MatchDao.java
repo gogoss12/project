@@ -68,41 +68,12 @@ public class MatchDao {
 			
 			query.append(" AND REGEXP_LIKE (C.CARE_SAL, '(" + payString + ")') ");
 		}
-		
-		// 쿼리문에 ? 개수를 맞춘다
-//        for (Map.Entry<String,String[]> entry : options.entrySet()) {
-//			// ?000을 ?,?,?... 으로 replace...우선 String[]의 length를 찍는다.
-//			int length = entry.getValue().length; // ?000을 replace할 ? 개수
-//			int indexSta = query.indexOf("?" + entry.getKey()); // ?000의 시작인덱스
-//			int indexEnd = query.lastIndexOf("?" + entry.getKey()); // ?000의 마지막인덱스
-//			String insert = "";
-//						
-//			for (int i = 1; i <= length; i++) { // insert = "?,?...
-//				insert += "?|";
-//				
-//				if (i == length) {
-//					insert.substring(0, insert.length() - 1); // 마지막 콤마 삭제
-//				}
-//			}
-//			
-//			query.replace(indexSta, indexEnd, insert); // 쿼리문 ? 개수 수정
-//        }
-		
+				
 		System.out.println(query);
 		
 		try {
 			pstmt = conn.prepareStatement(query.toString()); // toString()
-			
-	        // 쿼리문의 ?을 실제값으로 대체한다
-//	        for (Map.Entry<String,String[]> entry : options.entrySet()) {
-//	    		int count = 1;
-//	        	String[] arr = entry.getValue();
-//	        	
-//	        	for (String str : entry.getValue()) {
-//					pstmt.setString(count++, str);        		        	        	
-//				}
-//	        }
-			
+						
 	        // 쿼리문 실행
 			rs = pstmt.executeQuery();
 			

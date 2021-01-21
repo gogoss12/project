@@ -31,7 +31,7 @@ public class MemberDao {
 			pstmt.setString(3, member.getMemName());
 			pstmt.setString(4, member.getMemPwd());
 			pstmt.setString(5, member.getMemEmail());
-			pstmt.setInt(6, member.getMemPhone());
+			pstmt.setString(6, member.getMemPhone());
 			pstmt.setString(7, member.getMemAddr());
 			pstmt.setString(8, member.getMemBirth());
 
@@ -69,7 +69,7 @@ public class MemberDao {
 		            rset.getString("MEM_NAME"),
 		            rset.getString("MEM_PWD"),
 		            rset.getString("MEM_EMAIL"),
-		            rset.getInt("MEM_PHONE"),
+		            rset.getString("MEM_PHONE"),
 		            rset.getString("MEM_ADDR"),
 		            rset.getString("MEM_BIRTH"),
 		            rset.getDate("CREATE_DATE"),
@@ -114,7 +114,7 @@ public class MemberDao {
 						rset.getString("MEM_NAME"),
 						rset.getString("MEM_PWD"),
 						rset.getString("MEM_EMAIL"),
-						rset.getInt("MEM_PHONE"), 
+						rset.getString("MEM_PHONE"), 
 						rset.getString("MEM_ADDR"),
 						rset.getString("MEM_BIRTH"),
 						rset.getDate("CREATE_DATE"),
