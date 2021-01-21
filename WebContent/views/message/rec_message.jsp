@@ -1,3 +1,5 @@
+<%@page import="com.care.mvc.common.util.PageInfo"%>
+<%@page import="javax.swing.plaf.synth.SynthOptionPaneUI"%>
 <%@page import="com.care.mvc.message.model.vo.SendMessage"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.care.mvc.message.model.vo.ReceiveMessage"%>
@@ -8,6 +10,9 @@
 <%
 	ArrayList<ReceiveMessage> list = (ArrayList)request.getAttribute("list");
 	ArrayList<ReceiveMessageImg> listimg = (ArrayList)request.getAttribute("listimg");
+	
+	PageInfo info = (PageInfo)request.getAttribute("pageInfo");
+	
 %>
 <%@ include file="/views/common/header.jsp"%>
 <section>
@@ -30,18 +35,19 @@
 				</div>
 				<div id="msg_2-2">
 					<div id="msg_2-2-header">
-						<input type="button" name="delete_msg" onclick="delete_msg()" value="X삭제" style="color: red;"> 
+						<input type="button" name="delete_msg" value="X삭제" style="color: red;"> 
 						<input type="text" name="find_id" placeholder="아이디 검색 : "> 
 						<input type="button" name="search_id" value="검색">
 					</div>
 					<div id="msg_2-2-section">
 					<table id="msg_table">
 								<tr>
-									<td id="td-1" style="width: 50px;"><input type="checkbox" name="delete_check" value="delete_check"></td>
+									<td id="td-1" style="width: 150px;"><b>번호</b></td>
 									<td id="td-1" style="width: 150px;"><b>보낸사람</b></td>
 									<td id="td-1"><b>내용</b>	</td>
-									<td id="td-1" style="width: 220px;"><b>받은 파일</b> </td>
-									<td id="td-1" style="width: 170px;"><b>받은날짜</b></td>
+									<td id="td-1" style="width: 150px;"><b>파일</b></td>
+									<td id="td-1" style="width: 200px;"><b>받은날짜</b></td>
+									<td id="td-1" style="width: 30px;"><b> - </b></td>
 								</tr>
 								
 								<% if(list.isEmpty()) { %>
@@ -55,8 +61,8 @@
 											if(loginMember.getMemId().equals(revM.getMem_id())){									
 								%>								
 								<tr>
-									<td id="td-2">
-										<input type="checkbox" name="delete_check" value="delete_check">
+									<td id="td-2" >
+										<b><%=revM.getRowNum()%></b>
 									</td>
 									<td id="td-2">
 										<a href="#">
@@ -77,35 +83,49 @@
 									<td id="td-2">
 										<b><%=revM.getRec_date()%></b>
 									</td>
+									<td id="td-2" style="width: 30px;">
+										<input type="button" value="삭제" onclick="delete_row()" name="delete" style="color:red;">
+										<script>
+										function delete_row(){
+											if(confirm("쪽지를 삭제하시겠습니까 ?")){
+												location.href="<%=request.getContextPath()%>/delete/rec?recNum=<%=revM.getRec_no()%>"
+											}; 
+									    };
+										</script>
+									</td>
 								</tr>
 									<% 
 										}
 									}
 								 } 
 							} %>
-							</table>
-						<div id="msg_2-2-footer">
-							<div id="pageBar">
-								<!-- 맨 처음으로 -->
-								<button onclick="location.href=''">&lt;&lt;</button>
-								<!-- 이전 페이지로 -->
-								<button>&lt;</button>
-								<!--  10개 페이지 목록 -->
-								<button>1</button>
-								<button onclick="location.href=''">2</button>
-								<button onclick="location.href=''">3</button>
-								<button>4</button>
-								<button>5</button>
-								<!-- 다음 페이지로 -->
-								<button>&gt;</button>
-								<!-- 맨 끝으로 -->
-								<button>&gt;&gt;</button>
-							</div>
-						</div>
+						</table>
 					</div>
 				</div>
 			</div>
 		</form>
+		<div id="msg_2-2-footer">
+			<div id="pageBar">
+				<!-- 맨 처음으로 -->
+				<button onclick="location.href='<%= request.getContextPath() %>/msg/get?rec_page=1'">&lt;&lt;</button>
+				<!-- 이전 페이지로 -->
+				<button onclick="location.href='<%= request.getContextPath() %>/msg/get?rec_page=<%= info.getPrvePage()%>'">&lt;</button>
+				
+				<!--  10개 페이지 목록 -->
+				
+				<% for(int p = info.getStartPage(); p <= info.getEndPage(); p++) { %>
+					<% if(p == info.getCurrentPage()) { %>
+						<button disabled><%= p %></button>
+					<% }else { %>
+						<button onclick="location.href='<%= request.getContextPath()%>/msg/get?rec_page=<%= p %>'"><%= p %></button>
+					<% } %>
+				<% } %>
+				<!-- 다음 페이지로 -->
+				<button onclick="location.href='<%= request.getContextPath()%>/msg/get?rec_page=<%= info.getNextPage() %>'">&gt;</button>
+				<!-- 맨 끝으로 -->
+				<button onclick="location.href='<%= request.getContextPath()%>/msg/get?rec_page=<%= info.getMaxPage() %>'">&gt;&gt;</button>
+			</div>
+		</div>
 	</div>
 </section>
 <script>
@@ -119,6 +139,14 @@
          });
 	});
 	
-
+	/*function delete_row(){
+		if(confirm("쪽지를 삭제하시겠습니까 ?")){
+        	var checkRows = $("[name='delete_check']:checked");
+        	for(var i=checkRows.length-1; i>-1; i--){
+            	checkRows.eq(i).closest('tr').remove(); 
+        	};
+		}; 
+    };*/
+	
 </script>
-<%@ include file="/views/common/footer.jsp"%></>
+<%@ include file="/views/common/footer.jsp"%>

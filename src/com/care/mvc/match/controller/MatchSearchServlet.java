@@ -44,7 +44,9 @@ public class MatchSearchServlet extends HttpServlet {
 		options.put("qual", qual);
 		options.put("years", years);
 		options.put("addr", addr);
-		options.put("pay", pay);		
+		options.put("pay", pay);	
+		
+		System.out.println(options.toString());
 		
 		List<Member> profiles = new MatchService().searchProfiles(options);
 		
