@@ -3,15 +3,13 @@
 <%@page import="com.care.mvc.message.model.vo.SendMessage"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.care.mvc.message.model.vo.ReceiveMessage"%>
-<%@page import="com.care.mvc.message.model.vo.ReceiveMessageImg"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<link rel="stylesheet" href="../../css/style.css">
 <%
 	ArrayList<ReceiveMessage> list = (ArrayList)request.getAttribute("list");
-	ArrayList<ReceiveMessageImg> listimg = (ArrayList)request.getAttribute("listimg");
-	
 	PageInfo info = (PageInfo)request.getAttribute("pageInfo");
+	
 	
 %>
 <%@ include file="/views/common/header.jsp"%>
@@ -35,6 +33,7 @@
 				</div>
 				<div id="msg_2-2">
 					<div id="msg_2-2-header">
+						<input type="button" name="delete_msg" value="X삭제" style="color: red;"> 
 						<input type="text" id="find_id" name="find_id" placeholder="아이디 검색 : "> 
 						<input type="button" name="search_id" value="검색" onclick="search()">
 					</div>
@@ -82,7 +81,7 @@
 									</td>
 									<td id="td-2">
 										<a href="#">
-											<b><%=revM.getImgs()%></b>
+											<b> 채워야하는 부분 </b>
 										</a>
 									</td>
 									<td id="td-2">
@@ -99,8 +98,7 @@
 										</script>
 									</td>
 								</tr>
-									<% 
-									}
+									<%}
 								 } 
 							} %>
 						</table>

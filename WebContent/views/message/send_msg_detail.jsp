@@ -40,7 +40,14 @@
                             <b>받는사람 : &nbsp;</b> <a href="#"></a><b><%=sendmessage.getRec_id()%></b></a>
                         </div>
                         <div id="msg_contents1">
-                            <b>보낸파일 : &nbsp;</b> <a href="#"><b><%=imgS.getSend_img_name_org()%></b></a>
+                            <b>보낸파일 : &nbsp;</b> 
+                            		<% if(imgS.getSend_img_name_org() != null) { %>
+                            	<a href="#">
+                            		<b><%=imgS.getSend_img_name_org()%></b>
+                            		<% } else { %>
+										<b>파일 없음</b>
+									<% } %>                     			
+                            	</a>
                         </div>
                         <div id="msg_contents1">
                             <b>보낸날짜 : &nbsp;</b> <b><%=sendmessage.getSend_date()%></b>

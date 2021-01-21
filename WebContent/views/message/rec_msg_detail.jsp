@@ -29,23 +29,17 @@
 					</div>
 				</div>
 				<div id="msg_2-2">
-					<div id="msg_2-2-header">
-						<input type="button" name="delete_msg" onclick="delete_msg()" value="X삭제" style="color: red;"> 
-						<input type="text" name="find_id" placeholder="아이디 검색 : "> 
-						<input type="button" name="search_id" value="검색">
-					</div>
 					<div id="msg_2-2-body">
                         <div id="msg_contents1">             <!-- 여기 a태그 없앨지 있을지 여부 -->
                             <b>보낸사람 : &nbsp;</b> <a href="#"></a><b><%=receivemessage.getSend_id()%></b></a>
                         </div>
                         <div id="msg_contents1">
-                            <b>받은파일 : &nbsp;</b> <a href="#"><b><%=imgR.getRec_img_name_org()%></b></a>
-		                            <% if(imgR.getRec_img_name_org() != null) { %>  
-						 		<a href="javascript:fileDownload('<%= imgR.getRec_img_name_org() %>','<%= imgR.getRec_img_name_sav() %>');">					 		
-									<img src="<%=request.getContextPath() %>/images/file.png" width="20" height="20">
-									<%= imgR.getRec_img_name_org() %>
-							 	</a>
-							 	<script>
+                        
+                            <b>받은파일 : &nbsp;</b> 
+                            		<% if(imgR.getRec_img_name_org() != null) { %>
+                            	<a href="javascript:fileDownload('<%= imgR.getRec_img_name_org() %>','<%= imgR.getRec_img_name_sav() %>');">
+                            		<b><%=imgR.getRec_img_name_org()%></b>
+                            									 	<script>
 							 		function fileDownload(oriname, rename) {
 							 			const url = "<%=request.getContextPath() %>/board/fileDown";
 							 			
@@ -58,9 +52,11 @@
 							 			location.assign(url + "?oriname=" + oName + "&rename=" + rName);
 							 		}
 							 	</script>
-							 	<% } else { %>
-							 		<span style="color: gray;"> - </span>
-						 	<% } %>
+                            		
+                            		<% } else { %>
+                            			<b>파일 없음</b>
+                            		<% } %>
+                            	</a>
                         </div>
                         <div id="msg_contents1">
                             <b>받은날짜 : &nbsp;</b> <b><%=receivemessage.getRec_date()%></b>

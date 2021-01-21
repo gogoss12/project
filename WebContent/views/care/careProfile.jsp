@@ -33,11 +33,7 @@
                 var period2 = career1.insertCell();
                 period2.innerHTML = "<input type='date' id='hosp' name='careHistoryDate2'>";
             }
-            
         </script>
-        
-        
-
 <section>
       <div id="mucenter">
             <div id="profile1">
