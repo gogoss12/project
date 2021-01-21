@@ -29,7 +29,6 @@ public class SendMessageServlet extends HttpServlet {
 		int page = 0;
 		int listCount = 0;
 		PageInfo info = null;
-		SendMessageImg send = null;
 		ArrayList<SendMessage> list = null;
 		
 		HttpSession session = request.getSession(false);

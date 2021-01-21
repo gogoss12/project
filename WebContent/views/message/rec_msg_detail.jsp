@@ -29,17 +29,19 @@
 					</div>
 				</div>
 				<div id="msg_2-2">
-					<div id="msg_2-2-header">
-						<input type="button" name="delete_msg" onclick="delete_msg()" value="X삭제" style="color: red;"> 
-						<input type="text" name="find_id" placeholder="아이디 검색 : "> 
-						<input type="button" name="search_id" value="검색">
-					</div>
 					<div id="msg_2-2-body">
                         <div id="msg_contents1">             <!-- 여기 a태그 없앨지 있을지 여부 -->
                             <b>보낸사람 : &nbsp;</b> <a href="#"></a><b><%=receivemessage.getSend_id()%></b></a>
                         </div>
                         <div id="msg_contents1">
-                            <b>받은파일 : &nbsp;</b> <a href="#"><b><%=imgR.getRec_img_name_org()%></b></a>
+                            <b>받은파일 : &nbsp;</b> 
+                            		<% if(imgR.getRec_img_name_org() != null) { %>
+                            	<a href="#">
+                            		<b><%=imgR.getRec_img_name_org()%></b>
+                            		<% } else { %>
+                            			<b>파일 없음</b>
+                            		<% } %>
+                            	</a>
                         </div>
                         <div id="msg_contents1">
                             <b>받은날짜 : &nbsp;</b> <b><%=receivemessage.getRec_date()%></b>

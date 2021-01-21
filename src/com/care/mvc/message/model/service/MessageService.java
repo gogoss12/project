@@ -24,16 +24,22 @@ public class MessageService {
 		
 		ArrayList<ReceiveMessage> list = new MessageDao().listRevMsg(conn, info);
 		
+		for(ReceiveMessage msg : list) {
+			int no = msg.getRec_no(); 
+				msg.setImgs(new MessageDao().listRevMsgImg(conn, no));
+				System.out.println(msg.getImgs());
+		}
+		
 		JDBCTemplate.close(conn);
 		
 		return list;
 	}
 	
 	// 받은 메세지 이미지 읽어오기
-	public ArrayList<ReceiveMessageImg> RevListmsgImg() {
+	public ArrayList<ReceiveMessageImg> RevListmsgImg(int no) {
 		Connection conn = getConnection();
 		
-		ArrayList<ReceiveMessageImg> list = new MessageDao().listRevMsgImg(conn);
+		ArrayList<ReceiveMessageImg> list = new MessageDao().listRevMsgImg(conn, no);
 		
 		JDBCTemplate.close(conn);
 		
@@ -43,7 +49,7 @@ public class MessageService {
 	public ArrayList<SendMessage> SendListmsg(PageInfo info) {
 		Connection conn = getConnection();
 		
-		ArrayList<SendMessage> list = new MessageDao().listSendMsg(conn);
+		ArrayList<SendMessage> list = new MessageDao().listSendMsg(conn, info);
 		
 		JDBCTemplate.close(conn);
 		
@@ -190,6 +196,7 @@ public class MessageService {
 	}
 
 	public ReceiveMessage RecDetails(int recNo) {
+		
 		Connection conn = getConnection();
 		
 		ReceiveMessage recmessage = new MessageDao().RecDetails(conn, recNo);
@@ -208,6 +215,16 @@ public class MessageService {
 		JDBCTemplate.close(conn);
 		
 		return imgR;
+	}
+
+	public ArrayList<SendMessage> searchId(String id, PageInfo info) {
+		Connection conn = getConnection();
+		
+		ArrayList<SendMessage> list = new MessageDao().searchId(conn, info, id);
+		
+		JDBCTemplate.close(conn);
+		
+		return list;
 	}
 
 

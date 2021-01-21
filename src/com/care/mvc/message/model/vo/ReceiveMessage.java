@@ -1,6 +1,7 @@
 package com.care.mvc.message.model.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 public class ReceiveMessage {
 
@@ -18,6 +19,7 @@ public class ReceiveMessage {
 	
 	private String status;
 	
+	private List<ReceiveMessageImg> imgs;
 	
 	public ReceiveMessage() {
 	}
@@ -91,6 +93,14 @@ public class ReceiveMessage {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public List<ReceiveMessageImg> getImgs() {
+		return imgs;
+	}
+
+	public void setImgs(List<ReceiveMessageImg> imgs) {
+		this.imgs = imgs;
 	}
 
 	@Override

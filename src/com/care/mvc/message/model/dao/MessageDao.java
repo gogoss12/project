@@ -110,25 +110,26 @@ public class MessageDao {
 		return list;
 	}
 	
-	public ArrayList<ReceiveMessageImg> listRevMsgImg(Connection conn) {
+	public ArrayList<ReceiveMessageImg> listRevMsgImg(Connection conn, int no) {
 		ArrayList<ReceiveMessageImg> list = new ArrayList<ReceiveMessageImg>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "SELECT REC_IMG_PATH, REC_IMG_NAME_ORG, REC_IMG_NAME_SAV, REC_NO "
-				+ "FROM REC_IMAGE ORDER BY REC_IMG_NO DESC"; // 순서는 REC_NO 해도 상관없을거같다
+		String query = "SELECT REC_IMG_NAME_ORG "
+				+ " FROM REC_IMAGE "
+				+ " WHERE REC_NO = ? "
+				+ " ORDER BY REC_IMG_NO DESC"; // 순서는 REC_NO 해도 상관없을거같다
 		
 		try {
 			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, no);
 			rset = pstmt.executeQuery();
 			
 			while (rset.next()) {
 				ReceiveMessageImg recMsgImg = new ReceiveMessageImg();
 				
-				recMsgImg.setRec_img_path(rset.getString("REC_IMG_PATH"));
-				recMsgImg.setRec_img_name_org(rset.getString("REC_IMG_PATH"));
-				recMsgImg.setRec_img_name_sav(rset.getString("REC_IMG_PATH"));
-				recMsgImg.setRec_no(rset.getInt("REC_NO"));
+				recMsgImg.setRec_img_name_org(rset.getString("REC_IMG_NAME_ORG"));
 				
 				list.add(recMsgImg);
 			}
@@ -513,5 +514,52 @@ public class MessageDao {
 		}
 		
 		return imgR;
+	}
+
+	public ArrayList<SendMessage> searchId(Connection conn, PageInfo info, String id) {
+		ArrayList<SendMessage> list = new ArrayList<SendMessage>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "SELECT * "
+				+ "FROM ("
+				+ "    SELECT ROWNUM AS RNUM, SEND_NO, REC_ID , SEND_BODY, SEND_DATE, MEM_ID, STATUS"
+				+ "    FROM ("
+				+ "        SELECT S.SEND_NO, S.REC_ID, S.SEND_BODY, S.SEND_DATE, M.MEM_ID, S.STATUS"
+				+ "        FROM SEND_MSG S JOIN MEMBER M ON(S.MEM_ID = M.MEM_ID) WHERE S.STATUS = 'Y'"
+				+ "        ORDER BY S.SEND_NO DESC"
+				+ "    )"
+				+ ") WHERE RNUM BETWEEN ? AND ? AND REC_ID =?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, info.getStartList());
+			pstmt.setInt(2, info.getEndList());
+			pstmt.setString(3, id);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				SendMessage sendMsg = new SendMessage();
+				
+				sendMsg.setSend_no(rset.getInt("SEND_NO"));
+				sendMsg.setRec_id(rset.getString("REC_ID"));
+				sendMsg.setRowNum(rset.getInt("RNUM"));
+				sendMsg.setSend_body(rset.getString("SEND_BODY"));
+				sendMsg.setSend_date(rset.getDate("SEND_DATE"));
+				sendMsg.setMem_id(rset.getString("MEM_ID"));
+				
+				list.add(sendMsg);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return list;
 	}
 }
