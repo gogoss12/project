@@ -3,6 +3,7 @@ package com.care.mvc.message.model.service;
 import static com.care.mvc.common.jdbc.JDBCTemplate.commit;
 import static com.care.mvc.common.jdbc.JDBCTemplate.getConnection;
 import static com.care.mvc.common.jdbc.JDBCTemplate.rollback;
+import static com.care.mvc.common.jdbc.JDBCTemplate.close;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -23,16 +24,22 @@ public class MessageService {
 		
 		ArrayList<ReceiveMessage> list = new MessageDao().listRevMsg(conn, info);
 		
+		for(ReceiveMessage msg : list) {
+			int no = msg.getRec_no(); 
+				msg.setImgs(new MessageDao().listRevMsgImg(conn, no));
+				System.out.println(msg.getImgs());
+		}
+		
 		JDBCTemplate.close(conn);
 		
 		return list;
 	}
 	
 	// 받은 메세지 이미지 읽어오기
-	public ArrayList<ReceiveMessageImg> RevListmsgImg() {
+	public ArrayList<ReceiveMessageImg> RevListmsgImg(int no) {
 		Connection conn = getConnection();
 		
-		ArrayList<ReceiveMessageImg> list = new MessageDao().listRevMsgImg(conn);
+		ArrayList<ReceiveMessageImg> list = new MessageDao().listRevMsgImg(conn, no);
 		
 		JDBCTemplate.close(conn);
 		
@@ -50,15 +57,7 @@ public class MessageService {
 	}
 	
 	// 보낸 메세지 이미지 읽어오기
-	public ArrayList<SendMessageImg> SendListmsgImg() {
-		Connection conn = getConnection();
-		
-		ArrayList<SendMessageImg> listImg = new MessageDao().listSendMsgImg(conn);
-		
-		JDBCTemplate.close(conn);
-		
-		return listImg;
-	}
+	
 
 	// 메세지 보내기
 	public int sendMsg(SendMessage sendM) {
@@ -76,14 +75,14 @@ public class MessageService {
 		return resultS;
 	}
 
-	// 메세지 이미지 보내기					// , SendMessage sm
+	// 메세지 이미지 보내기
 	public int sendImage(SendMessageImg smi, SendMessage sm) {
 		
 		Connection conn = getConnection();
 		
 		int resultSI = 0;
-														// , sm
-		resultSI = new MessageDao().sendMsgImage(conn, smi);
+		
+		resultSI = new MessageDao().sendMsgImage(conn, smi, sm);
 		
 		if(resultSI > 0) {
 			commit(conn);
@@ -110,10 +109,10 @@ public class MessageService {
 	}
 
 	// 메세지 이미지 받기
-	public int receiveImage(ReceiveMessageImg rmi) {
+	public int receiveImage(ReceiveMessageImg rmi, ReceiveMessage rm) {
 		Connection conn = getConnection();
 		
-		int resultRI = new MessageDao().recMsgImage(conn, rmi);
+		int resultRI = new MessageDao().recMsgImage(conn, rmi, rm);
 		
 		if(resultRI > 0) {
 			JDBCTemplate.commit(conn);
@@ -173,5 +172,60 @@ public class MessageService {
 		
 		return resultS;
 	}
+
+	public SendMessage SendDetails(int sendNo) {
+		
+		Connection conn = getConnection();
+		
+		SendMessage sendmessage = new MessageDao().SendDetails(conn, sendNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return sendmessage;
+	}
+
+	public SendMessageImg SendDetailsImgName(int sendNo) {
+		
+		Connection conn = getConnection();
+		
+		SendMessageImg imgS = new MessageDao().SendDetailsImgName(conn, sendNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return imgS;
+	}
+
+	public ReceiveMessage RecDetails(int recNo) {
+		
+		Connection conn = getConnection();
+		
+		ReceiveMessage recmessage = new MessageDao().RecDetails(conn, recNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return recmessage;
+	}
+
+	public ReceiveMessageImg RecDetailsImgName(int recNo) {
+		
+		Connection conn = getConnection();
+		
+		ReceiveMessageImg imgR = new MessageDao().RecDetailsImgName(conn, recNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return imgR;
+	}
+
+	public ArrayList<SendMessage> searchId(String id, PageInfo info) {
+		Connection conn = getConnection();
+		
+		ArrayList<SendMessage> list = new MessageDao().searchId(conn, info, id);
+		
+		JDBCTemplate.close(conn);
+		
+		return list;
+	}
+
 
 }

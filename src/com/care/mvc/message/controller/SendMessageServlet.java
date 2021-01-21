@@ -29,7 +29,6 @@ public class SendMessageServlet extends HttpServlet {
 		int page = 0;
 		int listCount = 0;
 		PageInfo info = null;
-		SendMessageImg send = null;
 		ArrayList<SendMessage> list = null;
 		
 		HttpSession session = request.getSession(false);
@@ -38,7 +37,6 @@ public class SendMessageServlet extends HttpServlet {
 		
 		// 비로그인시 로그인 페이지로 이동
 		if(loginMember != null) {
-			
 			try {
 				page = Integer.parseInt(request.getParameter("send_page"));
 				System.out.println(page);
@@ -47,18 +45,13 @@ public class SendMessageServlet extends HttpServlet {
 				page = 1;
 			}
 			
-			ArrayList<SendMessageImg> listImg = new MessageService().SendListmsgImg();
-
 			listCount = new MessageService().sendMsgList();
 			info = new PageInfo(page, 10, listCount, 10);
 			list = new MessageService().SendListmsg(info);
 			
-			request.setAttribute("listImg", listImg);
 			request.setAttribute("list", list);
 			request.setAttribute("pageInfo", info);
-			
 			request.getRequestDispatcher("/views/message/send_message.jsp").forward(request, response);
-//			request.getRequestDispatcher("/views/message/send_msg_detail.jsp").forward(request, response);
 		}else {
 			msg = "로그인이 필요한 페이지입니다.";
 			loc = "/member/login";

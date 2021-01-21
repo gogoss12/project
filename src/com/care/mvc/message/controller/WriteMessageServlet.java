@@ -82,7 +82,7 @@ public class WriteMessageServlet extends HttpServlet {
 			rmi.setRec_img_path(path);
 			rmi.setRec_img_name_org(fileName);
 			rmi.setRec_img_name_sav(upfileName);
-//			rmi.setRec_no(rm.getRec_no());
+			rmi.setRec_no(rm.getRec_no());
 			System.out.println(rmi);
 			int resultRI = new MessageService().receiveImage(rmi, rm);
 		
