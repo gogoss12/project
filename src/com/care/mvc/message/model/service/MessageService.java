@@ -3,7 +3,6 @@ package com.care.mvc.message.model.service;
 import static com.care.mvc.common.jdbc.JDBCTemplate.commit;
 import static com.care.mvc.common.jdbc.JDBCTemplate.getConnection;
 import static com.care.mvc.common.jdbc.JDBCTemplate.rollback;
-import static com.care.mvc.common.jdbc.JDBCTemplate.close;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -52,7 +51,15 @@ public class MessageService {
 	}
 	
 	// 보낸 메세지 이미지 읽어오기
-	
+	public ArrayList<SendMessageImg> SendListmsgImg() {
+		Connection conn = getConnection();
+		
+		ArrayList<SendMessageImg> listImg = new MessageDao().listSendMsgImg(conn);
+		
+		JDBCTemplate.close(conn);
+		
+		return listImg;
+	}
 
 	// 메세지 보내기
 	public int sendMsg(SendMessage sendM) {
@@ -70,14 +77,14 @@ public class MessageService {
 		return resultS;
 	}
 
-	// 메세지 이미지 보내기
-	public int sendImage(SendMessageImg smi, SendMessage sm) {
+	// 메세지 이미지 보내기					// , SendMessage sm
+	public int sendImage(SendMessageImg smi) {
 		
 		Connection conn = getConnection();
 		
 		int resultSI = 0;
-		
-		resultSI = new MessageDao().sendMsgImage(conn, smi, sm);
+														// , sm
+		resultSI = new MessageDao().sendMsgImage(conn, smi);
 		
 		if(resultSI > 0) {
 			commit(conn);

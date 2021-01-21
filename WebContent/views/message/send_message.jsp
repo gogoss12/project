@@ -17,7 +17,7 @@
             </div>
             <div id="msg_2">
                 <div id="msg_2-1">
-                    <div id="write_msg">
+                    <div id="write_msg">   <!-- ==== 21행 a태그 나머지 채워넣어야한다  ===== -->
                         <a href="<%= request.getContextPath()%>/msg/write?sendNum=<%= %>">쪽지쓰기</a>
                     </div>
                     <div>

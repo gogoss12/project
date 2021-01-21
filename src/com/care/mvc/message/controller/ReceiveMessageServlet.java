@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.care.mvc.member.model.vo.Member;
 import com.care.mvc.message.model.service.MessageService;
 import com.care.mvc.message.model.vo.ReceiveMessage;
+import com.care.mvc.message.model.vo.ReceiveMessageImg;
 
 @WebServlet("/msg/get")
 public class ReceiveMessageServlet extends HttpServlet {
@@ -29,10 +30,13 @@ public class ReceiveMessageServlet extends HttpServlet {
 		// 비로그인시 로그인 페이지로 이동
 		if(loginMember != null) {
 			ArrayList<ReceiveMessage> list = new MessageService().RevListmsg();
+			ArrayList<ReceiveMessageImg> listImg = new MessageService().RevListmsgImg();
 			System.out.println(loginMember.getMemId());
 			
 			request.setAttribute("list", list);
+			request.setAttribute("listImg", listImg);
 			request.getRequestDispatcher("/views/message/rec_message.jsp").forward(request, response);
+//			request.getRequestDispatcher("/views/message/rec_msg_detail.jsp").forward(request, response);
 		}else {
 			msg = "로그인이 필요한 페이지입니다.";
 			loc = "/member/login";

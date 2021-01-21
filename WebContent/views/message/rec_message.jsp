@@ -1,12 +1,13 @@
 <%@page import="com.care.mvc.message.model.vo.SendMessage"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.care.mvc.message.model.vo.ReceiveMessage"%>
+<%@page import="com.care.mvc.message.model.vo.ReceiveMessageImg"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<link rel="stylesheet" href="../../css/style.css">
 <%
 	ArrayList<ReceiveMessage> list = (ArrayList)request.getAttribute("list");
-	
+	ArrayList<ReceiveMessageImg> listimg = (ArrayList)request.getAttribute("listimg");
 %>
 <%@ include file="/views/common/header.jsp"%>
 <section>
@@ -69,14 +70,17 @@
 									</td>
 									<td id="td-2">
 										<a href="#">
-											<b> 채워야하는 부분 </b>
+										<%for(ReceiveMessageImg revMImg : listimg) { %>
+											<b><%=revMImg.getRec_img_name_org()%></b>
 										</a>
 									</td>
 									<td id="td-2">
 										<b><%=revM.getRec_date()%></b>
 									</td>
 								</tr>
-									<%}
+									<% 
+										}
+									}
 								 } 
 							} %>
 							</table>

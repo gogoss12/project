@@ -61,14 +61,15 @@ public class WriteMessageServlet extends HttpServlet {
 			
 			// 쪽지 사진 보내기
 			SendMessageImg smi = new SendMessageImg();
-			SendMessage sm = new SendMessage();
+//			SendMessage sm = new SendMessage();
 			
 			smi.setSend_img_path(path);
 			smi.setSend_img_name_org(fileName);
 			smi.setSend_img_name_sav(upfileName);
-			smi.setSend_no(sm.getSend_no());
-			System.out.println(smi);
-			int resultSI = new MessageService().sendImage(smi, sm);
+			
+//			smi.setSend_no(sm.getSend_no());
+			System.out.println(smi);					// , sm
+			int resultSI = new MessageService().sendImage(smi);
 			
 			// 쪽지 사진 받기
 			ReceiveMessageImg rmi = new ReceiveMessageImg();

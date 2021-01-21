@@ -62,8 +62,8 @@ public class MessageDao {
 				ReceiveMessageImg recMsgImg = new ReceiveMessageImg();
 				
 				recMsgImg.setRec_img_path(rset.getString("REC_IMG_PATH"));
-				recMsgImg.setRec_img_name_org(rset.getString("REC_IMG_PATH"));
-				recMsgImg.setRec_img_name_sav(rset.getString("REC_IMG_PATH"));
+				recMsgImg.setRec_img_name_org(rset.getString("REC_IMG_NAME_ORG"));
+				recMsgImg.setRec_img_name_sav(rset.getString("REC_IMG_NAME_SAV"));
 				recMsgImg.setRec_no(rset.getInt("REC_NO"));
 				
 				list.add(recMsgImg);
@@ -111,6 +111,35 @@ public class MessageDao {
 		
 		return list;
 	}
+	
+	public ArrayList<SendMessageImg> listSendMsgImg(Connection conn) {
+		ArrayList<SendMessageImg> list = new ArrayList<SendMessageImg>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "SELECT SEND_IMG_NO, SEND_IMG_PATH, SEND_IMG_NAME_ORG, SEND_IMG_NAME_SAV, SEND_NO"
+				+ "FROM SEND_IMAGE ORDER BY SEND_IMG_NO DESC";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+		rset = pstmt.executeQuery();
+		
+			while(rset.next()) {
+				SendMessageImg SendMsgImg = new SendMessageImg();
+
+				SendMsgImg.setSend_img_no(rset.getInt("SEND_NO"));
+				SendMsgImg.setSend_img_path(rset.getString("SEND_IMG_PATH"));
+				SendMsgImg.setSend_img_name_org(rset.getString("SEND_IMG_NAME_ORG"));
+				SendMsgImg.setSend_img_name_sav(rset.getString("SEND_IMG_NAME_SAV"));
+				SendMsgImg.setSend_no(rset.getInt("SEND_NO"));
+		
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
 
 	public int SendMsg(Connection conn, SendMessage sendM) {
 		int resultS = 0;
@@ -134,20 +163,21 @@ public class MessageDao {
 		}
 		return resultS;
 	}
-	
-	public int sendMsgImage(Connection conn, SendMessageImg smi, SendMessage sm) {
+											//  , SendMessage sm
+	public int sendMsgImage(Connection conn, SendMessageImg smi) {
 	      int resultI = 0;
 	      PreparedStatement Ipstmt = null;
 	      
 	      try {
-	         String sendMsgImg = "INSERT INTO SEND_IMAGE VALUES (SEQ_SEND_IMAGE_NO.NEXTVAL,?,?,?,?)";
+	         String sendMsgImg = "INSERT INTO SEND_IMAGE VALUES (SEQ_SEND_IMAGE_NO.NEXTVAL,?,?,?,SEQ_SEND_NO.NEXTVAL)";
 	         
 	         Ipstmt = conn.prepareStatement(sendMsgImg);
 	         
 	         Ipstmt.setString(1, smi.getSend_img_path());
 	         Ipstmt.setString(2, smi.getSend_img_name_org());
 	         Ipstmt.setString(3, smi.getSend_img_name_sav());
-	         Ipstmt.setInt(4, sm.getSend_no());  // 현재 0번으로 뜸, 숫자뜨면 지워줘!
+	         
+//	         Ipstmt.setInt(4, sm.getSend_no());  // 현재 0번으로 뜸, 숫자뜨면 지워줘!
 	         
 	         resultI = Ipstmt.executeUpdate();
 	         
