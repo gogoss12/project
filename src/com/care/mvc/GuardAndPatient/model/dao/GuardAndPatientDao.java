@@ -39,8 +39,6 @@ public class GuardAndPatientDao {
 		PreparedStatement GPstmt = null;
 		String GuardQuery = "INSERT INTO GUARDIAN_PROFILE VALUES(?, ?, ?, ?)";
 		int guardNo = findGuardNo(conn, guard);
-
-		System.out.println("혹시 시퀀스? " + guardNo);
 		
 		try {
 			GPstmt = conn.prepareStatement(GuardQuery);
@@ -67,7 +65,6 @@ public class GuardAndPatientDao {
 		String PatientQuery = "INSERT INTO PATIENT_DETAILS VALUES(SEQ_PAT_NO.NEXTVAL,"
 				+ "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-		System.out.println("혹시 시퀀스? " + guardNo);
 		try {
 			PPstmt = conn.prepareStatement(PatientQuery);
 
