@@ -40,6 +40,28 @@ public class MessageDao {
 		return sendNo;		
 	}
 	
+	private int findRecNo(Connection conn, ReceiveMessage receiveMessage) {
+		ResultSet rs = null;
+		Statement stmt = null;
+		String query = "";
+		int recNo = 0;
+		
+		query = "SELECT SEQ_REC_NO.NEXTVAL FROM DUAL";
+		
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(query);
+			
+			if(rs.next()) {
+				recNo = Integer.parseInt(rs.getString(1)); 
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return recNo;		
+	}
+	
 
 	public ArrayList<ReceiveMessage> listRevMsg(Connection conn, PageInfo info) {
 		ArrayList<ReceiveMessage> list = new ArrayList<ReceiveMessage>();
@@ -48,10 +70,10 @@ public class MessageDao {
 		
 		String query = "SELECT * "
 				+ "FROM ("
-				+ "    SELECT ROWNUM AS RNUM, REC_NO, SEND_ID , REC_BODY, REC_DATE, MEM_ID"
+				+ "    SELECT ROWNUM AS RNUM, REC_NO, SEND_ID , REC_BODY, REC_DATE, MEM_ID, STATUS"
 				+ "    FROM ("
-				+ "        SELECT R.REC_NO, R.SEND_ID, R.REC_BODY, R.REC_DATE, M.MEM_ID"
-				+ "        FROM REC_MSG R JOIN MEMBER M ON(R.MEM_ID = M.MEM_ID)"
+				+ "        SELECT R.REC_NO, R.SEND_ID, R.REC_BODY, R.REC_DATE, M.MEM_ID, R.STATUS"
+				+ "        FROM REC_MSG R JOIN MEMBER M ON(R.MEM_ID = M.MEM_ID) WHERE R.STATUS = 'Y'"
 				+ "        ORDER BY R.REC_NO DESC"
 				+ "    )"
 				+ ") WHERE RNUM BETWEEN ? AND ?";
@@ -75,6 +97,7 @@ public class MessageDao {
 				recMsg.setMem_id(rset.getString("MEM_ID"));
 				
 				list.add(recMsg);
+				
 			}
 			
 		} catch (SQLException e) {
@@ -87,25 +110,26 @@ public class MessageDao {
 		return list;
 	}
 	
-	public ArrayList<ReceiveMessageImg> listRevMsgImg(Connection conn) {
+	public ArrayList<ReceiveMessageImg> listRevMsgImg(Connection conn, int no) {
 		ArrayList<ReceiveMessageImg> list = new ArrayList<ReceiveMessageImg>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "SELECT REC_IMG_PATH, REC_IMG_NAME_ORG, REC_IMG_NAME_SAV, REC_NO "
-				+ "FROM REC_IMAGE ORDER BY REC_IMG_NO DESC"; // 순서는 REC_NO 해도 상관없을거같다
+		String query = "SELECT REC_IMG_NAME_ORG "
+				+ " FROM REC_IMAGE "
+				+ " WHERE REC_NO = ? "
+				+ " ORDER BY REC_IMG_NO DESC"; // 순서는 REC_NO 해도 상관없을거같다
 		
 		try {
 			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, no);
 			rset = pstmt.executeQuery();
 			
 			while (rset.next()) {
 				ReceiveMessageImg recMsgImg = new ReceiveMessageImg();
 				
-				recMsgImg.setRec_img_path(rset.getString("REC_IMG_PATH"));
-				recMsgImg.setRec_img_name_org(rset.getString("REC_IMG_PATH"));
-				recMsgImg.setRec_img_name_sav(rset.getString("REC_IMG_PATH"));
-				recMsgImg.setRec_no(rset.getInt("REC_NO"));
+				recMsgImg.setRec_img_name_org(rset.getString("REC_IMG_NAME_ORG"));
 				
 				list.add(recMsgImg);
 			}
@@ -127,10 +151,10 @@ public class MessageDao {
 		
 		String query = "SELECT * "
 				+ "FROM ("
-				+ "    SELECT ROWNUM AS RNUM, SEND_NO, REC_ID , SEND_BODY, SEND_DATE, MEM_ID"
+				+ "    SELECT ROWNUM AS RNUM, SEND_NO, REC_ID , SEND_BODY, SEND_DATE, MEM_ID, STATUS"
 				+ "    FROM ("
-				+ "        SELECT S.SEND_NO, S.REC_ID, S.SEND_BODY, S.SEND_DATE, M.MEM_ID"
-				+ "        FROM SEND_MSG S JOIN MEMBER M ON(S.MEM_ID = M.MEM_ID)"
+				+ "        SELECT S.SEND_NO, S.REC_ID, S.SEND_BODY, S.SEND_DATE, M.MEM_ID, S.STATUS"
+				+ "        FROM SEND_MSG S JOIN MEMBER M ON(S.MEM_ID = M.MEM_ID) WHERE S.STATUS = 'Y'"
 				+ "        ORDER BY S.SEND_NO DESC"
 				+ "    )"
 				+ ") WHERE RNUM BETWEEN ? AND ?";
@@ -170,7 +194,7 @@ public class MessageDao {
 		int resultS = 0;
 		PreparedStatement pstmt = null;
 		
-		String query = "INSERT INTO SEND_MSG VALUES(SEQ_SEND_NO.NEXTVAL,?,?,SYSDATE,?)";
+		String query = "INSERT INTO SEND_MSG VALUES(SEQ_SEND_NO.NEXTVAL,?,?,SYSDATE,?,DEFAULT)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -221,7 +245,7 @@ public class MessageDao {
 		int resultR = 0;
 		PreparedStatement pstmt = null;
 		
-		String query = "INSERT INTO REC_MSG VALUES(SEQ_REC_NO.NEXTVAL,?,?,SYSDATE,?)";
+		String query = "INSERT INTO REC_MSG VALUES(SEQ_REC_NO.NEXTVAL,?,?,SYSDATE,?,DEFAULT)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -240,11 +264,12 @@ public class MessageDao {
 		return resultR;
 	}
 	
-	public int recMsgImage(Connection conn, ReceiveMessageImg rmi) {
+	public int recMsgImage(Connection conn, ReceiveMessageImg rmi, ReceiveMessage rm) {
 		int resultRI = 0;
 		PreparedStatement Ipstmt = null;
+		int recNo = findRecNo(conn, rm);
 		
-		String query = "INSERT INTO REC_IMAGE VALUES (SEQ_REC_IMAGE_NO.NEXTVAL,?,?,?,SEQ_REC_NO.NEXTVAL)";
+		String query = "INSERT INTO REC_IMAGE VALUES (SEQ_REC_IMAGE_NO.NEXTVAL,?,?,?,?)";
 		
 		try {
 			Ipstmt = conn.prepareStatement(query);
@@ -252,6 +277,7 @@ public class MessageDao {
 			 Ipstmt.setString(1, rmi.getRec_img_path());
 	         Ipstmt.setString(2, rmi.getRec_img_name_org());
 	         Ipstmt.setString(3, rmi.getRec_img_name_sav());
+	         Ipstmt.setInt(4, recNo+1);
 			
 	         resultRI = Ipstmt.executeUpdate();
 	         
@@ -316,7 +342,7 @@ public class MessageDao {
 		int resultR = 0;
 		PreparedStatement pstmt = null;
 		
-		String query ="DELETE FROM REC_MSG WHERE REC_NO = ?";
+		String query ="UPDATE REC_MSG SET STATUS ='N' WHERE REC_NO = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -335,7 +361,7 @@ public class MessageDao {
 		int resultS = 0;
 		PreparedStatement pstmt = null;
 		
-		String query ="DELETE FROM SEND_MSG WHERE SEND_NO = ?";
+		String query ="UPDATE SEND_MSG SET STATUS ='N' WHERE SEND_NO = ?";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
@@ -350,4 +376,190 @@ public class MessageDao {
 		return resultS;
 	}
 
+
+	public SendMessage SendDetails(Connection conn, int sendNo) {
+		SendMessage sendmessage = new SendMessage();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "SELECT SEND_NO, REC_ID, SEND_BODY, SEND_DATE, MEM_ID "
+				+ " FROM SEND_MSG "
+				+ " WHERE SEND_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, sendNo);
+			
+			rset = pstmt.executeQuery();
+				if(rset.next()) {
+				
+				sendmessage.setSend_no(rset.getInt("SEND_NO"));
+				sendmessage.setRec_id(rset.getString("REC_ID"));
+				sendmessage.setSend_body(rset.getString("SEND_BODY"));
+				sendmessage.setSend_date(rset.getDate("SEND_DATE"));
+				sendmessage.setMem_id(rset.getString("MEM_ID"));
+				
+			
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return sendmessage;
+	}
+
+	public SendMessageImg SendDetailsImgName(Connection conn, int sendNo) {
+		SendMessageImg imgS = new SendMessageImg();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "SELECT SEND_IMG_NO, SEND_IMG_PATH, SEND_IMG_NAME_ORG, SEND_IMG_NAME_SAV, SEND_NO "
+				+ " FROM SEND_IMAGE"
+				+ " WHERE SEND_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, sendNo);
+			
+			rset = pstmt.executeQuery();
+				if(rset.next()) {
+				
+					imgS.setSend_img_no(rset.getInt("SEND_IMG_NO"));
+					imgS.setSend_img_path(rset.getString("SEND_IMG_PATH"));
+					imgS.setSend_img_name_org(rset.getString("SEND_IMG_NAME_ORG"));
+					imgS.setSend_img_name_sav(rset.getString("SEND_IMG_NAME_SAV"));
+					imgS.setSend_no(rset.getInt("SEND_NO"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return imgS;
+	}
+
+
+	public ReceiveMessage RecDetails(Connection conn, int recNo) {
+		ReceiveMessage recmessage = new ReceiveMessage();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "SELECT REC_NO, SEND_ID, REC_BODY, REC_DATE, MEM_ID "
+				+ " FROM REC_MSG "
+				+ " WHERE REC_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, recNo);
+			
+			rset = pstmt.executeQuery();
+				if(rset.next()) {
+					recmessage.setRec_no(rset.getInt("REC_NO"));
+					recmessage.setSend_id(rset.getString("SEND_ID"));
+					recmessage.setRec_body(rset.getString("REC_BODY"));
+					recmessage.setRec_date(rset.getDate("REC_DATE"));
+					recmessage.setMem_id(rset.getString("MEM_ID"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return recmessage;
+	}
+
+
+	public ReceiveMessageImg RecDetailsImgName(Connection conn, int recNo) {
+		ReceiveMessageImg imgR = new ReceiveMessageImg();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "SELECT REC_IMG_NO, REC_IMG_PATH, REC_IMG_NAME_ORG, REC_IMG_NAME_SAV, REC_NO "
+				+ " FROM REC_IMAGE"
+				+ " WHERE REC_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, recNo);
+			
+			rset = pstmt.executeQuery();
+				if(rset.next()) {
+				
+					imgR.setRec_img_no(rset.getInt("REC_IMG_NO"));
+					imgR.setRec_img_path(rset.getString("REC_IMG_PATH"));
+					imgR.setRec_img_name_org(rset.getString("REC_IMG_NAME_ORG"));
+					imgR.setRec_img_name_sav(rset.getString("REC_IMG_NAME_SAV"));
+					imgR.setRec_no(rset.getInt("REC_NO"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return imgR;
+	}
+
+	public ArrayList<SendMessage> searchId(Connection conn, PageInfo info, String id) {
+		ArrayList<SendMessage> list = new ArrayList<SendMessage>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "SELECT * "
+				+ "FROM ("
+				+ "    SELECT ROWNUM AS RNUM, SEND_NO, REC_ID , SEND_BODY, SEND_DATE, MEM_ID, STATUS"
+				+ "    FROM ("
+				+ "        SELECT S.SEND_NO, S.REC_ID, S.SEND_BODY, S.SEND_DATE, M.MEM_ID, S.STATUS"
+				+ "        FROM SEND_MSG S JOIN MEMBER M ON(S.MEM_ID = M.MEM_ID) WHERE S.STATUS = 'Y'"
+				+ "        ORDER BY S.SEND_NO DESC"
+				+ "    )"
+				+ ") WHERE RNUM BETWEEN ? AND ? AND REC_ID =?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, info.getStartList());
+			pstmt.setInt(2, info.getEndList());
+			pstmt.setString(3, id);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				SendMessage sendMsg = new SendMessage();
+				
+				sendMsg.setSend_no(rset.getInt("SEND_NO"));
+				sendMsg.setRec_id(rset.getString("REC_ID"));
+				sendMsg.setRowNum(rset.getInt("RNUM"));
+				sendMsg.setSend_body(rset.getString("SEND_BODY"));
+				sendMsg.setSend_date(rset.getDate("SEND_DATE"));
+				sendMsg.setMem_id(rset.getString("MEM_ID"));
+				
+				list.add(sendMsg);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return list;
+	}
 }

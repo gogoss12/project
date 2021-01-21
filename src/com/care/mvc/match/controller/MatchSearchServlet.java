@@ -1,7 +1,6 @@
 package com.care.mvc.match.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,10 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.care.mvc.care.model.vo.Care;
 import com.care.mvc.match.model.service.MatchService;
 import com.care.mvc.member.model.vo.Member;
-
 
 @WebServlet("/match/search")
 public class MatchSearchServlet extends HttpServlet {
@@ -29,7 +26,6 @@ public class MatchSearchServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 버튼 클릭 시 쿼리문으로 해당 검색조건에 걸리는 요양보호사 프로필 업로드		
 		String[] time = request.getParameterValues("time");
 		String[] gender = request.getParameterValues("gender");
 		String[] qual = request.getParameterValues("qual");
@@ -39,20 +35,35 @@ public class MatchSearchServlet extends HttpServlet {
 		
 		Map<String, String[]> options = new HashMap<>();
 		
-		options.put("time", time);
-		options.put("gender", gender);
-		options.put("qual", qual);
-		options.put("years", years);
-		options.put("addr", addr);
-		options.put("pay", pay);	
+		if (null != time && time.length > 0) {
+			options.put("time", time);
+		} 
 		
-		System.out.println(options.toString());
+		if (null != gender && gender.length > 0) {
+			options.put("gender", gender);
+		} 
 		
+		if (null != qual && qual.length > 0) {
+			options.put("qual", qual);
+		} 
+
+		if (null != years && years.length > 0) {
+			options.put("years", years);
+		} 
+		
+		if (null != addr && addr.length > 0) {
+			options.put("addr", addr);
+		}
+		
+		if (null != pay && pay.length > 0) {
+			options.put("pay", pay);		
+		} 
+	
 		List<Member> profiles = new MatchService().searchProfiles(options);
 		
-		// msg.jsp로 dispatch 하지 않는다.
 		request.setAttribute("profiles", profiles);
-		request.getRequestDispatcher("/views/match/search.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("/views/match/list.jsp").forward(request, response);
 	}
 
 }

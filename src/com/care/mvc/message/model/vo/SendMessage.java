@@ -16,17 +16,20 @@ public class SendMessage {
 	
 	private String Mem_id;
 	
+	private String status;
+	
 	
 	public SendMessage() {
 	}
 
-	public SendMessage(int send_no, int rowNum, String rec_id, String send_body, Date send_date, String mem_id) {
+	public SendMessage(int send_no, int rowNum, String rec_id, String send_body, Date send_date, String mem_id, String status) {
 		this.send_no = send_no;
 		this.rowNum = rowNum;
 		this.rec_id = rec_id;
 		this.send_body = send_body;
 		this.send_date = send_date;
 		this.Mem_id = mem_id;
+		this.status = status;
 	}
 
 	public int getSend_no() {
@@ -77,10 +80,18 @@ public class SendMessage {
 		Mem_id = mem_id;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
 		return "SendMessage [send_no=" + send_no + ", rowNum=" + rowNum + ", rec_id=" + rec_id + ", send_body="
-				+ send_body + ", send_date=" + send_date + ", Mem_id=" + Mem_id + "]";
+				+ send_body + ", send_date=" + send_date + ", Mem_id=" + Mem_id + ", status=" + status + "]";
 	}
-	
+
 }

@@ -1,3 +1,4 @@
+<%@page import="com.care.mvc.message.model.vo.ReceiveMessageImg"%>
 <%@page import="com.care.mvc.message.model.vo.SendMessage"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.care.mvc.message.model.vo.ReceiveMessage"%>
@@ -5,8 +6,8 @@
 	pageEncoding="UTF-8"%>
 	<link rel="stylesheet" href="../../css/style.css">
 <%
-	ArrayList<ReceiveMessage> list = (ArrayList)request.getAttribute("list");
-	
+	ReceiveMessage receivemessage = (ReceiveMessage)request.getAttribute("recmessage");
+	ReceiveMessageImg imgR	= (ReceiveMessageImg)request.getAttribute("imgR");
 %>
 <%@ include file="/views/common/header.jsp"%>
 <section>
@@ -28,43 +29,32 @@
 					</div>
 				</div>
 				<div id="msg_2-2">
-					<div id="msg_2-2-header">
-						<input type="button" name="delete_msg" onclick="delete_msg()" value="X삭제" style="color: red;"> 
-						<input type="text" name="find_id" placeholder="아이디 검색 : "> 
-						<input type="button" name="search_id" value="검색">
-					</div>
 					<div id="msg_2-2-body">
                         <div id="msg_contents1">             <!-- 여기 a태그 없앨지 있을지 여부 -->
-                            <b>보낸사람 : &nbsp;</b> <a href="#"></a><b><%=revM.getSend_id()%></b></a>
+                            <b>보낸사람 : &nbsp;</b> <a href="#"></a><b><%=receivemessage.getSend_id()%></b></a>
                         </div>
                         <div id="msg_contents1">
-                            <b>받은파일 : &nbsp;</b> <a href="#"><b> 채워야하는 부분 </b></a>
+                            <b>받은파일 : &nbsp;</b> 
+                            		<% if(imgR.getRec_img_name_org() != null) { %>
+                            	<a href="#">
+                            		<b><%=imgR.getRec_img_name_org()%></b>
+                            		<% } else { %>
+                            			<b>파일 없음</b>
+                            		<% } %>
+                            	</a>
                         </div>
                         <div id="msg_contents1">
-                            <b>받은날짜 : &nbsp;</b> <b><%=revM.getRec_date()%></b>
+                            <b>받은날짜 : &nbsp;</b> <b><%=receivemessage.getRec_date()%></b>
                         </div>
 					</div>
                             
                     <!-- 이게 보낸 내용 -->
                     <div id="msg_contents2">
-                        <a href="#"><b><%=revM.getRec_body()%></b></a>
+                        <b><%=receivemessage.getRec_body()%></b>
                     </div>
 				</div>
 			</div>
 		</form>
 	</div>
 </section>
-<script>
-	$(document).ready(function() {
-		 $('#checkAll').change(function () {
-             if ($(this).prop('checked')) {
-                 $('input:checkbox').prop('checked', true);
-             } else {
-                 $('input:checkbox').prop('checked', false);
-             }
-         });
-	});
-	
-
-</script>
 <%@ include file="/views/common/footer.jsp"%></>

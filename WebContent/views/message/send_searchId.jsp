@@ -13,7 +13,7 @@
 <%@ include file="/views/common/header.jsp" %>
 <section>
     <div id="msg_container">
-        <form action="<%= request.getContextPath()%>/msg/send" method="post">
+        <form action="<%= request.getContextPath()%>/search/sendId" method="post">
             <div id="msg_1">
                 <h1>CAREPOOL 쪽지</h1>
             </div>
@@ -64,7 +64,6 @@
                             </tr>
                             <% }else { 
                                 for(SendMessage sendM : list){
-                                    if(loginMember.getMemId().equals(sendM.getMem_id())){
                             %>								
                             <tr>
                                 <td id="td-2" >
@@ -84,7 +83,7 @@
                                 
                                 <td id="td-2">
                                     <a href="">
-                                        <b></b>
+                                        <b> 채워야하는 부분 </b>
                                     </a>
                                 </td>
                                 
@@ -103,7 +102,6 @@
 									</td>
                             </tr>
                                 <%}
-                             } 
                         } %>
                         </table>
 						</div>

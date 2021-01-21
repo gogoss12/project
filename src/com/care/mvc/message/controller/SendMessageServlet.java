@@ -14,6 +14,7 @@ import com.care.mvc.common.util.PageInfo;
 import com.care.mvc.member.model.vo.Member;
 import com.care.mvc.message.model.service.MessageService;
 import com.care.mvc.message.model.vo.SendMessage;
+import com.care.mvc.message.model.vo.SendMessageImg;
 
 @WebServlet("/msg/send")
 public class SendMessageServlet extends HttpServlet {
