@@ -39,7 +39,7 @@
                             		<% if(imgR.getRec_img_name_org() != null) { %>
                             	<a href="javascript:fileDownload('<%= imgR.getRec_img_name_org() %>','<%= imgR.getRec_img_name_sav() %>');">
                             		<b><%=imgR.getRec_img_name_org()%></b>
-                            									 	<script>
+					 			<script>
 							 		function fileDownload(oriname, rename) {
 							 			const url = "<%=request.getContextPath() %>/board/fileDown";
 							 			
