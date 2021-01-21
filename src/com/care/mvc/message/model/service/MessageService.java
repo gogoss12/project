@@ -3,7 +3,6 @@ package com.care.mvc.message.model.service;
 import static com.care.mvc.common.jdbc.JDBCTemplate.commit;
 import static com.care.mvc.common.jdbc.JDBCTemplate.getConnection;
 import static com.care.mvc.common.jdbc.JDBCTemplate.rollback;
-import static com.care.mvc.common.jdbc.JDBCTemplate.close;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -50,6 +49,11 @@ public class MessageService {
 		Connection conn = getConnection();
 		
 		ArrayList<SendMessage> list = new MessageDao().listSendMsg(conn, info);
+		
+		for(SendMessage msg : list) {
+			int no = msg.getSend_no(); 
+				msg.setImgs(new MessageDao().listSendMsgImg(conn, no));
+		}
 		
 		JDBCTemplate.close(conn);
 		
@@ -217,10 +221,20 @@ public class MessageService {
 		return imgR;
 	}
 
-	public ArrayList<SendMessage> searchId(String id, PageInfo info) {
+	public ArrayList<SendMessage> searchSendId(String id, PageInfo info) {
 		Connection conn = getConnection();
 		
-		ArrayList<SendMessage> list = new MessageDao().searchId(conn, info, id);
+		ArrayList<SendMessage> list = new MessageDao().searchSendId(conn, info, id);
+		
+		JDBCTemplate.close(conn);
+		
+		return list;
+	}
+
+	public ArrayList<ReceiveMessage> RecSearchMsg(PageInfo info, String id) {
+		Connection conn = getConnection();
+		
+		ArrayList<ReceiveMessage> list = new MessageDao().RecSearchMsg(conn, info, id);
 		
 		JDBCTemplate.close(conn);
 		

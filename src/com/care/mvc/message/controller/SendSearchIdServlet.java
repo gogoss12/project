@@ -40,7 +40,7 @@ public class SendSearchIdServlet extends HttpServlet {
 		
 		listCount = new MessageService().sendMsgList();
 		info = new PageInfo(page, 10, listCount, 10);
-		list = new MessageService().searchId(Id, info);
+		list = new MessageService().searchSendId(Id, info);
 		
 		request.setAttribute("list", list);
 		request.setAttribute("pageInfo", info);

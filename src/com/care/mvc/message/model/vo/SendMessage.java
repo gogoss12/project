@@ -1,6 +1,7 @@
 package com.care.mvc.message.model.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 public class SendMessage {
 
@@ -18,11 +19,12 @@ public class SendMessage {
 	
 	private String status;
 	
+	private List<SendMessageImg> imgs;
 	
 	public SendMessage() {
 	}
 
-	public SendMessage(int send_no, int rowNum, String rec_id, String send_body, Date send_date, String mem_id, String status) {
+	public SendMessage(int send_no, int rowNum, String rec_id, String send_body, Date send_date, String mem_id, String status, List<SendMessageImg> imgs) {
 		this.send_no = send_no;
 		this.rowNum = rowNum;
 		this.rec_id = rec_id;
@@ -30,6 +32,7 @@ public class SendMessage {
 		this.send_date = send_date;
 		this.Mem_id = mem_id;
 		this.status = status;
+		this.imgs =imgs;
 	}
 
 	public int getSend_no() {
@@ -88,10 +91,20 @@ public class SendMessage {
 		this.status = status;
 	}
 
+	public List<SendMessageImg> getImgs() {
+		return imgs;
+	}
+
+	public void setImgs(List<SendMessageImg> imgs) {
+		this.imgs = imgs;
+	}
+
 	@Override
 	public String toString() {
 		return "SendMessage [send_no=" + send_no + ", rowNum=" + rowNum + ", rec_id=" + rec_id + ", send_body="
-				+ send_body + ", send_date=" + send_date + ", Mem_id=" + Mem_id + ", status=" + status + "]";
+				+ send_body + ", send_date=" + send_date + ", Mem_id=" + Mem_id + ", status=" + status + ", imgs="
+				+ imgs + "]";
 	}
+
 
 }

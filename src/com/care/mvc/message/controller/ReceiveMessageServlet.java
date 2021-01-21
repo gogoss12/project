@@ -45,6 +45,7 @@ public class ReceiveMessageServlet extends HttpServlet {
 			
 			listCount = new MessageService().getMsgList();
 			info = new PageInfo(page, 10, listCount, 10);
+			
 			list = new MessageService().RevListmsg(info);
 			
 			request.setAttribute("list", list);

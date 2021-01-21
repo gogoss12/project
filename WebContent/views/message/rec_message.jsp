@@ -33,7 +33,6 @@
 				</div>
 				<div id="msg_2-2">
 					<div id="msg_2-2-header">
-						<input type="button" name="delete_msg" value="X삭제" style="color: red;"> 
 						<input type="text" id="find_id" name="find_id" placeholder="아이디 검색 : "> 
 						<input type="button" name="search_id" value="검색" onclick="search()">
 					</div>
@@ -81,7 +80,11 @@
 									</td>
 									<td id="td-2">
 										<a href="#">
-											<b><%=revM.getImgs()%></b>
+											<% if(revM.getImgs().get(0).getRec_img_name_org() != null) { %>
+											<b><img src="<%=request.getContextPath()%>/image/filefigure.png" style="width:20px"></b>
+											<% } else { %> 
+												<b>파일 없음</b>
+											<% } %>
 										</a>
 									</td>
 									<td id="td-2">

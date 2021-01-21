@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.care.mvc.GuardAndPatient.model.vo.Guard;
 import com.care.mvc.common.jdbc.JDBCTemplate;
@@ -115,7 +116,7 @@ public class MessageDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "SELECT REC_IMG_NAME_ORG "
+		String query = "SELECT REC_IMG_NAME_ORG, REC_NO "
 				+ " FROM REC_IMAGE "
 				+ " WHERE REC_NO = ? "
 				+ " ORDER BY REC_IMG_NO DESC"; // 순서는 REC_NO 해도 상관없을거같다
@@ -130,6 +131,7 @@ public class MessageDao {
 				ReceiveMessageImg recMsgImg = new ReceiveMessageImg();
 				
 				recMsgImg.setRec_img_name_org(rset.getString("REC_IMG_NAME_ORG"));
+				recMsgImg.setRec_no(rset.getInt("REC_NO"));
 				
 				list.add(recMsgImg);
 			}
@@ -516,7 +518,7 @@ public class MessageDao {
 		return imgR;
 	}
 
-	public ArrayList<SendMessage> searchId(Connection conn, PageInfo info, String id) {
+	public ArrayList<SendMessage> searchSendId(Connection conn, PageInfo info, String id) {
 		ArrayList<SendMessage> list = new ArrayList<SendMessage>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -556,6 +558,89 @@ public class MessageDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public ArrayList<ReceiveMessage> RecSearchMsg(Connection conn, PageInfo info, String id) {
+		ArrayList<ReceiveMessage> list = new ArrayList<ReceiveMessage>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "SELECT * "
+				+ "FROM ("
+				+ "    SELECT ROWNUM AS RNUM, REC_NO, SEND_ID , REC_BODY, REC_DATE, MEM_ID, STATUS"
+				+ "    FROM ("
+				+ "        SELECT R.REC_NO, R.SEND_ID, R.REC_BODY, R.REC_DATE, M.MEM_ID, R.STATUS"
+				+ "        FROM REC_MSG R JOIN MEMBER M ON(R.MEM_ID = M.MEM_ID) WHERE R.STATUS = 'Y'"
+				+ "        ORDER BY R.REC_NO DESC"
+				+ "    )"
+				+ ") WHERE RNUM BETWEEN ? AND ? AND SEND_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, info.getStartList());
+			pstmt.setInt(2, info.getEndList());
+			pstmt.setString(3, id);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				ReceiveMessage recMsg = new ReceiveMessage();
+				
+				recMsg.setRec_no(rset.getInt("REC_NO"));
+				recMsg.setSend_id(rset.getString("SEND_ID"));
+				recMsg.setRowNum(rset.getInt("RNUM"));
+				recMsg.setRec_body(rset.getString("REC_BODY"));
+				recMsg.setRec_date(rset.getDate("REC_DATE"));
+				recMsg.setMem_id(rset.getString("MEM_ID"));
+				
+				list.add(recMsg);
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		
+		return list;
+	}
+
+	public ArrayList<SendMessageImg> listSendMsgImg(Connection conn, int no) {
+		ArrayList<SendMessageImg> list = new ArrayList<SendMessageImg>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "SELECT SEND_IMG_NAME_ORG, SEND_NO "
+				+ " FROM SEND_IMAGE "
+				+ " WHERE SEND_NO = ? "
+				+ " ORDER BY SEND_IMG_NO DESC"; 
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setInt(1, no);
+			rset = pstmt.executeQuery();
+			
+			while (rset.next()) {
+				SendMessageImg sendMsgImg = new SendMessageImg();
+				
+				sendMsgImg.setSend_img_name_org(rset.getString("SEND_IMG_NAME_ORG"));
+				sendMsgImg.setSend_no(rset.getInt("SEND_NO"));
+				
+				list.add(sendMsgImg);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			JDBCTemplate.close(rset);
 			JDBCTemplate.close(pstmt);
 		}
