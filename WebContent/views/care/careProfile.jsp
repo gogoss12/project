@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<<<<<<< HEAD
-    <%@ include file="/views/common/header.jsp" %>
+
 <%
 
 
    String userId = (String)request.getAttribute("userId");
 
 %>
-
+ <%@ include file="/views/common/header.jsp" %>
 
         <script>
             function career_detail() {
@@ -46,7 +45,6 @@
 
    <form name="careEnrollFrm" action="<%= request.getContextPath()%>/enroll/profile/care" method="post"
              enctype="multipart/form-data">
-
         <br><br><br>
                         
         <div class="mb-3">
