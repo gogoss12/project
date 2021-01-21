@@ -3,13 +3,15 @@
 <%@page import="com.care.mvc.message.model.vo.SendMessage"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.care.mvc.message.model.vo.ReceiveMessage"%>
+<%@page import="com.care.mvc.message.model.vo.ReceiveMessageImg"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<link rel="stylesheet" href="../../css/style.css">
 <%
 	ArrayList<ReceiveMessage> list = (ArrayList)request.getAttribute("list");
-	PageInfo info = (PageInfo)request.getAttribute("pageInfo");
+	ArrayList<ReceiveMessageImg> listimg = (ArrayList)request.getAttribute("listimg");
 	
+	PageInfo info = (PageInfo)request.getAttribute("pageInfo");
 	
 %>
 <%@ include file="/views/common/header.jsp"%>
@@ -101,7 +103,8 @@
 										</script>
 									</td>
 								</tr>
-									<%}
+									<% 
+									}
 								 } 
 							} %>
 						</table>

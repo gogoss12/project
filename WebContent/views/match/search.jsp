@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ include file="/views/common/header.jsp" %>
 
-<%
-	// String[] time = request.getParameterValues("time");
-%>
-
 <section id="searchMatch">
 
     <h2>원하시는 요양보호사님을 찾아보세요</h2>
@@ -46,18 +42,6 @@
             <label><input type="checkbox" name="years" value="3 ~ 5년">3 ~ 5년</label>
             <label><input type="checkbox" name="years" value="5 ~ 10년">5 ~ 10년</label>
             <label><input type="checkbox" name="years" value="10년 이상">10년 이상</label>
-            
-            <!-- <label>
-                <select name="years">
-                    <option value="선택" disabled selected>선택</option>
-                    <option value="신입">신입</option>
-                    <option value="1년">1년</option>
-                    <option value="2년">2년</option>
-                    <option value="3년">3년</option>
-                    <option value="4년">4년</option>
-                    <option value="5년이상">5년이상</option>
-                </select>
-            </label> -->
         </div>
 
         <div class="dropdown" id="carePlace">
@@ -79,12 +63,14 @@
             <label><input type="checkbox" name="pay" value="시급">시급</label>
         </div>
 
+        <h3></h3>
+        <div id="searchOptions"></div> <!-- 검색조건 추가/삭제 시 조건을 나열하는 박스 -->
+        <h3></h3>
+
         <button type="submit" class="btn btn-default" id="searchBtn">검색</button>
     </form>
 
-    <div id="searchOptions"></div> <!-- 검색조건 -->
 
-    <!-- 이하 자바스크립트----------------------------------------------------------------------------- -->
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -199,59 +185,6 @@
             });
         });
     </script>
-
-    <!-- 이상 자바스크립트----------------------------------------------------------------------------- -->
-
-    <div id="searchResult">
-        <div class="profile">
-            <img src="../../image/병아리당황.png" alt="">
-            <h5>홍길동 (50세)</h5>
-            <p>치매환자돌봄/전직간호사5년</p>
-            <button>쪽지보내기</button>
-        </div>
-
-        <div class="profile">
-            <img src="../../image/병아리당황.png" alt="">
-            <h5>홍길동 (50세)</h5>
-            <p>치매환자돌봄/전직간호사5년</p>
-            <button>쪽지보내기</button>
-        </div>
-
-        <div class="profile">
-            <img src="../../image/병아리당황.png" alt="">
-            <h5>홍길동 (50세)</h5>
-            <p>치매환자돌봄/전직간호사5년</p>
-            <button>쪽지보내기</button>
-        </div>
-
-        <div class="profile">
-            <img src="../../image/병아리당황.png" alt="">
-            <h5>홍길동 (50세)</h5>
-            <p>치매환자돌봄/전직간호사5년</p>
-            <button>쪽지보내기</button>
-        </div>
-
-        <div class="profile">
-            <img src="../../image/병아리당황.png" alt="">
-            <h5>홍길동 (50세)</h5>
-            <p>치매환자돌봄/전직간호사5년</p>
-            <button>쪽지보내기</button>
-        </div>
-
-        <div class="profile">
-            <img src="../../image/병아리당황.png" alt="">
-            <h5>홍길동 (50세)</h5>
-            <p>치매환자돌봄/전직간호사5년</p>
-            <button>쪽지보내기</button>
-        </div>
-
-        <div class="profile">
-            <img src="../../image/병아리당황.png" alt="">
-            <h5>홍길동 (50세)</h5>
-            <p>치매환자돌봄/전직간호사5년</p>
-            <button>쪽지보내기</button>
-        </div>
-    </div>
 </section>
 
 <%@ include file="/views/common/footer.jsp" %>

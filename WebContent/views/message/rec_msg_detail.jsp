@@ -34,10 +34,25 @@
                             <b>보낸사람 : &nbsp;</b> <a href="#"></a><b><%=receivemessage.getSend_id()%></b></a>
                         </div>
                         <div id="msg_contents1">
+                        
                             <b>받은파일 : &nbsp;</b> 
                             		<% if(imgR.getRec_img_name_org() != null) { %>
-                            	<a href="#">
+                            	<a href="javascript:fileDownload('<%= imgR.getRec_img_name_org() %>','<%= imgR.getRec_img_name_sav() %>');">
                             		<b><%=imgR.getRec_img_name_org()%></b>
+					 			<script>
+							 		function fileDownload(oriname, rename) {
+							 			const url = "<%=request.getContextPath() %>/board/fileDown";
+							 			
+							 			// 인코딩하는 이 부분이 중요하다.
+							 			// 크롬은 자동으로 인코딩해주나(맞나??) IE는 encodeURIComponent을 사용해서 한글을 인코딩을 해줘야한다
+							 			// post는 인코딩을 해주나, get은 안해줘서 이렇게 직접 바꿔줘야한다.
+							 			let oName = encodeURIComponent(oriname);
+							 			let rName = encodeURIComponent(rename);
+							 			
+							 			location.assign(url + "?oriname=" + oName + "&rename=" + rName);
+							 		}
+							 	</script>
+                            		
                             		<% } else { %>
                             			<b>파일 없음</b>
                             		<% } %>

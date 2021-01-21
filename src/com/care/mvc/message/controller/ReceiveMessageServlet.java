@@ -14,6 +14,7 @@ import com.care.mvc.common.util.PageInfo;
 import com.care.mvc.member.model.vo.Member;
 import com.care.mvc.message.model.service.MessageService;
 import com.care.mvc.message.model.vo.ReceiveMessage;
+import com.care.mvc.message.model.vo.ReceiveMessageImg;
 
 @WebServlet("/msg/get")
 public class ReceiveMessageServlet extends HttpServlet {
@@ -35,6 +36,7 @@ public class ReceiveMessageServlet extends HttpServlet {
 		Member loginMember = session != null ? (Member)session.getAttribute("loginMember") : null; 
 		// 비로그인시 로그인 페이지로 이동
 		if(loginMember != null) {
+			
 			try {
 				page = Integer.parseInt(request.getParameter("rec_page"));
 				System.out.println(page);
@@ -43,14 +45,19 @@ public class ReceiveMessageServlet extends HttpServlet {
 				page = 1;
 			}
 			
+//			ArrayList<ReceiveMessageImg> listImg = new MessageService().RevListmsgImg();
+
 			listCount = new MessageService().getMsgList();
 			info = new PageInfo(page, 10, listCount, 10);
 			
 			list = new MessageService().RevListmsg(info);
 			
 			request.setAttribute("list", list);
+//			request.setAttribute("listImg", listImg);
 			request.setAttribute("pageInfo", info);
+			
 			request.getRequestDispatcher("/views/message/rec_message.jsp").forward(request, response);
+//			request.getRequestDispatcher("/views/message/rec_msg_detail.jsp").forward(request, response);
 		}else {
 			msg = "로그인이 필요한 페이지입니다.";
 			loc = "/member/login";

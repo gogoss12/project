@@ -18,60 +18,62 @@ public class MatchDao {
 		List<Member> profiles = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		
-		StringBuffer query = new StringBuffer();
-				 query.append("'SELECT M.MEM_NAME, M.MEM_ID ");
-				 query.append("FROM MEMBER M ");
-				 query.append("JOIN CAREGIVER_PROFILE C ON (M.MEM_ID = C.MEM_ID) ");
-				 query.append("WHERE M.STATUS = 'Y' AND ");
-				 query.append("M.MEM_ROLE = 'caregiver' AND ");
-				 query.append("C.CARE_TIME IN (?time?) AND ");
-				 query.append("C.CARE_GEN IN (?gender) AND ");
-				 query.append("C.CARE_LICENSE IN (?qual) AND ");
-				 query.append("C.CARE_YEARS IN (?years) AND ");
-				 query.append("C.CARE_PLACE IN (?addr) AND ");
-				 query.append("C.CARE_SAL IN (?pay)'");
-		
-		// 쿼리문에 ? 개수를 맞춘다
-        for (Map.Entry<String,String[]> entry : options.entrySet()) {
-        	//System.out.println(entry.getKey());
-        	
-        	System.out.println(query.indexOf("?" + entry.getKey()));
-        	query.insert(191, 'c');
-        	System.out.println(query.indexOf("c" + entry.getKey()));
-        	//System.out.println(query.lastIndexOf("?" + entry.getKey()));
-			// ?000을 ?,?,?... 으로 replace...우선 String[]의 length를 찍는다.
-			int length = entry.getValue().length; // ?000을 replace할 ? 개수
-			int indexSta = query.indexOf("?" + entry.getKey()); // ?000의 시작인덱스
-			int indexEnd = query.lastIndexOf("?" + entry.getKey()); // ?000의 마지막인덱스
-			String insert = "";
-						
-			for (int i = 1; i <= length; i++) { // insert = "?,?...
-				insert += "?,";
 				
-				if (i == length) {
-					insert.substring(0, insert.length() - 1); // 마지막 콤마 삭제
-				}
-			}
+		// with REGEXP_LIKE (?000)
+		StringBuffer query = new StringBuffer(
+				 "SELECT M.MEM_NAME, M.MEM_ID "
+				+ "FROM MEMBER M "
+				+ "JOIN CAREGIVER_PROFILE C ON (M.MEM_ID = C.MEM_ID) "
+				+ "WHERE M.STATUS = 'Y' AND "
+				+ 		"M.MEM_ROLE = 'caregiver' ");
+
+		if (options.containsKey("time")){			
+			String[] time = options.get("time");	
+			String timeString = String.join("|", time);
 			
-			query.replace(indexSta, indexEnd, insert); // 쿼리문 ? 개수 수정
-        }
-        
-        
-        
+			query.append(" AND REGEXP_LIKE (C.CARE_TIME, '(" + timeString + ")') ");
+		}
+		
+		if (options.containsKey("gender")){			
+			String[] gender = options.get("gender");	
+			String genderString = String.join("|", gender);
+			
+			query.append(" AND REGEXP_LIKE (C.CARE_GEN, '(" + genderString + ")') ");
+		}
+		
+		if (options.containsKey("qual")){			
+			String[] qual = options.get("qual");	
+			String qualString = String.join("|", qual);
+			
+			query.append(" AND REGEXP_LIKE (C.CARE_LICENSE, '(" + qualString + ")') ");
+		}
+	
+		if (options.containsKey("years")){			
+			String[] years = options.get("years");	
+			String yearsString = String.join("|", years);
+			
+			query.append(" AND REGEXP_LIKE (C.CARE_YEARS, '(" + yearsString + ")') ");
+		}
+		
+		if (options.containsKey("addr")){			
+			String[] addr = options.get("addr");	
+			String addrString = String.join("|", addr);
+			
+			query.append(" AND REGEXP_LIKE (C.CARE_PLACE, '(" + addrString + ")') ");
+		}
+		
+		if (options.containsKey("pay")){			
+			String[] pay = options.get("pay");	
+			String payString = String.join("|", pay);
+			
+			query.append(" AND REGEXP_LIKE (C.CARE_SAL, '(" + payString + ")') ");
+		}
+				
+		System.out.println(query);
+		
 		try {
 			pstmt = conn.prepareStatement(query.toString()); // toString()
-			
-	        // 쿼리문의 ?을 실제값으로 대체한다
-	        for (Map.Entry<String,String[]> entry : options.entrySet()) {
-	    		int count = 1;
-	        	String[] arr = entry.getValue();
-	        	
-	        	for (String str : entry.getValue()) {
-					pstmt.setString(count++, str);        		        	        	
-				}
-	        }
-			
+						
 	        // 쿼리문 실행
 			rs = pstmt.executeQuery();
 			
