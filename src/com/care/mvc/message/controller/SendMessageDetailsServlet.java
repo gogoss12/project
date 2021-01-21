@@ -38,48 +38,48 @@ public class SendMessageDetailsServlet extends HttpServlet {
 		request.getRequestDispatcher("/views/message/send_msg_detail.jsp").forward(request, response);
 		
 		// 파일 다운로드
-				String oriname = request.getParameter("oriname");
-				String rename = request.getParameter("rename");
+		String nameori = request.getParameter("nameori");
+		String namesav = request.getParameter("namesav");
+		
+		System.out.println("nameori : " + nameori + ", namesav : " + namesav);
+		
+		// 1. 전송할 파일에 대한 경로와 파일명을 가져온다.
+		String path = getServletContext().getRealPath("/upload/msgimg");
+		String file = path + "/" + namesav;
 				
-				System.out.println("oriname : " + oriname + ", rename : " + rename);
-				
-				// 1. 전송할 파일에 대한 경로와 파일명을 가져온다.
-				String path = getServletContext().getRealPath("/upload/msgimg");
-				String file = path + "/" + rename;
-						
-				File downFile = new File(file);
-				
-				BufferedInputStream bis = new BufferedInputStream(new FileInputStream(downFile));
-				
-				BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
-				
-				String downName = null;
-				String header = request.getHeader("user-agent");
-				
-				boolean isMISE = header.indexOf("MSIE") != -1 || header.indexOf("Trident") != -1;
-				
-				System.out.println(header);
-				
-				if(isMISE) {
-					downName = URLEncoder.encode(oriname, "UTF-8").replaceAll("\\+", "%20");
-					
-				} else {
-					downName = new String(oriname.getBytes("UTF-8"), "ISO-8859-1");
-				}
-				
-				response.setContentType("application/octet-stream");
-				
-				response.setHeader("Content-Disposition", "attachment;filename=" + downName);
-				
-				int read = -1;
-				
-				while ((read = bis.read()) != -1) {
-					bos.write(read);
-			}
+		File downFile = new File(file);
+		
+		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(downFile));
+		
+		BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
+		
+		String downName = null;
+		String header = request.getHeader("user-agent");
+		
+		boolean isMISE = header.indexOf("MSIE") != -1 || header.indexOf("Trident") != -1;
+		
+		System.out.println(header);
+		
+		if(isMISE) {
+			downName = URLEncoder.encode(nameori, "UTF-8").replaceAll("\\+", "%20");
+			
+		} else {
+			downName = new String(namesav.getBytes("UTF-8"), "ISO-8859-1");
+		}
+		
+		response.setContentType("application/octet-stream");
+		
+		response.setHeader("Content-Disposition", "attachment;filename=" + downName);
+		
+		int read = -1;
+		
+		while ((read = bis.read()) != -1) {
+			bos.write(read);
+	}
 
-				bos.close();
-				bis.close();
-			}
+		bos.close();
+		bis.close();
+	}
 	
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

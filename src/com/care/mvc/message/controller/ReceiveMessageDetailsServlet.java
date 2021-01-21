@@ -34,15 +34,15 @@ public class ReceiveMessageDetailsServlet extends HttpServlet {
 		
 		request.getRequestDispatcher("/views/message/rec_msg_detail.jsp").forward(request, response);
 		
-		// 파일 다운로드
-		String oriname = request.getParameter("oriname");
-		String rename = request.getParameter("rename");
+		// 파일 다운로드  nameori, namesav
+		String nameori = request.getParameter("nameori");
+		String namesav = request.getParameter("namesav");
 		
-		System.out.println("oriname : " + oriname + ", rename : " + rename);
+		System.out.println("nameori : " + nameori + ", namesav : " + namesav);
 		
 		// 1. 전송할 파일에 대한 경로와 파일명을 가져온다.
 		String path = getServletContext().getRealPath("/upload/msgimg");
-		String file = path + "/" + rename;
+		String file = path + "/" + namesav;
 				
 		File downFile = new File(file);
 		
@@ -58,10 +58,10 @@ public class ReceiveMessageDetailsServlet extends HttpServlet {
 		System.out.println(header);
 		
 		if(isMISE) {
-			downName = URLEncoder.encode(oriname, "UTF-8").replaceAll("\\+", "%20");
+			downName = URLEncoder.encode(nameori, "UTF-8").replaceAll("\\+", "%20");
 			
 		} else {
-			downName = new String(oriname.getBytes("UTF-8"), "ISO-8859-1");
+			downName = new String(namesav.getBytes("UTF-8"), "ISO-8859-1");
 		}
 		
 		response.setContentType("application/octet-stream");

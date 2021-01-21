@@ -40,16 +40,16 @@
                             	<a href="javascript:fileDownload('<%= imgR.getRec_img_name_org() %>','<%= imgR.getRec_img_name_sav() %>');">
                             		<b><%=imgR.getRec_img_name_org()%></b>
 					 			<script>
-							 		function fileDownload(oriname, rename) {
-							 			const url = "<%=request.getContextPath() %>/board/fileDown";
+							 		function fileDownload(nameori, namesav) {
+							 			const url = "<%=request.getContextPath() %>/recMsg/details";
 							 			
 							 			// 인코딩하는 이 부분이 중요하다.
 							 			// 크롬은 자동으로 인코딩해주나(맞나??) IE는 encodeURIComponent을 사용해서 한글을 인코딩을 해줘야한다
 							 			// post는 인코딩을 해주나, get은 안해줘서 이렇게 직접 바꿔줘야한다.
-							 			let oName = encodeURIComponent(oriname);
-							 			let rName = encodeURIComponent(rename);
+							 			let oName = encodeURIComponent(nameori);
+							 			let rName = encodeURIComponent(namesav);
 							 			
-							 			location.assign(url + "?oriname=" + oName + "&rename=" + rName);
+							 			location.assign(url + "?nameori=" + oName + "&namesav=" + rName);
 							 		}
 							 	</script>
                             		
