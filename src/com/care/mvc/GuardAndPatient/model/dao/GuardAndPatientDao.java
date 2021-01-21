@@ -67,7 +67,6 @@ public class GuardAndPatientDao {
 		String PatientQuery = "INSERT INTO PATIENT_DETAILS VALUES(SEQ_PAT_NO.NEXTVAL,"
 				+ "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-		System.out.println("혹시 시퀀스? " + guardNo);
 		try {
 			PPstmt = conn.prepareStatement(PatientQuery);
 
