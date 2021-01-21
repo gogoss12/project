@@ -62,8 +62,6 @@ public class SendMessageServlet extends HttpServlet {
 			return;
 		}
 		
-		// 보낸 쪽지 띄워야한다. (SELECT문으로 가져온다)
-		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

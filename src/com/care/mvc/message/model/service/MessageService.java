@@ -226,6 +226,11 @@ public class MessageService {
 		
 		ArrayList<SendMessage> list = new MessageDao().searchSendId(conn, info, id);
 		
+		for(SendMessage msg : list) {
+			int no = msg.getSend_no(); 
+				msg.setImgs(new MessageDao().listSendMsgImg(conn, no));
+		}
+		
 		JDBCTemplate.close(conn);
 		
 		return list;
@@ -235,6 +240,11 @@ public class MessageService {
 		Connection conn = getConnection();
 		
 		ArrayList<ReceiveMessage> list = new MessageDao().RecSearchMsg(conn, info, id);
+		
+		for(ReceiveMessage msg : list) {
+			int no = msg.getRec_no(); 
+				msg.setImgs(new MessageDao().listRevMsgImg(conn, no));
+		}
 		
 		JDBCTemplate.close(conn);
 		
