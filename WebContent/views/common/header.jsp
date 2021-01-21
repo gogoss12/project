@@ -38,7 +38,8 @@
 		<div id="wrapper">
             <div id="logo">
                	 <a href="<%=request.getContextPath()%>" >
-                     <img src="./image/케어풀 임시 아이콘.png" alt="" >
+                     <img src="/carepool/image/케어풀 임시 아이콘.png" alt="" > 
+           
                 </a>
             </div>
 			<div id="page">
