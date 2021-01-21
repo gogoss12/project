@@ -45,10 +45,10 @@ public class EnrollProfileCareServlet extends HttpServlet {
 //			
 //			return;
 //		}
-		
+
 		// 나중에 업로드 위치 경로를 바꿔야한다.
 		String path = getServletContext().getRealPath("upload/carephoto");
-		
+				
 		int maxSize = 1024 * 1024 * 10;  // 10mb
 		
 		String encoding = "UTF-8";

@@ -35,7 +35,6 @@
                 </div>
                 <div id="msg_2-2">
                     <div id="msg_2-2-header">
-                        <input type="button" name="delete_msg" onclick="delete_msg()" value="X삭제" style="color: red;">
                         <input type="text" id="find_id" name="find_id" placeholder="아이디 검색 : ">
                         <input type="button" name="search_id" value="검색" onclick="search()">
                     </div>
