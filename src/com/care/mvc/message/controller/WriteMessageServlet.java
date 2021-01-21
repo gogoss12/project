@@ -77,12 +77,14 @@ public class WriteMessageServlet extends HttpServlet {
 			
 			// 쪽지 사진 받기
 			ReceiveMessageImg rmi = new ReceiveMessageImg();
+			ReceiveMessage rm = new ReceiveMessage();
 			
 			rmi.setRec_img_path(path);
 			rmi.setRec_img_name_org(fileName);
 			rmi.setRec_img_name_sav(upfileName);
+//			rmi.setRec_no(rm.getRec_no());
 			System.out.println(rmi);
-			int resultRI = new MessageService().receiveImage(rmi);
+			int resultRI = new MessageService().receiveImage(rmi, rm);
 		
 			// 아래는 쪽지 관련
 			String msg = "";

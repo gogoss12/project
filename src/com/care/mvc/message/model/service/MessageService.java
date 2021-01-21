@@ -42,7 +42,7 @@ public class MessageService {
 	public ArrayList<SendMessage> SendListmsg(PageInfo info) {
 		Connection conn = getConnection();
 		
-		ArrayList<SendMessage> list = new MessageDao().listSendMsg(conn, info);
+		ArrayList<SendMessage> list = new MessageDao().listSendMsg(conn);
 		
 		JDBCTemplate.close(conn);
 		
@@ -110,10 +110,10 @@ public class MessageService {
 	}
 
 	// 메세지 이미지 받기
-	public int receiveImage(ReceiveMessageImg rmi) {
+	public int receiveImage(ReceiveMessageImg rmi, ReceiveMessage rm) {
 		Connection conn = getConnection();
 		
-		int resultRI = new MessageDao().recMsgImage(conn, rmi);
+		int resultRI = new MessageDao().recMsgImage(conn, rmi, rm);
 		
 		if(resultRI > 0) {
 			JDBCTemplate.commit(conn);
@@ -173,5 +173,49 @@ public class MessageService {
 		
 		return resultS;
 	}
+
+	public SendMessage SendDetails(int sendNo) {
+		
+		Connection conn = getConnection();
+		
+		SendMessage sendmessage = new MessageDao().SendDetails(conn, sendNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return sendmessage;
+	}
+
+	public SendMessageImg SendDetailsImgName(int sendNo) {
+		
+		Connection conn = getConnection();
+		
+		SendMessageImg imgS = new MessageDao().SendDetailsImgName(conn, sendNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return imgS;
+	}
+
+	public ReceiveMessage RecDetails(int recNo) {
+		Connection conn = getConnection();
+		
+		ReceiveMessage recmessage = new MessageDao().RecDetails(conn, recNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return recmessage;
+	}
+
+	public ReceiveMessageImg RecDetailsImgName(int recNo) {
+		
+		Connection conn = getConnection();
+		
+		ReceiveMessageImg imgR = new MessageDao().RecDetailsImgName(conn, recNo);
+		
+		JDBCTemplate.close(conn);
+		
+		return imgR;
+	}
+
 
 }

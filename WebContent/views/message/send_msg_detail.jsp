@@ -1,3 +1,4 @@
+<%@page import="com.care.mvc.message.model.vo.SendMessageImg"%>
 <%@page import="com.care.mvc.message.model.vo.SendMessage"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.care.mvc.message.model.vo.ReceiveMessage"%>
@@ -5,7 +6,8 @@
 	pageEncoding="UTF-8"%>
 	<link rel="stylesheet" href="../../css/style.css">
 <%
-	ArrayList<ReceiveMessage> list = (ArrayList)request.getAttribute("list");
+	SendMessage sendmessage = (SendMessage)request.getAttribute("sendmessage");
+	SendMessageImg imgS = (SendMessageImg)request.getAttribute("imgS");
 	
 %>
 <%@ include file="/views/common/header.jsp"%>
@@ -35,36 +37,23 @@
 					</div>
 					<div id="msg_2-2-body">
                         <div id="msg_contents1">             <!-- 여기 a태그 없앨지 있을지 여부 -->
-                            <b>받는사람 : &nbsp;</b> <a href="#"></a><b><%=sendM.getRec_id()%></b></a>
+                            <b>받는사람 : &nbsp;</b> <a href="#"></a><b><%=sendmessage.getRec_id()%></b></a>
                         </div>
                         <div id="msg_contents1">
-                            <b>보낸파일 : &nbsp;</b> <a href="#"><b> 채워야하는 부분 </b></a>
+                            <b>보낸파일 : &nbsp;</b> <a href="#"><b><%=imgS.getSend_img_name_org()%></b></a>
                         </div>
                         <div id="msg_contents1">
-                            <b>보낸날짜 : &nbsp;</b> <b><%=sendM.getSend_date()%></b>
+                            <b>보낸날짜 : &nbsp;</b> <b><%=sendmessage.getSend_date()%></b>
                         </div>
 					</div>
                             
                     <!-- 이게 보낸 내용 -->
                     <div id="msg_contents2">
-                        <a href="#"><b><%=sendM.getSend_body()%></b></a>
+                        <b><%=sendmessage.getSend_body()%></b>
                     </div>
 				</div>
 			</div>
 		</form>
 	</div>
 </section>
-<script>
-	$(document).ready(function() {
-		 $('#checkAll').change(function () {
-             if ($(this).prop('checked')) {
-                 $('input:checkbox').prop('checked', true);
-             } else {
-                 $('input:checkbox').prop('checked', false);
-             }
-         });
-	});
-	
-
-</script>
 <%@ include file="/views/common/footer.jsp"%></>
