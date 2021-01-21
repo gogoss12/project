@@ -6,9 +6,10 @@
 
 /* 매칭검색 sta */
 
-#searchMatch h2 {
+#searchMatch h2, #matchPage h2 {
 	margin-top: 70px;
-	margin-bottom: 40px;
+    margin-bottom: 40px;
+    text-align: center;
 }
 
 #searchMatch {
@@ -33,34 +34,44 @@
 	padding: 10px;
 } */
 
-#searchBtn {
+#searchBtn, #backBtn {
 	display: block;
 	padding: 5px;
 	margin: 50px auto;
 	width: 200px;
 	height: 80px;
 	font-size: 2rem;
-	background-color: lightblue;
+    background-color: white;
+    border: 2px solid lightsteelblue;
+	border-color: lightsteelblue;
+    color: lightsteelblue;
+    font-weight: 500;
+}
+
+#searchBtn:hover, #backBtn:hover {
+	background-color: lightsteelblue;
+	color: white;
 }
 
 #searchResult {
 	background-color: lightgray;
 	width: 900px;
-	height: 1000px;
+	height: auto;
 	margin: 0 auto;
 	padding: 20px;
 	display: flex;
 	align-content: space-around;
 	justify-content: space-around;
 	flex-wrap: wrap;
-	/* box-sizing: border-box; */
 }
 
 #searchResult .profile {
 	height:300px;
 	width: 250px;
 	background-color: white;
-	padding: 15px;
+    padding: 15px;    
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .profile img {
@@ -70,18 +81,19 @@
 }
 
 #searchResult button {
-	border: 2px solid black;
-	border-color: aquamarine;
-	color: aquamarine;
+	border: 2px solid lightsteelblue;
+	border-color: lightsteelblue;
+	color: lightsteelblue;
 	background-color: white;
 	width: 200px;
 	height: 50px;
 	font-size: 1.5rem;
-	font-weight: 700;
+    font-weight: 700;
+    border-radius: 10px;
 }
 
 #searchResult button:hover {
-	background-color: aquamarine;
+	background-color: lightsteelblue;
 	color: white;
   }
 
@@ -90,9 +102,9 @@
 	align-content: space-around;
 	justify-content: space-around;
 	flex-wrap: wrap;
-	width: 900px;
+	/* width: 900px; */
 	height: 100px;
-	background-color: aquamarine;
+	background-color: lightsteelblue;
 	margin: 0 auto;
 }
 

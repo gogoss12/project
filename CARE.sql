@@ -475,4 +475,84 @@ WHERE M.STATUS = 'Y' AND
     C.CARE_PLACE IN ('서울특별시 용산구') AND
     C.CARE_SAL IN ('협의가능');
 
+    C.CARE_LICENSE IN ('요양보호사,간호사') AND 
 
+    C.CARE_LICENSE IN ('요양보호사','간호사') AND 
+
+
+SELECT M.MEM_NAME, M.MEM_ID 
+FROM MEMBER M
+JOIN CAREGIVER_PROFILE C ON (M.MEM_ID = C.MEM_ID)
+WHERE M.STATUS = 'Y' AND 
+M.MEM_ROLE = 'caregiver' AND
+REGEXP_LIKE (C.CARE_LICENSE, '(간호사|요양보호사)');
+
+SELECT M.MEM_NAME, M.MEM_ID 
+FROM MEMBER M 
+JOIN CAREGIVER_PROFILE C ON (M.MEM_ID = C.MEM_ID)
+WHERE M.STATUS = 'Y' AND 
+M.MEM_ROLE = 'caregiver' AND 
+				+ 		"REGEXP_LIKE (C.CARE_TIME, '(?time)')");
+//				+ 		"C.CARE_GEN REGEXP_LIKE (?gender) AND "
+//				+ 		"C.CARE_LICENSE REGEXP_LIKE (?qual) AND "
+//				+ 		"C.CARE_YEARS REGEXP_LIKE (?years) AND "
+//				+ 		"C.CARE_PLACE REGEXP_LIKE (?addr) AND "
+//				+ 		"C.CARE_SAL REGEXP_LIKE (?pay)");
+
+
+SELECT M.MEM_NAME, M.MEM_ID FROM MEMBER M JOIN CAREGIVER_PROFILE C ON (M.MEM_ID = C.MEM_ID) WHERE M.STATUS = 'Y' AND M.MEM_ROLE = 'caregiver'  AND REGEXP_LIKE (C.CARE_TIME, '(주간)');
+
+SELECT M.MEM_NAME, M.MEM_ID 
+FROM MEMBER M 
+JOIN CAREGIVER_PROFILE C ON (M.MEM_ID = C.MEM_ID) 
+WHERE M.STATUS = 'Y' AND M.MEM_ROLE = 'caregiver' 
+AND REGEXP_LIKE (C.CARE_TIME, '(주간)') 
+AND REGEXP_LIKE (C.CARE_GEN, '(남)') 
+AND REGEXP_LIKE (C.CARE_LICENSE, '(요양보호사|간호사)')
+AND REGEXP_LIKE (C.CARE_YEARS, '(10년 이상)') 
+AND REGEXP_LIKE (C.CARE_PLACE, '(서울특별시 용산구)')
+AND REGEXP_LIKE (C.CARE_SAL, '(협의가능)');
+
+--------------------------------------------------------------------------------
+
+INSERT INTO MEMBER VALUES (
+    'heb1',
+    'caregiver',
+    '하은별',
+    'heb1',
+    'heb1@gmail.com',
+    '01012345678',
+    '서울특별시 강남구',
+    '2002-01-06',
+    SYSDATE,
+    SYSDATE,
+    DEFAULT
+);
+
+INSERT INTO MEMBER VALUES (
+    'heb1',
+    'caregiver',
+    '하은별',
+    'heb1',
+    'heb1@gmail.com',
+    '01012345678',
+    '서울특별시 강남구',
+    '2002-01-06',
+    SYSDATE,
+    SYSDATE,
+    DEFAULT
+);
+
+--ALTER SYS_C007455 ON DELETE CASCADE;
+--
+--ALTER TABLE CAREGIVER_PROFILE
+--DROP CONSTRAINT SYS_C007527;
+--
+--ALTER TABLE CAREGIVER_PROFILE
+--ADD FOREIGN KEY(MEM_ID) REFERENCES MEMBER(MEM_ID) ON DELETE CASCADE;
+--
+--ALTER TABLE GUARDIAN_PROFILE
+--DROP CONSTRAINT FK_MEMBER_TO_GUARDIAN_PROFILE;
+--
+--ALTER TABLE GUARDIAN_PROFILE
+--ADD FOREIGN KEY(MEM_ID) REFERENCES MEMBER(MEM_ID) ON DELETE CASCADE;
