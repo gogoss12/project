@@ -35,7 +35,7 @@
                 </div>
                 <div id="msg_2-2">
                     <div id="msg_2-2-header">
-                        <input type="button" name="delete_msg" onclick="delete_msg()" value="X삭제" style="color: red;">
+                        <!-- <input type="button" name="delete_msg" onclick="delete_msg()" value="X삭제" style="color: red;"> -->
                         <input type="text" name="find_id" placeholder="아이디 검색 : ">
                         <input type="button" name="search_id" value="검색">
                     </div>
@@ -45,6 +45,7 @@
                                 <td id="td-1" style="width: 150px;"><b>번호</b></td>
                                 <td id="td-1" style="width: 150px;"><b>받은사람</b></td>
                                 <td id="td-1"><b>내용</b>	</td>
+                                <td id="td-1" style="width: 150px;"><b>파일</b></td>
                                 <td id="td-1" style="width: 200px;"><b>보낸날짜</b></td>
                                 <td id="td-1" style="width: 30px;"><b>-</b></td>
                             </tr>
@@ -60,7 +61,6 @@
                             %>								
                             <tr>
                                 <td id="td-2" >
-										<!--  <b><1%=sendM.getRowNum()%></b>-->
 										<b><%=sendM.getSend_no()%></b>
 									</td>
                                 <td id="td-2" style="width: 80px;">

@@ -35,7 +35,7 @@
 				</div>
 				<div id="msg_2-2">
 					<div id="msg_2-2-header">
-						<input type="button" name="delete_msg" value="X삭제" style="color: red;"> 
+						<!-- <input type="button" name="delete_msg" value="X삭제" style="color: red;">  -->
 						<input type="text" name="find_id" placeholder="아이디 검색 : "> 
 						<input type="button" name="search_id" value="검색">
 					</div>
@@ -76,8 +76,7 @@
 									</td>
 									<td id="td-2">
 										<a href="#">
-										<%for(ReceiveMessageImg revMImg : listimg) { %>
-											<b><%=revMImg.getRec_img_name_org()%></b>
+											<b>채워야하는 부분</b>
 										</a>
 									</td>
 									<td id="td-2">
@@ -95,7 +94,6 @@
 									</td>
 								</tr>
 									<% 
-										}
 									}
 								 } 
 							} %>

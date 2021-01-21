@@ -10,7 +10,6 @@ public class PageInfo {
 	private int listLimit;	
 	
 	/**
-	 * 
 	 * @param currentPage 현재 페이지
 	 * @param pageLimit 한 페이지에 보여질 페이지의 수 
 	 * @param listCount 전체 리스트 수
@@ -40,7 +39,6 @@ public class PageInfo {
 	}
 	
 	/**
-	 * 
 	 * @return 페이징 된 페이지 중 시작 페이지
 	 */
 	public int getStartPage() {
@@ -64,7 +62,6 @@ public class PageInfo {
 	}
 
 	/**
-	 * 
 	 * @return 페이징 된 페이지 중 마지막 페이지
 	 */ 
 	public int getEndPage() {
@@ -76,7 +73,6 @@ public class PageInfo {
 	}	
 	
 	/**
-	 * 
 	 * @return 현재 페이지
 	 */ 
 	public int getCurrentPage() {
@@ -84,7 +80,6 @@ public class PageInfo {
 	}
 	
 	/**
-	 * 
 	 * @return 이전 페이지
 	 */ 
 	public int getPrvePage() {
@@ -94,7 +89,6 @@ public class PageInfo {
 	}
 	
 	/**
-	 * 
 	 * @return 다음 페이지
 	 */ 
 	public int getNextPage() {
