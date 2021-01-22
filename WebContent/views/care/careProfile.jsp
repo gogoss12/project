@@ -51,7 +51,6 @@
 
             //tr삭제하기
                 table.deleteRow(table.rows.length - 1);
-            //삭제할때마다 행개수 -1
             // count--;
         }
         </script>
