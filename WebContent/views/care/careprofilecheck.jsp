@@ -13,7 +13,7 @@
 }
 
 #pro_con {
-	font-size: 15px;
+	font-size: 13px;
 	background-color: #8B4513;
 	width: 40%;
 	text-align: center;
@@ -31,12 +31,6 @@
 	display: relative;
 }
 
-#pro_main table {
-	width: 100%;
-	text-align: center;
-	padding-left: 0%;
-}
-
 #empty {
 	font-size: 15px;
 	font-weight: 600;
@@ -44,6 +38,15 @@
 	padding-top: 15px;
 	background-color: #DEB887;
 	height: 30px;
+}
+
+#pro_main table {
+	width: 100%;
+	text-align: center;
+	padding-left: 0%;
+	border: black;
+	table-layout: fixed;
+	word-break: break-all;
 }
 
 #pro_main th, td {
@@ -70,7 +73,7 @@
 
 #pro_btn button {
 	border: 2px solid black;
-	border-color: black;
+	border-color: lightsteelblue;
 	color: black;
 	background-color: white;
 	width: 100px;
@@ -82,14 +85,18 @@
 }
 
 #pro_btn button:hover {
-	background-color: white;
-	color: black;
+	background-color: lightsteelblue;
+	color: white;
+}
+
+.pro_Table {
+	width: 40%;
 }
 </style>
 </head>
 <body>
- <div id="pro_con">
-        <h1>프로필 확인</h1>
+<div id="pro_con">
+        <h1>요양보호사 프로필 확인</h1>
     </div>
     <div class="pro_line">
         <div class="pro_li">
@@ -111,35 +118,36 @@
             <table>
                 <tbody>
                     <tr>
-                        <td>자격증</td>
+                        <td class="pro_Table">자격증</td>
                         <td>내용</td>
                     </tr>
                     <tr>
-                        <td>세부사항</td>
+                        <td class="pro_Table">세부사항</td>
                         <td>내용</td>
                     </tr>
                     <tr>
-                        <td>장점</td>
+                        <td class="pro_Table">장점</td>
                         <td>내용</td>
                     </tr>
                     <tr>
-                        <td>세부경력</td>
+                        <td class="pro_Table" id="detail_">세부경력</td>
+                        <td>내용</td>
+                        
+                    </tr>
+                    <tr>
+                        <td class="pro_Table">장점</td>
                         <td>내용</td>
                     </tr>
                     <tr>
-                        <td>장점</td>
+                        <td class="pro_Table">희망근무시간</td>
                         <td>내용</td>
                     </tr>
                     <tr>
-                        <td>희망근무시간</td>
+                        <td class="pro_Table">희망근무위치</td>
                         <td>내용</td>
                     </tr>
                     <tr>
-                        <td>희망근무위치</td>
-                        <td>내용</td>
-                    </tr>
-                    <tr>
-                        <td>희망급여</td>
+                        <td class="pro_Table">희망급여</td>
                         <td>내용</td>
                     </tr>
 
@@ -152,21 +160,21 @@
                 </div>
                 <thead>
                     <tr>
-                        <td>환자상태1:<br>성별 및 나이</td>
+                        <td class="pro_Table">환자상태1:<br>성별 및 나이</td>
                         <td>내용</td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>환자상태2:<br>질환</td>
+                        <td class="pro_Table">환자상태2:<br>질환</td>
                         <td>내용</td>
                     </tr>
                     <tr>
-                        <td>환자상태:<br>장기요양등급</td>
+                        <td class="pro_Table">환자상태:<br>장기요양등급</td>
                         <td>내용</td>
                     </tr>
                     <tr>
-                        <td>환자상태:<br>장기요양등급</td>
+                        <td class="pro_Table">환자상태:<br>장기요양등급</td>
                         <td>내용</td>
                     </tr>
                 </tbody>
@@ -179,7 +187,6 @@
         </div>
         <div id="pro_btn">
             <button>쪽지보내기</button>
-            <button>확인하기</button>
         </div>
     </div>
 </body>
