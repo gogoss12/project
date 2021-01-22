@@ -13,11 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/message/filedown")
-public class MessageFileDownServlet extends HttpServlet {
+@WebServlet("/receiveFile/filedown")
+public class ReceiveMessageFileDownServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public MessageFileDownServlet() {
+    public ReceiveMessageFileDownServlet() {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,7 +27,7 @@ public class MessageFileDownServlet extends HttpServlet {
 			
 			System.out.println("nameori : " + nameori + ", namesav : " + namesav);
 			
-			// 1. 전송할 파일에 대한 경로와 파일명을 가져온다.
+//			 1. 전송할 파일에 대한 경로와 파일명을 가져온다.
 			String path = getServletContext().getRealPath("/upload/msgimg");
 			String file = path + "/" + namesav;
 					
@@ -64,5 +64,8 @@ public class MessageFileDownServlet extends HttpServlet {
 			bos.close();
 			bis.close();
 		}
+			
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	}
 
 }

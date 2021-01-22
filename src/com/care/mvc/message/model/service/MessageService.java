@@ -53,6 +53,7 @@ public class MessageService {
 		for(SendMessage msg : list) {
 			int no = msg.getSend_no(); 
 				msg.setImgs(new MessageDao().listSendMsgImg(conn, no));
+				System.out.println(msg.getImgs());
 		}
 		
 		JDBCTemplate.close(conn);

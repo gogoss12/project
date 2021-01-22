@@ -68,7 +68,6 @@
                             %>								
                             <tr>
                                 <td id="td-2" >
-										<!--  <b><1%=sendM.getRowNum()%></b>-->
 										<b><%=sendM.getRowNum()%></b>
 									</td>
                                 <td id="td-2" style="width: 80px;">

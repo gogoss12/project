@@ -45,19 +45,13 @@ public class ReceiveMessageServlet extends HttpServlet {
 				page = 1;
 			}
 			
-//			ArrayList<ReceiveMessageImg> listImg = new MessageService().RevListmsgImg();
-
 			listCount = new MessageService().getMsgList();
 			info = new PageInfo(page, 10, listCount, 10);
-			
 			list = new MessageService().RevListmsg(info);
 			
 			request.setAttribute("list", list);
-//			request.setAttribute("listImg", listImg);
 			request.setAttribute("pageInfo", info);
-			
 			request.getRequestDispatcher("/views/message/rec_message.jsp").forward(request, response);
-//			request.getRequestDispatcher("/views/message/rec_msg_detail.jsp").forward(request, response);
 		}else {
 			msg = "로그인이 필요한 페이지입니다.";
 			loc = "/member/login";
