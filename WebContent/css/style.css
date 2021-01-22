@@ -465,10 +465,11 @@ footer {
  #loginForm { 
 	/* position: absolute; */
 	width: 300px;
-	height: 200px;
+	/*height: 200px;*/
 	padding: 30px, 20px;
 	background-color: #FFFFFF;
     text-align: center;
+    margin : auto;
 	/* top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%); */
@@ -530,11 +531,11 @@ footer {
 
 section h2{
   font-size: 40px;
-  padding-left : 40px; 
+  padding-left : 30px; 
 }
 
 section h4{
-	padding-left : 40px; 
+	padding-left : 30px; 
 }
       
 tr{
