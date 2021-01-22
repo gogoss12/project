@@ -26,7 +26,6 @@ public class MessageService {
 		for(ReceiveMessage msg : list) {
 			int no = msg.getRec_no(); 
 				msg.setImgs(new MessageDao().listRevMsgImg(conn, no));
-				System.out.println(msg.getImgs());
 		}
 		
 		JDBCTemplate.close(conn);
@@ -34,7 +33,6 @@ public class MessageService {
 		return list;
 	}
 	
-	// 받은 메세지 이미지 읽어오기
 	public ArrayList<ReceiveMessageImg> RevListmsgImg(int no) {
 		Connection conn = getConnection();
 		
@@ -60,10 +58,7 @@ public class MessageService {
 		return list;
 	}
 	
-	// 보낸 메세지 이미지 읽어오기
-	
 
-	// 메세지 보내기
 	public int sendMsg(SendMessage sendM) {
 		
 		Connection conn = getConnection();
@@ -79,7 +74,6 @@ public class MessageService {
 		return resultS;
 	}
 
-	// 메세지 이미지 보내기
 	public int sendImage(SendMessageImg smi, SendMessage sm) {
 		
 		Connection conn = getConnection();
@@ -97,7 +91,6 @@ public class MessageService {
 		return resultSI;
 	}
 	
-	// 메세지 받기
 	public int recMsg(ReceiveMessage recM) {
 		Connection conn = getConnection();
 		
@@ -112,7 +105,6 @@ public class MessageService {
 		return resultR;
 	}
 
-	// 메세지 이미지 받기
 	public int receiveImage(ReceiveMessageImg rmi, ReceiveMessage rm) {
 		Connection conn = getConnection();
 		

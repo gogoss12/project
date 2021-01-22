@@ -114,9 +114,9 @@
            <div id="msg_2-2-footer">
 			<div id="pageBar">
 				<!-- 맨 처음으로 -->
-				<button onclick="location.href='<%= request.getContextPath() %>/msg/send?send_page=1'">&lt;&lt;</button>
+				<button onclick="location.href='<%= request.getContextPath() %>/search/sendId?send_page=1'">&lt;&lt;</button>
 				<!-- 이전 페이지로 -->
-				<button onclick="location.href='<%= request.getContextPath() %>/msg/send?send_page=<%= info.getPrvePage()%>'">&lt;</button>
+				<button onclick="location.href='<%= request.getContextPath() %>/search/sendId?send_page=<%= info.getPrvePage()%>'">&lt;</button>
 				
 				<!--  10개 페이지 목록 -->
 				
@@ -124,13 +124,13 @@
 					<% if(p == info.getCurrentPage()) { %>
 						<button disabled><%= p %></button>
 					<% }else { %>
-						<button onclick="location.href='<%= request.getContextPath()%>/msg/send?send_page=<%= p %>'"><%= p %></button>
+						<button onclick="location.href='<%= request.getContextPath()%>/search/sendId?send_page=<%= p %>'"><%= p %></button>
 					<% } %>
 				<% } %>
 				<!-- 다음 페이지로 -->
-				<button onclick="location.href='<%= request.getContextPath()%>/msg/send?send_page=<%= info.getNextPage() %>'">&gt;</button>
+				<button onclick="location.href='<%= request.getContextPath()%>/search/sendId?send_page=<%= info.getNextPage() %>'">&gt;</button>
 				<!-- 맨 끝으로 -->
-				<button onclick="location.href='<%= request.getContextPath()%>/msg/send?send_page=<%= info.getMaxPage() %>'">&gt;&gt;</button>
+				<button onclick="location.href='<%= request.getContextPath()%>/search/sendId?send_page=<%= info.getMaxPage() %>'">&gt;&gt;</button>
 			</div>
 		</div>
         </div>
