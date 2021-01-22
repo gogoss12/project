@@ -101,4 +101,95 @@ public class GuardAndPatientDao {
 		return resultP;
 	}
 
+	public Guard checkguard(Connection conn, String sendId) {
+		Guard guard = new Guard();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = " SELECT G.GUARD_NO, G.GUARD_GEN, G.GUARD_PAT, G.MEM_ID, M.MEM_NAME AS MEM_NAME"
+				+ " FROM GUARDIAN_PROFILE G "
+				+ " JOIN MEMBER M ON(G.MEM_ID = M.MEM_ID) "
+				+ " WHERE G.MEM_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, sendId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				guard.setGuard_no(rset.getInt("GUARD_NO"));
+				guard.setGuard_gen(rset.getString("GUARD_GEN"));
+				guard.setGuard_pat(rset.getString("GUARD_PAT"));
+				guard.setMemId(rset.getString("MEM_ID"));
+				guard.setGuardName(rset.getString("MEM_NAME"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return guard;
+	}
+
+	public Patient checkpatient(Connection conn, String sendId) {
+		Patient patient = new Patient();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query ="SELECT G.MEM_ID, P.PAT_NO, P.GUARD_NO, P.PAT_PLACE, P.PAT_PERIOD, P.PAT_HOP_TIME,"
+				+ " P.PAT_NAME, P.PAT_AGE, P.PAT_GEN, P.PAT_KG, P.PAT_INFECT, P.PAT_GRADE, P.PAT_SANIT, P.PAT_PARAL, P.PAT_MOVE,"
+				+ " P.PAT_BED, P.PAT_COGDIS, P.PAT_BATHROOM, P.PAT_BOWEL_MN, P.PAT_OSTOMY, P.PAT_HELP_EAT, P.PAT_SUCTION, P.PAT_GUARD_GEN, P.PAT_ETC "
+				+ " FROM PATIENT_DETAILS P"
+				+ " JOIN GUARDIAN_PROFILE G ON (P.GUARD_NO = G.GUARD_NO)"
+				+ " JOIN MEMBER M ON (M.MEM_ID = G.MEM_ID)"
+				+ " WHERE G.MEM_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, sendId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				patient.setPat_no(rset.getInt("PAT_NO"));
+				patient.setGuard_no(rset.getInt("GUARD_NO"));
+				patient.setPat_place(rset.getString("PAT_PLACE"));
+				patient.setPat_period(rset.getString("PAT_PERIOD"));
+				patient.setPat_hop_time(rset.getString("PAT_HOP_TIME"));
+				patient.setPat_name(rset.getString("PAT_NAME"));
+				patient.setPat_age(rset.getInt("PAT_AGE"));
+				patient.setPat_gen(rset.getString("PAT_GEN"));
+				patient.setPat_kg(rset.getInt("PAT_KG"));
+				patient.setPat_infect(rset.getString("PAT_INFECT"));
+				patient.setPat_grade(rset.getString("PAT_GRADE"));
+				patient.setPat_sanit(rset.getString("PAT_SANIT"));
+				patient.setPat_paral(rset.getString("PAT_PARAL"));
+				patient.setPat_move(rset.getString("PAT_MOVE"));
+				patient.setPat_bed(rset.getString("PAT_BED"));
+				patient.setPat_cogdis(rset.getString("PAT_COGDIS"));
+				patient.setPat_bathroom(rset.getString("PAT_BATHROOM"));
+				patient.setPat_bowel_mn(rset.getString("PAT_BOWEL_MN"));
+				patient.setPat_ostomy(rset.getString("PAT_OSTOMY"));
+				patient.setPat_help_eat(rset.getString("PAT_HELP_EAT"));
+				patient.setPat_suction(rset.getString("PAT_SUCTION"));
+				patient.setPat_guard_gen(rset.getString("PAT_GUARD_GEN"));
+				patient.setPat_etc(rset.getString("PAT_ETC"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return patient;
+	}
+
 }

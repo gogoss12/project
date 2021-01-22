@@ -31,6 +31,7 @@ public class SendMessageServlet extends HttpServlet {
 		PageInfo info = null;
 		ArrayList<SendMessage> list = null;
 		
+		
 		HttpSession session = request.getSession(false);
 		Member loginMember = session != null ? (Member)session.getAttribute("loginMember") : null; 
 		
@@ -47,7 +48,7 @@ public class SendMessageServlet extends HttpServlet {
 			
 			listCount = new MessageService().sendMsgList();
 			info = new PageInfo(page, 10, listCount, 10);
-			list = new MessageService().SendListmsg(info);
+			list = new MessageService().SendListmsg(info, loginMember);
 			
 			request.setAttribute("list", list);
 			request.setAttribute("pageInfo", info);
@@ -63,8 +64,4 @@ public class SendMessageServlet extends HttpServlet {
 		}
 		
 	}
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
-
 }
