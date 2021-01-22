@@ -22,38 +22,38 @@
     		<!-- 검색결과 없음 -->
     <% } else {
     		for (Care care : profiles) { %>
-    			<div class="profile">
-    				<!-- 저장된 이름으로 스크립트릿에 추가 -->
-                    <img class="profPic" src="../../upload/carephoto/<%=%>" alt="">
-                    
+    			<div class="profile">    				    				
+                    <img class="profPic" src="<%= request.getContextPath() %>/upload/carephoto/<%= care.getCareImg().getImgNameSav() %>" alt="">
                     <script>
-                        // $("#checkDuplicate").on("click", () => {
-                        //     // 중복확인전에 아이디 값이 4글자 이상인지 확인
-                        //     let id = $("#newId").val().trim();
+                        $('document').ready(function () {
+                            console.log('doc loaded');
+                        });
+
+                        $(".profPic").on("click", () => {
+                            // let id = $("#newId").val().trim();
                             
-                        //     if (id.length < 4) {
-                        //         alert("아이디는 최소 4글자 이상 입력하셔요.")
+                            // if (id.length < 4) {
+                            //     alert("아이디는 최소 4글자 이상 입력하셔요.")
                                 
-                        //         return;
-                        //     }
+                            //     return;
+                            // }
                             
-                        //     // 중복 확인할 새창 띄우기
-                        //     const url = "<%= request.getContextPath()%>/member/checkId";
-                        //     const title = "duplicate";
-                        //     const status = "left=500px,top=100px,width=300px,height=200px";
+                            const url = "<%= request.getContextPath()%>/match/profilecheck";
+                            const title = "duplicate";
+                            const status = "left=600px, right=600px, top=100px,width=500px,height=800px";
                             
-                        //     open("", title, status);
+                            open("", title, status);
                             
-                        //     // form에 데이터들을 채우고 open된 윈도우에서 결과를 받는 로직을 구성한다.
-                        //     // 자바스크립트에서 form은 name 속성으로 요소를 가져올 수 있다.
-                        //     checkIdForm.target = title; // form 전송하는 윈도우를 설정한다.
-                        //     checkIdForm.action = url;
-                        //     checkIdForm.method = "post";
-                        //     checkIdForm.userId.value = id;
+                            // form에 데이터들을 채우고 open된 윈도우에서 결과를 받는 로직을 구성한다.
+                            // 자바스크립트에서 form은 name 속성으로 요소를 가져올 수 있다.
+                            // checkIdForm.target = title; // form 전송하는 윈도우를 설정한다.
+                            // checkIdForm.action = url;
+                            // checkIdForm.method = "post";
+                            // checkIdForm.userId.value = id;
                             
-                        //     // form 전송하기
-                        //     checkIdForm.submit();
-                        // });
+                            // // form 전송하기
+                            // checkIdForm.submit();
+                        });
                     </script>
 
                     <h5><%= care.getCareName() %> (<%= care.getMemId() %>)</h5>

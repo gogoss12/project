@@ -96,9 +96,6 @@ public class MatchSearchServlet extends HttpServlet {
 //			care.setCareImg(careImg);
 //		}
 		
-		
-		
-		
 		request.setAttribute("profiles", profiles);
 		request.getRequestDispatcher("/views/match/list.jsp").forward(request, response);
 	}
