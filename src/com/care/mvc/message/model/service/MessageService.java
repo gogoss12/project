@@ -119,21 +119,21 @@ public class MessageService {
 		return resultRI;
 		}
 
-	public int getMsgList() {
+	public int getMsgList(Member loginMember, String send_id) {
 		
 		Connection conn = getConnection();
 		
-		int result = new MessageDao().getMsgList(conn);
+		int result = new MessageDao().getMsgList(conn, loginMember ,send_id);
 		
 		JDBCTemplate.close(conn);
 		
 		return result;
 	}
 
-	public int sendMsgList() {
+	public int sendMsgList(Member loginMember, String rec_id) {
 		Connection conn = getConnection();
 		
-		int result = new MessageDao().sendMsgList(conn);
+		int result = new MessageDao().sendMsgList(conn, loginMember, rec_id);
 		
 		JDBCTemplate.close(conn);
 		

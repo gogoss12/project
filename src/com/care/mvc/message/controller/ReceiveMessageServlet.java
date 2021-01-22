@@ -46,9 +46,8 @@ public class ReceiveMessageServlet extends HttpServlet {
 			
 //			ArrayList<ReceiveMessageImg> listImg = new MessageService().RevListmsgImg();
 
-			listCount = new MessageService().getMsgList();
+			listCount = new MessageService().getMsgList(loginMember, null);
 			info = new PageInfo(page, 10, listCount, 10);
-			
 			list = new MessageService().RevListmsg(info, loginMember);
 			
 			request.setAttribute("list", list);

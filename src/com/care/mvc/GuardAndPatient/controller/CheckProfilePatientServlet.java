@@ -7,10 +7,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.care.mvc.GuardAndPatient.model.service.GuardAndPatientService;
 import com.care.mvc.GuardAndPatient.model.vo.Guard;
 import com.care.mvc.GuardAndPatient.model.vo.Patient;
+import com.care.mvc.member.model.vo.Member;
 
 @WebServlet("/check/patient")
 public class CheckProfilePatientServlet extends HttpServlet {
@@ -23,6 +25,10 @@ public class CheckProfilePatientServlet extends HttpServlet {
 		String sendId = request.getParameter("sendId");
 		System.out.println(sendId);
 		
+		Member member = new Member();
+		
+		
+	
 		Guard guard = new GuardAndPatientService().checkGuard(sendId);
 		Patient patient = new GuardAndPatientService().checkPatient(sendId);
 		
@@ -30,6 +36,8 @@ public class CheckProfilePatientServlet extends HttpServlet {
 		request.setAttribute("patient", patient);
 		
 		request.getRequestDispatcher("/views/patient/patprofilecheck.jsp").forward(request, response);
+			
+		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}

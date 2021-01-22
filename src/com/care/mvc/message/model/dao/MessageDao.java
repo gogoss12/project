@@ -293,14 +293,17 @@ public class MessageDao {
 		return resultRI;
 	}
 
-	public int getMsgList(Connection conn) {
+	public int getMsgList(Connection conn, Member loginMember, String send_id) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int result = 0;
-		String query = "SELECT COUNT(*) FROM REC_MSG";
+		String query = "SELECT COUNT(*) FROM REC_MSG "
+				+ "WHERE STATUS = 'Y' AND MEM_ID =? AND SEND_ID = NVL(?,SEND_ID)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, loginMember.getMemId());
+			pstmt.setString(2, send_id);
 			
 			rset = pstmt.executeQuery();
 			
@@ -318,15 +321,17 @@ public class MessageDao {
 		return result;
 	}
 
-	public int sendMsgList(Connection conn) {
+	public int sendMsgList(Connection conn, Member loginMember, String rec_id) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int result = 0;
-		String query = "SELECT COUNT(*) FROM SEND_MSG";
+		String query = "SELECT COUNT(*) FROM SEND_MSG "
+				+ "WHERE STATUS = 'Y' AND MEM_ID =? AND REC_ID = NVL(?,REC_ID)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			
+			pstmt.setString(1, loginMember.getMemId());
+			pstmt.setString(2, rec_id);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
@@ -532,17 +537,18 @@ public class MessageDao {
 				+ "    FROM ("
 				+ "        SELECT S.SEND_NO, S.REC_ID, S.SEND_BODY, S.SEND_DATE, M.MEM_ID, S.STATUS"
 				+ "        FROM SEND_MSG S JOIN MEMBER M ON(S.MEM_ID = M.MEM_ID) WHERE S.STATUS = 'Y'"
+				+ "          AND REC_ID =?"
 				+ "        ORDER BY S.SEND_NO DESC"
 				+ "    )"
-				+ ") WHERE RNUM BETWEEN ? AND ? AND REC_ID =?";
+				+ ") WHERE RNUM BETWEEN ? AND ? ";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			
-			pstmt.setInt(1, info.getStartList());
-			pstmt.setInt(2, info.getEndList());
-			pstmt.setString(3, id);
-			
+			pstmt.setString(1, id);
+			pstmt.setInt(2, info.getStartList());
+			pstmt.setInt(3, info.getEndList());
+			//?
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -579,16 +585,17 @@ public class MessageDao {
 				+ "    FROM ("
 				+ "        SELECT R.REC_NO, R.SEND_ID, R.REC_BODY, R.REC_DATE, M.MEM_ID, R.STATUS"
 				+ "        FROM REC_MSG R JOIN MEMBER M ON(R.MEM_ID = M.MEM_ID) WHERE R.STATUS = 'Y'"
+				+ "			AND SEND_ID LIKE '%' || ? || '%'  "		
 				+ "        ORDER BY R.REC_NO DESC"
 				+ "    )"
-				+ ") WHERE RNUM BETWEEN ? AND ? AND SEND_ID = ?";
+				+ ") WHERE RNUM BETWEEN ? AND ? ";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			
-			pstmt.setInt(1, info.getStartList());
-			pstmt.setInt(2, info.getEndList());
-			pstmt.setString(3, id);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, info.getStartList());
+			pstmt.setInt(3, info.getEndList());
 			
 			rset = pstmt.executeQuery();
 			
@@ -621,7 +628,7 @@ public class MessageDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "SELECT SEND_IMG_NAME_ORG, SEND_NO "
+		String query = "SELECT SEND_IMG_NO, SEND_IMG_PATH, SEND_IMG_NAME_ORG, SEND_IMG_NAME_SAV, SEND_NO "
 				+ " FROM SEND_IMAGE "
 				+ " WHERE SEND_NO = ? "
 				+ " ORDER BY SEND_IMG_NO DESC"; 
@@ -634,8 +641,10 @@ public class MessageDao {
 			
 			while (rset.next()) {
 				SendMessageImg sendMsgImg = new SendMessageImg();
-				
+				sendMsgImg.setSend_img_no(rset.getInt("SEND_IMG_NO"));
+				sendMsgImg.setSend_img_path(rset.getString("SEND_IMG_PATH"));
 				sendMsgImg.setSend_img_name_org(rset.getString("SEND_IMG_NAME_ORG"));
+				sendMsgImg.setSend_img_name_sav(rset.getString("SEND_IMG_NAME_SAV"));
 				sendMsgImg.setSend_no(rset.getInt("SEND_NO"));
 				
 				list.add(sendMsgImg);

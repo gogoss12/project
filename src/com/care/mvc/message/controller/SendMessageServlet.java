@@ -46,8 +46,8 @@ public class SendMessageServlet extends HttpServlet {
 				page = 1;
 			}
 			
-			listCount = new MessageService().sendMsgList();
-			info = new PageInfo(page, 10, listCount, 10);
+			listCount = new MessageService().sendMsgList(loginMember, null);
+			info = new PageInfo(page, 10, listCount, 10); 
 			list = new MessageService().SendListmsg(info, loginMember);
 			
 			request.setAttribute("list", list);

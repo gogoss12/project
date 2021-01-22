@@ -8,8 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.care.mvc.common.util.PageInfo;
+import com.care.mvc.member.model.vo.Member;
 import com.care.mvc.message.model.service.MessageService;
 import com.care.mvc.message.model.vo.ReceiveMessage;
 
@@ -28,6 +30,8 @@ public class ReceiveSearchIdServlet extends HttpServlet {
 		PageInfo info = null;
 		ArrayList<ReceiveMessage> list = null;
 		String Id = request.getParameter("Id");
+		HttpSession session = request.getSession(false);
+		Member loginMember = session != null ? (Member)session.getAttribute("loginMember") : null; 
 		
 		try {
 			page = Integer.parseInt(request.getParameter("rec_page"));
@@ -37,7 +41,7 @@ public class ReceiveSearchIdServlet extends HttpServlet {
 			page = 1;
 		}
 		
-		listCount = new MessageService().getMsgList();
+		listCount = new MessageService().getMsgList(loginMember, Id);
 		info = new PageInfo(page, 10, listCount, 10);
 		list = new MessageService().RecSearchMsg(info, Id);
 		
