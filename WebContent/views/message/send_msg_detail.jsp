@@ -23,10 +23,10 @@
                         <a href="<%= request.getContextPath()%>/msg/write">쪽지쓰기</a>
                     </div>
 					<div>
-						<a href="<%= request.getContextPath()%>/msg/get"> 받은쪽지함 </a>
+						<a href="<%= request.getContextPath()%>/msg/get?loginMember=<%= loginMember.getMemId() %>"> 받은쪽지함 </a>
 					</div>
 					<div>
-						<a href="<%= request.getContextPath()%>/msg/send"> 보낸쪽지함 </a>
+						<a href="<%= request.getContextPath()%>/msg/send?loginMember=<%= loginMember.getMemId() %>"> 보낸쪽지함 </a>
 					</div>
 				</div>
 				<div id="msg_2-2">

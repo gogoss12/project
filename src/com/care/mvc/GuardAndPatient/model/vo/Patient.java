@@ -48,6 +48,7 @@ public class Patient {
 
 	private String pat_etc;
 	
+	
 	public Patient() {
 		
 	}

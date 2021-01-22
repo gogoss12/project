@@ -31,7 +31,6 @@ public class ReceiveMessageServlet extends HttpServlet {
 		PageInfo info = null;
 		ArrayList<ReceiveMessage> list = null;
 		
-		
 		HttpSession session = request.getSession(false);
 		Member loginMember = session != null ? (Member)session.getAttribute("loginMember") : null; 
 		// 비로그인시 로그인 페이지로 이동
@@ -47,7 +46,8 @@ public class ReceiveMessageServlet extends HttpServlet {
 			
 			listCount = new MessageService().getMsgList();
 			info = new PageInfo(page, 10, listCount, 10);
-			list = new MessageService().RevListmsg(info);
+			
+			list = new MessageService().RevListmsg(info, loginMember);
 			
 			request.setAttribute("list", list);
 			request.setAttribute("pageInfo", info);

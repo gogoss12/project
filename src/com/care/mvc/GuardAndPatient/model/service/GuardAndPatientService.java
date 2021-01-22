@@ -42,4 +42,24 @@ public class GuardAndPatientService {
 		return resultP;
 	}
 
+	public Guard checkGuard(String sendId) {
+		Connection conn = getConnection();
+		
+		Guard guard = new GuardAndPatientDao().checkguard(conn, sendId);
+		
+		JDBCTemplate.close(conn);
+		
+		return guard;
+	}
+
+	public Patient checkPatient(String sendId) {
+		Connection conn = getConnection();
+		
+		Patient patient = new GuardAndPatientDao().checkpatient(conn, sendId);
+		
+		JDBCTemplate.close(conn);
+		
+		return patient;
+	}
+
 }

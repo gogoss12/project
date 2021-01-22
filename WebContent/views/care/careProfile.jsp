@@ -22,7 +22,8 @@
                 hos_place.innerHTML = "<input type='text' id='hosp' name='careHistory1'>";
                 
                 // syso 로 값이 넘어오는지 안 넘어오는지 하나하나 확인하기
-    
+    			// 소요's Tip! 소요꺼 매치jsp꺼 보면 도움될거다!
+                
                 // 업무
                 var your_job = career1.insertCell();
                 your_job.innerHTML = "<input type='text' id='hosp' name='careHistory2'>";
@@ -41,10 +42,18 @@
             }
             
             // 삭제버튼 스크립트
-            function career_delete() {
-                var career2;
-                // career1 = document.all[].
+        function career_delete() {
+            var table = document.getElementById('careerwrite');
+            // 보기 td는 남겨놓기
+            if (table.rows.length < 2){
+            return;
             }
+
+            //tr삭제하기
+                table.deleteRow(table.rows.length - 1);
+            //삭제할때마다 행개수 -1
+            // count--;
+        }
         </script>
 <section>
       <div id="mucenter">
@@ -107,7 +116,7 @@
         
             <br>
         <div style="text-align: center;">
-            <table style="margin:0 auto;">
+            <table id="careerwrite" style="margin:0 auto;">
                 <tr>
                     <td style="width: 170px; border-bottom: 1px solid;">근무병원</td>
                     <td style="width: 170px; border-bottom: 1px solid;">업무</td>

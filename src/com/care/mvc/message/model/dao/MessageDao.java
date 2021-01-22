@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import com.care.mvc.GuardAndPatient.model.vo.Guard;
 import com.care.mvc.common.jdbc.JDBCTemplate;
 import com.care.mvc.common.util.PageInfo;
+import com.care.mvc.member.model.vo.Member;
 import com.care.mvc.message.model.vo.ReceiveMessage;
 import com.care.mvc.message.model.vo.ReceiveMessageImg;
 import com.care.mvc.message.model.vo.SendMessage;
@@ -63,7 +64,7 @@ public class MessageDao {
 	}
 	
 
-	public ArrayList<ReceiveMessage> listRevMsg(Connection conn, PageInfo info) {
+	public ArrayList<ReceiveMessage> listRevMsg(Connection conn, PageInfo info, Member loginMember) {
 		ArrayList<ReceiveMessage> list = new ArrayList<ReceiveMessage>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -73,7 +74,7 @@ public class MessageDao {
 				+ "    SELECT ROWNUM AS RNUM, REC_NO, SEND_ID , REC_BODY, REC_DATE, MEM_ID, STATUS"
 				+ "    FROM ("
 				+ "        SELECT R.REC_NO, R.SEND_ID, R.REC_BODY, R.REC_DATE, M.MEM_ID, R.STATUS"
-				+ "        FROM REC_MSG R JOIN MEMBER M ON(R.MEM_ID = M.MEM_ID) WHERE R.STATUS = 'Y'"
+				+ "        FROM REC_MSG R JOIN MEMBER M ON(R.MEM_ID = M.MEM_ID) WHERE R.STATUS = 'Y' AND R.MEM_ID =? "
 				+ "        ORDER BY R.REC_NO DESC"
 				+ "    )"
 				+ ") WHERE RNUM BETWEEN ? AND ?";
@@ -81,8 +82,9 @@ public class MessageDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			
-			pstmt.setInt(1, info.getStartList());
-			pstmt.setInt(2, info.getEndList());
+			pstmt.setString(1, loginMember.getMemId());
+			pstmt.setInt(2, info.getStartList());
+			pstmt.setInt(3, info.getEndList());
 			
 			rset = pstmt.executeQuery();
 			
@@ -148,7 +150,7 @@ public class MessageDao {
 		return list;
 	}
 
-	public ArrayList<SendMessage> listSendMsg(Connection conn, PageInfo info) {
+	public ArrayList<SendMessage> listSendMsg(Connection conn, PageInfo info, Member loginMember) {
 		ArrayList<SendMessage> list = new ArrayList<SendMessage>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -158,7 +160,7 @@ public class MessageDao {
 				+ "    SELECT ROWNUM AS RNUM, SEND_NO, REC_ID , SEND_BODY, SEND_DATE, MEM_ID, STATUS"
 				+ "    FROM ("
 				+ "        SELECT S.SEND_NO, S.REC_ID, S.SEND_BODY, S.SEND_DATE, M.MEM_ID, S.STATUS"
-				+ "        FROM SEND_MSG S JOIN MEMBER M ON(S.MEM_ID = M.MEM_ID) WHERE S.STATUS = 'Y'"
+				+ "        FROM SEND_MSG S JOIN MEMBER M ON(S.MEM_ID = M.MEM_ID) WHERE S.STATUS = 'Y' AND S.MEM_ID =?"
 				+ "        ORDER BY S.SEND_NO DESC"
 				+ "    )"
 				+ ") WHERE RNUM BETWEEN ? AND ?";
@@ -166,8 +168,9 @@ public class MessageDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			
-			pstmt.setInt(1, info.getStartList());
-			pstmt.setInt(2, info.getEndList());
+			pstmt.setString(1, loginMember.getMemId());
+			pstmt.setInt(2, info.getStartList());
+			pstmt.setInt(3, info.getEndList());
 			
 			rset = pstmt.executeQuery();
 			

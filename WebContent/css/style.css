@@ -127,7 +127,6 @@ header {
 }
 
 section{
-    min-height: 100%;
 }
 
 /*헤더*/
@@ -192,7 +191,6 @@ section{
 nav {
 	border: 3px solid darkkhaki;
 	height: 30%;
-	width: 100%;
 	background: beige;
 }
 
@@ -301,13 +299,9 @@ span {
 }
 
 /*------ 받은 쪽지 css ----------*/
-#msg_container>*{
-    height: 100%;
-}
 
 #msg_1 {
     width: 100%;
-	/* height: 35%; */
 	border-top: 3px solid darkkhaki;
 }
 
@@ -320,14 +314,13 @@ span {
 
 #msg_2{
     width: 100%;
-    float: left;
 }
 
 #msg_2-1{
     width: 15%;
     float: left; 
     background-color: cornsilk; 
-    height: 926px; 
+    height: 100%; 
     text-align: center;
 }
     
@@ -365,7 +358,7 @@ span {
 #msg_2-2{
     float: left;
     width: 85%;
-    height: 926px;
+    padding-bottom: 20px;
 }
 
 #msg_2-2>#msg_2-2-header{
@@ -439,15 +432,13 @@ span {
 
 #msg_2-2-footer div{
 	text-align: center;
-	margin-top: 20px;
 }
 
 /*------------------------------- */
 
 #foot {
 	width: 100%;
-	height: 100%;
-	font-size: 10px;
+	font-size: 15px;
 	width: 100%;
 	/* background: beige; */
 	text-align: center;
@@ -458,20 +449,14 @@ span {
 footer {
 	font-size: 10px;
 	width: 100%;
-	height: 80px;
 	/* position: absolute; */
 	z-index: 20;
 	overflow: hidden;
-	padding: 20px;
-	bottom: 0;
 	text-align: center;
 	color: black;
-	margin: 50px 0 0 0;
 }
 
-/* 로그인 */
 #content {
-	display: flex;
 	justify-content: center;
 	margin: 40px;
 }
@@ -480,10 +465,11 @@ footer {
  #loginForm { 
 	/* position: absolute; */
 	width: 300px;
-	height: 200px;
+	/*height: 200px;*/
 	padding: 30px, 20px;
 	background-color: #FFFFFF;
     text-align: center;
+    margin : auto;
 	/* top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%); */
@@ -544,8 +530,12 @@ footer {
 /* 회원가입  */
 
 section h2{
-  font-size: 30px;
+  font-size: 40px;
+  padding-left : 30px; 
+}
 
+section h4{
+	padding-left : 30px; 
 }
       
 tr{
