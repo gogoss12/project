@@ -53,15 +53,12 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 		
 		// 환자 프로필 등록
 		
-		if(request.getParameter("place").equals("자택")) {
-			patient.setPat_place(request.getParameter("place") + "주소 : " + request.getParameter("place_home"));
-		}else {
-			patient.setPat_place(request.getParameter("place") + "주소 : " + request.getParameter("place_hospital"));
-		}
+		patient.setPat_place(request.getParameter("place") + "주소 : " + request.getParameter("place1"));
 		patient.setPat_period(request.getParameter("period1") + " ~ " + request.getParameter("period2"));
 		patient.setPat_hop_time(request.getParameter("hopetime"));
 		patient.setPat_name(request.getParameter("patName"));
 		patient.setPat_gen(request.getParameter("patGen"));
+		patient.setPat_age(Integer.parseInt(request.getParameter("patAge")));
 		patient.setPat_kg(Integer.parseInt(request.getParameter("patKg"))); 
 		patient.setPat_infect(String.join(" , " , request.getParameterValues("patInfact")));
 		patient.setPat_grade(request.getParameter("patGrade"));

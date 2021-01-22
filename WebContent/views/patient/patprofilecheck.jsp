@@ -1,5 +1,11 @@
+<%@page import="com.care.mvc.GuardAndPatient.model.vo.Patient"%>
+<%@page import="com.care.mvc.GuardAndPatient.model.vo.Guard"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	Guard guard = (Guard)request.getAttribute("guard");
+	Patient patient = (Patient)request.getAttribute("patient");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -111,13 +117,17 @@
 		<div class="profile_table">
 			<table width="300" align="center">
 				<tr>
-					<td>보호자이자 환자입니다,</td>
+					<td>이름 : <%=guard.getGuardName() %></td>
 				</tr>
 				<tr>
-					<td>남</td>
+					<td>성별 : <%=guard.getGuard_gen() %></td>
 				</tr>
 				<tr>
-					<td>68세</td>
+					<% if(guard.getGuard_pat() != null) { %>
+					<td><%=guard.getGuard_pat() %></td>
+					<% }else { %>
+						<td><b>보호자</b></td>
+					<%} %>
 				</tr>
 			</table>
 
@@ -127,15 +137,15 @@
 					<tbody>
 						<tr>
 							<td class="pro_Table">돌봄 장소</td>
-							<td>내용</td>
+							<td><%=patient.getPat_place() %></td>
 						</tr>
 						<tr>
 							<td class="pro_Table">돌봄기간</td>
-							<td>내용</td>
+							<td><%=patient.getPat_period() %></td>
 						</tr>
 						<tr>
 							<td class="pro_Table">희망시간대</td>
-							<td>내용</td>
+							<td><%=patient.getPat_hop_time() %></td>
 						</tr>
 
 					</tbody>
@@ -146,77 +156,78 @@
 					<thead>
 						<tr>
 							<td class="pro_Table">환자 이름</td>
-							<td>내용</td>
+							<td><%=patient.getPat_name() %></td>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
 							<td class="pro_Table">환자 나이/성별</td>
-							<td>내용</td>
+							<td><%=patient.getPat_age()%> / <%=patient.getPat_gen() %></td>
 						</tr>
 						<tr>
 							<td class="pro_Table">몸무게</td>
-							<td>내용</td>
+							<td><%=patient.getPat_kg() %></td>
 						</tr>
 						<tr>
 							<td class="pro_Table">감영성 질환</td>
-							<td>내용</td>
+							<td><%=patient.getPat_infect() %></td>
 						</tr>
 						<tr>
 							<td class="pro_Table">장기요양등급</td>
-							<td>내용</td>
+							<td><%=patient.getPat_grade() %></td>
 						</tr>
 						<tr>
 							<td class="pro_Table">개인위생관리</td>
-							<td>내용</td>
+							<td><%=patient.getPat_sanit() %></td>
 						</tr>
 						<tr>
 							<td class="pro_Table">마비상태</td>
-							<td>내용</td>
+							<td><%=patient.getPat_paral() %></td>
 						</tr>
 						<tr>
 							<td class="pro_Table">거동상태</td>
-							<td>내용</td>
+							<td><%=patient.getPat_move() %></td>
 						</tr>
 						<tr>
 							<td class="pro_Table">욕창 환자 여부</td>
-							<td>내용</td>
+							<td><%=patient.getPat_bed() %></td>
 						</tr>
 						<tr>
 							<td class="pro_Table">인지장애 여부</td>
-							<td>내용</td>
+							<td><%=patient.getPat_cogdis() %></td>
 						</tr>
 						<tr>
 							<td class="pro_Table">화장실 이동시</td>
-							<td>내용</td>
+							<td><%=patient.getPat_bathroom() %></td>
 						</tr>
 						<tr>
 							<td class="pro_Table">배변도구</td>
-							<td>내용</td>
+							<td><%=patient.getPat_bowel_mn() %></td>
 						</tr>
 						<tr>
 							<td class="pro_Table">장루설치여부</td>
-							<td>내용</td>
+							<td><%=patient.getPat_ostomy() %></td>
 						</tr>
 						<tr>
 							<td class="pro_Table">식사 도움 여부</td>
-							<td>내용</td>
+							<td><%=patient.getPat_help_eat() %></td>
 						</tr>
 						<tr>
 							<td class="pro_Table">석션 사용 여부</td>
-							<td>내용</td>
+							<td><%=patient.getPat_suction()%></td>
 						</tr>
 						<tr>
 							<td class="pro_Table">요양보호사 우대 성별</td>
-							<td>내용</td>
+							<td><%=patient.getPat_guard_gen()%></td>
 						</tr>
 					</tbody>
 
 				</table>
 
 				<h3>기타사항(선택)</h3>
-
-				<iframe width="350px" height="100px" src="" frameborder="1"></iframe>
+				
+				<textarea cols="60" rows="7" readonly><%=patient.getPat_etc()%></textarea>
+				
 			</div>
 			<div id="pro_btn">
 				<button>쪽지보내기</button>

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import com.care.mvc.common.jdbc.JDBCTemplate;
 import com.care.mvc.common.util.PageInfo;
+import com.care.mvc.member.model.vo.Member;
 import com.care.mvc.message.model.dao.MessageDao;
 import com.care.mvc.message.model.vo.ReceiveMessage;
 import com.care.mvc.message.model.vo.ReceiveMessageImg;
@@ -17,11 +18,11 @@ import com.care.mvc.message.model.vo.SendMessageImg;
 
 public class MessageService {
 
-	public ArrayList<ReceiveMessage> RevListmsg(PageInfo info) {
+	public ArrayList<ReceiveMessage> RevListmsg(PageInfo info, Member loginMember) {
 		
 		Connection conn = getConnection();
 		
-		ArrayList<ReceiveMessage> list = new MessageDao().listRevMsg(conn, info);
+		ArrayList<ReceiveMessage> list = new MessageDao().listRevMsg(conn, info, loginMember);
 		
 		for(ReceiveMessage msg : list) {
 			int no = msg.getRec_no(); 
@@ -43,10 +44,10 @@ public class MessageService {
 		return list;
 	}
 
-	public ArrayList<SendMessage> SendListmsg(PageInfo info) {
+	public ArrayList<SendMessage> SendListmsg(PageInfo info, Member loginMember) {
 		Connection conn = getConnection();
 		
-		ArrayList<SendMessage> list = new MessageDao().listSendMsg(conn, info);
+		ArrayList<SendMessage> list = new MessageDao().listSendMsg(conn, info, loginMember);
 		
 		for(SendMessage msg : list) {
 			int no = msg.getSend_no(); 

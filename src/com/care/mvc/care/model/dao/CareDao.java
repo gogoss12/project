@@ -49,7 +49,7 @@ public class CareDao {
 			PreparedStatement ppstmt = null;
 
 			try {                   
-				query = "INSERT INTO PATIENT_WANTED VALUES (?,SEQ_CARE_NO.NEXTVAL,?,?,?)";
+				query = "INSERT INTO PATIENT_WANTED VALUES (?,SEQ_CARE_NO.NEXTVAL-1,?,?,?)";
 				
 				ppstmt = conn.prepareStatement(query);
 
@@ -78,7 +78,7 @@ public class CareDao {
 	      
 	      
 	      try {
-	         String CareImageQuery = "INSERT INTO CARE_IMAGE VALUES (SEQ_IMG_NO.NEXTVAL,SEQ_CARE_NO.NEXTVAL,SYSDATE,?,?,?)";
+	         String CareImageQuery = "INSERT INTO CARE_IMAGE VALUES (SEQ_IMG_NO.NEXTVAL,SEQ_CARE_NO.NEXTVAL+1,SYSDATE,?,?,?)";
 	         
 	         Ipstmt = conn.prepareStatement(CareImageQuery);
 	         
