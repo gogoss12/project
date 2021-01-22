@@ -111,6 +111,7 @@ public class MessageDao {
 		return list;
 	}
 	
+	// no: REC_NO (받은쪽지번호)
 	public ArrayList<ReceiveMessageImg> listRevMsgImg(Connection conn, int no) {
 		ArrayList<ReceiveMessageImg> list = new ArrayList<ReceiveMessageImg>();
 		PreparedStatement pstmt = null;
@@ -133,7 +134,7 @@ public class MessageDao {
 				recMsgImg.setRec_img_name_org(rset.getString("REC_IMG_NAME_ORG"));
 				recMsgImg.setRec_no(rset.getInt("REC_NO"));
 				
-				list.add(recMsgImg);
+				list.add(recMsgImg); // list에 값이 한 개
 			}
 			
 		} catch (SQLException e) {
@@ -228,8 +229,7 @@ public class MessageDao {
 	         Ipstmt.setString(1, smi.getSend_img_path());
 	         Ipstmt.setString(2, smi.getSend_img_name_org());
 	         Ipstmt.setString(3, smi.getSend_img_name_sav());
-	         Ipstmt.setInt(4, sendNo+1);
-	         
+	         Ipstmt.setInt(4, sendNo+1); // ?
 	         
 	         resultI = Ipstmt.executeUpdate();
 	         
@@ -302,7 +302,7 @@ public class MessageDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				result = rset.getInt(1);
+				result = rset.getInt(1); // 받은쪽지번호 컬럼값
 			}
 			
 		} catch (SQLException e) {
@@ -327,7 +327,7 @@ public class MessageDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				result = rset.getInt(1);
+				result = rset.getInt(1); // 보낸쪽지번호 컬럼값
 			}
 			
 		} catch (SQLException e) {

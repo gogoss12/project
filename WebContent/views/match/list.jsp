@@ -1,3 +1,4 @@
+<%@page import="com.care.mvc.care.model.vo.Care"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -7,7 +8,10 @@
 <%@ include file="/views/common/header.jsp" %>
 
 <%	
-	List<Member> profiles = (ArrayList) request.getAttribute("profiles");
+	// List<Member> profiles = (ArrayList) request.getAttribute("profiles");
+	
+	List<Care> profiles = (ArrayList) request.getAttribute("profiles");
+
 %>
 
 <section id="matchPage">
@@ -17,16 +21,48 @@
     <% if (profiles == null || profiles.isEmpty()) { %>
     		<!-- 검색결과 없음 -->
     <% } else {
-    		for (Member member : profiles) { %>
+    		for (Care care : profiles) { %>
     			<div class="profile">
-                    <img src="../../image/병아리당황.png" alt="">
-                    <h5><%= member.getMemName() %> (<%= member.getMemId() %>)</h5>
-                    <button onclick="">쪽지보내기</button>
+    				<!-- 저장된 이름으로 스크립트릿에 추가 -->
+                    <img class="profPic" src="../../upload/carephoto/<%=%>" alt="">
+                    
+                    <script>
+                        // $("#checkDuplicate").on("click", () => {
+                        //     // 중복확인전에 아이디 값이 4글자 이상인지 확인
+                        //     let id = $("#newId").val().trim();
+                            
+                        //     if (id.length < 4) {
+                        //         alert("아이디는 최소 4글자 이상 입력하셔요.")
+                                
+                        //         return;
+                        //     }
+                            
+                        //     // 중복 확인할 새창 띄우기
+                        //     const url = "<%= request.getContextPath()%>/member/checkId";
+                        //     const title = "duplicate";
+                        //     const status = "left=500px,top=100px,width=300px,height=200px";
+                            
+                        //     open("", title, status);
+                            
+                        //     // form에 데이터들을 채우고 open된 윈도우에서 결과를 받는 로직을 구성한다.
+                        //     // 자바스크립트에서 form은 name 속성으로 요소를 가져올 수 있다.
+                        //     checkIdForm.target = title; // form 전송하는 윈도우를 설정한다.
+                        //     checkIdForm.action = url;
+                        //     checkIdForm.method = "post";
+                        //     checkIdForm.userId.value = id;
+                            
+                        //     // form 전송하기
+                        //     checkIdForm.submit();
+                        // });
+                    </script>
+
+                    <h5><%= care.getCareName() %> (<%= care.getMemId() %>)</h5>
+                    <button onclick='location.href="<%= request.getContextPath() %>/msg/write?memId=<%= care.getMemId() %>"'>쪽지보내기</button>
                 </div>
    		 <% }
       } %>
     </div>
-    
+
     <button id="backBtn" onclick='location.replace("<%= request.getContextPath() %>/match/search");'>검색페이지로</button>
 
     <script type="text/javascript">

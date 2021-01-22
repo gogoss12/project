@@ -9,13 +9,38 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-	
+
+import com.care.mvc.care.model.vo.Care;
+import com.care.mvc.care.model.vo.CareImage;
 import com.care.mvc.member.model.vo.Member;
 
 public class MatchDao {
+	
+	public CareImage getCareImage(Connection conn, int careNo) {
+		CareImage img = new CareImage();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String query = "SELECT IMG_NAME_SAV "
+				+ "FROM CARE_IMAGE I "
+				+ "JOIN CAREGIVER_PROFILE P ON (I.CARE_NO = P.CARE_NO) "
+				+ "WHERE P.CARE_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, careNo);
+			rs = pstmt.executeQuery();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return img;
+	}
 
-	public List<Member> searchProfiles(Connection conn, Map<String, String[]> options) {
-		List<Member> profiles = new ArrayList<>();
+	public List<Care> searchProfiles(Connection conn, Map<String, String[]> options) {
+//		List<Member> profiles = new ArrayList<>();
+		List<Care> profiles = new ArrayList<>();
+
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 				
@@ -78,12 +103,20 @@ public class MatchDao {
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-				Member member = new Member(); 
+//				Member member = new Member(); 
+//				
+//				member.setMemName(rs.getString("MEM_NAME"));
+//				member.setMemId(rs.getString("MEM_ID"));
+//				
+//				profiles.add(member);
 				
-				member.setMemName(rs.getString("MEM_NAME"));
-				member.setMemId(rs.getString("MEM_ID"));
+				Care care = new Care(); 
 				
-				profiles.add(member);
+				care.setCareName(rs.getString("MEM_NAME"));
+				care.setMemId(rs.getString("MEM_ID"));
+//				care.setCareImg("");
+				
+				profiles.add(care);
 			}	
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -96,4 +129,6 @@ public class MatchDao {
 		
 		return profiles;
 	}
+	
+	
 }

@@ -126,7 +126,7 @@ public class MessageService {
 		return resultRI;
 		}
 
-	public int getMsgList() {
+	public int getMsgList() { // 받은쪽지
 		
 		Connection conn = getConnection();
 		
@@ -137,7 +137,7 @@ public class MessageService {
 		return result;
 	}
 
-	public int sendMsgList() {
+	public int sendMsgList() { // 보낸쪽지
 		Connection conn = getConnection();
 		
 		int result = new MessageDao().sendMsgList(conn);
