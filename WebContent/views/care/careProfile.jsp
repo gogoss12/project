@@ -19,18 +19,18 @@
 
                 // 근무병원
                 var hos_place = career1.insertCell();
-                hos_place.innerHTML = "<input type='text' id='hosp' name='careHistory1'>";
+                hos_place.innerHTML = "<input type='text' id='hosp' name='careHistory1' value=''>";
                 
                 // syso 로 값이 넘어오는지 안 넘어오는지 하나하나 확인하기
     			// 소요's Tip! 소요꺼 매치jsp꺼 보면 도움될거다!
                 
                 // 업무
                 var your_job = career1.insertCell();
-                your_job.innerHTML = "<input type='text' id='hosp' name='careHistory2'>";
+                your_job.innerHTML = "<input type='text' id='hosp' name='careHistory2' value=''>";
     
                 // 기간1
                 var period1 = career1.insertCell();
-                period1.innerHTML = "<input type='date' id='hosp' name='careHistoryDate1'>";
+                period1.innerHTML = "<input type='date' id='hosp' name='careHistoryDate1' value=''>";
                 
                 // 중간에 ~ 표시
                 var period2 = career1.insertCell();
@@ -38,7 +38,7 @@
                 
                 // 기간2
                 var period2 = career1.insertCell();
-                period2.innerHTML = "<input type='date' id='hosp' name='careHistoryDate2'>";
+                period2.innerHTML = "<input type='date' id='hosp' name='careHistoryDate2' value=''>";
             }
             
             // 삭제버튼 스크립트
