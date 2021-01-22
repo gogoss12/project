@@ -81,9 +81,13 @@
                                 </td>
                                 
                                 <td id="td-2">
-                                    <a href="">
-                                        <b> 채워야하는 부분 </b>
-                                    </a>
+                                    <a href="#">
+											<% if(sendM.getImgs().get(0).getSend_img_name_org() != null) { %>
+											<b><img src="<%=request.getContextPath()%>/image/filefigure.png" style="width:20px"></b>
+											<% } else { %> 
+												<b>파일 없음</b>
+											<% } %>
+										</a>
                                 </td>
                                 
                                 <td id="td-2">
