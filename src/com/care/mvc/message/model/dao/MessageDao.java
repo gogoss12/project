@@ -4,12 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
-import com.care.mvc.GuardAndPatient.model.vo.Guard;
 import com.care.mvc.common.jdbc.JDBCTemplate;
 import com.care.mvc.common.util.PageInfo;
 import com.care.mvc.member.model.vo.Member;
@@ -118,7 +115,7 @@ public class MessageDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "SELECT REC_IMG_NAME_ORG, REC_NO "
+		String query = "SELECT REC_IMG_NO, REC_IMG_PATH, REC_IMG_NAME_ORG, REC_IMG_NAME_SAV, REC_NO "
 				+ " FROM REC_IMAGE "
 				+ " WHERE REC_NO = ? "
 				+ " ORDER BY REC_IMG_NO DESC"; // 순서는 REC_NO 해도 상관없을거같다
@@ -132,7 +129,10 @@ public class MessageDao {
 			while (rset.next()) {
 				ReceiveMessageImg recMsgImg = new ReceiveMessageImg();
 				
+				recMsgImg.setRec_img_no(rset.getInt("REC_IMG_NO"));
+				recMsgImg.setRec_img_path(rset.getString("REC_IMG_PATH"));
 				recMsgImg.setRec_img_name_org(rset.getString("REC_IMG_NAME_ORG"));
+				recMsgImg.setRec_img_name_sav(rset.getString("REC_IMG_NAME_SAV"));
 				recMsgImg.setRec_no(rset.getInt("REC_NO"));
 				
 				list.add(recMsgImg);
@@ -628,7 +628,7 @@ public class MessageDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "SELECT SEND_IMG_NO, SEND_IMG_PATH, SEND_IMG_NAME_ORG, SEND_IMG_NAME_SAV, SEND_NO "
+		String query = " SELECT SEND_IMG_NO, SEND_IMG_PATH, SEND_IMG_NAME_ORG, SEND_IMG_NAME_SAV, SEND_NO "
 				+ " FROM SEND_IMAGE "
 				+ " WHERE SEND_NO = ? "
 				+ " ORDER BY SEND_IMG_NO DESC"; 
@@ -641,8 +641,9 @@ public class MessageDao {
 			
 			while (rset.next()) {
 				SendMessageImg sendMsgImg = new SendMessageImg();
+				
 				sendMsgImg.setSend_img_no(rset.getInt("SEND_IMG_NO"));
-				sendMsgImg.setSend_img_path(rset.getString("SEND_IMG_PATH"));
+				sendMsgImg.setSend_img_path(rset.getNString("SEND_IMG_PATH"));
 				sendMsgImg.setSend_img_name_org(rset.getString("SEND_IMG_NAME_ORG"));
 				sendMsgImg.setSend_img_name_sav(rset.getString("SEND_IMG_NAME_SAV"));
 				sendMsgImg.setSend_no(rset.getInt("SEND_NO"));
@@ -659,4 +660,5 @@ public class MessageDao {
 		
 		return list;
 	}
+	
 }
