@@ -2,7 +2,7 @@ package com.care.mvc.member.model.service;
 
 import java.sql.Connection;
 
-
+import com.care.mvc.common.jdbc.JDBCTemplate;
 import com.care.mvc.member.model.dao.MemberDao;
 import com.care.mvc.member.model.vo.Member;
 import static com.care.mvc.common.jdbc.JDBCTemplate.getConnection;

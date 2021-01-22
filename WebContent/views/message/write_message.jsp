@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	String sendTo = (String) request.getAttribute("sendTo");
 %>   
  
 <%@ include file="/views/common/header.jsp" %>
@@ -35,7 +36,11 @@
                 <div id="msg_2-2">
                     <div id="msg_2-2-header">
                         <label style="font-size: large;">받는 사람</label>
+                        <% if (sendTo != null && sendTo.length() > 0) { %>
+                        <input type="text" name="rev_id" value="<%= sendTo %>">
+                        <% } else { %>
                         <input type="text" name="rev_id" placeholder="아이디를 입력해주세요">
+                        <% } %>
                     </div>
                     <div class="mb-3" id="msg_2-3-header">
                         <label for="formFile" class="form-label">파일 첨부 &nbsp;&nbsp;</label>
