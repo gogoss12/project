@@ -10,6 +10,7 @@ import com.care.mvc.care.model.dao.CareDao;
 import com.care.mvc.care.model.vo.Care;
 import com.care.mvc.care.model.vo.CareImage;
 import com.care.mvc.care.model.vo.PatientWanted;
+import com.care.mvc.common.jdbc.JDBCTemplate;
 
 public class CareService {
 
@@ -62,5 +63,28 @@ public class CareService {
 		return resultPW;
 
 	}
+
+	public Care checkCare(String sendId) {
+		
+		Connection conn = getConnection();
+		
+		Care caregiver = new CareDao().checkCaregiver(conn, sendId);
+		
+		JDBCTemplate.close(conn);
+		
+		return caregiver;
+	}
+	
+	public PatientWanted checkPatWanted(String sendId) {
+		
+		Connection conn = getConnection();
+		
+		PatientWanted patWanted = new CareDao().checkPatWanted(conn, sendId);
+		
+		JDBCTemplate.close(conn);
+		
+		return patWanted;
+	}
+
 
 }

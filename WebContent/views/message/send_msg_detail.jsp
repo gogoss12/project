@@ -36,14 +36,26 @@
 						<input type="button" name="search_id" value="검색">
 					</div>
 					<div id="msg_2-2-body">
-                        <div id="msg_contents1">             <!-- 여기 a태그 없앨지 있을지 여부 -->
+                        <div id="msg_contents1"> 
                             <b>받는사람 : &nbsp;</b> <a href="#"></a><b><%=sendmessage.getRec_id()%></b></a>
                         </div>
                         <div id="msg_contents1">
                             <b>보낸파일 : &nbsp;</b> 
                             		<% if(imgS.getSend_img_name_org() != null) { %>
-                            	<a href="#">
+                            	<a href="javascript:fileDownload('<%= imgS.getSend_img_name_org() %>' , '<%= imgS.getSend_img_name_sav() %>');">
                             		<b><%=imgS.getSend_img_name_org()%></b>
+                            		
+                           		<script>
+							 		function fileDownload(nameori, namesav) {
+							 			const url = "<%=request.getContextPath() %>/sendFile/filedown";
+							 			
+							 			let oName = encodeURIComponent(nameori);
+							 			let sName = encodeURIComponent(namesav);
+							 			
+							 			location.assign(url + "?nameori=" + oName + "&namesav=" + sName);
+							 		}
+							 	</script>
+							
                             		<% } else { %>
 										<b>파일 없음</b>
 									<% } %>                     			

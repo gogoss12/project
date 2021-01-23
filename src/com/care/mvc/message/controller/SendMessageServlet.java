@@ -14,7 +14,6 @@ import com.care.mvc.common.util.PageInfo;
 import com.care.mvc.member.model.vo.Member;
 import com.care.mvc.message.model.service.MessageService;
 import com.care.mvc.message.model.vo.SendMessage;
-import com.care.mvc.message.model.vo.SendMessageImg;
 
 @WebServlet("/msg/send")
 public class SendMessageServlet extends HttpServlet {
@@ -35,19 +34,18 @@ public class SendMessageServlet extends HttpServlet {
 		HttpSession session = request.getSession(false);
 		Member loginMember = session != null ? (Member)session.getAttribute("loginMember") : null; 
 		
-		
 		// 비로그인시 로그인 페이지로 이동
 		if(loginMember != null) {
 			try {
 				page = Integer.parseInt(request.getParameter("send_page"));
-				System.out.println(page);
 				
+				System.out.println(page);
 			}catch(NumberFormatException e) {
 				page = 1;
 			}
 			
-			listCount = new MessageService().sendMsgList();
-			info = new PageInfo(page, 10, listCount, 10);
+			listCount = new MessageService().sendMsgList(loginMember, null);
+			info = new PageInfo(page, 10, listCount, 10); 
 			list = new MessageService().SendListmsg(info, loginMember);
 			
 			request.setAttribute("list", list);
