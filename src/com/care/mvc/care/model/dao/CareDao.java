@@ -2,7 +2,10 @@ package com.care.mvc.care.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import javax.print.attribute.standard.MediaPrintableArea;
 
 import com.care.mvc.care.model.vo.Care;
 import com.care.mvc.care.model.vo.CareImage;
@@ -97,6 +100,81 @@ public class CareDao {
 	      
 	      return resultI;
 	   }
+	
+	public Care checkCaregiver(Connection conn, String sendId) {
+		Care caregiver = new Care();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT C.CARE_GEN, C.CARE_LICENSE, C.CARE_YEARS, C.CARE_HISTORY, C.CARE_PLUS, "
+				+ "C.CARE_TIME, C.CARE_PLACE, C.CARE_SAL, C.CARE_INTRO "
+				+ "FROM CAREGIVER_PROFILE C "
+				+ "JOIN MEMBER M ON(M.MEM_ID = C.MEM_ID) "
+				+ "WHERE C.MEM_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, sendId);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				caregiver.setCareGen(rset.getString("CARE_GEN"));
+				caregiver.setCareLicense(rset.getString("CARE_LICENSE"));
+				caregiver.setCareYears(rset.getString("CARE_YEARS"));
+				caregiver.setCareHistory(rset.getString("CARE_HISTORY"));
+				caregiver.setCarePlace(rset.getString("CARE_PLUS"));
+				caregiver.setCareTime(rset.getString("CARE_TIME"));
+				caregiver.setCarePlace(rset.getString("CARE_PLACE"));
+				caregiver.setCareSal(rset.getString("CARE_SAL"));
+				caregiver.setCareIntro(rset.getString("CARE_INTRO"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return caregiver;
+	}
+
+	
+	
+	public PatientWanted checkPatWanted(Connection conn, String sendId) {
+		PatientWanted patWanted = new PatientWanted();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT P.WANTED_GRADE, P.WANTED_GEN, P.WANTED_AGE, P.WANTED_ILL "
+				+ "FROM PATIENT_WANTED P "
+				+ "JOIN CAREGIVER_PROFILE C ON (P.CARE_NO = C.CARE_NO) "
+				+ "JOIN MEMBER M ON (C.MEM_ID = M.MEM_ID) "
+				+ "WHERE M.MEM_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, sendId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				patWanted.setWantedGrade(rset.getString("WANTED_GRADE"));
+				patWanted.setWantedGen(rset.getString("WANTED_GEN"));
+				patWanted.setWantedAge(rset.getString("WANTED_AGE"));
+				patWanted.setWantedIll(rset.getString("WANTED_ILL"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return patWanted;
+	}
+
 }
 
 

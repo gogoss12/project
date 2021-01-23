@@ -37,11 +37,9 @@ public class SendMessageServlet extends HttpServlet {
 		// 비로그인시 로그인 페이지로 이동
 		if(loginMember != null) {
 			try {
-				// === 이게 문제
 				page = Integer.parseInt(request.getParameter("send_page"));
 				
 				System.out.println(page);
-				// ==
 			}catch(NumberFormatException e) {
 				page = 1;
 			}
@@ -52,9 +50,7 @@ public class SendMessageServlet extends HttpServlet {
 			
 			request.setAttribute("list", list);
 			request.setAttribute("pageInfo", info);
-			// 여기도 문제
 			request.getRequestDispatcher("/views/message/send_message.jsp").forward(request, response);
-			// ========
 		}else {
 			msg = "로그인이 필요한 페이지입니다.";
 			loc = "/member/login";

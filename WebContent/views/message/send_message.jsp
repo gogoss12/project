@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../../css/style.css">
 <%
 
-	ArrayList<SendMessage> list = (ArrayList)request.getAttribute("list");
+	ArrayList<SendMessage> list = (ArrayList<SendMessage>)request.getAttribute("list");
 	
 	PageInfo info = (PageInfo)request.getAttribute("pageInfo");
 
@@ -14,7 +14,7 @@
 <%@ include file="/views/common/header.jsp" %>
 <section>
     <div id="msg_container">
-        <form action="<%= request.getContextPath()%>/msg/send" method="post">
+        <form action="<%= request.getContextPath()%>/msg/send" method="get">
             <div id="msg_1">
                 <h1>CAREPOOL 쪽지</h1>
             </div>
@@ -64,7 +64,6 @@
                             </tr>
                             <% }else { 
                             	for(int i=0; i< list.size(); i++){
-                                    if(loginMember.getMemId().equals(list.get(i).getMem_id())){
                             %>								
                             <tr>
                                 <td id="td-2" >
@@ -82,12 +81,14 @@
                                 </td>
                                 
                                 <td id="td-2">
-                                    <a href="#">
+                                    	<a href="#">
+                                    	<%if(list.get(i).getImgs().size() != 0) { %>
 											<% if(list.get(i).getImgs().get(0).getSend_img_name_org() != null) { %>
-											<b><img src="<%=request.getContextPath()%>/image/filefigure.png" style="width:20px"></b>
+												<b><img src="<%=request.getContextPath()%>/image/filefigure.png" style="width:20px"></b>
 											<% } else { %> 
 												<b>파일 없음</b>
 											<% } %>
+										<% } %>
 										</a>
                                 </td>
                                 
@@ -95,18 +96,10 @@
                                     <b><%=list.get(i).getSend_date()%></b>
                                 </td>
                                 <td id="td-2" style="width: 30px;">
-										<input type="button" value="삭제" onclick="delete_row()" name="delete" style="color:red;">
-										<script>
-										function delete_row(){
-											if(confirm("쪽지를 삭제하시겠습니까 ?")){
-												location.href="<%=request.getContextPath()%>/delete/send?SendNum=<%=list.get(i).getSend_no()%>"
-											}; 
-									    };
-										</script>
+										<input type="button" value="삭제" onclick="delete_row('<%=list.get(i).getSend_no()%>')" name="delete" style="color:red;">
 									</td>
                             </tr>
                                 <%}
-                             } 
                         } %>
                         </table>
 						</div>
@@ -137,4 +130,14 @@
 		</div>
         </div>
     </section>
+    <script>
+    
+    
+    function delete_row(no){
+		if(confirm("쪽지를 삭제하시겠습니까 ?")){
+			location.href="<%=request.getContextPath()%>/delete/send?SendNum=" + no
+		}; 
+    };
+    
+    </script>
     <%@ include file="/views/common/footer.jsp" %>

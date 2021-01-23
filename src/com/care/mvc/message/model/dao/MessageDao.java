@@ -639,7 +639,7 @@ public class MessageDao {
 			pstmt.setInt(1, no);
 			rset = pstmt.executeQuery();
 			
-			while (rset.next()) {
+			while(rset.next()) {
 				SendMessageImg sendMsgImg = new SendMessageImg();
 				
 				sendMsgImg.setSend_img_no(rset.getInt("SEND_IMG_NO"));
