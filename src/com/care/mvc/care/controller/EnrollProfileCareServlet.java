@@ -83,7 +83,7 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		care.setCareGen(mr.getParameter("caregender"));
 		care.setCareLicense(String.join(",",mr.getParameterValues("careLicense")));
 		care.setCareYears(mr.getParameter("careYears"));
-		care.setCareHistory("회사명 : " + mr.getParameter("careHistory1") +" / "
+		care.setCareHistory("근무병원 : " + mr.getParameter("careHistory1") +" / "
 		+ "업무 : " +  mr.getParameter("careHistory2") + " / "
 		+ "기간 : " +  mr.getParameter("careHistoryDate1") + " ~ " + mr.getParameter("careHistoryDate2") );
 		care.setCarePlus(String.join(",",mr.getParameterValues("carePlus")));
