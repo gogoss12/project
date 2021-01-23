@@ -2,12 +2,16 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
 <%
-	Member userId = (Member)request.getAttribute("userId");
+	Member member = (Member)request.getAttribute("member");
+   
+    String addr = member.getMemAddr();
+    String[] arr = addr.split(","); 
+
 %>
 
 	<section id="content">
-		<div id="enroll-container" style="margin: 0 auto; text-align:center">
-			<form name="memberEnrollUpdateFrm" action="<%= request.getContextPath()%>/member/enrollupdate" method="post">
+		<div id="enroll-container" style="margin: 0 auto; text-align:center" >
+			<form name="memberEnrollUpdate" action="<%= request.getContextPath()%>/member/enrollupdate" method="post">
 				<table class="table table-borderless" style="text-align:left" >
 					<tr>
 						<th colspan="2">
@@ -16,49 +20,48 @@
 					</tr>
 					<tr>
 						<th>이름</th>
-						<td><input type="text" name="userName" id="userName" value="<%= userId.getMemName()%>" readonly required  >
+						<td><input type="text" name="userName" id="userName" value="<%= member.getMemName()%>" readonly required  >
 						</td>
 					</tr>
 					<tr>
 						<th>아이디</th>
 						<td>
-						   <input type="text" name="userId" id="newId" placeholder="아이디(4글자이상)" value="<%= userId.getMemId()%>" readonly required> 
-						   <input type="button" id="checkDuplicate" value="중복확인">
+						   <input type="text" name="userId" id="newId" placeholder="아이디(4글자이상)" value="<%= member.getMemId()%>" readonly required> 
 						</td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td><input type="email" name="email" id="email" value="<%= userId.getMemEmail()%>"></td>
+						<td><input type="email" name="email" id="email" value="<%= member.getMemEmail()%>"></td>
 					</tr>
 					<tr>
 						<th>핸드폰번호</th>
 						<td><input type="tel" placeholder="e.g. 01012345678"
-							name="phone" id="phone" value="<%= userId.getMemPhone()%>" maxlength="11"></td>
+							name="phone" id="phone" value="<%= member.getMemPhone()%>" maxlength="11"></td>
 					</tr>
 					<tr>
 						<th>주소</th>
 						<td>
 							<span style="padding-right:34px">
-								<input type="text" name="postalAddr" id="postalAddr" placeholder="우편번호" value="<%= userId.getMemAddr()%>" style="width:200px">
+								<input type="text" name="postalAddr" id="postalAddr"  placeholder="우편번호"  style="width:200px">
 							</span>
 							<input type="button" id="findPostalAddr" onclick="DaumPostcode()" value="우편번호 검색"><br>
 							<div>
-								<input type="text" name="addr1" id="addr1" placeholder="주소"  style="width:360px">
+								<input type="text" name="addr1" id="addr1" placeholder="주소" value="<%= arr[0]%>"  style="width:360px">
 							</div>
 							<!-- 동이름 / 빌딩이름 등이 나온다 -->
-							<input type="text" name="addr2" id="addr2" placeholder="상세주소">
-							<input type="text" name="addr3" id="addr3" placeholder="참고항목" readonly>
+							<input type="text" name="addr2" id="addr2" value="<%= arr[1]%>" placeholder="상세주소">
+							<input type="text" name="addr3" id="addr3" value="<%= arr[2]%>" placeholder="참고항목" readonly>
 						</td>
 					</tr>
 					<tr>
 						<th>생년월일</th>
 						<td><input type="date" name="birth" id="birth"
-							min="1930-01-01" max="" value="mm/dd/yyyy<%= userId.getMemBirth()%>"><br> <!-- max 값을 오늘 날짜로 지정 -->
+							min="1930-01-01" max="" value="mm/dd/yyyy" required><br> <!-- max 값을 오늘 날짜로 지정 -->
 						</td>
 					</tr>
 					<tr>
 						<th>보호자/요양보호사</th>
-						<td><select name="role" id="selrole" value="<%= userId.getMemRole()%>">
+						<td><select name="role" id="selrole" required>
 								<option disabled selected>선택</option>
 								<option value="guardian">보호자</option>
 								<option value="caregiver">요양보호사</option>
