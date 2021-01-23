@@ -1,4 +1,4 @@
-package com.care.mvc.GuardAndPatient.controller;
+package com.care.mvc.member.controller;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ import com.care.mvc.care.model.service.CareService;
 import com.care.mvc.care.model.vo.Care;
 import com.care.mvc.care.model.vo.PatientWanted;
 
-@WebServlet("/check/patient")
+@WebServlet("/check/profile")
 public class CheckProfilePatientServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -23,10 +23,10 @@ public class CheckProfilePatientServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String sendId = request.getParameter("sendId");
+		String memId = request.getParameter("memId");
 		
-		Guard guard = new GuardAndPatientService().checkGuard(sendId);
-		Patient patient = new GuardAndPatientService().checkPatient(sendId);
+		Guard guard = new GuardAndPatientService().checkGuard(memId);
+		Patient patient = new GuardAndPatientService().checkPatient(memId);
 		
 		if(guard.getMemId() != null && patient.getGuard_no() != 0) {
 			request.setAttribute("guard", guard);
@@ -34,15 +34,12 @@ public class CheckProfilePatientServlet extends HttpServlet {
 			request.getRequestDispatcher("/views/patient/patprofilecheck.jsp").forward(request, response);
 			return;
 		}else {
-			Care care = new CareService().checkCare(sendId);
-			PatientWanted patWanted = new CareService().checkPatWanted(sendId); 
+			Care care = new CareService().checkCare(memId);
+			PatientWanted patWanted = new CareService().checkPatWanted(memId); 
 			
 			request.setAttribute("care", care);
-			request.setAttribute("patWnated", patWanted);
+			request.setAttribute("patWanted", patWanted);
 			request.getRequestDispatcher("/views/care/careprofilecheck.jsp").forward(request, response);
 		}
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
-
 }
