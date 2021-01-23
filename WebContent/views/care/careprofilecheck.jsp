@@ -6,7 +6,7 @@
 	Care caregiver = (Care)request.getAttribute("care");
 	Patient patient = (Patient)request.getAttribute("patWnated");
 %>
-  
+
 <!DOCTYPE html>
 <html>
 <head>

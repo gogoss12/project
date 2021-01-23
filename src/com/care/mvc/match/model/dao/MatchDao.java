@@ -12,7 +12,6 @@ import java.util.Map;
 
 import com.care.mvc.care.model.vo.Care;
 import com.care.mvc.care.model.vo.CareImage;
-import com.care.mvc.member.model.vo.Member;
 
 public class MatchDao {
 	
@@ -112,21 +111,13 @@ public class MatchDao {
 			rs = pstmt.executeQuery();
 			
 			while (rs.next()) {
-//				Member member = new Member(); 
-//				
-//				member.setMemName(rs.getString("MEM_NAME"));
-//				member.setMemId(rs.getString("MEM_ID"));
-//				
-//				profiles.add(member);
-				
 				Care care = new Care(); 
 				CareImage img = new CareImage();
 				
 				care.setCareName(rs.getString("MEM_NAME"));
 				care.setMemId(rs.getString("MEM_ID"));
-//				care.setCareImg("");
 				
-				img = getCareImage(conn, rs.getInt("CARE_NO")); // C. ... ?
+				img = getCareImage(conn, rs.getInt("CARE_NO"));
 				
 				// 불러온 img 객체를 care의 멤버변수로 set
 				care.setCareImg(img);

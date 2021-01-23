@@ -12,6 +12,7 @@
 	
 %>
 <%@ include file="/views/common/header.jsp"%>
+
 <section>
 	<div id="msg_container">
 		<form action="<%= request.getContextPath()%>/msg/get" method="get">
