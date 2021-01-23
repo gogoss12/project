@@ -14,6 +14,9 @@
 
 %>
 
+<style>
+</style>
+
 <section id="matchPage">
 
     <h2>검색하신 요양보호사님께 문의해보세요</h2>
@@ -23,10 +26,11 @@
     <% } else {
     		for (Care care : profiles) { %>
     			<div class="profile">    				    				
-                    <img class="profPic" onclick="loadProf('<%= care.getMemId() %>');" src="<%= request.getContextPath() %>/upload/carephoto/<%= care.getCareImg().getImgNameSav() %>" alt="">
+                    <img class="profPic" onclick="loadProf('<%= care.getMemId() %>');" 
+                    	src="<%= request.getContextPath() %>/upload/carephoto/<%= care.getCareImg().getImgNameSav() %>" alt="">
 
-                    <h5><%= care.getCareName() %> (<%= care.getMemId() %>)</h5>
-                    <button onclick='location.href="<%= request.getContextPath() %>/msg/write?memId=<%= care.getMemId() %>"'>쪽지보내기</button>
+                    <h5><%= care.getMemName() %> (<%= care.getMemId() %>)</h5>
+                    <button class="sendMsg" onclick='location.href="<%= request.getContextPath() %>/msg/write?memId=<%= care.getMemId() %>"'>쪽지보내기</button>
                 </div>
    		 <% }
       } %>
@@ -50,7 +54,7 @@
 
     function loadProf(memId) {
         const url = "<%=request.getContextPath()%>/check/profile?memId=" + memId;
-        const specs = "width = 600px, height = 600px, top=200, left=200, resizable=yes";
+        const specs = "width = 800px, height = 600px, top=200, left=200, resizable=yes";
         window.open(url, "matched profile", specs);
     }
 </script>

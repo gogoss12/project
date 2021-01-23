@@ -1,5 +1,7 @@
 package com.care.mvc.care.model.dao;
 
+import static com.care.mvc.common.jdbc.JDBCTemplate.close;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -98,14 +100,16 @@ public class CareDao {
 	
 	public Care checkCaregiver(Connection conn, String sendId) {
 		Care caregiver = new Care();
+		CareImage img = new CareImage();
+
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "SELECT C.CARE_GEN, C.CARE_LICENSE, C.CARE_YEARS, C.CARE_HISTORY, C.CARE_PLUS, "
+		String query = "SELECT C.CARE_NO, C.MEM_ID, C.CARE_GEN, C.CARE_LICENSE, C.CARE_YEARS, C.CARE_HISTORY, C.CARE_PLUS, "
 				+ "C.CARE_TIME, C.CARE_PLACE, C.CARE_SAL, C.CARE_INTRO, M.MEM_NAME AS MEM_NAME, M.MEM_BIRTH AS MEM_BIRTH "
 				+ "FROM CAREGIVER_PROFILE C "
 				+ "JOIN MEMBER M ON(M.MEM_ID = C.MEM_ID) "
 				+ "WHERE C.MEM_ID = ?";
-		
+				
 		try {
 			pstmt = conn.prepareStatement(query);
 			
@@ -113,19 +117,22 @@ public class CareDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
+				caregiver.setMemId(rset.getString("MEM_ID"));
 				caregiver.setCareGen(rset.getString("CARE_GEN"));
 				caregiver.setCareLicense(rset.getString("CARE_LICENSE"));
 				caregiver.setCareYears(rset.getString("CARE_YEARS"));
 				caregiver.setCareHistory(rset.getString("CARE_HISTORY"));
-				caregiver.setCarePlace(rset.getString("CARE_PLUS"));
+				caregiver.setCarePlus(rset.getString("CARE_PLUS"));
 				caregiver.setCareTime(rset.getString("CARE_TIME"));
 				caregiver.setCarePlace(rset.getString("CARE_PLACE"));
 				caregiver.setCareSal(rset.getString("CARE_SAL"));
 				caregiver.setCareIntro(rset.getString("CARE_INTRO"));
 				caregiver.setMemName(rset.getString("MEM_NAME"));
-				caregiver.setMemBirth(rset.getString("MEM_BIRTH"));
+				caregiver.setMemBirth(rset.getString("MEM_BIRTH"));		
+				
+				img = getCareImage(conn, rset.getInt("CARE_NO"));
+				caregiver.setCareImg(img);				
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -133,6 +140,37 @@ public class CareDao {
 			JDBCTemplate.close(pstmt);
 		}
 		return caregiver;
+	}
+	
+	// 아래코드로 케어이미지 불러와서 위에 set...()!!!
+	public CareImage getCareImage(Connection conn, int careNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		CareImage img = new CareImage();
+		
+		String query = "SELECT IMG_NAME_SAV "
+				+ "FROM CARE_IMAGE I "
+				+ "JOIN CAREGIVER_PROFILE P ON (I.CARE_NO = P.CARE_NO) "
+				+ "WHERE P.CARE_NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, careNo);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				img.setImgNameSav(rs.getString(1));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rs); 
+			close(pstmt);
+		}
+		
+		return img;
 	}
 	
 	public PatientWanted checkPatWanted(Connection conn, String sendId) {
@@ -153,12 +191,12 @@ public class CareDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				
 				patWanted.setWantedGrade(rset.getString("WANTED_GRADE"));
 				patWanted.setWantedGen(rset.getString("WANTED_GEN"));
 				patWanted.setWantedAge(rset.getString("WANTED_AGE"));
 				patWanted.setWantedIll(rset.getString("WANTED_ILL"));
 				
+				System.out.println(patWanted.getWantedAge());
 			}
 			
 		} catch (SQLException e) {

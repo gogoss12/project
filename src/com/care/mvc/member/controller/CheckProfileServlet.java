@@ -16,17 +16,17 @@ import com.care.mvc.care.model.vo.Care;
 import com.care.mvc.care.model.vo.PatientWanted;
 
 @WebServlet("/check/profile")
-public class CheckProfilePatientServlet extends HttpServlet {
+public class CheckProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public CheckProfilePatientServlet() {
+    public CheckProfileServlet() {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String memId = request.getParameter("memId");
 		Guard guard = new GuardAndPatientService().checkGuard(memId);
 		Patient patient = new GuardAndPatientService().checkPatient(memId);
-		
+
 		if(guard.getMemId() != null && patient.getGuard_no() != 0) {
 			request.setAttribute("guard", guard);
 			request.setAttribute("patient", patient);
@@ -35,7 +35,7 @@ public class CheckProfilePatientServlet extends HttpServlet {
 		}else {
 			Care care = new CareService().checkCare(memId);
 			PatientWanted patWanted = new CareService().checkPatWanted(memId); 
-			
+						
 			request.setAttribute("care", care);
 			request.setAttribute("patWanted", patWanted);
 			request.getRequestDispatcher("/views/care/careprofilecheck.jsp").forward(request, response);
