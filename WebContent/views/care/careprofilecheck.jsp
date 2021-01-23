@@ -1,10 +1,11 @@
+<%@page import="com.care.mvc.care.model.vo.PatientWanted"%>
 <%@page import="com.care.mvc.GuardAndPatient.model.vo.Patient"%>
 <%@page import="com.care.mvc.care.model.vo.Care"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	Care caregiver = (Care)request.getAttribute("care");
-	Patient patient = (Patient)request.getAttribute("patWnated");
+	PatientWanted patWanted = (PatientWanted)request.getAttribute("patWanted");
 %>
 
 <!DOCTYPE html>
