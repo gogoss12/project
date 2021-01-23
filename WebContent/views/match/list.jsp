@@ -7,12 +7,12 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
 
-<%	
-	// List<Member> profiles = (ArrayList) request.getAttribute("profiles");
-	
+<%		
 	List<Care> profiles = (ArrayList) request.getAttribute("profiles");
-
 %>
+
+<style>
+</style>
 
 <section id="matchPage">
 
@@ -23,10 +23,11 @@
     <% } else {
     		for (Care care : profiles) { %>
     			<div class="profile">    				    				
-                    <img class="profPic" onclick="loadProf('<%= care.getMemId() %>');" src="<%= request.getContextPath() %>/upload/carephoto/<%= care.getCareImg().getImgNameSav() %>" alt="">
+                    <img class="profPic" onclick="loadProf('<%= care.getMemId() %>');" 
+                    	src="<%= request.getContextPath() %>/upload/carephoto/<%= care.getCareImg().getImgNameSav() %>" alt="">
 
-                    <h5><%= care.getCareName() %> (<%= care.getMemId() %>)</h5>
-                    <button onclick='location.href="<%= request.getContextPath() %>/msg/write?memId=<%= care.getMemId() %>"'>쪽지보내기</button>
+                    <h5><%= care.getMemName() %> (<%= care.getMemId() %>)</h5>
+                    <button class="sendMsg" onclick='location.href="<%= request.getContextPath() %>/msg/write?memId=<%= care.getMemId() %>"'>쪽지보내기</button>
                 </div>
    		 <% }
       } %>
@@ -49,7 +50,7 @@
     });
 
     function loadProf(memId) {
-        const url = "<%=request.getContextPath()%>/profile/care?memId=" + memId;
+        const url = "<%=request.getContextPath()%>/check/profile?memId=" + memId;
         const specs = "width = 800px, height = 600px, top=200, left=200, resizable=yes";
         window.open(url, "matched profile", specs);
     }

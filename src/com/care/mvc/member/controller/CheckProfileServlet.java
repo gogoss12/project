@@ -18,10 +18,10 @@ import com.care.mvc.member.model.service.MemberService;
 import com.care.mvc.member.model.vo.Member;
 
 @WebServlet("/check/profile")
-public class CheckProfilePatientServlet extends HttpServlet {
+public class CheckProfileServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public CheckProfilePatientServlet() {
+    public CheckProfileServlet() {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,5 +47,8 @@ public class CheckProfilePatientServlet extends HttpServlet {
 			request.getRequestDispatcher("/views/member/membercheck.jsp").forward(request, response);
 			return;
 		}
+	}
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 }

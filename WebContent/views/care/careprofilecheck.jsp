@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
 <%
 	Care caregiver = (Care)request.getAttribute("care");
-	PatientWanted patient = (PatientWanted)request.getAttribute("patWanted");
+	PatientWanted patWanted = (PatientWanted)request.getAttribute("patWanted");	
 %>
 
 <!DOCTYPE html>
@@ -79,16 +79,17 @@
 }
 
 #pro_btn button {
-	border: 2px solid black;
+    border: 2px solid lightsteelblue;
 	border-color: lightsteelblue;
-	color: black;
+	color: lightsteelblue;
 	background-color: white;
-	width: 100px;
-	height: 40px;
-	font-size: 1.0rem;
-	font-weight: 700;
-	margin: auto;
-	display: relative;
+	width: 200px;
+	height: 50px;
+	font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: 10px;
+    margin: 30px 50px;
+    display: relative;
 }
 
 #pro_btn button:hover {
@@ -99,15 +100,21 @@
 .pro_Table {
 	width: 40%;
 }
+
+.pro_li img {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+}
 </style>
 </head>
 <body>
 <div id="pro_con">
-        <h1>요양보호사 프로필 확인</h1>
+        <h1>요양보호사님 프로필</h1>
     </div>
     <div class="pro_line">
         <div class="pro_li">
-            <img src="./image/병아리당황.png">
+           	<img src="<%= request.getContextPath() %>/upload/carephoto/<%= caregiver.getCareImg().getImgNameSav() %>" alt="">            
             <div class="pro_infor">
                 <div style="font-size: 20px; font-weight: 900;"><%=caregiver.getMemName() %></div>
                 <div style="font-size:15px;"><%=caregiver.getCareGen() %></div>
@@ -159,17 +166,17 @@
                 <thead>
                     <tr>
                         <td class="pro_Table">환자상태1:<br>성별 및 나이</td>
-                        <td><%=patient.getWantedGen()%> / <%=patient.getWantedAge()%></td>
+                        <td><%=patWanted.getWantedGen()%> / <%=patWanted.getWantedAge()%></td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td class="pro_Table">환자상태2:<br>질환</td>
-                        <td><%=patient.getWantedIll()%></td>
+                        <td><%=patWanted.getWantedIll()%></td>
                     </tr>
                     <tr>
                         <td class="pro_Table">환자상태:<br>장기요양등급</td>
-                        <td><%=patient.getWantedGrade()%></td>
+                        <td><%=patWanted.getWantedGrade()%></td>
                     </tr>
                 </tbody>
 
@@ -180,7 +187,7 @@
             <textarea cols="60" rows="7" readonly><%=caregiver.getCareIntro()%></textarea>
         </div>
         <div id="pro_btn">
-            <button>쪽지보내기</button>
+            <button onclick='opener.location.href="<%=request.getContextPath()%>/msg/write?memId=<%=caregiver.getMemId()%>"; self.close();'>쪽지보내기</button>
         </div>
     </div>
 </body>

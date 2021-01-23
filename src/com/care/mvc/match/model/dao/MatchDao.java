@@ -114,7 +114,7 @@ public class MatchDao {
 				Care care = new Care(); 
 				CareImage img = new CareImage();
 				
-				care.setCareName(rs.getString("MEM_NAME"));
+				care.setMemName((rs.getString("MEM_NAME")));
 				care.setMemId(rs.getString("MEM_ID"));
 				
 				img = getCareImage(conn, rs.getInt("CARE_NO"));

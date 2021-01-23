@@ -36,6 +36,8 @@ public class WriteMessageServlet extends HttpServlet {
 		// 매칭검색 결과에서 쪽지보낼때 자동으로 아이디 띄워준다.
 		String sendTo = request.getParameter("memId");
 		
+		System.out.println(sendTo);
+		
 		if (loginMember != null) {
 			request.setAttribute("sendTo", sendTo);
 			request.getRequestDispatcher("/views/message/write_message.jsp").forward(request, response);
