@@ -24,7 +24,6 @@ public class CheckProfilePatientServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String memId = request.getParameter("memId");
-				
 		Guard guard = new GuardAndPatientService().checkGuard(memId);
 		Patient patient = new GuardAndPatientService().checkPatient(memId);
 		
@@ -45,5 +44,4 @@ public class CheckProfilePatientServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
-
 }
