@@ -50,7 +50,7 @@
 
     function loadProf(memId) {
         const url = "<%=request.getContextPath()%>/profile/care?memId=" + memId;
-        const specs = "width = 600px, height = 600px, top=200, left=200, resizable=yes";
+        const specs = "width = 800px, height = 600px, top=200, left=200, resizable=yes";
         window.open(url, "matched profile", specs);
     }
 </script>

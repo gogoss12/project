@@ -49,12 +49,14 @@
 			</div>
 			<div id="login">
 			<% if (loginMember == null ) { %>	
+				<div style = "margin:auto; padding-top: 45px;">
 				<input type="button" id="loginbtn" value="로그인"
 					onclick="location.href = '<%=request.getContextPath()%>/member/login';">
 				<input type="button" id="enrollbtn" value="회원가입"
 					onclick="location.href = '<%=request.getContextPath()%>/member/enroll';">
-
-			<% } else { %>						
+				</div>
+			<% } else { %>
+				<h4><%=loginMember.getMemId()%> 님 환영합니다.</h4>
 				<input type="button" value="마이페이지"
 					onclick="location.href = '<%= request.getContextPath() %>/member/mypage?userId=<%= loginMember.getMemId()%>';">			
 				

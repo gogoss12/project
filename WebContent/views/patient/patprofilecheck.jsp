@@ -112,7 +112,7 @@
 	</div>
 	<div class="pro_line">
 		<div class="pro_li">
-			<img src="./image/병아리당황.png">
+			<img src="../image/병아리당황.png">
 		</div>
 		<div class="profile_table">
 			<table width="300" align="center">
@@ -230,7 +230,7 @@
 				
 			</div>
 			<div id="pro_btn">
-				<button>쪽지보내기</button>
+				<button onclick="opener.location.href='<%=request.getContextPath()%>/msg/write?memId=<%=guard.getMemId()%>'; self.close();">쪽지보내기</button>
 			</div>
 		</div>
 </body>
