@@ -4,7 +4,7 @@
 
 <section id="content">
 <form id="introForm" action="<%= request.getContextPath()%>/intro" method="GET">
-   <article id="main">
+<div id="introro">
     <h2>케어풀</h2>
        <h4>careful & care-pool </h4>
     <ul>
@@ -22,7 +22,7 @@
 
 
        <li>
-        언제 어디서나 돌봄이 필요한 곳에서 원하는 기간동안 필요한 시간만큼 돌봄서비스 신청이 가능합니다.
+        언제 어디서나 돌봄이 필요한 곳에서 원하는 기간동안 필요한 시간만큼 돌봄서비스 신청이 가능
        </li>
        <br>
         <li >
@@ -43,7 +43,7 @@
         </li>
     
     </ul>
-    </article>
+</div>
     </form>
     </section>
 	<%@ include file="/views/common/footer.jsp" %>

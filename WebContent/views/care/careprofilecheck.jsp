@@ -1,5 +1,12 @@
+<%@page import="com.care.mvc.care.model.vo.PatientWanted"%>
+<%@page import="com.care.mvc.care.model.vo.Care"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	Care caregiver = (Care)request.getAttribute("care");
+	PatientWanted patient = (PatientWanted)request.getAttribute("patWanted");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,14 +108,10 @@
     <div class="pro_line">
         <div class="pro_li">
             <img src="./image/병아리당황.png">
-
             <div class="pro_infor">
-
-                <div style="font-size: 20px; font-weight: 900;">김철수</div>
-                <div style="font-size:15px;">남</div>
-                <div style="font-size:15px;">38세</div>
-                <div style="font-size:15px;">경력N년</div>
-
+                <div style="font-size: 20px; font-weight: 900;"><%=caregiver.getMemName() %></div>
+                <div style="font-size:15px;"><%=caregiver.getCareGen() %></div>
+                <div style="font-size:15px;"><%=caregiver.getMemBirth() %></div>
             </div>
         </div>
         <div id="pro_main">
@@ -119,36 +122,31 @@
                 <tbody>
                     <tr>
                         <td class="pro_Table">자격증</td>
-                        <td>내용</td>
+                        <td><%=caregiver.getCareLicense() %></td>
                     </tr>
                     <tr>
-                        <td class="pro_Table">세부사항</td>
-                        <td>내용</td>
-                    </tr>
-                    <tr>
-                        <td class="pro_Table">장점</td>
-                        <td>내용</td>
+                        <td class="pro_Table">경력</td>
+                        <td><%=caregiver.getCareYears()%></td>
                     </tr>
                     <tr>
                         <td class="pro_Table" id="detail_">세부경력</td>
-                        <td>내용</td>
-                        
+                        <td><%=caregiver.getCareHistory()%></td>
                     </tr>
                     <tr>
                         <td class="pro_Table">장점</td>
-                        <td>내용</td>
+                        <td><%=caregiver.getCarePlus()%></td>
                     </tr>
                     <tr>
                         <td class="pro_Table">희망근무시간</td>
-                        <td>내용</td>
+                        <td><%=caregiver.getCareTime()%></td>
                     </tr>
                     <tr>
                         <td class="pro_Table">희망근무위치</td>
-                        <td>내용</td>
+                        <td><%=caregiver.getCarePlace()%></td>
                     </tr>
                     <tr>
                         <td class="pro_Table">희망급여</td>
-                        <td>내용</td>
+                        <td><%=caregiver.getCareSal()%></td>
                     </tr>
 
                 </tbody>
@@ -161,21 +159,17 @@
                 <thead>
                     <tr>
                         <td class="pro_Table">환자상태1:<br>성별 및 나이</td>
-                        <td>내용</td>
+                        <td><%=patient.getWantedGen()%> / <%=patient.getWantedAge()%></td>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td class="pro_Table">환자상태2:<br>질환</td>
-                        <td>내용</td>
+                        <td><%=patient.getWantedIll()%></td>
                     </tr>
                     <tr>
                         <td class="pro_Table">환자상태:<br>장기요양등급</td>
-                        <td>내용</td>
-                    </tr>
-                    <tr>
-                        <td class="pro_Table">환자상태:<br>장기요양등급</td>
-                        <td>내용</td>
+                        <td><%=patient.getWantedGrade()%></td>
                     </tr>
                 </tbody>
 
@@ -183,7 +177,7 @@
 
             <h3>자기소개</h3>
 
-            <iframe width="350px" height="200px" src="" frameborder="1"></iframe>
+            <textarea cols="60" rows="7" readonly><%=caregiver.getCareIntro()%></textarea>
         </div>
         <div id="pro_btn">
             <button>쪽지보내기</button>

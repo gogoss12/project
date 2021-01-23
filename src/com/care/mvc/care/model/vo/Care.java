@@ -7,8 +7,6 @@ public class Care {
 	
 	private String careLicense;
 	
-	private String caregen;
-	
 	private String careYears;
 	
 	private String careHistory;
@@ -22,13 +20,36 @@ public class Care {
 	private String careSal;
 	
 	private String careIntro;
-	
 
 	private String memId;
+	
+	private String memName;
+	
+	private String memBirth;
+	
+	private CareImage careImg; // 추가
 		
 	public Care() {
 	}
 
+	public Care(int careNo, String careGen, String careLicense, String careYears, String careHistory, String carePlus,
+			String careTime, String carePlace, String careSal, String careIntro, String memId, String memName,
+			String memBirth, CareImage careImg) {
+		this.careNo = careNo;
+		this.careGen = careGen;
+		this.careLicense = careLicense;
+		this.careYears = careYears;
+		this.careHistory = careHistory;
+		this.carePlus = carePlus;
+		this.careTime = careTime;
+		this.carePlace = carePlace;
+		this.careSal = careSal;
+		this.careIntro = careIntro;
+		this.memId = memId;
+		this.memName = memName;
+		this.memBirth = memBirth;
+		this.careImg = careImg;
+	}
 
 	public int getCareNo() {
 		return careNo;
@@ -36,16 +57,6 @@ public class Care {
 
 	public void setCareNo(int careNo) {
 		this.careNo = careNo;
-	}
-	
-	
-
-	public String getCaregen() {
-		return caregen;
-	}
-
-	public void setCaregen(String caregen) {
-		this.caregen = caregen;
 	}
 
 	public String getCareGen() {
@@ -119,15 +130,6 @@ public class Care {
 	public void setCareIntro(String careIntro) {
 		this.careIntro = careIntro;
 	}
-	
-
-	public String getmemId() {
-		return memId;
-	}
-
-	public void setemId(String memId) {
-		this.memId = memId;
-	}
 
 	public String getMemId() {
 		return memId;
@@ -137,30 +139,36 @@ public class Care {
 		this.memId = memId;
 	}
 
-	public Care(int careNo, String careGen, String careLicense, String careYears, String careHistory, String carePlus,
-			String careTime, String carePlace, String careSal, String careIntro, String memId) {
-		super();
-		this.careNo = careNo;
-		this.careGen = careGen;
-		this.careLicense = careLicense;
-		this.careYears = careYears;
-		this.careHistory = careHistory;
-		this.carePlus = carePlus;
-		this.careTime = careTime;
-		this.carePlace = carePlace;
-		this.careSal = careSal;
-		this.careIntro = careIntro;
-		this.memId = memId;
+	public String getMemName() {
+		return memName;
+	}
+
+	public void setMemName(String memName) {
+		this.memName = memName;
+	}
+
+	public String getMemBirth() {
+		return memBirth;
+	}
+
+	public void setMemBirth(String memBirth) {
+		this.memBirth = memBirth;
+	}
+
+	public CareImage getCareImg() {
+		return careImg;
+	}
+
+	public void setCareImg(CareImage careImg) {
+		this.careImg = careImg;
 	}
 
 	@Override
 	public String toString() {
-
 		return "Care [careNo=" + careNo + ", careGen=" + careGen + ", careLicense=" + careLicense + ", careYears="
 				+ careYears + ", careHistory=" + careHistory + ", carePlus=" + carePlus + ", careTime=" + careTime
 				+ ", carePlace=" + carePlace + ", careSal=" + careSal + ", careIntro=" + careIntro + ", memId=" + memId
-				+ "]";
+				+ ", memName=" + memName + ", memBirth=" + memBirth + ", careImg=" + careImg + "]";
 	}
-
-
+	
 }

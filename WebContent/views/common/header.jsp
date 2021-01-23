@@ -48,7 +48,7 @@
 				</a>
 			</div>
 			<div id="login">
-			<% if (loginMember == null) { %>	
+			<% if (loginMember == null ) { %>	
 				<input type="button" id="loginbtn" value="로그인"
 					onclick="location.href = '<%=request.getContextPath()%>/member/login';">
 				<input type="button" id="enrollbtn" value="회원가입"
@@ -56,17 +56,14 @@
 
 			<% } else { %>						
 				<input type="button" value="마이페이지"
-					onclick="location.href = '<%= request.getContextPath() %>/member/view?userId=<%= loginMember.getMemId()%>';">
+					onclick="location.href = '<%= request.getContextPath() %>/member/mypage?userId=<%= loginMember.getMemId()%>';">			
 				
-				<!-- 드롭박스는 마이페이지에서 보일 예정 -->
-				<!-- <select name="myPage">
-					<option selected>마이페이지</option>
-					<option value="editInfo">개인정보 수정</option>
+	              <select name="myPage" onchange="window.open(value,'_self');">
+					<option value= "<%= request.getContextPath() %>/member/mypage?userId=<%= loginMember.getMemId()%>">마이페이지</option>
+					<option value="<%= request.getContextPath() %>/member/enrollview?userId=<%= loginMember.getMemId()%>">개인정보 수정</option>
 					<option value="certList">인증내역</option>
-					<option value="message">쪽지기록</option>
-					<option value="matchList">매칭내역</option>
 					<option value="delAcct">회원탈퇴</option>
-				</select> -->
+				</select>  
 				
 				<input type="button" id="authbtn" value="인증/확인">					
 				<input type="button" id="logoutbtn" value="로그아웃" 

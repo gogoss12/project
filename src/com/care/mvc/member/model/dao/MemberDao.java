@@ -52,17 +52,16 @@ public class MemberDao {
 	      Member member = null;
 	      ResultSet rset = null;
 	      PreparedStatement pstmt = null;
-	      
+
 	      try {
-	      
-	         pstmt = conn.prepareStatement("SELECT * FROM MEMBER WHERE MEM_ID = ? AND STATUS='Y'");
+//	    	  AND STATUS='Y'
+	         pstmt = conn.prepareStatement("SELECT * FROM MEMBER WHERE MEM_ID = ? ");
 	         
 	         pstmt.setString(1, id);
 
 	         rset = pstmt.executeQuery();
 	         
 	         if(rset.next()) {
-//	            System.out.println(rset.getString("USER_ID") + ", " + rset.getString("USER_PWD"));
 	            member = new Member(    
 		            rset.getString("MEM_ID"),
 		            rset.getString("MEM_ROLE"),
@@ -131,5 +130,31 @@ public class MemberDao {
 			return member;
 		}
 
+	public int enrollupdateMember(Connection conn, Member member) {
+	    int result = 0;
+	    
+	    PreparedStatement pstmt = null;
+
+		try {
+		
+			pstmt = conn.prepareStatement("UPDATE MEMBER SET MEM_ROLE=?,MEM_EMAIL=?,MEM_PHONE=?,MEM_ADDR=?,MEM_BIRTH=?,MODIFY_DATE=SYSDATE WHERE MEM_ID=?");
+
+			pstmt.setString(1, member.getMemRole());
+			pstmt.setString(2, member.getMemEmail());
+			pstmt.setString(3, member.getMemPhone());
+			pstmt.setString(4, member.getMemAddr());
+			pstmt.setString(5, member.getMemBirth());
+			pstmt.setString(6, member.getMemId());
+			
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
 }
 

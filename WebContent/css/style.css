@@ -780,7 +780,12 @@ input[type=reset]{
 }
 
 /* 마이페이지 */
-
+#page_container{
+	width: 1390px;
+	height: 980px;
+	margin: -40px;
+	display: relative;
+}
  #my_main {
 	background-color: #FFF0F5;
 }

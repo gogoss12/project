@@ -10,7 +10,8 @@
 
 <section id="content">
 <form id="loginForm" action="<%= request.getContextPath()%>/member/login" method="post">
-    <h2>로그인</h2>
+ 
+   <h2>로그인</h2>
     <div id="idForm">
       <input type="text" id="userId" name="userId" placeholder="아이디">
     </div>
@@ -20,6 +21,7 @@
     <button type="submit" id="btn">
      로그인
     </button>
+
   </form>
   </section>
 <%@ include file="/views/common/footer.jsp" %>

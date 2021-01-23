@@ -2,7 +2,7 @@ package com.care.mvc.member.model.service;
 
 import java.sql.Connection;
 
-
+import com.care.mvc.common.jdbc.JDBCTemplate;
 import com.care.mvc.member.model.dao.MemberDao;
 import com.care.mvc.member.model.vo.Member;
 import static com.care.mvc.common.jdbc.JDBCTemplate.getConnection;
@@ -49,12 +49,30 @@ public class MemberService {
 	
 	public Member findMemberById(String userId) {
 		Connection conn = getConnection();
-
-		Member member = dao.findMemberById(conn, userId);
-
+		
+        System.out.println(userId + 1);
+		
+        Member member = dao.findMemberById(conn, userId);
+    
 		close(conn);
 
 		return member;
+	}
+
+	public int enrollupdateMember(Member member) {
+        Connection conn = getConnection();
+		int result = dao.enrollupdateMember(conn, member);
+		
+		       if (result > 0) {
+					commit(conn);
+				} else {
+					rollback(conn);
+				}
+				
+		        close(conn);
+		        
+				return result;
+
 	}
 	
 	
