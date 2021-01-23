@@ -4,7 +4,7 @@
 
 <section id="content">
 <form id="introForm" action="<%= request.getContextPath()%>/intro" method="GET">
-   <article id="main">
+<div id="introro">
     <h2>케어풀</h2>
        <h4>cateful & care-pool </h4>
     <ul>
@@ -22,8 +22,9 @@
 
 
        <li>
-        언제 어디서나 돌봄이 필요한 곳에서 원하는 기간동안 필요한 시간만큼 돌봄서비스 신청이 가능합니다.
+        언제 어디서나 돌봄이 필요한 곳에서 원하는 기간동안 필요한 시간만큼 돌봄서비스 신청이 가능
        </li>
+       <br>
         <li >
         상세한 문항의 프로필 등록으로 돌봄이 필요한 분들의 현황을 정확히 파악하여 
         맞는 돌봄이 가능한 매칭을 제공.
@@ -42,7 +43,7 @@
         </li>
     
     </ul>
-    </article>
+</div>
     </form>
     </section>
 	<%@ include file="/views/common/footer.jsp" %>
