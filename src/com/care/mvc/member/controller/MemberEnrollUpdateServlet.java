@@ -23,7 +23,7 @@ public class MemberEnrollUpdateServlet extends HttpServlet {
 		
 		Member member = new MemberService().findMemberById(userId);
 
-
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String msg = "";
 		String location = "";
