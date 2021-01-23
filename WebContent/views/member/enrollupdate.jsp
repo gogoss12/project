@@ -1,55 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
 <%@ include file="/views/common/header.jsp" %>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/style.css">
-<script src="<%=request.getContextPath()%>/js/jquery-3.5.1.js"></script>
+<%
+	Member userId = (Member)request.getAttribute("userId");
+%>
 
 	<section id="content">
 		<div id="enroll-container" style="margin: 0 auto; text-align:center">
-			<form name="memberEnrollFrm" action="<%= request.getContextPath()%>/member/enroll" method="post">
+			<form name="memberEnrollUpdateFrm" action="<%= request.getContextPath()%>/member/enrollupdate" method="post">
 				<table class="table table-borderless" style="text-align:left" >
 					<tr>
 						<th colspan="2">
-							<h2 align="center" style="line-height: 3.0;">회원가입</h2>
+							<h2 align="center" style="line-height: 3.0;">회원정보 수정</h2>
 						</th>
 					</tr>
 					<tr>
 						<th>이름</th>
-						<td><input type="text" name="userName" id="userName" readonly required >
+						<td><input type="text" name="userName" id="userName" value="<%= userId.getMemName()%>" readonly required  >
 						</td>
 					</tr>
 					<tr>
 						<th>아이디</th>
 						<td>
-						   <input type="text" name="userId" id="newId" placeholder="아이디(4글자이상)" readonly required> 
+						   <input type="text" name="userId" id="newId" placeholder="아이디(4글자이상)" value="<%= userId.getMemId()%>" readonly required> 
 						   <input type="button" id="checkDuplicate" value="중복확인">
 						</td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td><input type="email" name="email" id="email"></td>
+						<td><input type="email" name="email" id="email" value="<%= userId.getMemEmail()%>"></td>
 					</tr>
 					<tr>
 						<th>핸드폰번호</th>
 						<td><input type="tel" placeholder="e.g. 01012345678"
-							name="phone" id="phone" maxlength="11"></td>
+							name="phone" id="phone" value="<%= userId.getMemPhone()%>" maxlength="11"></td>
 					</tr>
 					<tr>
 						<th>주소</th>
 						<td>
 							<span style="padding-right:34px">
-								<input type="text" name="postalAddr" id="postalAddr" placeholder="우편번호" style="width:200px">
+								<input type="text" name="postalAddr" id="postalAddr" placeholder="우편번호" value="<%= userId.getMemAddr()%>" style="width:200px">
 							</span>
 							<input type="button" id="findPostalAddr" onclick="DaumPostcode()" value="우편번호 검색"><br>
 							<div>
-								<input type="text" name="addr1" id="addr1" placeholder="주소" style="width:360px">
+								<input type="text" name="addr1" id="addr1" placeholder="주소"  style="width:360px">
 							</div>
 							<!-- 동이름 / 빌딩이름 등이 나온다 -->
 							<input type="text" name="addr2" id="addr2" placeholder="상세주소">
@@ -59,12 +53,12 @@
 					<tr>
 						<th>생년월일</th>
 						<td><input type="date" name="birth" id="birth"
-							min="1930-01-01" max="" value="mm/dd/yyyy"><br> <!-- max 값을 오늘 날짜로 지정 -->
+							min="1930-01-01" max="" value="mm/dd/yyyy<%= userId.getMemBirth()%>"><br> <!-- max 값을 오늘 날짜로 지정 -->
 						</td>
 					</tr>
 					<tr>
 						<th>보호자/요양보호사</th>
-						<td><select name="role" id="selrole">
+						<td><select name="role" id="selrole" value="<%= userId.getMemRole()%>">
 								<option disabled selected>선택</option>
 								<option value="guardian">보호자</option>
 								<option value="caregiver">요양보호사</option>
@@ -86,31 +80,6 @@
 		</div>
 	</section>
 	<script>
-	
-	 $("#checkDuplicate").on("click", () => {
-	   let id = $("#newId").val().trim();
-	     
-	     if (id.length < 4) {
-	    	 alert("아이디는 최소 4글자 이상 입력해주세요.")
-	    	 
-	    	 return;
-	     	}
-	     
-	     const url = "<%=request.getContextPath()%>/member/checkId";
-         const title = "duplicate";
-         const status = "left=500px, top=100px, width=300px, height=200px";
-         
-         open("", title, status);
-         
-         checkIdForm.target = title; 
-         checkIdForm.action = url;		
-         checkIdForm.method = "post";
-         checkIdForm.userId.value = id;
- 
-         checkIdForm.submit();
-         
-	 	});
-	});
 	
     function DaumPostcode() {
         new daum.Postcode({
