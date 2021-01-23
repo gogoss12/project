@@ -2,6 +2,7 @@ package com.care.mvc.care.model.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.care.mvc.care.model.vo.Care;
@@ -9,16 +10,40 @@ import com.care.mvc.care.model.vo.CareImage;
 import com.care.mvc.care.model.vo.PatientWanted;
 import com.care.mvc.common.jdbc.JDBCTemplate;
 
-
 public class CareDao {
-
+	
+	public int insertCareImage(Connection conn, CareImage careImage) {
+	      int resultI = 0;
+	      PreparedStatement Ipstmt = null;
+	      
+	      try {
+	         String CareImageQuery = "INSERT INTO CARE_IMAGE VALUES (SEQ_IMG_NO.NEXTVAL,SEQ_CARE_NO.NEXTVAL,SYSDATE,?,?,?)";
+	         
+	         Ipstmt = conn.prepareStatement(CareImageQuery);
+	         
+	         Ipstmt.setString(1, careImage.getImgPath());
+	         Ipstmt.setString(2, careImage.getImgNameOrg());
+	         Ipstmt.setString(3, careImage.getImgNameSav());
+	         
+	         resultI = Ipstmt.executeUpdate();
+	         
+	         System.out.println(resultI);
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         JDBCTemplate.close(Ipstmt);
+	      }
+	      
+	      return resultI;
+	   }
+	
 	public int insertcare(Connection conn, Care care) {
 		int resultC = 0;
 		String query = "";
 		PreparedStatement pstmt = null;
 
 		try {
-			query = "INSERT INTO CAREGIVER_PROFILE VALUES (SEQ_CARE_NO.NEXTVAL,?,?,?,?,?,?,?,?,?,?)";
+			query = "INSERT INTO CAREGIVER_PROFILE VALUES (SEQ_CARE_NO.NEXTVAL-1,?,?,?,?,?,?,?,?,?,?)";
 			
 			pstmt = conn.prepareStatement(query);
 	
@@ -44,65 +69,103 @@ public class CareDao {
 	}
 	
 	public int insertcarepatientwanted(Connection conn, PatientWanted patientwanted) {
-		   int resultPW = 0;
-			String query = "";
-			PreparedStatement ppstmt = null;
+	   int resultPW = 0;
+		String query = "";
+		PreparedStatement ppstmt = null;
 
-			try {                   
-				query = "INSERT INTO PATIENT_WANTED VALUES (?,SEQ_CARE_NO.NEXTVAL-1,?,?,?)";
-				
-				ppstmt = conn.prepareStatement(query);
-
-				ppstmt.setString(1, patientwanted.getWantedGrade());
-				ppstmt.setString(2, patientwanted.getWantedGen());
-				ppstmt.setString(3, patientwanted.getWantedAge());
-				ppstmt.setString(4, patientwanted.getWantedIll());
-		
-				resultPW = ppstmt.executeUpdate();
-				
-				System.out.println(resultPW);
+		try {                   
+			query = "INSERT INTO PATIENT_WANTED VALUES (?,SEQ_CARE_NO.NEXTVAL-2,?,?,?)";
 			
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				JDBCTemplate.close(ppstmt);
-			}
+			ppstmt = conn.prepareStatement(query);
 
-			return resultPW;
+			ppstmt.setString(1, patientwanted.getWantedGrade());
+			ppstmt.setString(2, patientwanted.getWantedGen());
+			ppstmt.setString(3, patientwanted.getWantedAge());
+			ppstmt.setString(4, patientwanted.getWantedIll());
+	
+			resultPW = ppstmt.executeUpdate();
+			
+			System.out.println(resultPW);
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ppstmt);
 		}
 
+		return resultPW;
+	}
+	
+	public Care checkCaregiver(Connection conn, String sendId) {
+		Care caregiver = new Care();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT C.CARE_GEN, C.CARE_LICENSE, C.CARE_YEARS, C.CARE_HISTORY, C.CARE_PLUS, "
+				+ "C.CARE_TIME, C.CARE_PLACE, C.CARE_SAL, C.CARE_INTRO "
+				+ "FROM CAREGIVER_PROFILE C "
+				+ "JOIN MEMBER M ON(M.MEM_ID = C.MEM_ID) "
+				+ "WHERE C.MEM_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, sendId);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				caregiver.setCareGen(rset.getString("CARE_GEN"));
+				caregiver.setCareLicense(rset.getString("CARE_LICENSE"));
+				caregiver.setCareYears(rset.getString("CARE_YEARS"));
+				caregiver.setCareHistory(rset.getString("CARE_HISTORY"));
+				caregiver.setCarePlace(rset.getString("CARE_PLUS"));
+				caregiver.setCareTime(rset.getString("CARE_TIME"));
+				caregiver.setCarePlace(rset.getString("CARE_PLACE"));
+				caregiver.setCareSal(rset.getString("CARE_SAL"));
+				caregiver.setCareIntro(rset.getString("CARE_INTRO"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return caregiver;
+	}
+	
+	public PatientWanted checkPatWanted(Connection conn, String sendId) {
+		PatientWanted patWanted = new PatientWanted();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "SELECT P.WANTED_GRADE, P.WANTED_GEN, P.WANTED_AGE, P.WANTED_ILL "
+				+ "FROM PATIENT_WANTED P "
+				+ "JOIN CAREGIVER_PROFILE C ON (P.CARE_NO = C.CARE_NO) "
+				+ "JOIN MEMBER M ON (C.MEM_ID = M.MEM_ID) "
+				+ "WHERE M.MEM_ID = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			
+			pstmt.setString(1, sendId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				patWanted.setWantedGrade(rset.getString("WANTED_GRADE"));
+				patWanted.setWantedGen(rset.getString("WANTED_GEN"));
+				patWanted.setWantedAge(rset.getString("WANTED_AGE"));
+				patWanted.setWantedIll(rset.getString("WANTED_ILL"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			JDBCTemplate.close(rset);
+			JDBCTemplate.close(pstmt);
+		}
+		return patWanted;
+	}
 
-	public int insertCareImage(Connection conn, CareImage careImage) {
-	      int resultI = 0;
-	      PreparedStatement Ipstmt = null;
-	      
-	      
-	      try {
-	         String CareImageQuery = "INSERT INTO CARE_IMAGE VALUES (SEQ_IMG_NO.NEXTVAL,SEQ_CARE_NO.NEXTVAL+1,SYSDATE,?,?,?)";
-	         
-	         Ipstmt = conn.prepareStatement(CareImageQuery);
-	         
-	         Ipstmt.setString(1, careImage.getImgPath());
-	         Ipstmt.setString(2, careImage.getImgNameOrg());
-	         Ipstmt.setString(3, careImage.getImgNameSav());
-	         
-	         resultI = Ipstmt.executeUpdate();
-	         
-	         System.out.println(resultI);
-	      } catch (SQLException e) {
-	         e.printStackTrace();
-	      } finally {
-	         JDBCTemplate.close(Ipstmt);
-	      }
-	      
-	      return resultI;
-	   }
 }
-
-
-
-
-
-
-
-

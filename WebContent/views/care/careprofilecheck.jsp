@@ -1,5 +1,12 @@
+<%@page import="com.care.mvc.GuardAndPatient.model.vo.Patient"%>
+<%@page import="com.care.mvc.care.model.vo.Care"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	Care caregiver = (Care)request.getAttribute("care");
+	Patient patient = (Patient)request.getAttribute("patWnated");
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,8 +111,8 @@
 
             <div class="pro_infor">
 
-                <div style="font-size: 20px; font-weight: 900;">김철수</div>
-                <div style="font-size:15px;">남</div>
+                <div style="font-size: 20px; font-weight: 900;"></div>
+                <div style="font-size:15px;"><%=caregiver.getCareGen() %></div>
                 <div style="font-size:15px;">38세</div>
                 <div style="font-size:15px;">경력N년</div>
 

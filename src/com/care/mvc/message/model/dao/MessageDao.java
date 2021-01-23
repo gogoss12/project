@@ -4,11 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.care.mvc.GuardAndPatient.model.vo.Guard;
 import com.care.mvc.common.jdbc.JDBCTemplate;
 import com.care.mvc.common.util.PageInfo;
 import com.care.mvc.member.model.vo.Member;
@@ -112,6 +110,7 @@ public class MessageDao {
 		return list;
 	}
 	
+	// no: REC_NO (받은쪽지번호)
 	public ArrayList<ReceiveMessageImg> listRevMsgImg(Connection conn, int no) {
 		ArrayList<ReceiveMessageImg> list = new ArrayList<ReceiveMessageImg>();
 		PreparedStatement pstmt = null;
@@ -137,7 +136,7 @@ public class MessageDao {
 				recMsgImg.setRec_img_name_sav(rset.getString("REC_IMG_NAME_SAV"));
 				recMsgImg.setRec_no(rset.getInt("REC_NO"));
 				
-				list.add(recMsgImg);
+				list.add(recMsgImg); // list에 값이 한 개
 			}
 			
 		} catch (SQLException e) {
@@ -233,8 +232,7 @@ public class MessageDao {
 	         Ipstmt.setString(1, smi.getSend_img_path());
 	         Ipstmt.setString(2, smi.getSend_img_name_org());
 	         Ipstmt.setString(3, smi.getSend_img_name_sav());
-	         Ipstmt.setInt(4, sendNo+1);
-	         
+	         Ipstmt.setInt(4, sendNo+1); // ?
 	         
 	         resultI = Ipstmt.executeUpdate();
 	         
@@ -295,19 +293,22 @@ public class MessageDao {
 		return resultRI;
 	}
 
-	public int getMsgList(Connection conn) {
+	public int getMsgList(Connection conn, Member loginMember, String send_id) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int result = 0;
-		String query = "SELECT COUNT(*) FROM REC_MSG";
+		String query = "SELECT COUNT(*) FROM REC_MSG "
+				+ "WHERE STATUS = 'Y' AND MEM_ID =? AND SEND_ID = NVL(?,SEND_ID)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, loginMember.getMemId());
+			pstmt.setString(2, send_id);
 			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				result = rset.getInt(1);
+				result = rset.getInt(1); // 받은쪽지번호 컬럼값
 			}
 			
 		} catch (SQLException e) {
@@ -320,19 +321,21 @@ public class MessageDao {
 		return result;
 	}
 
-	public int sendMsgList(Connection conn) {
+	public int sendMsgList(Connection conn, Member loginMember, String rec_id) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		int result = 0;
-		String query = "SELECT COUNT(*) FROM SEND_MSG";
+		String query = "SELECT COUNT(*) FROM SEND_MSG "
+				+ "WHERE STATUS = 'Y' AND MEM_ID =? AND REC_ID = NVL(?,REC_ID)";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
-			
+			pstmt.setString(1, loginMember.getMemId());
+			pstmt.setString(2, rec_id);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				result = rset.getInt(1);
+				result = rset.getInt(1); // 보낸쪽지번호 컬럼값
 			}
 			
 		} catch (SQLException e) {
@@ -534,17 +537,18 @@ public class MessageDao {
 				+ "    FROM ("
 				+ "        SELECT S.SEND_NO, S.REC_ID, S.SEND_BODY, S.SEND_DATE, M.MEM_ID, S.STATUS"
 				+ "        FROM SEND_MSG S JOIN MEMBER M ON(S.MEM_ID = M.MEM_ID) WHERE S.STATUS = 'Y'"
+				+ "          AND REC_ID =?"
 				+ "        ORDER BY S.SEND_NO DESC"
 				+ "    )"
-				+ ") WHERE RNUM BETWEEN ? AND ? AND REC_ID =?";
+				+ ") WHERE RNUM BETWEEN ? AND ? ";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			
-			pstmt.setInt(1, info.getStartList());
-			pstmt.setInt(2, info.getEndList());
-			pstmt.setString(3, id);
-			
+			pstmt.setString(1, id);
+			pstmt.setInt(2, info.getStartList());
+			pstmt.setInt(3, info.getEndList());
+			//?
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -581,16 +585,17 @@ public class MessageDao {
 				+ "    FROM ("
 				+ "        SELECT R.REC_NO, R.SEND_ID, R.REC_BODY, R.REC_DATE, M.MEM_ID, R.STATUS"
 				+ "        FROM REC_MSG R JOIN MEMBER M ON(R.MEM_ID = M.MEM_ID) WHERE R.STATUS = 'Y'"
+				+ "			AND SEND_ID LIKE '%' || ? || '%'  "		
 				+ "        ORDER BY R.REC_NO DESC"
 				+ "    )"
-				+ ") WHERE RNUM BETWEEN ? AND ? AND SEND_ID = ?";
+				+ ") WHERE RNUM BETWEEN ? AND ? ";
 		
 		try {
 			pstmt = conn.prepareStatement(query);
 			
-			pstmt.setInt(1, info.getStartList());
-			pstmt.setInt(2, info.getEndList());
-			pstmt.setString(3, id);
+			pstmt.setString(1, id);
+			pstmt.setInt(2, info.getStartList());
+			pstmt.setInt(3, info.getEndList());
 			
 			rset = pstmt.executeQuery();
 			
@@ -623,7 +628,7 @@ public class MessageDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "SELECT  SEND_IMG_NO, SEND_IMG_PATH, SEND_IMG_NAME_ORG, SEND_IMG_NAME_SAV, SEND_NO "
+		String query = " SELECT SEND_IMG_NO, SEND_IMG_PATH, SEND_IMG_NAME_ORG, SEND_IMG_NAME_SAV, SEND_NO "
 				+ " FROM SEND_IMAGE "
 				+ " WHERE SEND_NO = ? "
 				+ " ORDER BY SEND_IMG_NO DESC"; 
@@ -634,7 +639,7 @@ public class MessageDao {
 			pstmt.setInt(1, no);
 			rset = pstmt.executeQuery();
 			
-			while (rset.next()) {
+			while(rset.next()) {
 				SendMessageImg sendMsgImg = new SendMessageImg();
 				
 				sendMsgImg.setSend_img_no(rset.getInt("SEND_IMG_NO"));

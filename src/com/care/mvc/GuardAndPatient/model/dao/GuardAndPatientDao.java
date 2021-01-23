@@ -9,6 +9,7 @@ import java.sql.Statement;
 import com.care.mvc.GuardAndPatient.model.vo.Guard;
 import com.care.mvc.GuardAndPatient.model.vo.Patient;
 import com.care.mvc.common.jdbc.JDBCTemplate;
+import com.care.mvc.member.model.vo.Member;
 
 public class GuardAndPatientDao {
 	
@@ -115,7 +116,6 @@ public class GuardAndPatientDao {
 			pstmt = conn.prepareStatement(query);
 			
 			pstmt.setString(1, sendId);
-			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
