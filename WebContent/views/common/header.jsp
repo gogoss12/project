@@ -78,7 +78,7 @@
 				<li><a href="<%=request.getContextPath()%>/intro">소개</a></li>
 				<li><a href="#">매칭</a>
 					<ul id="sub-menu">
-						<li><a href="<%=request.getContextPath()%>/match/search"">매칭검색</a></li>
+						<li><a href="<%=request.getContextPath()%>/match/search">매칭검색</a></li>
 					</ul>
 				</li>
 				<li><a href="#">서비스</a>

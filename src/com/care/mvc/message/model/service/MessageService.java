@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import com.care.mvc.common.jdbc.JDBCTemplate;
 import com.care.mvc.common.util.PageInfo;
+import com.care.mvc.member.model.vo.Member;
 import com.care.mvc.message.model.dao.MessageDao;
 import com.care.mvc.message.model.vo.ReceiveMessage;
 import com.care.mvc.message.model.vo.ReceiveMessageImg;
@@ -17,16 +18,15 @@ import com.care.mvc.message.model.vo.SendMessageImg;
 
 public class MessageService {
 
-	public ArrayList<ReceiveMessage> RevListmsg(PageInfo info) {
+	public ArrayList<ReceiveMessage> RevListmsg(PageInfo info, Member loginMember) {
 		
 		Connection conn = getConnection();
 		
-		ArrayList<ReceiveMessage> list = new MessageDao().listRevMsg(conn, info);
+		ArrayList<ReceiveMessage> list = new MessageDao().listRevMsg(conn, info, loginMember);
 		
 		for(ReceiveMessage msg : list) {
 			int no = msg.getRec_no(); 
 				msg.setImgs(new MessageDao().listRevMsgImg(conn, no));
-				System.out.println(msg.getImgs());
 		}
 		
 		JDBCTemplate.close(conn);
@@ -34,7 +34,6 @@ public class MessageService {
 		return list;
 	}
 	
-	// 받은 메세지 이미지 읽어오기
 	public ArrayList<ReceiveMessageImg> RevListmsgImg(int no) {
 		Connection conn = getConnection();
 		
@@ -45,14 +44,15 @@ public class MessageService {
 		return list;
 	}
 
-	public ArrayList<SendMessage> SendListmsg(PageInfo info) {
+	public ArrayList<SendMessage> SendListmsg(PageInfo info, Member loginMember) {
 		Connection conn = getConnection();
 		
-		ArrayList<SendMessage> list = new MessageDao().listSendMsg(conn, info);
+		ArrayList<SendMessage> list = new MessageDao().listSendMsg(conn, info, loginMember);
 		
 		for(SendMessage msg : list) {
 			int no = msg.getSend_no(); 
 				msg.setImgs(new MessageDao().listSendMsgImg(conn, no));
+				System.out.println(msg.getImgs());
 		}
 		
 		JDBCTemplate.close(conn);
@@ -60,10 +60,7 @@ public class MessageService {
 		return list;
 	}
 	
-	// 보낸 메세지 이미지 읽어오기
-	
 
-	// 메세지 보내기
 	public int sendMsg(SendMessage sendM) {
 		
 		Connection conn = getConnection();
@@ -79,7 +76,6 @@ public class MessageService {
 		return resultS;
 	}
 
-	// 메세지 이미지 보내기
 	public int sendImage(SendMessageImg smi, SendMessage sm) {
 		
 		Connection conn = getConnection();
@@ -97,7 +93,6 @@ public class MessageService {
 		return resultSI;
 	}
 	
-	// 메세지 받기
 	public int recMsg(ReceiveMessage recM) {
 		Connection conn = getConnection();
 		
@@ -112,7 +107,6 @@ public class MessageService {
 		return resultR;
 	}
 
-	// 메세지 이미지 받기
 	public int receiveImage(ReceiveMessageImg rmi, ReceiveMessage rm) {
 		Connection conn = getConnection();
 		

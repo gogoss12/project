@@ -3,14 +3,12 @@
 <%@page import="com.care.mvc.message.model.vo.SendMessage"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.care.mvc.message.model.vo.ReceiveMessage"%>
-<%@page import="com.care.mvc.message.model.vo.ReceiveMessageImg"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<link rel="stylesheet" href="../../css/style.css">
 <%
 	ArrayList<ReceiveMessage> list = (ArrayList)request.getAttribute("list");
-	ArrayList<ReceiveMessageImg> listimg = (ArrayList)request.getAttribute("listimg");
-	
+
 	PageInfo info = (PageInfo)request.getAttribute("pageInfo");
 	
 %>
@@ -27,10 +25,10 @@
                         <a href="<%= request.getContextPath()%>/msg/write">쪽지쓰기</a>
                     </div>
 					<div>
-						<a href="<%= request.getContextPath()%>/msg/get"> 받은쪽지함 </a>
+						<a href="<%= request.getContextPath()%>/msg/get?loginMember=<%= loginMember.getMemId() %>"> 받은쪽지함 </a>
 					</div>
 					<div>
-						<a href="<%= request.getContextPath()%>/msg/send"> 보낸쪽지함 </a>
+						<a href="<%= request.getContextPath()%>/msg/send?loginMember=<%= loginMember.getMemId() %>"> 보낸쪽지함 </a>
 					</div>
 				</div>
 				<div id="msg_2-2">
@@ -64,16 +62,23 @@
 								</tr>
 								<% }else { 
 										for(ReceiveMessage revM : list){
-											if(loginMember.getMemId().equals(revM.getMem_id())){									
 								%>								
 								<tr>
 									<td id="td-2" >
 										<b><%=revM.getRowNum()%></b>
 									</td>
 									<td id="td-2">
-										<a href="#">
-											<b><%=revM.getSend_id()%></b>
+										<a id="checkPatProfile" onclick="checkprofile()" style="cursor:pointer">
+											<b id="sendId"><%=revM.getSend_id()%></b>
 										</a>
+										<script>
+											function checkprofile(){
+												url = "<%=request.getContextPath()%>/check/patient?sendId=<%=list.get(0).getSend_id()%>";
+												specs = "width = 600px, height = 600px, top=200, left=200, resizable=yes";
+												window.open(url, "", specs);
+												return false;
+											} 
+										</script>
 									</td>
 									<td id="td-2">
 										<a href="<%=request.getContextPath()%>/recMsg/details?rec_no=<%=revM.getRec_no()%>">
@@ -81,7 +86,7 @@
 										</a>
 									</td>
 									<td id="td-2">
-										<a href="#">
+										<a href="#">	
 											<% if(revM.getImgs().get(0).getRec_img_name_org() != null) { %>
 											<b><img src="<%=request.getContextPath()%>/image/filefigure.png" style="width:20px"></b>
 											<% } else { %> 
@@ -105,7 +110,6 @@
 								</tr>
 									<% 
 									}
-								 } 
 							} %>
 						</table>
 					</div>
@@ -134,6 +138,9 @@
 				<button onclick="location.href='<%= request.getContextPath()%>/msg/get?rec_page=<%= info.getMaxPage() %>'">&gt;&gt;</button>
 			</div>
 		</div>
+		<form name="PatProfileform">
+		<input type="hidden" name="patProfile">
+		</form>
 	</div>
 </section>
 <%@ include file="/views/common/footer.jsp"%>

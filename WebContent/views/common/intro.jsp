@@ -6,7 +6,7 @@
 <form id="introForm" action="<%= request.getContextPath()%>/intro" method="GET">
 <div id="introro">
     <h2>케어풀</h2>
-       <h4>cateful & care-pool </h4>
+       <h4>careful & care-pool </h4>
     <ul>
         <pre>
         	나의 가족같은 마음으로, 세심함으로...

@@ -22,10 +22,10 @@
                         <a href="<%= request.getContextPath()%>/msg/write">쪽지쓰기</a>
                     </div>
 					<div>
-						<a href="<%= request.getContextPath()%>/msg/get"> 받은쪽지함 </a>
+						<a href="<%= request.getContextPath()%>/msg/get?loginMember=<%= loginMember.getMemId() %>"> 받은쪽지함 </a>
 					</div>
 					<div>
-						<a href="<%= request.getContextPath()%>/msg/send"> 보낸쪽지함 </a>
+						<a href="<%= request.getContextPath()%>/msg/send?loginMember=<%= loginMember.getMemId() %>"> 보낸쪽지함 </a>
 					</div>
 				</div>
 				<div id="msg_2-2">
@@ -37,22 +37,19 @@
                         
                             <b>받은파일 : &nbsp;</b> 
                             		<% if(imgR.getRec_img_name_org() != null) { %>
-                            	<a href="javascript:fileDownload('<%= imgR.getRec_img_name_org() %>','<%= imgR.getRec_img_name_sav() %>');">
+                            	<a href="javascript:fileDownload('<%= imgR.getRec_img_name_org() %>','<%= imgR.getRec_img_name_sav() %>');">  
                             		<b><%=imgR.getRec_img_name_org()%></b>
-					 			<script>
-							 		function fileDownload(oriname, rename) {
-							 			const url = "<%=request.getContextPath() %>/board/fileDown";
-							 			
-							 			// 인코딩하는 이 부분이 중요하다.
-							 			// 크롬은 자동으로 인코딩해주나(맞나??) IE는 encodeURIComponent을 사용해서 한글을 인코딩을 해줘야한다
-							 			// post는 인코딩을 해주나, get은 안해줘서 이렇게 직접 바꿔줘야한다.
-							 			let oName = encodeURIComponent(oriname);
-							 			let rName = encodeURIComponent(rename);
-							 			
-							 			location.assign(url + "?oriname=" + oName + "&rename=" + rName);
-							 		}
-							 	</script>
                             		
+                            		<script>
+                            			function fileDownload(nameori, namesav) {
+                            				const url ="<%=request.getContextPath() %>/receiveFile/filedown";
+                            				
+                            				let oName = encodeURIComponent(nameori);
+    							 			let sName = encodeURIComponent(namesav);
+                            				
+                            				location.assign(url + "?nameori=" + oName + "&namesav=" + sName);
+                            			}
+                            		</script>
                             		<% } else { %>
                             			<b>파일 없음</b>
                             		<% } %>

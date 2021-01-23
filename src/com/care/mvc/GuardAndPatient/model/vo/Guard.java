@@ -9,16 +9,19 @@ public class Guard {
 	private String guard_pat;
 	
 	private String memId;
+	
+	private String guardName;
 
 	public Guard() {
 		
 	}
 	
-	public Guard(int guard_no, String guard_gen, String guard_pat, String memId) {
+	public Guard(int guard_no, String guard_gen, String guard_pat, String memId, String guardName) {
 		this.guard_no = guard_no;
 		this.guard_gen = guard_gen;
 		this.guard_pat = guard_pat;
 		this.memId = memId;
+		this.guardName = guardName;
 	}
 
 	public int getGuard_no() {
@@ -53,10 +56,18 @@ public class Guard {
 		this.memId = memId;
 	}
 
+	public String getGuardName() {
+		return guardName;
+	}
+
+	public void setGuardName(String guardName) {
+		this.guardName = guardName;
+	}
+
 	@Override
 	public String toString() {
 		return "Guard [guard_no=" + guard_no + ", guard_gen=" + guard_gen + ", guard_pat=" + guard_pat + ", memId="
-				+ memId + "]";
+				+ memId + ", guardName=" + guardName + "]";
 	}
 	
 }

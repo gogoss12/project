@@ -7,11 +7,11 @@ import java.sql.SQLException;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 import com.care.mvc.GuardAndPatient.model.vo.Guard;
 import com.care.mvc.common.jdbc.JDBCTemplate;
 import com.care.mvc.common.util.PageInfo;
+import com.care.mvc.member.model.vo.Member;
 import com.care.mvc.message.model.vo.ReceiveMessage;
 import com.care.mvc.message.model.vo.ReceiveMessageImg;
 import com.care.mvc.message.model.vo.SendMessage;
@@ -64,7 +64,7 @@ public class MessageDao {
 	}
 	
 
-	public ArrayList<ReceiveMessage> listRevMsg(Connection conn, PageInfo info) {
+	public ArrayList<ReceiveMessage> listRevMsg(Connection conn, PageInfo info, Member loginMember) {
 		ArrayList<ReceiveMessage> list = new ArrayList<ReceiveMessage>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -74,7 +74,7 @@ public class MessageDao {
 				+ "    SELECT ROWNUM AS RNUM, REC_NO, SEND_ID , REC_BODY, REC_DATE, MEM_ID, STATUS"
 				+ "    FROM ("
 				+ "        SELECT R.REC_NO, R.SEND_ID, R.REC_BODY, R.REC_DATE, M.MEM_ID, R.STATUS"
-				+ "        FROM REC_MSG R JOIN MEMBER M ON(R.MEM_ID = M.MEM_ID) WHERE R.STATUS = 'Y'"
+				+ "        FROM REC_MSG R JOIN MEMBER M ON(R.MEM_ID = M.MEM_ID) WHERE R.STATUS = 'Y' AND R.MEM_ID =? "
 				+ "        ORDER BY R.REC_NO DESC"
 				+ "    )"
 				+ ") WHERE RNUM BETWEEN ? AND ?";
@@ -82,8 +82,9 @@ public class MessageDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			
-			pstmt.setInt(1, info.getStartList());
-			pstmt.setInt(2, info.getEndList());
+			pstmt.setString(1, loginMember.getMemId());
+			pstmt.setInt(2, info.getStartList());
+			pstmt.setInt(3, info.getEndList());
 			
 			rset = pstmt.executeQuery();
 			
@@ -116,7 +117,7 @@ public class MessageDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "SELECT REC_IMG_NAME_ORG, REC_NO "
+		String query = "SELECT REC_IMG_NO, REC_IMG_PATH, REC_IMG_NAME_ORG, REC_IMG_NAME_SAV, REC_NO "
 				+ " FROM REC_IMAGE "
 				+ " WHERE REC_NO = ? "
 				+ " ORDER BY REC_IMG_NO DESC"; // 순서는 REC_NO 해도 상관없을거같다
@@ -130,7 +131,10 @@ public class MessageDao {
 			while (rset.next()) {
 				ReceiveMessageImg recMsgImg = new ReceiveMessageImg();
 				
+				recMsgImg.setRec_img_no(rset.getInt("REC_IMG_NO"));
+				recMsgImg.setRec_img_path(rset.getString("REC_IMG_PATH"));
 				recMsgImg.setRec_img_name_org(rset.getString("REC_IMG_NAME_ORG"));
+				recMsgImg.setRec_img_name_sav(rset.getString("REC_IMG_NAME_SAV"));
 				recMsgImg.setRec_no(rset.getInt("REC_NO"));
 				
 				list.add(recMsgImg);
@@ -146,7 +150,7 @@ public class MessageDao {
 		return list;
 	}
 
-	public ArrayList<SendMessage> listSendMsg(Connection conn, PageInfo info) {
+	public ArrayList<SendMessage> listSendMsg(Connection conn, PageInfo info, Member loginMember) {
 		ArrayList<SendMessage> list = new ArrayList<SendMessage>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -156,7 +160,7 @@ public class MessageDao {
 				+ "    SELECT ROWNUM AS RNUM, SEND_NO, REC_ID , SEND_BODY, SEND_DATE, MEM_ID, STATUS"
 				+ "    FROM ("
 				+ "        SELECT S.SEND_NO, S.REC_ID, S.SEND_BODY, S.SEND_DATE, M.MEM_ID, S.STATUS"
-				+ "        FROM SEND_MSG S JOIN MEMBER M ON(S.MEM_ID = M.MEM_ID) WHERE S.STATUS = 'Y'"
+				+ "        FROM SEND_MSG S JOIN MEMBER M ON(S.MEM_ID = M.MEM_ID) WHERE S.STATUS = 'Y' AND S.MEM_ID =?"
 				+ "        ORDER BY S.SEND_NO DESC"
 				+ "    )"
 				+ ") WHERE RNUM BETWEEN ? AND ?";
@@ -164,8 +168,9 @@ public class MessageDao {
 		try {
 			pstmt = conn.prepareStatement(query);
 			
-			pstmt.setInt(1, info.getStartList());
-			pstmt.setInt(2, info.getEndList());
+			pstmt.setString(1, loginMember.getMemId());
+			pstmt.setInt(2, info.getStartList());
+			pstmt.setInt(3, info.getEndList());
 			
 			rset = pstmt.executeQuery();
 			
@@ -618,7 +623,7 @@ public class MessageDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "SELECT SEND_IMG_NAME_ORG, SEND_NO "
+		String query = "SELECT  SEND_IMG_NO, SEND_IMG_PATH, SEND_IMG_NAME_ORG, SEND_IMG_NAME_SAV, SEND_NO "
 				+ " FROM SEND_IMAGE "
 				+ " WHERE SEND_NO = ? "
 				+ " ORDER BY SEND_IMG_NO DESC"; 
@@ -632,7 +637,10 @@ public class MessageDao {
 			while (rset.next()) {
 				SendMessageImg sendMsgImg = new SendMessageImg();
 				
+				sendMsgImg.setSend_img_no(rset.getInt("SEND_IMG_NO"));
+				sendMsgImg.setSend_img_path(rset.getNString("SEND_IMG_PATH"));
 				sendMsgImg.setSend_img_name_org(rset.getString("SEND_IMG_NAME_ORG"));
+				sendMsgImg.setSend_img_name_sav(rset.getString("SEND_IMG_NAME_SAV"));
 				sendMsgImg.setSend_no(rset.getInt("SEND_NO"));
 				
 				list.add(sendMsgImg);
@@ -647,4 +655,5 @@ public class MessageDao {
 		
 		return list;
 	}
+	
 }

@@ -4,12 +4,13 @@
 <%
 
 
-   String userId = (String)request.getAttribute("userId");
+   String userId = (String)request.getAttribute("userId");  // 여기에 찍어서 디버깅 모드로 봐야함
 
 %>
  <%@ include file="/views/common/header.jsp" %>
 
         <script>
+            // 추가버튼 스크립트
             function career_detail() {
                 var career1;
                 career1 = document.all["carshow"].insertRow();
@@ -18,15 +19,18 @@
 
                 // 근무병원
                 var hos_place = career1.insertCell();
-                hos_place.innerHTML = "<input type='text' id='hosp' name='careHistory1'>";
-    
+                hos_place.innerHTML = "<input type='text' id='hosp' name='careHistory1' value=''>";
+                
+                // syso 로 값이 넘어오는지 안 넘어오는지 하나하나 확인하기
+    			// 소요's Tip! 소요꺼 매치jsp꺼 보면 도움될거다!
+                
                 // 업무
                 var your_job = career1.insertCell();
-                your_job.innerHTML = "<input type='text' id='hosp' name='careHistory2'>";
+                your_job.innerHTML = "<input type='text' id='hosp' name='careHistory2' value=''>";
     
                 // 기간1
                 var period1 = career1.insertCell();
-                period1.innerHTML = "<input type='date' id='hosp' name='careHistoryDate1'>";
+                period1.innerHTML = "<input type='date' id='hosp' name='careHistoryDate1' value=''>";
                 
                 // 중간에 ~ 표시
                 var period2 = career1.insertCell();
@@ -34,8 +38,21 @@
                 
                 // 기간2
                 var period2 = career1.insertCell();
-                period2.innerHTML = "<input type='date' id='hosp' name='careHistoryDate2'>";
+                period2.innerHTML = "<input type='date' id='hosp' name='careHistoryDate2' value=''>";
             }
+            
+            // 삭제버튼 스크립트
+        function career_delete() {
+            var table = document.getElementById('careerwrite');
+            // 보기 td는 남겨놓기
+            if (table.rows.length < 2){
+            return;
+            }
+
+            //tr삭제하기
+                table.deleteRow(table.rows.length - 1);
+            // count--;
+        }
         </script>
 <section>
       <div id="mucenter">
@@ -88,14 +105,17 @@
             </select>
         </label> 
         
-        <br><br>
-
+        <br><br>							<!-- request.getpara... 시스템 콘솔로 다 찍어본다. -->
+				<!-- 정보를 받아왔는지 확인을 한다. (값을 가져왔을 경우 - service, dao쪽을 봐야함, 못 가져왔을 경우 - 스크립트, jsp을 봐야함) -->
         <input type="button" id="addBtn" name="addBtn" value="추가" 
                 onclick="career_detail()" style="margin-left: 600px;">
         
+        <input type="button" id="delBtn" name="delBtn" value="삭제"
+                onclick="career_delete()" style="margin-left: 600px;">
+        
             <br>
         <div style="text-align: center;">
-            <table style="margin:0 auto;">
+            <table id="careerwrite" style="margin:0 auto;">
                 <tr>
                     <td style="width: 170px; border-bottom: 1px solid;">근무병원</td>
                     <td style="width: 170px; border-bottom: 1px solid;">업무</td>
