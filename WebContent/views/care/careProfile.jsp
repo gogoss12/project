@@ -3,57 +3,13 @@
 
 <%
 
-
    String userId = (String)request.getAttribute("userId");  // 여기에 찍어서 디버깅 모드로 봐야함
 
 %>
  <%@ include file="/views/common/header.jsp" %>
 
-        <script>
-            // 추가버튼 스크립트
-            function career_detail() {
-                var career1;
-                career1 = document.all["carshow"].insertRow();
-    
-                // 경력사항 상세입력 부분 value 값은 여기에 넣어야 DB로 넣을 수 있으니 확인바람
 
-                // 근무병원
-                var hos_place = career1.insertCell();
-                hos_place.innerHTML = "<input type='text' id='hosp' name='careHistory1' value=''>";
-                
-                // syso 로 값이 넘어오는지 안 넘어오는지 하나하나 확인하기
-    			// 소요's Tip! 소요꺼 매치jsp꺼 보면 도움될거다!
-                
-                // 업무
-                var your_job = career1.insertCell();
-                your_job.innerHTML = "<input type='text' id='hosp' name='careHistory2' value=''>";
-    
-                // 기간1
-                var period1 = career1.insertCell();
-                period1.innerHTML = "<input type='date' id='hosp' name='careHistoryDate1' value=''>";
-                
-                // 중간에 ~ 표시
-                var period2 = career1.insertCell();
-                period2.innerHTML = "<p> &nbsp ~ &nbsp</p>";
-                
-                // 기간2
-                var period2 = career1.insertCell();
-                period2.innerHTML = "<input type='date' id='hosp' name='careHistoryDate2' value=''>";
-            }
-            
-            // 삭제버튼 스크립트
-        function career_delete() {
-            var table = document.getElementById('careerwrite');
-            // 보기 td는 남겨놓기
-            if (table.rows.length < 2){
-            return;
-            }
 
-            //tr삭제하기
-                table.deleteRow(table.rows.length - 1);
-            // count--;
-        }
-        </script>
 <section>
       <div id="mucenter">
             <div id="profile1">
@@ -97,7 +53,7 @@
         <label >경력 :   
             <select name="careYears">
                 <option selected>전체</option>
-                <option value="신규">신규</option>
+                <option value="신입">신입</option>
                 <option value="1 ~ 2년">1 ~ 2년</option>
                 <option value="3 ~ 5년">3 ~ 5년</option>
                 <option value="5 ~ 10년">5 ~ 10년</option>
@@ -105,25 +61,35 @@
             </select>
         </label> 
         
-        <br><br>							<!-- request.getpara... 시스템 콘솔로 다 찍어본다. -->
-				<!-- 정보를 받아왔는지 확인을 한다. (값을 가져왔을 경우 - service, dao쪽을 봐야함, 못 가져왔을 경우 - 스크립트, jsp을 봐야함) -->
-        <input type="button" id="addBtn" name="addBtn" value="추가" 
-                onclick="career_detail()" style="margin-left: 600px;">
-        
-        <input type="button" id="delBtn" name="delBtn" value="삭제"
-                onclick="career_delete()" style="margin-left: 600px;">
-        
-            <br>
+        <br><br>
+
         <div style="text-align: center;">
             <table id="careerwrite" style="margin:0 auto;">
-                <tr>
-                    <td style="width: 170px; border-bottom: 1px solid;">근무병원</td>
-                    <td style="width: 170px; border-bottom: 1px solid;">업무</td>
-                    <td style="width: 300px; border-bottom: 1px solid;" colspan="3">기간</td>
+                <tr style="border-bottom: 1px solid white;">
+                    <td>근무병원</td>
+                    <td>업무</td>
+                    <td colspan="3">기간</td>
                 </tr>
-                <tbody id="carshow"></tbody>
+                <tr>
+                    <td id="careerdetail">
+                        <input type='text' id='careHistory' name='careHistory1' value="">
+                    </td>
+                    <td id="careerdetail">
+                    	<input type='text' id='careHistory' name='careHistory2' value="">
+                    </td>
+                    <td id="careerdetail">
+                    	<input type='date' id='careHistory' name='careHistoryDate1' value="">
+                    </td>
+                    <td  style="border-bottom: 1px solid white;">
+                        <p> &nbsp ~ &nbsp </p>
+                    </td>
+                    <td  id="careerdetail">
+                        <input type='date' id='careHistory' name='careHistoryDate2' value="">
+                    </td>
+                </tr>
             </table>
         </div>
+        
 
         <h3><span class="badge bg-secondary">케어하는데 도움되는 장점</span></h3>
         
@@ -224,7 +190,8 @@
         <br><br>
        
         <div class="btn">
-            <input type="submit" id="careenroll" value="등록하기">
+            <input type="submit" id="careenroll" value="등록하기" 
+                onclick="checkValue()">
             <input type="reset" value="취소하기">
             <input type="hidden" name="memId" value=<%= userId %>>
         </div>
@@ -232,4 +199,32 @@
     </form>
 </div>
 </section>
+<script type="text/javascript">
+    function checkValue() {
+            var careH = document.getElementById('careHistory');
+            
+            if(careH.trim() == '' || careH == null || careH.length == 0) {
+                careH.innerHTML = '없음';
+                console.log(careH.value);
+            }
+            careH.submit();
+        }
+        
+
+        // var careH2 = document.getElementById('careHistory2');
+        // var careHD1 = document.getElementById('careHistoryDate1');
+        // var careHD2 = document.getElementById('careHistoryDate2');
+        // if(careH1.trim() == '' || careH1 == null || careH1.length == 0) {
+        //     document.getElementById(careH1).value = '없음';
+        // }
+        // if(careH2.trim() == '' || careH2 == null || careH2.length == 0) {
+        // 	document.getElementById(careH2).value = "없음";
+        // }
+        // if(careHD2.trim() == '' || careHD1 == null || careH1.length == 0) {
+        // 	document.getElementById(careHD1).value = '없음';
+        // }
+        // if(careHD2.trim() == '' || careHD2 == null || careH1.length == 0) {
+        // 	document.getElementById(careHD2).value = "없음";
+        // }
+</script>
 <%@ include file="/views/common/footer.jsp" %>

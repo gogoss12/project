@@ -126,8 +126,9 @@ header {
 	height: 200px;
 }
 
-section{
-}
+/* section{
+
+} */
 
 /*헤더*/
 #wrapper {
@@ -771,6 +772,11 @@ input[type=reset]{
 	font-family: inherit;
 	background: url('arrow.jpg') no-repeat 95% 50%;
 	border-radius: 0px;
+}
+
+ #careerdetail {
+	width: 200px;
+	border-bottom: 1px solid white;
 }
 
 /* 마이페이지 */
