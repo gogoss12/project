@@ -49,7 +49,7 @@
                     <div id="msg_2-2-section">
 
                         <div style="margin-left: 35px;">
-                            <textarea name="msg_contents" id="msg_content" cols="100" rows="25" placeholder="내용을 입력해주세요" style="resize: none;"></textarea>
+                            <textarea name="msg_contents" id="msg_content" cols="100" rows="25" placeholder="내용을 입력해주세요" style="resize: none;" required></textarea>
                         </div>
                         <input type="submit" value="보내기" style="margin-left: 603px; margin-top: 5px;">
                     </div>

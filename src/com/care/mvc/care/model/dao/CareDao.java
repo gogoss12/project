@@ -122,6 +122,7 @@ public class CareDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
+				caregiver.setCareNo(rset.getInt("CARE_NO"));
 				caregiver.setMemId(rset.getString("MEM_ID"));
 				caregiver.setCareGen(rset.getString("CARE_GEN"));
 				caregiver.setCareLicense(rset.getString("CARE_LICENSE"));
