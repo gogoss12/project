@@ -101,7 +101,7 @@ public class CareDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = "SELECT C.CARE_GEN, C.CARE_LICENSE, C.CARE_YEARS, C.CARE_HISTORY, C.CARE_PLUS, "
-				+ "C.CARE_TIME, C.CARE_PLACE, C.CARE_SAL, C.CARE_INTRO "
+				+ "C.CARE_TIME, C.CARE_PLACE, C.CARE_SAL, C.CARE_INTRO, M.MEM_NAME AS MEM_NAME, M.MEM_BIRTH AS MEM_BIRTH "
 				+ "FROM CAREGIVER_PROFILE C "
 				+ "JOIN MEMBER M ON(M.MEM_ID = C.MEM_ID) "
 				+ "WHERE C.MEM_ID = ?";
@@ -122,6 +122,8 @@ public class CareDao {
 				caregiver.setCarePlace(rset.getString("CARE_PLACE"));
 				caregiver.setCareSal(rset.getString("CARE_SAL"));
 				caregiver.setCareIntro(rset.getString("CARE_INTRO"));
+				caregiver.setMemName(rset.getString("MEM_NAME"));
+				caregiver.setMemBirth(rset.getString("MEM_BIRTH"));
 			}
 			
 		} catch (SQLException e) {

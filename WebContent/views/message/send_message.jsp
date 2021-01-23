@@ -39,13 +39,6 @@
                         <input type="text" id="find_id" name="find_id" placeholder="아이디 검색 : ">
                         <input type="button" name="search_id" value="검색" onclick="search()">
                     </div>
-                    <script>
-                    	function search(){
-                    		var id = document.getElementById('find_id').value;
-                    		location.href="<%= request.getContextPath()%>/search/sendId?Id="+id
-                    	}
-                    
-                    </script>
                     <div id="msg_2-2-section">
                         <table id="msg_table">
                             <tr>
@@ -69,27 +62,26 @@
                                 <td id="td-2" >
 										<b><%=list.get(i).getRowNum()%></b>
 									</td>
-                                <td id="td-2" style="width: 80px;">
-                                    <a href="#">
-                                        <b><%=list.get(i).getRec_id()%></b>
-                                    </a>
-                                </td>
+                                <td id="td-2">
+									<a id="checkPatProfile" onclick="checkprofile('<%=list.get(i).getRec_id()%>')" style="cursor:pointer">
+										<b id="sendId"><%=list.get(i).getRec_id()%></b>
+									</a>
+								</td>
                                 <td id="td-2">
                                     <a href="<%=request.getContextPath()%>/sendMsg/details?send_no=<%= list.get(i).getSend_no()%>">
                                         <b><%=list.get(i).getSend_body()%></b>
                                     </a>
                                 </td>
-                                
                                 <td id="td-2">
-                                    	<a href="#">
-                                    	<%if(list.get(i).getImgs().size() != 0) { %>
-											<% if(list.get(i).getImgs().get(0).getSend_img_name_org() != null) { %>
-												<b><img src="<%=request.getContextPath()%>/image/filefigure.png" style="width:20px"></b>
-											<% } else { %> 
-												<b>파일 없음</b>
-											<% } %>
+                                   	<a href="#">
+                                   	<%if(list.get(i).getImgs().size() != 0) { %>
+										<% if(list.get(i).getImgs().get(0).getSend_img_name_org() != null) { %>
+											<b><img src="<%=request.getContextPath()%>/image/filefigure.png" style="width:20px"></b>
+										<% } else { %> 
+											<b>파일 없음</b>
 										<% } %>
-										</a>
+									<% } %>
+									</a>
                                 </td>
                                 
                                 <td id="td-2">
@@ -131,8 +123,18 @@
         </div>
     </section>
     <script>
-    
-    
+	function search(){
+		var id = document.getElementById('find_id').value;
+		location.href="<%= request.getContextPath()%>/search/sendId?Id="+id
+	}
+
+	function checkprofile(id){
+		url = "<%=request.getContextPath()%>/check/profile?memId=" + id;
+		specs = "width = 600px, height = 600px, top=200, left=200, resizable=yes";
+		window.open(url, "", specs);
+		return false;
+	} 
+	
     function delete_row(no){
 		if(confirm("쪽지를 삭제하시겠습니까 ?")){
 			location.href="<%=request.getContextPath()%>/delete/send?SendNum=" + no
