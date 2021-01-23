@@ -26,12 +26,15 @@ public class Care {
 	private String memName;
 	
 	private String memBirth;
+	
+	private CareImage careImg; // 추가
 		
 	public Care() {
 	}
 
 	public Care(int careNo, String careGen, String careLicense, String careYears, String careHistory, String carePlus,
-			String careTime, String carePlace, String careSal, String careIntro, String memId, String memName, String memBirth) {
+			String careTime, String carePlace, String careSal, String careIntro, String memId, String memName,
+			String memBirth, CareImage careImg) {
 		this.careNo = careNo;
 		this.careGen = careGen;
 		this.careLicense = careLicense;
@@ -45,6 +48,7 @@ public class Care {
 		this.memId = memId;
 		this.memName = memName;
 		this.memBirth = memBirth;
+		this.careImg = careImg;
 	}
 
 	public int getCareNo() {
@@ -151,11 +155,20 @@ public class Care {
 		this.memBirth = memBirth;
 	}
 
+	public CareImage getCareImg() {
+		return careImg;
+	}
+
+	public void setCareImg(CareImage careImg) {
+		this.careImg = careImg;
+	}
+
 	@Override
 	public String toString() {
 		return "Care [careNo=" + careNo + ", careGen=" + careGen + ", careLicense=" + careLicense + ", careYears="
 				+ careYears + ", careHistory=" + careHistory + ", carePlus=" + carePlus + ", careTime=" + careTime
 				+ ", carePlace=" + carePlace + ", careSal=" + careSal + ", careIntro=" + careIntro + ", memId=" + memId
-				+ ", memName=" + memName + ", memBirth=" + memBirth + "]";
+				+ ", memName=" + memName + ", memBirth=" + memBirth + ", careImg=" + careImg + "]";
 	}
+	
 }

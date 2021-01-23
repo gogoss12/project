@@ -1,3 +1,4 @@
+<%@page import="com.care.mvc.care.model.vo.Care"%>
 <%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
@@ -7,7 +8,10 @@
 <%@ include file="/views/common/header.jsp" %>
 
 <%	
-	List<Member> profiles = (ArrayList) request.getAttribute("profiles");
+	// List<Member> profiles = (ArrayList) request.getAttribute("profiles");
+	
+	List<Care> profiles = (ArrayList) request.getAttribute("profiles");
+
 %>
 
 <section id="matchPage">
@@ -17,16 +21,17 @@
     <% if (profiles == null || profiles.isEmpty()) { %>
     		<!-- 검색결과 없음 -->
     <% } else {
-    		for (Member member : profiles) { %>
-    			<div class="profile">
-                    <img src="../../image/병아리당황.png" alt="">
-                    <h5><%= member.getMemName() %> (<%= member.getMemId() %>)</h5>
-                    <button onclick="">쪽지보내기</button>
+    		for (Care care : profiles) { %>
+    			<div class="profile">    				    				
+                    <img class="profPic" onclick="loadProf('<%= care.getMemId() %>');" src="<%= request.getContextPath() %>/upload/carephoto/<%= care.getCareImg().getImgNameSav() %>" alt="">
+
+                    <h5><%= care.getCareName() %> (<%= care.getMemId() %>)</h5>
+                    <button onclick='location.href="<%= request.getContextPath() %>/msg/write?memId=<%= care.getMemId() %>"'>쪽지보내기</button>
                 </div>
    		 <% }
       } %>
     </div>
-    
+
     <button id="backBtn" onclick='location.replace("<%= request.getContextPath() %>/match/search");'>검색페이지로</button>
 
     <script type="text/javascript">
@@ -37,3 +42,15 @@
 </section>
 
 <%@ include file="/views/common/footer.jsp" %>
+
+<script>
+    $('document').ready(function () {
+        console.log('doc loaded');
+    });
+
+    function loadProf(memId) {
+        const url = "<%=request.getContextPath()%>/profile/care?memId=" + memId;
+        const specs = "width = 600px, height = 600px, top=200, left=200, resizable=yes";
+        window.open(url, "matched profile", specs);
+    }
+</script>

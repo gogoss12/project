@@ -132,6 +132,7 @@ public class MessageService {
 	}
 
 	public int sendMsgList(Member loginMember, String rec_id) {
+
 		Connection conn = getConnection();
 		
 		int result = new MessageDao().sendMsgList(conn, loginMember, rec_id);
@@ -244,6 +245,5 @@ public class MessageService {
 		
 		return list;
 	}
-
 
 }
