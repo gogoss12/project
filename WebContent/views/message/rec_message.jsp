@@ -13,6 +13,7 @@
 	
 %>
 <%@ include file="/views/common/header.jsp"%>
+
 <section>
 	<div id="msg_container">
 		<form action="<%= request.getContextPath()%>/msg/get" method="POST">
@@ -68,17 +69,12 @@
 										<b><%=revM.getRowNum()%></b>
 									</td>
 									<td id="td-2">
-										<a id="checkPatProfile" onclick="checkprofile()" style="cursor:pointer">
-											<b id="sendId"><%=revM.getSend_id()%></b>
-										</a>
-										<script>
-											function checkprofile(){
-												url = "<%=request.getContextPath()%>/check/patient?sendId=<%=list.get(0).getSend_id()%>";
-												specs = "width = 600px, height = 600px, top=200, left=200, resizable=yes";
-												window.open(url, "", specs);
-												return false;
-											} 
-										</script>
+										<a id="checkPatProfile" style="cursor:pointer">
+											<b id="sendId" class="clickMe"><%=revM.getSend_id()%></b>
+                                        </a>
+                                        <script>
+                                            
+                                        </script>
 									</td>
 									<td id="td-2">
 										<a href="<%=request.getContextPath()%>/recMsg/details?rec_no=<%=revM.getRec_no()%>">
@@ -144,3 +140,9 @@
 	</div>
 </section>
 <%@ include file="/views/common/footer.jsp"%>
+
+<script>
+    $('document').ready(function () {
+        console.log('doc loaded');
+    });	
+</script>
