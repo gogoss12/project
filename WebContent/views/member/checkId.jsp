@@ -23,7 +23,7 @@
 <body>
 	<div id="checkId-container">
 		<% if(valid) { %>
-		 [<span id="duplicated"><%= request.getParameter("userId") %></span>]
+		 [<span id="duplicated"><%= request.getParameter("userId") %></span>]는 사용중입니다.
 		 
 		 <br><br>
 			

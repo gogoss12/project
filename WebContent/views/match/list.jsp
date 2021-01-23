@@ -7,11 +7,8 @@
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
 
-<%	
-	// List<Member> profiles = (ArrayList) request.getAttribute("profiles");
-	
+<%		
 	List<Care> profiles = (ArrayList) request.getAttribute("profiles");
-
 %>
 
 <style>

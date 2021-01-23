@@ -129,7 +129,7 @@
     
     function checkprofile(id){
 		url = "<%=request.getContextPath()%>/check/profile?memId=" + id;
-		specs = "width = 600px, height = 600px, top=200, left=200, resizable=yes";
+		specs = "width = 800px, height = 600px, top=200, left=200, resizable=yes";
 		window.open(url, "", specs);
 		return false;
 	} 

@@ -1,7 +1,6 @@
-package com.care.mvc.member.controller;
+package com.care.mvc.match.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,41 +13,38 @@ import com.care.mvc.GuardAndPatient.model.vo.Patient;
 import com.care.mvc.care.model.service.CareService;
 import com.care.mvc.care.model.vo.Care;
 import com.care.mvc.care.model.vo.PatientWanted;
-import com.care.mvc.member.model.service.MemberService;
-import com.care.mvc.member.model.vo.Member;
 
-@WebServlet("/check/profile")
-public class CheckProfileServlet extends HttpServlet {
+@WebServlet("/match/info")
+public class MatchingInfoServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public CheckProfileServlet() {
+    public MatchingInfoServlet() {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String memId = request.getParameter("memId");
-		Member member = new MemberService().findMemberById(memId);
+		
 		Guard guard = new GuardAndPatientService().checkGuard(memId);
 		Patient patient = new GuardAndPatientService().checkPatient(memId);
-		Care care = new CareService().checkCare(memId);
-		PatientWanted patWanted = new CareService().checkPatWanted(memId); 
 		
 		if(guard.getMemId() != null && patient.getGuard_no() != 0) {
 			request.setAttribute("guard", guard);
 			request.setAttribute("patient", patient);
-			request.getRequestDispatcher("/views/patient/patprofilecheck.jsp").forward(request, response);
-			return;
-		}else if(care.getCareNo() != 0 && care.getCareGen() == null) {
-			request.setAttribute("care", care);
-			request.setAttribute("patWanted", patWanted);
-			request.getRequestDispatcher("/views/care/careprofilecheck.jsp").forward(request, response);
+			request.getRequestDispatcher("/views/match/guardianMatch.jsp").forward(request, response);
 			return;
 		}else {
-			request.setAttribute("member", member);
-			request.getRequestDispatcher("/views/member/membercheck.jsp").forward(request, response);
-			return;
+			Care care = new CareService().checkCare(memId);
+			PatientWanted patWanted = new CareService().checkPatWanted(memId); 
+			
+			request.setAttribute("care", care);
+			request.setAttribute("patWanted", patWanted);
+			request.getRequestDispatcher("/views/match/caregiverMatch.jsp").forward(request, response);
 		}
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 	}
+
 }

@@ -30,11 +30,6 @@
 					</div>
 				</div>
 				<div id="msg_2-2">
-					<div id="msg_2-2-header">
-						<input type="button" name="delete_msg" onclick="delete_msg()" value="X삭제" style="color: red;"> 
-						<input type="text" name="find_id" placeholder="아이디 검색 : "> 
-						<input type="button" name="search_id" value="검색">
-					</div>
 					<div id="msg_2-2-body">
                         <div id="msg_contents1"> 
                             <b>받는사람 : &nbsp;</b> <a href="#"></a><b><%=sendmessage.getRec_id()%></b></a>
@@ -68,7 +63,7 @@
                             
                     <!-- 이게 보낸 내용 -->
                     <div id="msg_contents2">
-                        <b><%=sendmessage.getSend_body()%></b>
+                    <textarea name="receiveContents" cols="100" rows="25" readonly style="resize: none;"><%=sendmessage.getSend_body()%></textarea>
                     </div>
 				</div>
 			</div>

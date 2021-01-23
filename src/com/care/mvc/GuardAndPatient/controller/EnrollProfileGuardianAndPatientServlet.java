@@ -60,7 +60,7 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 		patient.setPat_gen(request.getParameter("patGen"));
 		patient.setPat_age(Integer.parseInt(request.getParameter("patAge")));
 		patient.setPat_kg(Integer.parseInt(request.getParameter("patKg"))); 
-		patient.setPat_infect(String.join(" , " , request.getParameterValues("patInfact")));
+		patient.setPat_infect(String.join(" , " , request.getParameterValues("patInfact")) + " 기타사항 :" + request.getParameter("patInfact1"));
 		patient.setPat_grade(request.getParameter("patGrade"));
 		patient.setPat_sanit(String.join(" , " , request.getParameterValues("patSanit")));
 		patient.setPat_paral(request.getParameter("patParal"));
@@ -82,8 +82,8 @@ public class EnrollProfileGuardianAndPatientServlet extends HttpServlet {
 			msg = "보호자 프로필 등록이 완료되었습니다!";
 			loc = "/";
 		}else {
-			msg = "프로필 등록이 실패하였습니다!";
-			loc = "/enroll/profile/guardian";
+			msg = "프로필 등록이 실패하였습니다! (빈칸확인요망!) / 처음부터 다시 시도해주세요!";
+			loc = "/";
 		}
 		
 		request.setAttribute("msg", msg);

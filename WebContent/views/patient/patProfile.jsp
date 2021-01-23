@@ -1,16 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <link rel="stylesheet" href="../../css/style.css">
 <%
 	String userId = (String)request.getAttribute("userId");
 %>
-    
 <%@ include file="/views/common/header.jsp" %>
     <section>
         <div class="patient_details">
             <form action="<%=request.getContextPath()%>/enroll/profile/guardian" method="POST">
                     <div>
                         <h1>보호자용 프로필 등록</h1>
+                        <img src="../image/병아리당황.png" style="width:200px; height: 200px;">
                     </div>
                     <div>
                         <label><input type="checkbox" name="same" value="보호자이자 환자입니다.">보호자이자 환자입니다.</label>
@@ -76,7 +75,7 @@
                             <label><input type="checkbox" name="patInfact" value="감기">감기</label>
                         </div>
                         <div>
-                            <textarea name="patInfact" cols="40" rows="3" placeholder="내용을 입력해주세요"></textarea>
+                            <textarea name="patInfact1" cols="40" rows="3" placeholder="내용을 입력해주세요"></textarea>
                         </div>
                     </div>
                     <div>

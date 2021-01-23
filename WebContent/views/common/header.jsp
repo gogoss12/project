@@ -48,21 +48,23 @@
 			</div>
 			<div id="login">
 			<% if (loginMember == null ) { %>	
+				<div style = "margin:auto; padding-top: 45px;">
 				<input type="button" id="loginbtn" value="로그인"
 					onclick="location.href = '<%=request.getContextPath()%>/member/login';">
 				<input type="button" id="enrollbtn" value="회원가입"
 					onclick="location.href = '<%=request.getContextPath()%>/member/enroll';">
-
-			<% } else { %>						
+				</div>
+			<% } else { %>
+				<h4><%=loginMember.getMemId()%> 님 환영합니다.</h4>
 				<input type="button" value="마이페이지"
 					onclick="location.href = '<%= request.getContextPath() %>/member/mypage?userId=<%= loginMember.getMemId()%>';">			
 				
-	             <!-- <select name="myPage">
-					<option selected>마이페이지</option>
-					<option value="editInfo">개인정보 수정</option>
+	              <select name="myPage" onchange="window.open(value,'_self');">
+					<option value= "<%= request.getContextPath() %>/member/mypage?userId=<%= loginMember.getMemId()%>">마이페이지</option>
+					<option value="<%= request.getContextPath() %>/member/enrollview?userId=<%= loginMember.getMemId()%>">개인정보 수정</option>
 					<option value="certList">인증내역</option>
 					<option value="delAcct">회원탈퇴</option>
-				</select>  -->
+				</select>  
 				
 				<input type="button" id="authbtn" value="인증/확인">					
 				<input type="button" id="logoutbtn" value="로그아웃" 

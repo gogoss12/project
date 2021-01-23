@@ -62,11 +62,22 @@
                             
                     <!-- 이게 보낸 내용 -->
                     <div id="msg_contents2">
-                        <b><%=receivemessage.getRec_body()%></b>
+                    	<textarea name="receiveContents" cols="100" rows="25"readonly style="resize: none;display: block; margin-block: 10px;"><%=receivemessage.getRec_body()%></textarea>
+                    	<div style="padding-left: 54%;">
+	                    	<input type="button" onclick="checkprofile('<%=receivemessage.getSend_id()%>')" style="border-radius: 20px; background: lightskyblue" value="매칭">
+	                    </div>
                     </div>
 				</div>
 			</div>
 		</form>
 	</div>
 </section>
+<script>
+	function checkprofile(id){
+		url = "<%=request.getContextPath()%>/match/info?memId=" + id;
+		specs = "width = 460px, height = 600px, top=200, left=200, resizable=yes";
+		window.open(url, "", specs);
+		return false;
+	} 
+</script>
 <%@ include file="/views/common/footer.jsp"%></>

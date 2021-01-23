@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1 style="color: red">페이지를 찾을 수 없습니다. </h1>
+<h1 style="color: red">페이지를 찾을 수 없습니다.(500) </h1>
 </body>
 </html>
