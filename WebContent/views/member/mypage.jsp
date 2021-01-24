@@ -10,7 +10,7 @@
 	<form id="page_container" action="<%= request.getContextPath()%>/member/mypage"
 		method="get">
 			<div id="my_text">
-				<h1>마이페이지</h1>
+				<h1></h1>
 			</div>
 			<div class="outer">
 				<div class="my_page" id="my_im">

@@ -3,9 +3,9 @@
 
 <section id="searchMatch">
 
-    <h2>원하시는 요양보호사님을 찾아보세요</h2>
+    <h2><i class="fas fa-search"></i> 원하시는 요양보호사님을 찾아보세요</h2>
 
-    <form id="searchMatchForm" action="<%=request.getContextPath()%>/match/search" method="POST">
+    <form id="searchMatchForm" action="<%=request.getContextPath()%>/match/list" method="POST">
 
         <div class="checkbox" id="careTime">
             <h3>돌봄시간</h3>
@@ -25,7 +25,7 @@
 
         <div class="checkbox" id="careQual">
             <h3>자격증 유무</h3>
-            <label><input type="checkbox" name="qual" value="없음">없음</label>
+            <label><input type="checkbox" name="qual" value="없음" id="noQual">없음</label>
             <label><input type="checkbox" name="qual" value="요양보호사">요양보호사</label>
             <label><input type="checkbox" name="qual" value="사회복지사">사회복지사</label>
             <label><input type="checkbox" name="qual" value="간호조무사">간호조무사</label>
@@ -70,14 +70,35 @@
         <button type="submit" class="btn btn-default" id="searchBtn">검색</button>
     </form>
 
-
-
     <script type="text/javascript">
         $(document).ready(function () {
             console.log("doc loaded")
         });
 
         var arr = [];
+
+        // *자격증 없음 클릭시 기타 체크박스 자동 해제 구현 작업중*
+
+        // $('#noQual').click(function () { // 없음 클릭
+        //     let none = $(this);
+
+        //     let others = $('input[name="qual"]:not("#noQual")');
+
+        //     console.log(others);
+
+        //     if (none.is(':checked')) { // 없음 체크 
+        //         others.prop('checked', false);
+
+        //         console.log("qual none");
+        //     } else { // 없음 체크 해제
+
+        //         if (others.is(':checked')) {
+        //             $(none).prop('checked', false);
+
+        //             console.log("list more qual");
+        //         }
+        //     }
+        // });
 
         // checkbox
         $('input:checkbox').change(function () {
@@ -100,8 +121,6 @@
                 console.log("hide me");
             }
         });
-
-        // && select[name="gugun1"]
 
         // dropdown
         $('select[name="gugun1"]').click(function () { // change() 대신 click()

@@ -6,11 +6,12 @@
 
     String addr = member.getMemAddr();
     String[] arr = addr.split(","); 
-
+    
+    
 %>
 
 	<section id="content">
-		<div id="enroll-container" style="margin: 0 auto; text-align:center" >
+		<div id="enroll-container" style="margin: 0 auto; width: 50%; text-align:center" >
 			<form name="memberEnrollUpdate" action="<%= request.getContextPath()%>/member/enrollupdate" method="post">
 				<table class="table table-borderless" style="text-align:left" >
 					<tr>

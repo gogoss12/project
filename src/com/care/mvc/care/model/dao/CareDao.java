@@ -148,8 +148,6 @@ public class CareDao {
 		return caregiver;
 	}
 
-	
-	
 	// 아래코드로 케어이미지 불러와서 위에 set...()!!!
 	public CareImage getCareImage(Connection conn, int careNo) {
 		PreparedStatement pstmt = null;
