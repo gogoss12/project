@@ -149,78 +149,77 @@
 							</tr>
 						</tbody>
 					</table>
-				</div>
 					<table>
 						<div id="empty">환자정보</div>
-						<thead>
-							<tr>
-								<td class="pro_Table">환자 이름</td>
-								<td><%=patient.getPat_name() %></td>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td class="pro_Table">환자 나이/성별</td>
-								<td><%=patient.getPat_age()%> / <%=patient.getPat_gen() %></td>
-							</tr>
-							<tr>
-								<td class="pro_Table">몸무게</td>
-								<td><%=patient.getPat_kg() %></td>
-							</tr>
-							<tr>
-								<td class="pro_Table">감영성 질환</td>
-								<td><%=patient.getPat_infect() %></td>
-							</tr>
-							<tr>
-								<td class="pro_Table">장기요양등급</td>
-								<td><%=patient.getPat_grade() %></td>
-							</tr>
-							<tr>
-								<td class="pro_Table">개인위생관리</td>
-								<td><%=patient.getPat_sanit() %></td>
-							</tr>
-							<tr>
-								<td class="pro_Table">마비상태</td>
-								<td><%=patient.getPat_paral() %></td>
-							</tr>
-							<tr>
-								<td class="pro_Table">거동상태</td>
-								<td><%=patient.getPat_move() %></td>
-							</tr>
-							<tr>
-								<td class="pro_Table">욕창 환자 여부</td>
-								<td><%=patient.getPat_bed() %></td>
-							</tr>
-							<tr>
-								<td class="pro_Table">인지장애 여부</td>
-								<td><%=patient.getPat_cogdis() %></td>
-							</tr>
-							<tr>
-								<td class="pro_Table">화장실 이동시</td>
-								<td><%=patient.getPat_bathroom() %></td>
-							</tr>
-							<tr>
-								<td class="pro_Table">배변도구</td>
-								<td><%=patient.getPat_bowel_mn() %></td>
-							</tr>
-							<tr>
-								<td class="pro_Table">장루설치여부</td>
-								<td><%=patient.getPat_ostomy() %></td>
-							</tr>
-							<tr>
-								<td class="pro_Table">식사 도움 여부</td>
-								<td><%=patient.getPat_help_eat() %></td>
-							</tr>
-							<tr>
-								<td class="pro_Table">석션 사용 여부</td>
-								<td><%=patient.getPat_suction()%></td>
-							</tr>
-							<tr>
-								<td class="pro_Table">요양보호사 우대 성별</td>
-								<td><%=patient.getPat_guard_gen()%></td>
-							</tr>
-						</tbody>
-					</table>
+							<thead>
+								<tr>
+									<td class="pro_Table">환자 이름</td>
+									<td><%=patient.getPat_name() %></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td class="pro_Table">환자 나이/성별</td>
+									<td><%=patient.getPat_age()%> / <%=patient.getPat_gen() %></td>
+								</tr>
+								<tr>
+									<td class="pro_Table">몸무게</td>
+									<td><%=patient.getPat_kg() %></td>
+								</tr>
+								<tr>
+									<td class="pro_Table">감영성 질환</td>
+									<td><%=patient.getPat_infect() %></td>
+								</tr>
+								<tr>
+									<td class="pro_Table">장기요양등급</td>
+									<td><%=patient.getPat_grade() %></td>
+								</tr>
+								<tr>
+									<td class="pro_Table">개인위생관리</td>
+									<td><%=patient.getPat_sanit() %></td>
+								</tr>
+								<tr>
+									<td class="pro_Table">마비상태</td>
+									<td><%=patient.getPat_paral() %></td>
+								</tr>
+								<tr>
+									<td class="pro_Table">거동상태</td>
+									<td><%=patient.getPat_move() %></td>
+								</tr>
+								<tr>
+									<td class="pro_Table">욕창 환자 여부</td>
+									<td><%=patient.getPat_bed() %></td>
+								</tr>
+								<tr>
+									<td class="pro_Table">인지장애 여부</td>
+									<td><%=patient.getPat_cogdis() %></td>
+								</tr>
+								<tr>
+									<td class="pro_Table">화장실 이동시</td>
+									<td><%=patient.getPat_bathroom() %></td>
+								</tr>
+								<tr>
+									<td class="pro_Table">배변도구</td>
+									<td><%=patient.getPat_bowel_mn() %></td>
+								</tr>
+								<tr>
+									<td class="pro_Table">장루설치여부</td>
+									<td><%=patient.getPat_ostomy() %></td>
+								</tr>
+								<tr>
+									<td class="pro_Table">식사 도움 여부</td>
+									<td><%=patient.getPat_help_eat() %></td>
+								</tr>
+								<tr>
+									<td class="pro_Table">석션 사용 여부</td>
+									<td><%=patient.getPat_suction()%></td>
+								</tr>
+								<tr>
+									<td class="pro_Table">요양보호사 우대 성별</td>
+									<td><%=patient.getPat_guard_gen()%></td>
+								</tr>
+							</tbody>
+						</table>
 
 				<h3>기타사항(선택)</h3>
 				
@@ -231,6 +230,5 @@
 				<button onclick="opener.location.href='<%=request.getContextPath()%>/msg/write?memId=<%=guard.getMemId()%>'; self.close();">쪽지보내기</button>
 			</div>
 			</div>
-		</div>
 </body>
 </html>
