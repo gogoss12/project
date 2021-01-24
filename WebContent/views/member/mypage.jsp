@@ -7,21 +7,10 @@
 	<form id="page_container" action="<%= request.getContextPath()%>/member/mypage"
 		method="post">
 			<div id="my_text">
-				<h1>마이페이지</h1>
+				<h1></h1>
 			</div>
 			<div class="outer">
 				<div class="my_page" id="my_im">
-					<div class="my_page" id="my_intro">
-
-						<legend style="font-size: 16px; font-weight: 600;">한줄
-							자기소개</legend>
-						<div id="print" class="print"></div>
-						<div>
-							<button onclick="addMember();">수정</button>
-							<button onclick="printMember();">저장</button>
-						</div>
-
-					</div>
 					<img src="./image/병아리당황.png">
 					<div id="my_name">땡땡땡 님 안녕하세요</div>
 				</div>

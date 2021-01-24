@@ -219,6 +219,7 @@ nav {
 	list-style-type: none;
     text-align: center;
     margin: 0;
+    line-height: 60px;
 }
 
 #main-menu>li {
@@ -530,7 +531,7 @@ footer p, footer address {
 
 #content {
 	justify-content: center;
-	margin: 40px;
+	/* margin: 40px; */
 }
 
  #loginForm { 
@@ -870,10 +871,11 @@ input[type=reset]{
 
 #page_container{
 	width: 1390px;
-	height: 980px;
-	margin: -40px;
+	height: 800px;
+	/* margin: -40px; */
 	display: relative;
 }
+
  #my_main {
 	background-color: #FFF0F5;
 }
@@ -885,17 +887,11 @@ input[type=reset]{
 	font-size: 35px;
 }
 
-.outer {
-	position: relative;
-	/*\\ top: 100px;
-            left: 100px; */
-}
-
 #my_im {
 	width: 45%;
 	height: 200px;
 	margin: 10px;
-	background-color: rgb(238, 192, 108);
+	background-color: aliceblue;
 }
 
 #my_infor {
@@ -903,7 +899,7 @@ input[type=reset]{
 	height: 200px;
 	float: right;
 	margin: 10px;
-	background-color: rgb(179, 224, 255);
+	background-color: whitesmoke;
 }
 
 .my_page {
@@ -915,6 +911,11 @@ input[type=reset]{
 	width: 100%;
 	height: 70px;
 	background-color: rgb(238, 192, 108);
+}
+
+#my_match h3 {
+    background-color: lavender;
+    text-align: center;
 }
 
 #my_match table {
@@ -932,14 +933,14 @@ input[type=reset]{
 	width: 100%;
 	height: 50px;
 	float: right;
-	background-color: rgb(181, 214, 146);
+	background-color: whitesmoke;
 }
 
 #my_num {
 	width: 100%;
 	height: 50px;
 	float: right;
-	background-color: rgb(211, 211, 211);
+	background-color: whitesmoke;
 }
 
 #my_numbtn {
