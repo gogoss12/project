@@ -23,7 +23,7 @@ public class MemberEnrollUpdateServlet extends HttpServlet {
 		
 		Member member = new MemberService().findMemberById(userId);
 
-
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String msg = "";
 		String location = "";
@@ -34,7 +34,7 @@ public class MemberEnrollUpdateServlet extends HttpServlet {
 		member.setMemRole(request.getParameter("role"));
 		member.setMemEmail(request.getParameter("email"));
 		member.setMemPhone(request.getParameter("phone"));
-		member.setMemAddr(request.getParameter("addr1") + " " + request.getParameter("addr2") + request.getParameter("addr3")); // 지역주소 + 상세주소
+		member.setMemAddr(request.getParameter("addr1") + " , " + request.getParameter("addr2") + " , " + request.getParameter("addr3")); // 지역주소 + 상세주소
 		member.setMemBirth(request.getParameter("birth"));
 		
 		System.out.println(member);
