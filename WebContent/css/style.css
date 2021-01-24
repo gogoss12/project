@@ -1,8 +1,71 @@
 @charset "UTF-8";
 
-/* * {
-	border: 1px solid red;
-} */
+@font-face {
+	/* 나눔스퀘어 */
+	font-family: 'nanumSquare_acB';
+	src: url(../image/icon/font-awesome-4.7.0/fonts/NanumSquare_acB.ttf);
+	/* src: url(./image/icon/fonts/nanumSquare_acB.ttf) format('truetype'); */
+}
+
+@font-face {
+	/* 나눔바른 고딕 */
+	font-family: 'NanumBarunGothic';
+	src: url(../image/icon/font-awesome-4/fonts/NanumBarunGothic.ttf) format('truetype');
+	/* src: url(./image/icon/fonts/NanumBarunGothicBold.ttf) format('truetype');  굵은 버전 */
+}
+
+@font-face {
+	/* DX하늘구름 */
+	font-family: 'DXHanlgrum-KSCpc-EUC-H';
+	src: url(../image/icon/font-awesome-4.7.0/fonts/DXHanlgrum-KSCpc-EUC-H.ttf) format('truetype');
+}
+	
+@font-face {
+	/* 주아 */
+	font-family: 'Jua-Regular';
+	src: url(../image/icon/font-awesome-4.7.0/fonts/Jua-Regular.ttf) format('truetype');
+}
+
+@font-face {
+	/* 훈하얀고양이 */
+	font-family: 'HoonWhitecatR';
+	src: url(../image/icon/font-awesome-4.7.0/fonts/HoonWhitecatR.ttf) format('truetype');
+}
+
+@font-face {
+	/* DX국민시대 */
+	font-family: 'DXNPeriod-KSCpc-EUC-H';
+	src: url(../image/icon/font-awesome-4.7.0/fonts/DXNPeriod-KSCpc-EUC-H.ttf) format('truetype');
+}	
+
+@font-face {
+	/* 수수 */
+	font-family: 'THESusu';
+	src: url(../image/icon/font-awesome-4.7.0/fonts/THESusu.ttf) format('truetype');
+}
+
+@font-face {
+	/* 훈도끼 */
+	font-family: 'HoonDdukbokki';
+	src: url(../image/icon/font-awesome-4.7.0/fonts/HoonDdukbokki.ttf) format('truetype');
+}
+
+footer{
+	font-family: 'nanumSquare_acB';
+}
+
+* {
+	/* font-family: 'nanumSquare_acB'; */
+	/* font-family: 'NanumBarunGothic'; */
+	/* font-family: 'Jua-Regular'; */
+	/* font-family: 'HoonWhitecatR'; */
+	/* font-family: 'DXHanlgrum-KSCpc-EUC-H'; */
+	/* font-family: 'DXNPeriod-KSCpc-EUC-H'; */
+	/* font-family: 'THESusu'; */
+	/* font-family: 'HoonDdukbokki'; */
+
+	/* border: 1px solid red; */
+}
 
 /* 매칭검색 sta */
 
@@ -120,6 +183,7 @@ div {
 
 body {
 	/* border: 1px solid wheat; */
+	font-family: 'NanumBarunGothic';
 	width: 1390px;
 	height: 980px;
 	margin: auto;
@@ -128,6 +192,8 @@ body {
 
 header {
 	height: 200px;
+	font-family: 'THESusu';
+	/* font-family: 'Jua-Regular'; */
 }
 
 /* section{
@@ -272,25 +338,25 @@ nav {
 }
 
 #btngroup input[type=button] {
-	font-size: 15px;
-	width: 300px;
-	height: 90px;
+	font-size: 20px;
+	width: 200px;
+	height: 70px;
 	border: white;
-	border-radius: 20%;
-	background: lightblue;
+	border-radius: 50px;
+	background: mediumpurple;
 
 
 
 }
 
 #btngroup input:hover {
-	border: 1px solid skyblue;
-	background: white;
+	/* border: 1px solid skyblue; */
+	background: rgb(209, 186, 255);
 	cursor: pointer;
 }
 
 span {
-	font-size: 15px;
+	font-size: 20px;
 }
 
 #btn_1 {
@@ -323,7 +389,8 @@ span {
     width: 15%;
     float: left; 
     background-color: cornsilk; 
-    height: 100%; 
+	height: 860px; 
+	/* height: 100%; */
     text-align: center;
 }
     
@@ -452,6 +519,7 @@ span {
 footer {
 	font-size: 10px;
 	width: 100%;
+	font-family: 'NanumBarunGothic';
 	/* position: absolute; */
 	z-index: 20;
 	overflow: hidden;

@@ -25,7 +25,9 @@
 <head>
 <meta charset="UTF-8">
 <!-- font awesome (지우지 마세요!) -->
-<link rel="stylesheet" href="../../image/icon/font-awesome-4.7.0/css/font-awesome.min.css">
+<!-- <link rel="stylesheet" href="../../image/icon/font-awesome-4.7.0/css/font-awesome.min.css"> -->
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+              integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <title>Insert title here</title>
 <link rel="stylesheet"href="<%=request.getContextPath()%>/css/style.css">
 <script src="<%=request.getContextPath()%>/js/jquery-3.5.1.js"></script>
