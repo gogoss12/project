@@ -263,15 +263,14 @@
 <%@ include file="/views/common/footer.jsp"%>
 
 <script type="text/javascript">
-    function checkValue() {
-            var careH = document.getElementById('careHistory');
-            
-            if(careH.trim() == '' || careH == null || careH.length == 0) {
-                careH.innerHTML = '없음';
-                console.log(careH.value);
-            }
-            careH.submit();
-        }
+	$('#careEnrollFrm').submit(function() {
+		if($('#careHistory1').val() == '') {
+			$('#careHistory1').val('없음');
+		}
+		if($('#careHistory2').val() == '') {
+			$('#careHistory2').val('없음');
+		}
+	});
 </script>
 
 <script>

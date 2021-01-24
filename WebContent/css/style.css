@@ -1,5 +1,16 @@
 @charset "UTF-8";
 
+@font-face {
+	/* 나눔스퀘어 */
+	font-family: 'nanumSquare_acB';
+	src: url(../image/icon/font-awesome-4.7.0/fonts/NanumSquare_acB.ttf);
+}
+@font-face {
+	/* 수수 */
+	font-family: 'THESusu';
+	src: url(../image/icon/font-awesome-4.7.0/fonts/THESusu.ttf) format('truetype');
+}
+
 /* * {
 	border: 1px solid red;
 } */
@@ -126,6 +137,7 @@ body {
 	height: 980px;
 	margin: auto;
 	display: relative;
+	font-family: 'NanumBarunGothic';
 }
 
 /* 공통 end */
@@ -136,6 +148,7 @@ header {
     height: 200px;
     color: white;
     /* font-size: 7rem; */
+    font-family: 'THESusu';
 }
 
 #logo i {
@@ -282,6 +295,12 @@ nav {
 	border: white;
 	border-radius: 20%;
 	background: lightblue;
+	
+	border-radius: 50px;
+	font-size: 20px;
+	height: 70px;
+	width: 200px;
+	background: mediumpurple;
 }
 
 #btngroup input:hover {
@@ -498,6 +517,7 @@ footer {
     color: black;
     background-color: whitesmoke;
     height: 230px;
+    font-family: 'nanumSquare_acB';
 }
 
 footer p, footer address {
