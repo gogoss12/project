@@ -635,7 +635,8 @@ input[type=reset]{
 #introForm{
 	margin: center;
 }
- 
+
+     
  /* 요양보호사&보호자 소개페이지*/
 .wrap, .wrap *{
       border: 1px solid black;
@@ -650,7 +651,7 @@ input[type=reset]{
  .wrap{
    height: 200px;
    width: 300px;
-   background-color: #fff0f5;
+   background-color: lightsteelblue;
           
 }
 
