@@ -77,31 +77,8 @@
 
         var arr = [];
 
-        // *자격증 없음 클릭시 기타 체크박스 자동 해제 구현 작업중*
-
-        // $('#noQual').click(function () { // 없음 클릭
-        //     let none = $(this);
-
-        //     let others = $('input[name="qual"]:not("#noQual")');
-
-        //     console.log(others);
-
-        //     if (none.is(':checked')) { // 없음 체크 
-        //         others.prop('checked', false);
-
-        //         console.log("qual none");
-        //     } else { // 없음 체크 해제
-
-        //         if (others.is(':checked')) {
-        //             $(none).prop('checked', false);
-
-        //             console.log("list more qual");
-        //         }
-        //     }
-        // });
-
         // checkbox
-        $('input:checkbox').change(function () {
+        $('input:checkbox:not("#noQual")').change(function () { // :not("noQual") 추가
             let clicked = $(this).val();
 
             if ($(this).is(':checked')) { // 박스 체크하면 #searchOptions에 val 추가                
@@ -153,6 +130,48 @@
                 $('#searchOptions').html(arr.join(" "));
 
                 console.log("hide me");
+            }
+        });
+
+        // *자격증 없음 클릭시 기타 체크박스 자동 해제 구현 완료*
+        // 남은 작업 
+        $('#noQual').click(function () { // 없음 클릭
+            let none = $(this);
+
+            let others = $('input[name="qual"]:not("#noQual")');
+
+            console.log(others);
+
+            if (none.is(':checked')) { // 없음 체크 
+                others.prop('checked', false);
+
+                others.prop('disabled', true);
+
+                console.log("qual none");
+
+                // array
+                var values = others.map(function() {
+                    return this.value;
+                }).get();
+
+                console.log("values : " + values);
+
+                values.forEach((elem) => {
+                    const index = arr.indexOf(elem);
+
+                    if (index > -1) {
+                        arr.splice(index, 1);
+                    }
+
+                    $('#searchOptions').html(arr.join(" "));
+
+                    console.log("hide qual(s)");
+                });
+            } else { // 없음 체크 해제
+
+                others.prop('disabled', false);
+
+                console.log("list more qual");
             }
         });
     </script>

@@ -188,12 +188,12 @@
 				<br>
 
 				<div class="patAge group">
-					<label>나이: </label> <select required>
-						<option name="wantedAge" value="50대 이하">50대 이하</option>
-						<option name="wantedAge" value="50대">50대</option>
-						<option name="wantedAge" value="60대">60대</option>
-						<option name="wantedAge" value="70대">70대</option>
-						<option name="wantedAge" value="80대 이상">80대 이상</option>
+					<label>나이: </label> <select name="wantedAge" required>
+						<option value="50대 이하">50대 이하</option>
+						<option value="50대">50대</option>
+						<option value="60대">60대</option>
+						<option value="70대">70대</option>
+						<option value="80대 이상">80대 이상</option>
 					</select>
 				</div>
 

@@ -88,7 +88,7 @@ public class EnrollProfileCareServlet extends HttpServlet {
 		// 희망환자 등록 서블릿
 		
 		patientwanted.setWantedGen(mr.getParameter("wantedgen"));
-		patientwanted.setWantedAge(mr.getParameter("age"));
+		patientwanted.setWantedAge(mr.getParameter("wantedAge"));
 		patientwanted.setWantedIll(String.join(",", mr.getParameter("wantedill")));
 		patientwanted.setWantedGrade(String.join(",", mr.getParameter("wantedgra")));
 		
