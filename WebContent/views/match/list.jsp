@@ -16,7 +16,7 @@
 
 <section id="matchPage">
 
-    <h2>검색하신 요양보호사님께 문의해보세요</h2>
+    <h2><i class="far fa-envelope"></i> 검색하신 요양보호사님께 문의해보세요</h2>
     <div id="searchResult">
     <% if (profiles == null || profiles.isEmpty()) { %>
     		<!-- 검색결과 없음 -->

@@ -13,7 +13,7 @@
         <form action="<%=request.getContextPath()%>/msg/write" method="post"
                 enctype="multipart/form-data">
             <div id="msg_1">
-                <h1>CAREPOOL 쪽지</h1>
+                <!-- <h1>CAREPOOL 쪽지</h1> -->
             </div>
             <div id="msg_2">
                 <div id="msg_2-1">
@@ -34,24 +34,30 @@
                     </div>
                 </div>
                 <div id="msg_2-2">
-                    <div id="msg_2-2-header">
-                        <label style="font-size: large;">받는 사람</label>
-                        <% if (sendTo != null && sendTo.length() > 0) { %>
-                        <input type="text" name="rev_id" value="<%= sendTo %>">
-                        <% } else { %>
-                        <input type="text" name="rev_id" placeholder="아이디를 입력해주세요">
-                        <% } %>
+
+                    <div id="writeToAttach">
+                        <!-- <div id="msg_2-2-header"> -->
+                        <div id="recipient">
+                            <label style="font-size: large;">받는 사람</label>
+                            <% if (sendTo != null && sendTo.length() > 0) { %>
+                            <input type="text" name="rev_id" value="<%= sendTo %>">
+                            <% } else { %>
+                            <input type="text" name="rev_id" placeholder="아이디를 입력해주세요">
+                            <% } %>
+                        </div>
+                        <!-- <div id="msg_2-3-header"> -->
+                        <div id="attachFile">
+                            <label for="formFile" class="form-label">파일 첨부</label>
+                            <input class="wirte_file" type="file" id="writeimg" name="messageimg" style="width: fit-content;">
+                        </div>
                     </div>
-                    <div class="mb-3" id="msg_2-3-header">
-                        <label for="formFile" class="form-label">파일 첨부 &nbsp;&nbsp;</label>
-                        <input class="wirte_file" type="file" id="writeimg" name="messageimg" style="width: fit-content;">
-                    </div>
+
                     <div id="msg_2-2-section">
 
-                        <div style="margin-left: 35px;">
+                        <div id="msgBody" style="margin-left: 35px;">
                             <textarea name="msg_contents" id="msg_content" cols="100" rows="25" placeholder="내용을 입력해주세요" style="resize: none;"></textarea>
+                            <input type="submit" value="보내기">
                         </div>
-                        <input type="submit" value="보내기" style="margin-left: 603px; margin-top: 5px;">
                     </div>
                 </div>
             </div>

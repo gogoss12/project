@@ -21,7 +21,7 @@
 
 #pro_con {
 	font-size: 13px;
-	background-color: #8B4513;
+	/* background-color: #8B4513; */
 	width: 40%;
 	text-align: center;
 	margin-bottom: 5%;
@@ -38,26 +38,26 @@
 	display: relative;
 }
 
-#empty {
+.empty {
 	font-size: 15px;
 	font-weight: 600;
 	padding-bottom: 10px;
 	padding-top: 15px;
-	background-color: #DEB887;
+	background-color: aliceblue;
 	height: 30px;
 }
 
 #pro_main table {
 	width: 100%;
-	text-align: center;
+	text-align: left;
 	padding-left: 0%;
-	border: black;
+	/* border: black; */
 	table-layout: fixed;
 	word-break: break-all;
 }
 
 #pro_main th, td {
-	border-bottom: 1px solid #444444;
+	/* border-bottom: 1px solid #444444; */
 	padding: 30px;
 }
 
@@ -79,14 +79,14 @@
 }
 
 #pro_btn button {
-    border: 2px solid lightsteelblue;
+    border: 4px solid lightsteelblue;
 	border-color: lightsteelblue;
 	color: lightsteelblue;
 	background-color: white;
 	width: 200px;
 	height: 50px;
 	font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 900;
     border-radius: 10px;
     margin: 30px 50px;
     display: relative;
@@ -98,7 +98,7 @@
 }
 
 .pro_Table {
-	width: 40%;
+	width: 25%;
 }
 
 .pro_li img {
@@ -106,11 +106,16 @@
     width: 150px;
     border-radius: 50%;
 }
+
+table textarea {
+    margin: 0 auto;
+    width: 100%;
+}
 </style>
 </head>
 <body>
 <div id="pro_con">
-        <h1>요양보호사님 프로필</h1>
+        <!-- <h1>요양보호사님 프로필</h1> -->
     </div>
     <div class="pro_line">
         <div class="pro_li">
@@ -122,7 +127,7 @@
             </div>
         </div>
         <div id="pro_main">
-            <div id="empty">
+            <div class="empty">
                 세부사항
             </div>
             <table>
@@ -160,7 +165,7 @@
             </table>
 
             <table>
-                <div id="empty">
+                <div class="empty">
                     케어가능환자
                 </div>
                 <thead>
@@ -182,9 +187,18 @@
 
             </table>
 
-            <h3>자기소개</h3>
+            <table>
+                <div class="empty">자기소개</div>
+                <thead></thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <textarea cols="60" rows="7" readonly><%=caregiver.getCareIntro()%></textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
-            <textarea cols="60" rows="7" readonly><%=caregiver.getCareIntro()%></textarea>
         </div>
         <div id="pro_btn">
             <button onclick='opener.location.href="<%=request.getContextPath()%>/msg/write?memId=<%=caregiver.getMemId()%>"; self.close();'>쪽지보내기</button>

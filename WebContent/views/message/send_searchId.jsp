@@ -15,7 +15,7 @@
     <div id="msg_container">
         <form action="<%= request.getContextPath()%>/search/sendId" method="post">
             <div id="msg_1">
-                <h1>CAREPOOL 쪽지</h1>
+                <!-- <h1>CAREPOOL 쪽지</h1> -->
             </div>
             <div id="msg_2">
                 <div id="msg_2-1">
@@ -63,8 +63,8 @@
 										<b><%=sendM.getRowNum()%></b>
 									</td>
                                 <td id="td-2">
-									<a id="checkPatProfile" onclick="checkprofile('<%=list.get(i).getRec_id()%>')" style="cursor:pointer">
-										<b id="sendId"><%=list.get(i).getRec_id()%></b>
+									<a id="checkPatProfile" onclick="checkprofile('<%=sendM.getRec_id()%>')" style="cursor:pointer">
+										<b id="sendId"><%=sendM.getRec_id()%></b>
 									</a>
 								</td>
                                 <td id="td-2">

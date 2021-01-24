@@ -11,7 +11,7 @@
         <div id="msg_container">
             <form action="">
                 <div id="msg_1">
-                    <h1>CAREPOOL 쪽지</h1>
+                    <!-- <h1>CAREPOOL 쪽지</h1> -->
                 </div>
                 <div id="msg_2">
                     <div id="msg_2-1">

@@ -24,26 +24,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<!-- font awesome (지우지 마세요!) -->
-<link rel="stylesheet" href="../../image/icon/font-awesome-4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <title>Insert title here</title>
 <link rel="stylesheet"href="<%=request.getContextPath()%>/css/style.css">
 <script src="<%=request.getContextPath()%>/js/jquery-3.5.1.js"></script>
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-
 </head>
 <body>
 	<header>
 		<div id="wrapper">
             <div id="logo">
                	 <a href="<%=request.getContextPath()%>" >
-                     <img src="/carepool/image/케어풀 임시 아이콘.png" alt="" > 
-           
+                    <i class="fas fa-hand-holding-heart"></i>
                 </a>
             </div>
 			<div id="page">
 				 <a href="<%=request.getContextPath()%>" style="text-decoration: none;">
-					<h1>Carepool</h1>
+					<h1>CAREPOOL</h1>
 				</a>
 			</div>
 			<div id="login">
@@ -55,18 +53,10 @@
 					onclick="location.href = '<%=request.getContextPath()%>/member/enroll';">
 				</div>
 			<% } else { %>
-				<h4><%=loginMember.getMemId()%> 님 환영합니다.</h4>
+				<h4><%=loginMember.getMemId()%> 님 안녕하세요 <i class="far fa-grin-alt"></i></h4>
 				<input type="button" value="마이페이지"
-					onclick="location.href = '<%= request.getContextPath() %>/member/mypage?userId=<%= loginMember.getMemId()%>';">			
-				
-	              <select name="myPage" onchange="window.open(value,'_self');">
-					<option value= "<%= request.getContextPath() %>/member/mypage?userId=<%= loginMember.getMemId()%>">마이페이지</option>
-					<option value="<%= request.getContextPath() %>/member/enrollview?userId=<%= loginMember.getMemId()%>">개인정보 수정</option>
-					<option value="certList">인증내역</option>
-					<option value="delAcct">회원탈퇴</option>
-				</select>  
-				
-				<input type="button" id="authbtn" value="인증/확인">					
+					onclick="location.href = '<%= request.getContextPath() %>/member/mypage?userId=<%= loginMember.getMemId()%>';">							
+				<input type="button" id="authbtn" value="개인정보 수정">					
 				<input type="button" id="logoutbtn" value="로그아웃" 
 					onclick="location.replace('<%= request.getContextPath() %>/logout');">
 			<% } %>

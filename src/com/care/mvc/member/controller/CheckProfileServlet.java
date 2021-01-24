@@ -37,7 +37,7 @@ public class CheckProfileServlet extends HttpServlet {
 			request.setAttribute("patient", patient);
 			request.getRequestDispatcher("/views/patient/patprofilecheck.jsp").forward(request, response);
 			return;
-		}else if(care.getCareNo() != 0 && care.getCareGen() == null) {
+		}else if(care.getCareNo() != 0 && care.getCareGen() != null) {
 			request.setAttribute("care", care);
 			request.setAttribute("patWanted", patWanted);
 			request.getRequestDispatcher("/views/care/careprofilecheck.jsp").forward(request, response);
