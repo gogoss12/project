@@ -17,8 +17,6 @@ public class MemberEnrollView extends HttpServlet {
    
     public MemberEnrollView() {
     }
-
-	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String userId = request.getParameter("userId");
 		System.out.println(userId);
@@ -27,11 +25,4 @@ public class MemberEnrollView extends HttpServlet {
 		request.setAttribute("member", member);
 		request.getRequestDispatcher("/views/member/enrollview.jsp").forward(request, response);
 	}
-		
-
-
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}	
-
 }

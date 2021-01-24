@@ -10,7 +10,6 @@
 	ArrayList<ReceiveMessage> list = (ArrayList)request.getAttribute("list");
 	PageInfo info = (PageInfo)request.getAttribute("pageInfo");
 	
-	
 %>
 <%@ include file="/views/common/header.jsp"%>
 <section>
@@ -55,7 +54,6 @@
 								</tr>
 								<% }else { 
 										for(ReceiveMessage revM : list){
-											if(loginMember.getMemId().equals(revM.getMem_id())){									
 								%>								
 								<tr>
 									<td id="td-2" >
@@ -88,7 +86,6 @@
 									</td>
 								</tr>
 									<%}
-								 } 
 							} %>
 						</table>
 					</div>

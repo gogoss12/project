@@ -18,12 +18,7 @@ public class MemberEnrollUpdateServlet extends HttpServlet {
  
     public MemberEnrollUpdateServlet() {
     }
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String userId = request.getParameter("userId");
-		
-		Member member = new MemberService().findMemberById(userId);
-
-	}
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String msg = "";
 		String location = "";
@@ -51,7 +46,4 @@ public class MemberEnrollUpdateServlet extends HttpServlet {
 		request.setAttribute("loc", location);
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
 	}
-	
-
-
 }

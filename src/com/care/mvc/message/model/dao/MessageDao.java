@@ -585,7 +585,7 @@ public class MessageDao {
 				+ "    FROM ("
 				+ "        SELECT R.REC_NO, R.SEND_ID, R.REC_BODY, R.REC_DATE, M.MEM_ID, R.STATUS"
 				+ "        FROM REC_MSG R JOIN MEMBER M ON(R.MEM_ID = M.MEM_ID) WHERE R.STATUS = 'Y'"
-				+ "			AND SEND_ID LIKE '%' || ? || '%'  "		
+				+ "			AND SEND_ID = ? "		
 				+ "        ORDER BY R.REC_NO DESC"
 				+ "    )"
 				+ ") WHERE RNUM BETWEEN ? AND ? ";

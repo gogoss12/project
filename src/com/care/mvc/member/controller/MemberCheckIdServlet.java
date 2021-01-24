@@ -15,10 +15,6 @@ public class MemberCheckIdServlet extends HttpServlet {
        
     public MemberCheckIdServlet() {
     }
-
-//	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId");
 		
@@ -30,5 +26,4 @@ public class MemberCheckIdServlet extends HttpServlet {
 		
 		request.getRequestDispatcher("/views/member/checkId.jsp").forward(request, response);
 	}
-
 }

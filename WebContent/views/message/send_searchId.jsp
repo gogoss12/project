@@ -8,7 +8,8 @@
 
 	ArrayList<SendMessage> list = (ArrayList)request.getAttribute("list");
 	PageInfo info = (PageInfo)request.getAttribute("pageInfo");
-
+	System.out.println(list.size());
+	
 %>
 <%@ include file="/views/common/header.jsp" %>
 <section>
@@ -63,8 +64,8 @@
 										<b><%=sendM.getRowNum()%></b>
 									</td>
                                 <td id="td-2">
-									<a id="checkPatProfile" onclick="checkprofile('<%=list.get(i).getRec_id()%>')" style="cursor:pointer">
-										<b id="sendId"><%=list.get(i).getRec_id()%></b>
+									<a id="checkPatProfile" onclick="checkprofile('<%=sendM.getRec_id()%>')" style="cursor:pointer">
+										<b id="sendId"><%=sendM.getRec_id()%></b>
 									</a>
 								</td>
                                 <td id="td-2">

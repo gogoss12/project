@@ -22,7 +22,6 @@ public class SendMessageDetailsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int sendNo = Integer.parseInt(request.getParameter("send_no"));
-//		System.out.println(sendNo);
 		
 		SendMessage sendmessage = new MessageService().SendDetails(sendNo);
 		SendMessageImg imgS = new MessageService().SendDetailsImgName(sendNo);
@@ -32,8 +31,4 @@ public class SendMessageDetailsServlet extends HttpServlet {
 		
 		request.getRequestDispatcher("/views/message/send_msg_detail.jsp").forward(request, response);
 	}
-		
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
-
 }

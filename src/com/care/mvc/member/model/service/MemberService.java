@@ -50,8 +50,6 @@ public class MemberService {
 	public Member findMemberById(String userId) {
 		Connection conn = getConnection();
 		
-        System.out.println(userId + 1);
-		
         Member member = dao.findMemberById(conn, userId);
     
 		close(conn);
@@ -63,26 +61,14 @@ public class MemberService {
         Connection conn = getConnection();
 		int result = dao.enrollupdateMember(conn, member);
 		
-		       if (result > 0) {
-					commit(conn);
-				} else {
-					rollback(conn);
-				}
-				
-		        close(conn);
-		        
-				return result;
-
+	       if (result > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+			
+	        close(conn);
+	        
+			return result;
 	}
-	
-	
-	
 }
-
-
-
-
-
-
-
-

@@ -52,7 +52,6 @@ public class ReceiveMessageFileDownServlet extends HttpServlet {
 			}
 			
 			response.setContentType("application/octet-stream");
-			
 			response.setHeader("Content-Disposition", "attachment;filename=" + downName);
 			
 			int read = -1;
@@ -60,12 +59,8 @@ public class ReceiveMessageFileDownServlet extends HttpServlet {
 			while ((read = bis.read()) != -1) {
 				bos.write(read);
 		}
-
 			bos.close();
 			bis.close();
 		}
-			
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	}
 
 }

@@ -1,12 +1,15 @@
+<%@page import="com.care.mvc.GuardAndPatient.model.vo.Guard"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String userId = (String)request.getAttribute("userId");
+	String memId = (String)request.getAttribute("memId");    	
+	Guard guard = (Guard)request.getAttribute("guard");
 %>
+    
 <%@ include file="/views/common/header.jsp" %>
     <section>
         <div class="patient_details">
-            <form action="<%=request.getContextPath()%>/enroll/profile/guardian" method="POST">
+            <form action="<%=request.getContextPath()%>/modify/guardProfile" method="POST">
                     <div>
                         <h1>보호자용 프로필 등록</h1>
                         <img src="../image/병아리당황.png" style="width:200px; height: 200px;">
@@ -165,7 +168,8 @@
                     </div>
                 <input type="submit" value="등록하기">
                 <input type="reset" value="취소하기">
-                <input type="hidden" name="userId" value=<%= userId %>>
+                <input type="hidden" name="userId" value=<%= memId %>>
+                <input type="hidden" name="guardNo" value=<%= guard.getGuard_no()%>>
             </form>
         </div>
     </section>

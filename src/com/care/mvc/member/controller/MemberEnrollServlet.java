@@ -32,8 +32,6 @@ public class MemberEnrollServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		System.out.println(role);
 		
-		
-
 		// 회원가입 맨 밑에 선택하는 부분 (선택 안하고 눌러도 작동하는 것을 이걸 통해서 방지, 메세지 띄우고, 다시 창으로 돌아가게 만듬)
 		if (role == null) {
 			msg = "보호자/보호사를 선택해주세요";

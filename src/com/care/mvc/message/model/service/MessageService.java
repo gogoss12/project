@@ -245,5 +245,4 @@ public class MessageService {
 		
 		return list;
 	}
-
 }

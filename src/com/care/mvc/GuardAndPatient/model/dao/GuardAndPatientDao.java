@@ -192,4 +192,69 @@ public class GuardAndPatientDao {
 		return patient;
 	}
 
+	public int updateGuard(Connection conn, Guard guard) {
+		int resultG = 0;
+		PreparedStatement GPstmt = null;
+		String GuardQuery = "UPDATE GUARDIAN_PROFILE SET GUARD_GEN=?, GUARD_PAT=? WHERE MEM_ID = ?";
+		
+		try {
+			GPstmt = conn.prepareStatement(GuardQuery);
+
+			GPstmt.setString(1, guard.getGuard_gen());
+			GPstmt.setString(2, guard.getGuard_pat());
+			GPstmt.setString(3, guard.getMemId());
+			System.out.println(guard.getMemId());
+
+			resultG = GPstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(GPstmt);
+		}
+		return resultG;
+	}
+
+	public int updatepatient(Connection conn, Patient patient, String guardNo) {
+		int resultP = 0;
+		PreparedStatement PPstmt = null;
+		String PatientQuery = "UPDATE PATIENT_DETAILS SET PAT_PLACE=?, PAT_PERIOD=?, PAT_HOP_TIME=?, PAT_NAME=?, "
+				+ "PAT_AGE=?, PAT_GEN=?, PAT_KG=?, PAT_INFECT=?, PAT_GRADE=?, PAT_SANIT=?, PAT_PARAL=?, PAT_MOVE=?, "
+				+ "PAT_BED=?, PAT_COGDIS=?, PAT_BATHROOM=?, PAT_BOWEL_MN=?, PAT_OSTOMY=?, PAT_HELP_EAT=?, PAT_SUCTION=?, PAT_GUARD_GEN=?, "
+				+ "PAT_ETC=? WHERE GUARD_NO=?";
+		try {
+			PPstmt = conn.prepareStatement(PatientQuery);
+
+			PPstmt.setString(1, patient.getPat_place());
+			PPstmt.setString(2, patient.getPat_period());
+			PPstmt.setString(3, patient.getPat_hop_time());
+			PPstmt.setString(4, patient.getPat_name());
+			PPstmt.setInt(5, patient.getPat_age());
+			PPstmt.setString(6, patient.getPat_gen());
+			PPstmt.setInt(7, patient.getPat_kg());
+			PPstmt.setString(8, patient.getPat_infect());
+			PPstmt.setString(9, patient.getPat_grade());
+			PPstmt.setString(10, patient.getPat_sanit());
+			PPstmt.setString(11, patient.getPat_paral());
+			PPstmt.setString(12, patient.getPat_move());
+			PPstmt.setString(13, patient.getPat_bed());
+			PPstmt.setString(14, patient.getPat_cogdis());
+			PPstmt.setString(15, patient.getPat_bathroom());
+			PPstmt.setString(16, patient.getPat_bowel_mn());
+			PPstmt.setString(17, patient.getPat_ostomy());
+			PPstmt.setString(18, patient.getPat_help_eat());
+			PPstmt.setString(19, patient.getPat_suction());
+			PPstmt.setString(20, patient.getPat_guard_gen());
+			PPstmt.setString(21, patient.getPat_etc());
+			PPstmt.setString(22, guardNo);
+
+			resultP = PPstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(PPstmt);
+		}
+
+		return resultP;
+	}
+
 }

@@ -30,6 +30,7 @@ public class ReceiveSearchIdServlet extends HttpServlet {
 		PageInfo info = null;
 		ArrayList<ReceiveMessage> list = null;
 		String Id = request.getParameter("Id");
+		System.out.println(Id);
 		HttpSession session = request.getSession(false);
 		Member loginMember = session != null ? (Member)session.getAttribute("loginMember") : null; 
 		

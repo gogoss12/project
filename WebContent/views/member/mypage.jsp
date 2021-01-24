@@ -1,35 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	Member member = (Member)request.getAttribute("member");
 
+%>
 <%@ include file="/views/common/header.jsp" %>
 <section id="content">
 
 	<form id="page_container" action="<%= request.getContextPath()%>/member/mypage"
-		method="post">
+		method="get">
 			<div id="my_text">
 				<h1>마이페이지</h1>
 			</div>
 			<div class="outer">
 				<div class="my_page" id="my_im">
-					<div class="my_page" id="my_intro">
-
-						<legend style="font-size: 16px; font-weight: 600;">한줄
-							자기소개</legend>
-						<div id="print" class="print"></div>
-						<div>
-							<button onclick="addMember();">수정</button>
-							<button onclick="printMember();">저장</button>
-						</div>
-
+					<img src="../image/병아리당황.png">
+					<div id="my_name"><%=member.getMemName()%> 
+					<%if(member.getMemRole().equals("guardian")) { %>
+					보호자님</div>
+					<% }else if(member.getMemRole().equals("caregiver")) { %>
+					보호사님</div>
+					<% } else { %>
+					님</div>
+					<%} %>
+					<div>
+					<input type="button" value="프로필 수정하기" onclick="location.href='<%=request.getContextPath()%>/profile/view?memId=<%=member.getMemId()%>';">
 					</div>
-					<img src="./image/병아리당황.png">
-					<div id="my_name">땡땡땡 님 안녕하세요</div>
 				</div>
 
 				<div class="my_page" id="my_infor">
-					<div class="my_page" id="my_em">이메일</div>
-					<div class="my_page" id="my_num">전화번호</div>
-					<P>자기소개</P>
+					<div class="my_page" id="my_em">이메일 : <%=member.getMemEmail()%></div>
+					<div class="my_page" id="my_num">전화번호 : <%=member.getMemPhone().substring(0,2)%> -
+					<%=member.getMemPhone().substring(2,6)%> - <%=member.getMemPhone().substring(6,10)%></div>
+					<div class="my_page" id="my_addr">주소 : <%=member.getMemAddr() %></div>
 				</div>
 				<div id="my_match">
 					<h3>최근매칭내역</h3>
@@ -70,16 +73,6 @@
 						</tbody>
 					</table>
 				</div>
-				<div id="my_numbtn">
-					<button onclick="location.href=''">&lt;&lt;</button>
-					<button>&lt;</button>
-					<button>1</button>
-					<button onclick="location.href=''">2</button>
-					<button onclick="location.href=''">3</button>
-					<button>&gt;</button>
-					<button>&gt;&gt;</button>
-				</div>
-			</div>
 	</form>
 </section>
 <script type="text/javascript">
@@ -88,15 +81,12 @@
     function addMember() {
         const name = prompt("닉네임 또는 한줄자기소개 :");
         
-
         member = {
             name,
             toString: function() {
               return `$(this.name) <br>`;
             }
         }
-
-        console.log(member.toString());
     }
 
     function printMember() {

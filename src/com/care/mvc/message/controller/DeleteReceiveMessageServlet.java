@@ -31,7 +31,6 @@ public class DeleteReceiveMessageServlet extends HttpServlet {
 			msg="삭제 실패!!";
 			loc="/msg/get";
 		}
-		
 		request.setAttribute("msg", msg);
 		request.setAttribute("loc", loc);
 		

@@ -28,7 +28,6 @@ public class ReceiveMessageDetailsServlet extends HttpServlet {
 		request.setAttribute("imgR", imgR);
 		
 		request.getRequestDispatcher("/views/message/rec_msg_detail.jsp").forward(request, response);
-		
 	}
 }
 

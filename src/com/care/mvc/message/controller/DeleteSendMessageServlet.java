@@ -36,9 +36,5 @@ public class DeleteSendMessageServlet extends HttpServlet {
 		request.setAttribute("loc", loc);
 		
 		request.getRequestDispatcher("/views/common/msg.jsp").forward(request, response);
-		
-		
-		
 	}
-
 }

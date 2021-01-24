@@ -62,4 +62,32 @@ public class GuardAndPatientService {
 		return patient;
 	}
 
+	public int UpdateGuard(Guard guard) {
+		
+		Connection conn = getConnection();
+		
+		int resultG = new GuardAndPatientDao().updateGuard(conn, guard);
+				
+		if(resultG > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		};
+		
+		return resultG;
+	}
+	
+	public int UpdatePatient(Patient patient, String guardNo) {
+		Connection conn = getConnection();
+		int resultP = new GuardAndPatientDao().updatepatient(conn, patient, guardNo);
+				
+		if(resultP > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		};
+		
+		return resultP;
+	}
+
 }

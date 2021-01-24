@@ -5,6 +5,9 @@
 } */
 
 /* 매칭검색 sta */
+.all {
+	position:relative;
+}
 
 #searchMatch h2, #matchPage h2 {
 	margin-top: 70px;
@@ -250,6 +253,22 @@ nav {
 	background: beige;
 }
 
+#main-menu>li>ul #sub-li {
+	font-size: 25px;
+	line-height: 40px;
+	border: 1px solid;
+	border-radius: 10px;
+	background: beige;
+    animation: fadeout 2s;
+}
+
+@keyframes fadeout {
+    from {
+        opacity : 1;
+    }
+    to{ opacity : 0;}
+}
+
 #sec_container {
 	width: 100%;
 	height: 100%;
@@ -278,9 +297,6 @@ nav {
 	border: white;
 	border-radius: 20%;
 	background: lightblue;
-
-
-
 }
 
 #btngroup input:hover {
@@ -817,12 +833,14 @@ input[type=reset]{
 	height: 200px;
 	float: right;
 	margin: 10px;
+	font-size: 30px;
 	background-color: rgb(179, 224, 255);
 }
 
 .my_page {
 	display: inline-block;
 	border: 1px solid gainsboro;
+	border-radius: 10px;
 }
 
 #my_intro {
@@ -869,7 +887,6 @@ input[type=reset]{
 	width: 100px;
 	height: 100px;
 	border-radius: 50%;
-	margin-bottom: 20%;
 }
 
 #my_name {

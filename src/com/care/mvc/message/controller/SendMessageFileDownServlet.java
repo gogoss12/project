@@ -60,7 +60,6 @@ public class SendMessageFileDownServlet extends HttpServlet {
 		while ((read = bis.read()) != -1) {
 			bos.write(read);
 	}
-
 		bos.close();
 		bis.close();
 	}

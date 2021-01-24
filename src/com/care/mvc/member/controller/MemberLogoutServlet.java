@@ -25,5 +25,4 @@ public class MemberLogoutServlet extends HttpServlet {
 		
 		response.sendRedirect(request.getContextPath() + "/");
 	}
-	
 }

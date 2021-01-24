@@ -3,7 +3,7 @@
 <%@ include file="/views/common/header.jsp" %>
 <%
 	Member member = (Member)request.getAttribute("member");
-   
+
     String addr = member.getMemAddr();
     String[] arr = addr.split(","); 
 
@@ -49,8 +49,16 @@
 								<input type="text" name="addr1" id="addr1" placeholder="주소" value="<%= arr[0]%>"  style="width:360px">
 							</div>
 							<!-- 동이름 / 빌딩이름 등이 나온다 -->
+							<%if(arr.length > 1) { %>
 							<input type="text" name="addr2" id="addr2" value="<%= arr[1]%>" placeholder="상세주소">
+							<% }else { %>
+							<input type="text" name="addr2" id="addr2" value=" " placeholder="상세주소">
+							<% } %>
+							<%if(arr.length > 2) { %>
 							<input type="text" name="addr3" id="addr3" value="<%= arr[2]%>" placeholder="참고항목" readonly>
+							<% }else { %>
+							<input type="text" name="addr3" id="addr3" value=" " placeholder="참고항목" readonly>
+							<%} %>
 						</td>
 					</tr>
 					<tr>

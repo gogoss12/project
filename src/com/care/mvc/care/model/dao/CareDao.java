@@ -216,6 +216,88 @@ public class CareDao {
 		return patWanted;
 	}
 
+	public int updateCareImage(Connection conn, CareImage careImage, String careNo) {
+		int resultI = 0;
+	      PreparedStatement Ipstmt = null;
+	      
+	      try {
+	         String CareImageQuery = "UPDATE CARE_IMAGE SET IMG_DATE = SYSDATE, IMG_PATH = ?, IMG_NAME_ORG = ?, IMG_NAME_SAV = ?"
+	         		+ " WHERE CARE_NO=? ";
+	         
+	         Ipstmt = conn.prepareStatement(CareImageQuery);
+	         
+	         Ipstmt.setString(1, careImage.getImgPath());
+	         Ipstmt.setString(2, careImage.getImgNameOrg());
+	         Ipstmt.setString(3, careImage.getImgNameSav());
+	         Ipstmt.setString(4, careNo);
+	         
+	         resultI = Ipstmt.executeUpdate();
+	         
+	         System.out.println(resultI);
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         JDBCTemplate.close(Ipstmt);
+	      }
+	      return resultI;
+	   }
+
+	public int updateCare(Connection conn, Care care) {
+		int resultC = 0;
+		String query = "UPDATE CAREGIVER_PROFILE SET CARE_GEN=?, CARE_LICENSE=?, CARE_YEARS=?, CARE_HISTORY=?, CARE_PLUS=?, CARE_TIME=?, "
+				+ "CARE_PLACE=?, CARE_SAL=?, CARE_INTRO=? WHERE MEM_ID = ?";
+		PreparedStatement pstmt = null;
+
+		try {
+			pstmt = conn.prepareStatement(query);
+	
+			pstmt.setString(1, care.getCareGen());
+			pstmt.setString(2, care.getCareLicense());
+			pstmt.setString(3, care.getCareYears());
+			pstmt.setString(4, care.getCareHistory());
+			pstmt.setString(5, care.getCarePlus());
+			pstmt.setString(6, care.getCareTime());
+			pstmt.setString(7, care.getCarePlace());
+			pstmt.setString(8, care.getCareSal());
+			pstmt.setString(9, care.getCareIntro());
+			pstmt.setString(10, care.getMemId());
+
+			resultC = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(pstmt);
+		}
+		return resultC;
+	}
+
+	public int updatecarepatientwanted(Connection conn, PatientWanted patientwanted, String careNo) {
+		 	int resultPW = 0;
+			String query = "UPDATE PATIENT_WANTED SET WANTED_GRADE=?, WANTED_GEN=?, WANTED_AGE=?, WANTED_ILL=? "
+					+ " WHERE CARE_NO =?";
+			PreparedStatement ppstmt = null;
+
+			try {                   
+				ppstmt = conn.prepareStatement(query);
+
+				ppstmt.setString(1, patientwanted.getWantedGrade());
+				ppstmt.setString(2, patientwanted.getWantedGen());
+				ppstmt.setString(3, patientwanted.getWantedAge());
+				ppstmt.setString(4, patientwanted.getWantedIll());
+				ppstmt.setString(5, careNo);
+				
+				resultPW = ppstmt.executeUpdate();
+				
+				System.out.println(resultPW);
+			
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				JDBCTemplate.close(ppstmt);
+			}
+			return resultPW;
+		}
 }
 
 

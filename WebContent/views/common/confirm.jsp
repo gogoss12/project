@@ -5,9 +5,6 @@
 	String role = (String)request.getAttribute("role");
 	String userId = (String)request.getAttribute("userId");
 	boolean is = role.contains("guardian");
-	
-	
-	
 %>
 <!DOCTYPE html>
 <html>

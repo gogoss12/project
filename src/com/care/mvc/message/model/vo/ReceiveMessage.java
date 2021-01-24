@@ -108,5 +108,4 @@ public class ReceiveMessage {
 		return "ReceiveMessage [rec_no=" + rec_no + ", rowNum=" + rowNum + ", send_id=" + send_id + ", rec_body="
 				+ rec_body + ", rec_date=" + rec_date + ", Mem_id=" + Mem_id + ", status=" + status + "]";
 	}
-	
 }
