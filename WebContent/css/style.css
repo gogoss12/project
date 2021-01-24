@@ -5,15 +5,12 @@
 	font-family: 'nanumSquare_acB';
 	src: url(../image/icon/font-awesome-4.7.0/fonts/NanumSquare_acB.ttf);
 }
+
 @font-face {
 	/* 수수 */
 	font-family: 'THESusu';
 	src: url(../image/icon/font-awesome-4.7.0/fonts/THESusu.ttf) format('truetype');
 }
-
-/* * {
-	border: 1px solid red;
-} */
 
 /* 매칭검색 sta */
 
@@ -133,6 +130,7 @@ div {
 
 body {
 	/* border: 1px solid wheat; */
+	font-family: 'NanumBarunGothic';
 	width: 1390px;
 	height: 980px;
 	margin: auto;
@@ -290,13 +288,7 @@ nav {
 }
 
 #btngroup input[type=button] {
-	font-size: 15px;
-	width: 300px;
-	height: 90px;
 	border: white;
-	border-radius: 20%;
-	background: lightblue;
-	
 	border-radius: 50px;
 	font-size: 20px;
 	height: 70px;
@@ -305,13 +297,13 @@ nav {
 }
 
 #btngroup input:hover {
-	border: 1px solid skyblue;
-	background: white;
+	/* border: 1px solid skyblue; */
+	background: rgb(209, 186, 255);
 	cursor: pointer;
 }
 
 span {
-	font-size: 15px;
+	font-size: 20px;
 }
 
 #btn_1 {
@@ -498,19 +490,12 @@ form {
 
 /*------------------------------- */
 
-/* #foot {
-	width: 100%;
-	font-size: 15px;
-	width: 100%;
-	text-align: center;
-	color: black;
-} */
-
 /* 푸터 sta */
 
 footer {
 	font-size: 10px;
 	width: 100%;
+	font-family: 'NanumBarunGothic';
 	/* position: absolute; */
 	z-index: 20;
 	overflow: hidden;
@@ -729,7 +714,7 @@ input[type=reset]{
  .wrap{
    height: 200px;
    width: 300px;
-   background-color: #fff0f5;
+   background-color: lightsteelblue;
           
 }
 

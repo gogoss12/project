@@ -8,7 +8,7 @@
 	<div id="mucenter">
 		<div id="profile1">
 			<h1 id="pointer">요양보호사 프로필 등록</h1>
-			<form name="careEnrollFrm"
+			<form name="careEnrollFrm" id="careEnrollFrm"
 				action="<%= request.getContextPath()%>/enroll/profile/care"
 				method="post" enctype="multipart/form-data">
 
@@ -87,18 +87,22 @@
 							<td>업무</td>
 							<td colspan="3">기간</td>
 						</tr>
-						<tr>
-							<td id="careerdetail"><input type='text' id='careHistory'
-								name='careHistory1' value=""></td>
-							<td id="careerdetail"><input type='text' id='careHistory'
-								name='careHistory2' value=""></td>
-							<td id="careerdetail"><input type='date' id='careHistory'
-								name='careHistoryDate1' value=""></td>
+						<tr>											
+							<td id="careerdetail"><input type='text' id='careHistory1'
+								name='careHistory1' value=''></td>
+
+							<td id="careerdetail"><input type='text' id='careHistory2'
+								name='careHistory2' value=''></td>
+
+							<td id="careerdetail"><input type='date' id='careHistoryDate1'
+								name='careHistoryDate1' value=''></td>
+
 							<td style="border-bottom: 1px solid white;">
 								<p>&nbsp ~ &nbsp</p>
 							</td>
-							<td id="careerdetail"><input type='date' id='careHistory'
-								name='careHistoryDate2' value=""></td>
+
+							<td id="careerdetail"><input type='date' id='careHistoryDate2'
+								name='careHistoryDate2' value=''></td>
 						</tr>
 					</table>
 				</div>
@@ -252,9 +256,9 @@
 				<br>
 
 				<div class="btn">
-					<input type="submit" id="careenroll" value="등록하기"> <input
-						type="reset" value="취소하기"> <input type="hidden"
-						name="memId" value=<%=userId %>>
+					<input type="submit" id="careenroll" value="등록하기"> 
+					<input type="reset" value="취소하기"> 
+					<input type="hidden" name="memId" value=<%=userId %>>
 				</div>
 			</form>
 		</div>

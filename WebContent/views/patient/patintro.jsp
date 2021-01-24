@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/views/common/header.jsp" %>
-<!-- <script src="https://kit.fontawesome.com/4d8c9a2b0b.js" crossorigin="anonymous"></script> -->
+<script src="https://kit.fontawesome.com/4d8c9a2b0b.js" crossorigin="anonymous"></script>
 <section id="content">
 <form id="patintroForm" action="<%= request.getContextPath()%>/guardianAndPatientIntro" method="GET">
 

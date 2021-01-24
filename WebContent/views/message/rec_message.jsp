@@ -12,6 +12,7 @@
 	
 %>
 <%@ include file="/views/common/header.jsp"%>
+<link rel="stylesheet" href="../../css/style.css">
 
 <section>
 	<div id="msg_container">
@@ -37,7 +38,7 @@
 						<input type="button" name="search_id" value="검색" onclick="search()">
 					</div>
 					<div id="msg_2-2-section">
-					<table id="msg_table">
+						<table id="msg_table">
 								<tr>
 									<td id="td-1" style="width: 150px;"><b>번호</b></td>
 									<td id="td-1" style="width: 150px;"><b>보낸사람</b></td>

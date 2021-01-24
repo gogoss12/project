@@ -56,8 +56,6 @@ pageEncoding="UTF-8"%>
      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.내 집 주변에 거주 하고 있는 요양보호사를 찾아보세요!!
     </p>
     </ul>
-
-
 </div>
 </form>
 </section>

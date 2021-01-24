@@ -55,12 +55,11 @@ integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zF
 			<% } else { %>
 				<h4><%=loginMember.getMemId()%> 님 안녕하세요 <i class="far fa-grin-alt"></i></h4>
 				<input type="button" value="마이페이지"
-					onclick="location.href = '<%= request.getContextPath() %>/member/mypage?userId=<%= loginMember.getMemId()%>';">							
-				<input type="button" id="authbtn" value="개인정보 수정">					
+					onclick="location.href = '<%= request.getContextPath() %>/member/mypage?userId=<%= loginMember.getMemId()%>';">			
+				<input type="button" id="authbtn" value="개인정보수정" onclick="location.href = '<%= request.getContextPath() %>/member/enrollview?userId=<%= loginMember.getMemId()%>';"  >					
 				<input type="button" id="logoutbtn" value="로그아웃" 
 					onclick="location.replace('<%= request.getContextPath() %>/logout');">
 			<% } %>
-
 			</div>
 		</div>
 		<nav>
