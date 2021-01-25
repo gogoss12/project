@@ -14,7 +14,7 @@
 
 /* 매칭검색 sta */
 .all {
-	position:relative;
+	position: relative;
 }
 
 #searchMatch h2, #matchPage h2 {
@@ -139,6 +139,11 @@ body {
 	margin: auto;
 	display: relative;
 	font-family: 'NanumBarunGothic';
+}
+
+section {
+    /* min-height: 800px; */
+    /* margin-bottom: 100px; */
 }
 
 /* 공통 end */
@@ -288,7 +293,7 @@ nav {
 
 #sec_container {
 	width: 100%;
-	height: 100%;
+    height: 100%;
 }
 
 #sec_container>div {
@@ -417,11 +422,7 @@ form {
 	padding-bottom: 3rem;
 }
 
-/* .writeToAttach {
-    float: left;
-} */
-
-#writeToAttach {
+.writeToAttach {
     margin: 55px;
 }
 
@@ -469,14 +470,14 @@ form {
 }
 
 #msg_table #td-1{
-    height: 40px;
+    /* height: 40px; */
 	border-bottom: 1px solid;
 	font-size: large;
     background-color: powderblue;
 }
 
 #msg_table #td-2{
-    height: 35px;
+    /* height: 35px; */
 	border-bottom: 1px dashed; 
 	font-size: medium;
 	background-color: aliceblue;
@@ -498,9 +499,18 @@ form {
 }
 
 #msg_contents2{
-	padding: 2rem;
+	/* padding: 2rem; */
 	border-bottom: 2px solid beige;
 	border-top: 2px solid beige;
+}
+
+#msg_contents2 textarea {
+    margin-left: 80px;
+}
+
+#msg_contents2 input[type=button] {
+    margin-left: 750px;
+    margin-top: 50px;
 }
 
 #msg_2-2-footer div{
@@ -549,7 +559,8 @@ footer p, footer address {
 	/* top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%); */
-	border-radius: 15px;
+    border-radius: 15px;
+    padding-top: 150px;
 }
 
 #loginForm h2 {
@@ -652,9 +663,10 @@ input[type=tel], input[type=date]  {
     -webkit-transition: width 0.4s ease-in-out;
     transition: width 0.4s ease-in-out;
 } 
+
 th {
-text-align: center;
-  font-size: 16px;
+    text-align: center;
+    font-size: 16px;
 }
 
 input[type=button] {
@@ -685,6 +697,7 @@ input[type=submit] {
     border: white;
     background-color: rgb(220, 220, 220);
 }
+
 input[type=reset]{
     height: 30px;
     width: 120px;
@@ -697,16 +710,25 @@ input[type=reset]{
     border: white;
     background-color: rgb(220, 220, 220);
 }
+
 #findPostalAddr {
     margin-left: -30px;
     margin-top: 19px;
     height: 30px;
     width: 120px;
 }
+
 #checkDuplicate{
     margin-left: 10px;
-
 }  
+
+#content form {
+    padding-bottom: 100px;
+}
+
+#enroll-container>form>div {
+    padding-top: 4rem;
+}
 
 /* 회원가입 end */
 
@@ -757,7 +779,7 @@ input[type=reset]{
 }
 
 #pointer {
-	background-color: darkkhaki;
+	background-color: powderblue;
 	height: 45px;
 }
 

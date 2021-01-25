@@ -29,7 +29,7 @@
 					</div>
 				</div>
 				<div id="msg_2-2">
-					<div id="msg_2-2-body">
+					<div id="msg_2-2-body" class="writeToAttach">
                         <div id="msg_contents1">             <!-- 여기 a태그 없앨지 있을지 여부 -->
                             <b>보낸사람 : &nbsp;</b> <a href="#"></a><b><%=receivemessage.getSend_id()%></b></a>
                         </div>
@@ -63,7 +63,7 @@
                     <!-- 이게 보낸 내용 -->
                     <div id="msg_contents2">
                     	<textarea name="receiveContents" cols="100" rows="25"readonly style="resize: none;display: block; margin-block: 10px;"><%=receivemessage.getRec_body()%></textarea>
-                    	<div style="padding-left: 54%;">
+                    	<div>
 	                    	<input type="button" onclick="checkprofile('<%=receivemessage.getSend_id()%>')" style="border-radius: 20px; background: lightskyblue" value="매칭">
 	                    </div>
                     </div>

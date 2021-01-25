@@ -35,7 +35,7 @@
                 </div>
                 <div id="msg_2-2">
 
-                    <div id="writeToAttach">
+                    <div class="writeToAttach">
                         <!-- <div id="msg_2-2-header"> -->
                         <div id="recipient">
                             <label style="font-size: large;">받는 사람</label>

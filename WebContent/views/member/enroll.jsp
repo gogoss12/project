@@ -78,7 +78,7 @@
 						</select></td>
 					</tr>
 				</table>
-				<div style="text-align : center; padding-top : 1rem;">
+				<div style="text-align : center;">
 				<span style="padding-right : 3rem;">
 					<input type="submit" id="enrollSubmit" value="회원가입"> 
 				</span>

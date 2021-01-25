@@ -9,7 +9,7 @@
 
         <div class="checkbox" id="careTime">
             <h3>돌봄시간</h3>
-            <label><input type="checkbox" name="time" value="전체">전체</label>
+            <label><input type="checkbox" name="time" value="전체" id="allTimes">전체</label>
             <label><input type="checkbox" name="time" value="주중">주중</label>
             <label><input type="checkbox" name="time" value="주말">주말</label>
             <label><input type="checkbox" name="time" value="주간">주간</label>
@@ -36,7 +36,7 @@
 
         <div class="dropdown" id="careYears">
             <h3>경력사항</h3>
-            <label><input type="checkbox" name="years" value="전체">전체</label>
+            <label><input type="checkbox" name="years" value="전체" id="allYears">전체</label>
             <label><input type="checkbox" name="years" value="신규">신규</label>
             <label><input type="checkbox" name="years" value="1 ~ 2년">1 ~ 2년</label>
             <label><input type="checkbox" name="years" value="3 ~ 5년">3 ~ 5년</label>
@@ -78,7 +78,7 @@
         var arr = [];
 
         // checkbox
-        $('input:checkbox:not("#noQual")').change(function () { // :not("noQual") 추가
+        $('input:checkbox:not("#noQual,#allTimes,#allYears")').change(function () { // :not("noQual") 추가
             let clicked = $(this).val();
 
             if ($(this).is(':checked')) { // 박스 체크하면 #searchOptions에 val 추가                
@@ -172,6 +172,121 @@
                 others.prop('disabled', false);
 
                 console.log("list more qual");
+            }
+        });
+
+
+
+
+
+        $('#allTimes').click(function () { // 전체 클릭
+            let all = $(this);
+
+            let others = $('input[name="time"]:not("#allTimes")');
+
+            console.log(others);
+
+            if (all.is(':checked')) { // 전체 체크 
+                others.prop('checked', true);
+
+                console.log("all times selected");
+
+            // array
+            var values = others.map(function() {
+                return this.value;
+            }).get();
+
+            console.log("values : " + values);
+
+            values.forEach((elem) => {
+            // 기존에 없으면 추가
+                const index = arr.indexOf(elem);
+
+                if (index < 0) { // 없다
+                    arr.push(elem);
+                } 
+            });
+
+            $('#searchOptions').html(arr.join(" "));
+            } else { // 전체 체크 해제
+                others.prop('checked', false);
+
+                console.log("all times unselected");
+
+                // array
+                var values = others.map(function() {
+                    return this.value;
+                }).get();
+
+                console.log("values : " + values);
+
+                values.forEach((elem) => {
+                // 기존에 있으면 삭제
+                    const index = arr.indexOf(elem);
+
+                    if (index > -1) { // 있다
+                        arr.splice(index, 1);
+                    }
+                });
+
+                $('#searchOptions').html(arr.join(" "));
+            }
+        });
+
+
+
+
+        $('#allYears').click(function () { // 전체 클릭
+            let all = $(this);
+
+            let others = $('input[name="years"]:not("#allYears")');
+
+            console.log(others);
+
+            if (all.is(':checked')) { // 전체 체크 
+                others.prop('checked', true);
+
+                console.log("all Years selected");
+
+            // array
+            var values = others.map(function() {
+                return this.value;
+            }).get();
+
+            console.log("values : " + values);
+
+            values.forEach((elem) => {
+            // 기존에 없으면 추가
+                const index = arr.indexOf(elem);
+
+                if (index < 0) { // 없다
+                    arr.push(elem);
+                } 
+            });
+
+            $('#searchOptions').html(arr.join(" "));
+            } else { // 전체 체크 해제
+                others.prop('checked', false);
+
+                console.log("all years unselected");
+
+                // array
+                var values = others.map(function() {
+                    return this.value;
+                }).get();
+
+                console.log("values : " + values);
+
+                values.forEach((elem) => {
+                // 기존에 있으면 삭제
+                    const index = arr.indexOf(elem);
+
+                    if (index > -1) { // 있다
+                        arr.splice(index, 1);
+                    }
+                });
+
+                $('#searchOptions').html(arr.join(" "));
             }
         });
     </script>
